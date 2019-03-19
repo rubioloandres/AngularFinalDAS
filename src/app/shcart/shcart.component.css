@@ -1,0 +1,47 @@
+.example-container {
+  height: 320px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  grid-auto-rows: 60%;
+}
+
+table td {
+  color: rgb(0, 102, 204);
+  font-weight: bold;
+}
+
+table td img{
+  width: 60px;
+  height: 60px;
+}
+
+table td button img {
+  height: 35px;
+  width: 35px;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+mat-button-toggle-group{
+  justify-content: flex-end;
+}
+
+mat-button-toggle {
+  color: rgb(0, 102, 204);
+  background-color: rgb(149,149,149, 0.4);
+  font-weight: bold;
+}
+
+mat-button-toggle img {
+  width: 60px;
+  height: 60px;
+}
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
+}
+

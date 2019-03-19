@@ -1,0 +1,17 @@
+td mat-card img,th mat-card img {
+  width: 45px;
+  height: 45px;
+}
+
+button img {
+  width: 25px  !important;
+  height: 25px !important;
+}
+
+table,mat-card-title{
+  text-align: center !important;
+}
+
+.mejorOp{
+  background-color: greenyellow !important;
+}

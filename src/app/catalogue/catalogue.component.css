@@ -1,0 +1,19 @@
+mat-card{
+  border-style: groove;
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+  background-color: rgb(149,149,149, 0.4);
+  color: rgb(0, 102, 204);
+}
+mat-card img{
+  border-style: inset ;
+}
+mat-card-title{
+  font-weight: bold;
+  font-size: 22px !important;
+}
+
+
+.card-trasparent{
+  opacity: 0.2;
+}

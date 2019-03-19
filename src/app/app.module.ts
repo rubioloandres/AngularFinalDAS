@@ -1,16 +1,75 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
+import { NestedMenuExampleComponent } from './navbar/navbar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { CatalogueComponent } from './catalogue/catalogue.component';
+import { ShcartComponent } from './shcart/shcart.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { PricetableComponent } from './pricetable/pricetable.component';
+import { RestComponent } from './rest/rest.component';
+
+import { CategoriesDataSource } from './categories/categories.datasource';
+import { ProductsDataSource } from './categories/products.datasource';
+
+import { RouterModule } from '@angular/router';
+
+import { FactorialDatasource } from './rest/factorial.datasource';
+import { HttpClientModule } from '@angular/common/http';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NestedMenuExampleComponent,
+    SearchbarComponent,
+    CatalogueComponent,
+    ShcartComponent,
+    PricetableComponent,
+    RestComponent,
+    CategoriesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgMatSearchBarModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTableModule,
+    MatButtonToggleModule,
+    HttpClientModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [
+    FactorialDatasource,
+    CategoriesDataSource,
+    ProductsDataSource,
+    CatalogueComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

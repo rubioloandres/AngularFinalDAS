@@ -1,0 +1,46 @@
+<div class="example-container mat-elevation-z8">
+    <h2>Carrito de compras</h2>
+    <table mat-table [dataSource]="listaProductos">
+      <!-- Columna de item -->
+      <ng-container matColumnDef="item">
+        <th mat-header-cell *matHeaderCellDef> Item </th>
+        <td mat-cell *matCellDef="let producto"> <img src="{{producto.imagen}}">  </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+       <!--  <td mat-footer-cell *matFooterCellDef> Total </td>  -->
+      </ng-container>
+
+      <!-- Columna de nombre -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre de producto </th>
+        <td mat-cell *matCellDef="let producto"> {{producto.nombre }} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+       <!--  <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td> -->
+      </ng-container>
+
+       <!-- Columna categoria  -->
+       <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef> Categoria de producto </th>
+          <td mat-cell *matCellDef="let producto"> {{producto.categoria}} </td>
+         <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+      <!-- Columna accion  -->
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef> Accion </th>
+        <td mat-cell *matCellDef="let producto">
+           <button mat-button> <img src="../../assets/img/trash.png"> </button>
+           <button mat-button> <img src="../../assets/img/favorite.png"> </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    </table>
+  </div>
+
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="compare"> <img src="./../../assets/img/price_calculator.png"> Comparar Precios</mat-button-toggle>
+      <mat-button-toggle value="empty"> <img src="./../../assets/img/empty_cart.png"> Vaciar Carrito</mat-button-toggle>
+  </mat-button-toggle-group>

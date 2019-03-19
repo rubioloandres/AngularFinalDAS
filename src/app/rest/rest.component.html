@@ -1,0 +1,14 @@
+<form #f="ngForm" (ngSubmit)="calcular(f)" novalidate>
+  <mat-form-field>
+    <input matInput type="number" name="numero" [(ngModel)]="numero" placeholder="Número" required>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary">Calcular</button>
+</form>
+<br>
+<ul *ngIf="numeros">
+  <li *ngFor="let n of numeros">
+    {{n}}
+  </li>
+</ul>
+

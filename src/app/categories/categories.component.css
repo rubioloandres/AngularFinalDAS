@@ -1,0 +1,29 @@
+.card-categoria{
+  background: none;
+  width: 100%;
+  height: 100%;
+}
+
+mat-grid-tile{
+  /*background-color: rgba(94, 93, 93, 0.377);*/
+  background-color: rgba(25, 86, 146, 0.377);
+}
+
+mat-card img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 160px;
+  height: 160px;
+}
+
+mat-card-title{
+  border-style: groove;
+  text-align: justify !important;
+  text-align: center !important;
+  font-weight: bold;
+  font-size: 18pt !important;
+  color: rgb(252, 252, 252) !important;
+}
+mat-grid-list {
+  margin: 50px 75px 75px;
+}

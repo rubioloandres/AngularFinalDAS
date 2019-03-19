@@ -1,0 +1,65 @@
+<mat-toolbar-row class="navbar-custom">
+  <mat-toolbar>
+      <button mat-button [matMenuTriggerFor]="menu">
+          <img src="./../../assets/img/menu_icon.png" width="40" height="40">
+      </button>
+  </mat-toolbar>
+
+  <mat-toolbar>
+      <button mat-button [matMenuTriggerFor]="ubicacion">
+          <img src="./../../assets/img/location_icon.png" width="40" height="40">
+      </button>
+  </mat-toolbar>
+
+  <mat-toolbar >
+      <h3>Comparador de Precios</h3>
+  </mat-toolbar>
+
+  <mat-toolbar>
+      <img src="../../assets/img/Indec_logo.png" width="150" height="50">
+  </mat-toolbar>
+
+  <mat-toolbar></mat-toolbar>
+  <mat-toolbar>
+    <mat-form-field>
+        <mat-select placeholder="Buscar"></mat-select>
+        <mat-select-trigger>
+          <mat-icon></mat-icon>
+        </mat-select-trigger>
+    </mat-form-field>
+   <!-- <mat-search-bar></mat-search-bar>  -->
+  </mat-toolbar>
+
+</mat-toolbar-row>
+
+<mat-menu #ubicacion="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="provincias">Provincias</button>
+  <button mat-menu-item >Ubicacion actomatica</button>
+</mat-menu>
+
+<mat-menu #provincias="matMenu">
+  <button mat-menu-item *ngFor='let provincia of listaProvincias' > {{ provincia }} </button>
+</mat-menu>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="productos">Productos</button>
+  <button mat-menu-item [matMenuTriggerFor]="supermercados">Supermercados</button>
+</mat-menu>
+
+<mat-menu #productos="matMenu">
+  <button mat-menu-item *ngFor='let categoria of listaCategorias'> {{ categoria }} </button>
+  <!--  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button> -->
+</mat-menu>
+
+<mat-menu #supermercados="matMenu">
+  <button mat-menu-item *ngFor='let cadena of listaCadenas' > {{ cadena }} </button>
+</mat-menu>
+
+<mat-menu #fish="matMenu">
+  <button mat-menu-item>Baikal oilfish</button>
+  <button mat-menu-item>Bala shark</button>
+  <button mat-menu-item>Ballan wrasse</button>
+  <button mat-menu-item>Bamboo shark</button>
+  <button mat-menu-item>Banded killifish</button>
+</mat-menu>
+
