@@ -13,9 +13,6 @@ export interface Producto {
 })
 export class CatalogueComponent implements OnInit {
 
-   public isViewable: boolean;
- // public isViewable = true;
-
   listaProductos: Producto[] = [
     { nombre: 'Pan Bimbo', categoria: 'Pan', imagen: '../../assets/img/pan_bimbo.png' },
     { nombre: 'Galletitas surtidas Bagley', categoria: 'Galletitas Dulces', imagen: '../../assets/img/surtido-bagley.jpg'},
@@ -24,15 +21,9 @@ export class CatalogueComponent implements OnInit {
     { nombre: 'Galletitas surtidas Arcor', categoria: 'Galletitas Dulces', imagen: '../../assets/img/surtidas_arcor.jpg'},
   ];
 
-  constructor() {
-    this.isViewable = true;
-   }
+  constructor() {  }
 
   ngOnInit() {
-  }
-
-  public toggle(): void {
-    this.isViewable = !this.isViewable;
   }
 
 }

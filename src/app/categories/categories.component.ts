@@ -14,7 +14,7 @@ export interface Categoria {
 })
 export class CategoriesComponent implements OnInit, AfterViewInit {
 
-  public isViewable: boolean;
+ // public isViewable: boolean;
 
   private _categorias: string[];
   private categoria: string;
@@ -48,7 +48,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     // llamada a indec para obtener categorias de productos
     // this.getCategorias();
 
-    this.isViewable = true;
+   // this.isViewable = true;
   }
 
   ngAfterViewInit(): void {
@@ -79,8 +79,8 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
    // ocultar categorias (este componente)
    // this.toggle();
   }
-
+/*
   public toggle(): void {
     this.isViewable = !this.isViewable;
- }
+ }*/
 }

@@ -1,6 +1,6 @@
-<mat-grid-list cols="4" rowHeight="200px" *ngIf="isViewable">
+<mat-grid-list cols="4" rowHeight="200px">
   <mat-grid-tile *ngFor='let categoria of listaCategorias' >
-    <button mat-button (click)="getProductosByCategorias(categoria.nombre)">
+    <button mat-button (click)="getProductosByCategorias(categoria.nombre)" [routerLink]="['products']">
       <mat-card class="card-categoria">
         <img mat-card-image src='{{categoria.imagen}}'>
         <mat-card-title>{{categoria.nombre}}</mat-card-title>
