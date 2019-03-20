@@ -1,20 +1,4 @@
-<mat-toolbar-row class="navbar-custom">
-  <mat-toolbar>
-    <button mat-button [routerLink]="['/']">
-      <img src="./../../assets/img/home_icon.png" width="40" height="40">
-    </button>
-  </mat-toolbar>
-  <mat-toolbar>
-      <button mat-button [matMenuTriggerFor]="menu">
-          <img src="./../../assets/img/menu_icon.png" width="40" height="40">
-      </button>
-  </mat-toolbar>
-
-  <mat-toolbar>
-      <button mat-button [matMenuTriggerFor]="ubicacion">
-          <img src="./../../assets/img/location_icon.png" width="40" height="40">
-      </button>
-  </mat-toolbar>
+<mat-toolbar-row class="navbar-custom-top">
 
   <mat-toolbar >
       <h3>Comparador de Precios</h3>
@@ -35,11 +19,37 @@
    <!-- <mat-search-bar></mat-search-bar>  -->
   </mat-toolbar>
 
+
+</mat-toolbar-row>
+
+<mat-toolbar-row class="navbar-custom">
   <mat-toolbar>
-      <button mat-button [routerLink]="['cart']">
-        <img src="./../../assets/img/cart_icon.png" width="40" height="40">
-      </button>
+    <button mat-button [routerLink]="['/']">
+      <img src="./../../assets/img/home_icon.png">
+      Principal
+    </button>
   </mat-toolbar>
+  <mat-toolbar>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <img src="./../../assets/img/menu_icon.png">
+        Menu
+    </button>
+  </mat-toolbar>
+
+  <mat-toolbar>
+    <button mat-button [matMenuTriggerFor]="ubicacion">
+      <img src="./../../assets/img/location_icon.png">
+      Ubicacion
+    </button>
+  </mat-toolbar>
+
+  <mat-toolbar>
+    <button mat-button [routerLink]="['cart']">
+      <img src="./../../assets/img/cart_icon.png">
+      Carrito
+    </button>
+  </mat-toolbar>
+
 </mat-toolbar-row>
 
 <mat-menu #ubicacion="matMenu">

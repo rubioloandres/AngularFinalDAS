@@ -1,8 +1,22 @@
-.navbar-custom{
+.navbar-custom-top{
   background-image: url("./../../assets/img/wallpaper.jpg") ;
   background-repeat: no-repeat;
   width: 100%;
   background-size: 100%;
+}
+
+.navbar-custom{
+  background-color: rgb(233, 233, 233);
+  max-height: 45px !important;
+}
+
+mat-toolbar button{
+  font-weight: bold !important;
+}
+
+mat-toolbar button img {
+  width: 25px !important;
+  height: 25px !important;
 }
 
 mat-toolbar, mat-search-bar, button{
