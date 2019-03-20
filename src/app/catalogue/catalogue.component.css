@@ -2,7 +2,8 @@ mat-card{
   border-style: groove;
   width: calc(100% - 70px);
   height: calc(100% - 70px);
-  background-color: rgb(149,149,149, 0.4);
+  /* background-color: rgb(149,149,149, 0.4); */
+  background-color: rgb(226, 224, 224);
   color: rgb(0, 102, 204);
 }
 mat-card img{
@@ -13,7 +14,16 @@ mat-card-title{
   font-size: 22px !important;
 }
 
-
+h2 {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 26px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  text-align: center !important;
+}
 .card-trasparent{
   opacity: 0.2;
 }

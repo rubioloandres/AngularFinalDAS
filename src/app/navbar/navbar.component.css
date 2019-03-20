@@ -3,16 +3,30 @@
   background-repeat: no-repeat;
   width: 100%;
   background-size: 100%;
+  height: 100px !important;
+}
+
+.navbar-custom-top h3 {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 32px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
 }
 
 .navbar-custom{
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(50, 50, 156);
   max-height: 45px !important;
 }
 
 mat-toolbar button{
   font-weight: bold !important;
+  font-size: 20px;
+  color: white;
 }
+
 
 mat-toolbar button img {
   width: 25px !important;
