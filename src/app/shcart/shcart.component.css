@@ -1,5 +1,5 @@
 .example-container {
-  height: 320px;
+  height: 380px;
   overflow: auto;
 }
 
@@ -29,11 +29,12 @@ tr.mat-footer-row {
 
 mat-button-toggle-group{
   justify-content: flex-end;
+  position: absolute;
+  right: 0;
 }
 
 mat-button-toggle {
   color: rgb(0, 102, 204);
-  background-color: rgb(149,149,149, 0.4);
   font-weight: bold;
 }
 
@@ -43,5 +44,16 @@ mat-button-toggle img {
 }
 .mat-table-sticky {
   border-top: 1px solid #e0e0e0;
+}
+
+h2 {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 26px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  text-align: center !important;
 }
 

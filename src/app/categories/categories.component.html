@@ -1,5 +1,5 @@
 <h2>Categorias de Productos</h2>
-<mat-grid-list cols="4" rowHeight="200px">
+<mat-grid-list cols="4" rowHeight="200px" [gutterSize]="'10px'">
   <mat-grid-tile *ngFor='let categoria of listaCategorias' >
     <button mat-button (click)="getProductosByCategorias(categoria.nombre)" [routerLink]="['products']">
       <mat-card>
