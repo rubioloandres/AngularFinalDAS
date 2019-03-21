@@ -26,6 +26,8 @@ import { RestComponent } from './rest/rest.component';
 import { CategoriesDataSource } from './categories/categories.datasource';
 import { ProductsDataSource } from './categories/products.datasource';
 
+import { MatProgressSpinnerModule } from '@angular/material';
+
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 
@@ -63,7 +65,8 @@ import { CategoriesComponent } from './categories/categories.component';
     MatButtonToggleModule,
     HttpClientModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     FactorialDatasource,

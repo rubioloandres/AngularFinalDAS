@@ -9,8 +9,8 @@
       <mat-card-subtitle>{{producto.categoria}}</mat-card-subtitle>
       <img class="prod-img" src="{{producto.imagen}}">
       <mat-card-actions>
-        <button mat-button><img src="./../../assets/img/addtocart_icon.png"></button>
-        <button mat-button><img src="./../../assets/img/searchprice_icon.png"></button>
+        <button mat-button><img src="./../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
+        <button mat-button [routerLink]="['../prices']"><img src="./../../assets/img/searchprice_icon.png" title="Comparar precio"></button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

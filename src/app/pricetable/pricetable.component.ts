@@ -143,6 +143,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.cargarDatos();
+
   }
 
   ngAfterViewInit(): void {

@@ -3,6 +3,10 @@ td mat-card img,th mat-card img {
   height: 45px;
 }
 
+.total {
+  background-color: lightblue !important;
+}
+
 button img {
   width: 25px  !important;
   height: 25px !important;
