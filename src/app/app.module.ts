@@ -37,6 +37,8 @@ import { LocalStorageService } from './services/localStorage.service';
 import { FactorialDatasource } from './rest/factorial.datasource';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './categories/categories.component';
+import { ProductsComponent } from './products/products.component';
+import { DataSharingService } from './services/datasharing.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { CategoriesComponent } from './categories/categories.component';
     ShcartComponent,
     PricetableComponent,
     RestComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { CategoriesComponent } from './categories/categories.component';
     CategoriesDataSource,
     ProductsDataSource,
     CatalogueComponent,
-    LocalStorageService
+    LocalStorageService,
+    DataSharingService
   ],
   bootstrap: [AppComponent]
 })

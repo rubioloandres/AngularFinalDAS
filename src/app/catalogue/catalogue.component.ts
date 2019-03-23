@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { DataSharingService } from '../services/datasharing.service';
 
 export interface Producto {
   nombre: string;
@@ -15,49 +16,25 @@ export class CatalogueComponent implements OnInit {
 
   listaProductos: Producto [] = new Array();
 
+  message: string;
+
   cargarProductos() {
+    console.log('entro');
     const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
     this.listaProductos = prods;
-  }
-
-  constructor() {
-   }
-  ngOnInit() {
-     this.cargarProductos();
-  }
-
-  /*private _listaProductos: Producto [];
-  private _categoria: string;
-
-  getProdByCat(c: string): void {
-    this._categoria = c;
-  }
-
-  @Output() catsChange = new EventEmitter();
-
-  get prods() {
-    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-    this.listaProductos = prods.filter(p => p.categoria === this._categoria);
     return this.listaProductos;
   }
 
-  set listaProductos( c: string ) {
-    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-    this._listaProductos = prods.filter(p => p.categoria === this._categoria);
-    this.catsChange.emit(this._listaProductos);
-    console.log('entro');
+  constructor(private data: DataSharingService) {
   }
 
-getProductosByCategoria(cat: string) {
-    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-    this.listaProductos = prods.filter(p => p.categoria === cat);
+  ngOnInit() {
+    this.data.currentMessage.subscribe(message => {
+      this.message = message;
+      const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+      this.listaProductos = prods.filter(p => p.categoria === this.message);
+    });
+    // this.cargarProductos();
   }
 
-  @Input() cat: string = '';
-  loadProdsByCat(cat: string): void {
-    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-    this.listaProductos = prods.filter(p => p.categoria === cat);
-  }
-
-  */
 }

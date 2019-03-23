@@ -1,7 +1,7 @@
-import { Component, OnInit , AfterViewInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoriesDataSource } from './categories.datasource';
 import { ProductsDataSource } from './products.datasource';
-import { CatalogueComponent } from '../catalogue/catalogue.component';
+import { DataSharingService } from '../services/datasharing.service';
 
 export interface Categoria {
   nombre: string;
@@ -16,32 +16,28 @@ export interface Producto {
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css'],
-  providers: [CatalogueComponent]
+  styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit, AfterViewInit {
+export class CategoriesComponent implements OnInit {
 
   private _categorias: Categoria[];
   private categoria: Categoria;
 
-  private _productos: string[];
-  private producto: string;
+  message: string;
 
   listaCategorias: Categoria[] = new Array();
 
   constructor(
+    private data: DataSharingService,
     private _dsCat: CategoriesDataSource,
-    private _dsProd: ProductsDataSource,
-    private _catalogo: CatalogueComponent
+    private _dsProd: ProductsDataSource
     ) {   }
 
   ngOnInit() {
     // ver manejo de error, si no hay respuesta del servlet, buscar en localsotorage
     this.loadCategorias();
+    this.data.currentMessage.subscribe(message => this.message = message);
    // this.loadProductos();
-  }
-
-  ngAfterViewInit(): void {
   }
 
   loadCategorias() {
@@ -55,33 +51,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
           });*/
   }
 
-/*
-  get categorias(): Categoria[] {
-    return this._categorias;
+  newMessage(categoria: string) {
+    this.data.changeMessage(categoria);
   }
-
-  getProductosByCategoria(cat: string) {
-    //const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-    console.log(this._catalogo.listaProductos);
-    // this._catalogo.getProductosByCategoria(cat);
-    console.log(this._catalogo.listaProductos);
-    //this._catalogo.listaProductos = prods.filter(p => p.categoria === cat);
-  }
-
-  loadProductos() {
-    this._dsProd.getProductosINDEC().subscribe( prods  =>  {
-          localStorage.setItem('productos', JSON.stringify(prods));
-          });
-  }
- // @Output('function') eventLoad: EventEmitter<string> = new EventEmitter<string>();
-  @Output() eventLoad = new EventEmitter();
-  loadProd(categoria: string) {
-    console.log(this._catalogo.listaProductos);
-    // this.eventLoad.emit(categoria);
-   //  this.eventLoad.emit(null);
-   // this._catalogo.loadProdsByCat(categoria);
-    console.log(this._catalogo.listaProductos);
-
-  }*/
-
 }
