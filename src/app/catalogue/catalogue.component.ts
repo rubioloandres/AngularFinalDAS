@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 export interface Producto {
   nombre: string;
@@ -13,17 +13,51 @@ export interface Producto {
 })
 export class CatalogueComponent implements OnInit {
 
-  listaProductos: Producto[] = [
-    { nombre: 'Pan Bimbo', categoria: 'Pan', imagen: '../../assets/img/pan_bimbo.png' },
-    { nombre: 'Galletitas surtidas Bagley', categoria: 'Galletitas Dulces', imagen: '../../assets/img/surtido-bagley.jpg'},
-    { nombre: 'Azucar Ledesma 1kg', categoria: 'Azucar', imagen: '../../assets/img/azucar_ledesma.png' },
-    { nombre: 'Pan Lactal', categoria: 'Pan', imagen: '../../assets/img/pan_lactal.png' },
-    { nombre: 'Galletitas surtidas Arcor', categoria: 'Galletitas Dulces', imagen: '../../assets/img/surtidas_arcor.jpg'},
-  ];
+  listaProductos: Producto [] = new Array();
 
-  constructor() {  }
-
-  ngOnInit() {
+  cargarProductos() {
+    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+    this.listaProductos = prods;
   }
 
+  constructor() {
+   }
+  ngOnInit() {
+     this.cargarProductos();
+  }
+
+  /*private _listaProductos: Producto [];
+  private _categoria: string;
+
+  getProdByCat(c: string): void {
+    this._categoria = c;
+  }
+
+  @Output() catsChange = new EventEmitter();
+
+  get prods() {
+    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+    this.listaProductos = prods.filter(p => p.categoria === this._categoria);
+    return this.listaProductos;
+  }
+
+  set listaProductos( c: string ) {
+    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+    this._listaProductos = prods.filter(p => p.categoria === this._categoria);
+    this.catsChange.emit(this._listaProductos);
+    console.log('entro');
+  }
+
+getProductosByCategoria(cat: string) {
+    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+    this.listaProductos = prods.filter(p => p.categoria === cat);
+  }
+
+  @Input() cat: string = '';
+  loadProdsByCat(cat: string): void {
+    const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+    this.listaProductos = prods.filter(p => p.categoria === cat);
+  }
+
+  */
 }

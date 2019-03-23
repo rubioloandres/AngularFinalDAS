@@ -31,6 +31,9 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { LocalStorageService } from './services/localStorage.service';
+
 import { FactorialDatasource } from './rest/factorial.datasource';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './categories/categories.component';
@@ -66,13 +69,15 @@ import { CategoriesComponent } from './categories/categories.component';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    StorageServiceModule
   ],
   providers: [
     FactorialDatasource,
     CategoriesDataSource,
     ProductsDataSource,
-    CatalogueComponent
+    CatalogueComponent,
+    LocalStorageService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Categoria } from './categories.component';
 
 @Injectable()
 export class CategoriesDataSource {
 
     constructor(private _http: HttpClient) { }
 
-    public getCategoriasINDEC(): Observable<string[]> {
-        return this._http.get<string[]>(environment.webAPI + 'categorias/');
+    public getCategoriasINDEC(): Observable<Categoria[]> {
+      return this._http.get<Categoria[]>(environment.webAPI + 'categorias?identificador=1222');
     }
 }
