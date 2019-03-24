@@ -13,6 +13,8 @@ export interface Producto {
 })
 export class ShcartComponent implements OnInit {
 
+  listaProductosCarrito: Producto[] = new Array();
+
   displayedColumns = ['item', 'nombre', 'categoria', 'accion'];
 
   listaProductos: Producto[] = [
@@ -23,14 +25,30 @@ export class ShcartComponent implements OnInit {
     { nombre: 'Galletitas surtidas Arcor', categoria: 'Galletitas Dulces', imagen: '../../assets/img/surtidas_arcor.jpg'},
   ];
 
-  /** Gets the total cost of all transactions. */
   getTotalCost() {
    // return this.listaProductos.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  }
+
+  loadCart() {
+    var carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    this.listaProductosCarrito = carLS;
+  }
+
+  removeProd(prod: Producto){
+    var carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    this.listaProductosCarrito =  carLS.filter(p => p.nombre !== prod.nombre);
+    localStorage.setItem('carrito', JSON.stringify(this.listaProductosCarrito));
+  }
+
+  removeAllProds() {
+    localStorage.removeItem('carrito');
+    this.listaProductosCarrito = [];
   }
 
   constructor() { }
 
   ngOnInit() {
+    this.loadCart();
   }
 
 }
