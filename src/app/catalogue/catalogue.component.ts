@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DataSharingService } from '../services/datasharing.service';
 
 export interface Producto {
@@ -16,6 +16,8 @@ export class CatalogueComponent implements OnInit {
 
   listaProductos: Producto [] = new Array();
 
+  listaProdCarrito: Producto [] = new Array();
+
   message: string;
 
   cargarProductos() {
@@ -23,6 +25,20 @@ export class CatalogueComponent implements OnInit {
     const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
     this.listaProductos = prods;
     return this.listaProductos;
+  }
+
+  addToCart(prod: Producto) {
+    var carLS: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    if (carLS === null) {
+      this.listaProdCarrito.push(prod);
+      localStorage.setItem('carrito', JSON.stringify(this.listaProdCarrito));
+    } else {
+      if ( (carLS.filter(p => p.nombre === prod.nombre ).length === 0)) {
+        this.listaProdCarrito = JSON.parse(localStorage.getItem('carrito'));
+        this.listaProdCarrito.push(prod);
+        localStorage.setItem('carrito', JSON.stringify(this.listaProdCarrito));
+      }
+    }
   }
 
   constructor(private data: DataSharingService) {
