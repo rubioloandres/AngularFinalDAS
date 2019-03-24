@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Categoria } from './../categories/categories.component';
+import { Categoria } from './../interfaces/categoria';
 
 @Component({
   selector: 'app-products',

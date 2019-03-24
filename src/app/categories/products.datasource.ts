@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Producto } from '../catalogue/catalogue.component';
+import { Producto } from '../interfaces/producto';
 
 @Injectable()
 export class ProductsDataSource {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 /**
  * @title Nested menu
  */

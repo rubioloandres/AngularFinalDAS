@@ -1,14 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Producto } from './../interfaces/producto';
 
 export interface TotalSucursal {
   numeroSucursal: number;
   totalPrecio: number;
-}
-
-export interface Producto {
-  nombre: string;
-  idProd: number;
-  imagen: string;
 }
 
 export interface ProductoPrecio {
@@ -39,7 +34,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   listaProductos: Producto[] = new Array();
   mejorop = -1;
   indexSuc = 0;
-  cargarDatos() {
+  loadData() {
 
     this.listaSucursales = [
       {
@@ -50,7 +45,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
           { idProd: 111114444, precio: 25 },
           { idProd: 111115555, precio: 7.50 },
           // { idProd: 111116666, precio: 87 }
-        ], mejor: false
+        ], mejor: true
       },
       {
        nombreCadena: 'Walmart', imagen: '../../assets/img/walmart_logo.png',
@@ -78,14 +73,22 @@ export class PricetableComponent implements OnInit, AfterViewInit {
         ], mejor: false
       }
     ];
-
+/*
     this.listaProductos =  [
       { nombre: 'Pan Bimbo', idProd: 111112222 , imagen: '../../assets/img/pan_bimbo.png' },
       { nombre: 'Galletitas surtidas Bagley', idProd: 111113333, imagen: '../../assets/img/surtido-bagley.jpg'},
       { nombre: 'Azucar Ledesma 1kg', idProd: 111114444,  imagen: '../../assets/img/azucar_ledesma.png' },
       { nombre: 'Pan Lactal', idProd: 111115555, imagen: '../../assets/img/pan_lactal.png' },
       { nombre: 'Galletitas surtidas Arcor', idProd: 111116666, imagen: '../../assets/img/surtidas_arcor.jpg' }
-    ];
+    ];*/
+
+    this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
+  }
+
+  loadPrices() {
+    this.listaProductos.forEach(element => {
+
+    });
   }
 
   getProductoPriceBySucursal(indexSuc: number, idProd: number) {
@@ -109,47 +112,13 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     return tot;
   }
 
-  getBestSuc() {
-    let best = 0;
-    let precio = this.precioTotalSucursal[best].totalPrecio;
-    // let count
-    this.precioTotalSucursal.forEach(element => {
-      //  if (element.listaProductos.length)
-
-        if (element.totalPrecio < precio ) {
-          precio = element.totalPrecio;
-          best = element.numeroSucursal;
-        }
-      });
-    this.mejorop = this.precioTotalSucursal[best].numeroSucursal ;
-
-    this.listaSucursales = new Array();
-    this.cargarDatos();
-    this.listaSucursales[this.mejorop].mejor = true;
-    // alert(this.mejorop);
-    // alert(this.listaSucursales[this.mejorop].nombreCadena);
-    // alert(this.listaSucursales[this.mejorop].mejor);
-    // return (this.precioTotalSucursal[best].numeroSucursal + 1);
-  }
-
-  getClass(indexSuc: number) {
-    if (this.listaSucursales[indexSuc].mejor) {
-      return 'mejorOp';
-    }
-    return '';
-  }
-
   constructor() {   }
 
   ngOnInit() {
-    this.cargarDatos();
-
+    this.loadData();
+    this.loadPrices();
   }
 
   ngAfterViewInit(): void {
-    this.getBestSuc();
-    // this.getClass();
-    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    // Add 'implements AfterViewInit' to the class.
   }
 }

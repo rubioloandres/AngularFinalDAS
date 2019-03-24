@@ -1,11 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { DataSharingService } from '../services/datasharing.service';
-
-export interface Producto {
-  nombre: string;
-  categoria: string;
-  imagen: string;
-}
+import { Producto } from './../interfaces/producto';
 
 @Component({
   selector: 'app-catalogue',
