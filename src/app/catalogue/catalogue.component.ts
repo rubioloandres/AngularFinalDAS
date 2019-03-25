@@ -36,16 +36,29 @@ export class CatalogueComponent implements OnInit {
     }
   }
 
+  cartContainsProd( idprod: number) {
+    //console.log('entro');
+    const prodCart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    if (prodCart === null) {
+      return false;
+    }
+
+    if (prodCart.filter(p => p.id === idprod).length === 1 ) {
+      return true;
+    }
+    return false;
+  }
+
   constructor(private data: DataSharingService) {
   }
 
-  ngOnInit() {
+  ngOnInit() {/*
     this.data.currentMessage.subscribe(message => {
       this.message = message;
       const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
       this.listaProductos = prods.filter(p => p.categoria === this.message);
-    });
-    // this.cargarProductos();
+    });*/
+     this.cargarProductos();
   }
 
 }

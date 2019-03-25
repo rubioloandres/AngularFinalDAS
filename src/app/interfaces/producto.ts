@@ -6,3 +6,8 @@ export interface Producto {
   imagen: string;
   precio: string;
 }
+
+export interface ProductoPrecio {
+  idProd: number;
+  precio: number;
+}

@@ -1,24 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Producto } from './../interfaces/producto';
-
-export interface TotalSucursal {
-  numeroSucursal: number;
-  totalPrecio: number;
-}
-
-export interface ProductoPrecio {
-  idProd: number;
-  precio: number;
-}
-
-export interface Sucursal {
-  nombreCadena: string;
-  imagen: string;
-  direccion: string;
-  localidad: string;
-  listaPreciosProductos: ProductoPrecio[];
-  mejor: boolean;
-}
+import { Producto, ProductoPrecio } from './../interfaces/producto';
+import { Sucursal, TotalSucursal } from './../interfaces/sucursal';
 
 @Component({
   selector: 'app-pricetable',
@@ -29,66 +11,49 @@ export class PricetableComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['item', 'sucursal1', 'sucursal2', 'sucursal3', 'sucursal4'];
   precioTotalSucursal: TotalSucursal[] = new Array();
-
   listaSucursales: Sucursal[] = new Array();
   listaProductos: Producto[] = new Array();
-  mejorop = -1;
-  indexSuc = 0;
-  loadData() {
 
+  loadData() {
     this.listaSucursales = [
       {
         nombreCadena: 'Disco', imagen: '../../assets/img/disco_logo.png',
         direccion: 'dir disco 111', localidad: 'localidad 1', listaPreciosProductos: [
-          { idProd: 111112222, precio: 50 },
-          { idProd: 111113333, precio: 41 },
-          { idProd: 111114444, precio: 25 },
-          { idProd: 111115555, precio: 7.50 },
+          { idProd: 1111, precio: 50 },
+          { idProd: 3333, precio: 41 },
+          { idProd: 4444, precio: 25 },
+          { idProd: 5555, precio: 7.50 },
           // { idProd: 111116666, precio: 87 }
         ], mejor: true
       },
       {
        nombreCadena: 'Walmart', imagen: '../../assets/img/walmart_logo.png',
        direccion: 'dir walmart 222', localidad: 'localidad 1', listaPreciosProductos: [
-        { idProd: 111112222, precio: 50 },
-        { idProd: 111113333, precio: 37 },
-        { idProd: 111114444, precio: 25 },
-        { idProd: 111116666, precio: 80 }
+        { idProd: 2222, precio: 50 },
+        { idProd: 3333, precio: 37 },
+        { idProd: 4444, precio: 25 },
+        { idProd: 6666, precio: 80 }
         ], mejor: false
       },
       {
          nombreCadena: 'Libertad', imagen: '../../assets/img/libertad_logo_nopng.jpg',
          direccion: 'dir libertad 333', localidad: 'localidad 1', listaPreciosProductos: [
-          { idProd: 111114444, precio: 23 },
-          { idProd: 111116666, precio: 82 }
+          { idProd: 4444, precio: 23 },
+          { idProd: 6666, precio: 82 }
          ], mejor: false
       },
       {
         nombreCadena: 'Carrefour', imagen: '../../assets/img/carrefour_logo.png',
         direccion: 'dir carrefour 444', localidad: 'localidad 1', listaPreciosProductos: [
-          { idProd: 111112222, precio: 45 },
-          { idProd: 111113333, precio: 37 },
-          { idProd: 111114444, precio: 23 },
-          { idProd: 111116666, precio: 81 }
+          { idProd: 2222, precio: 45 },
+          { idProd: 3333, precio: 37 },
+          { idProd: 4444, precio: 23 },
+          { idProd: 6666, precio: 81 }
         ], mejor: false
       }
     ];
-/*
-    this.listaProductos =  [
-      { nombre: 'Pan Bimbo', idProd: 111112222 , imagen: '../../assets/img/pan_bimbo.png' },
-      { nombre: 'Galletitas surtidas Bagley', idProd: 111113333, imagen: '../../assets/img/surtido-bagley.jpg'},
-      { nombre: 'Azucar Ledesma 1kg', idProd: 111114444,  imagen: '../../assets/img/azucar_ledesma.png' },
-      { nombre: 'Pan Lactal', idProd: 111115555, imagen: '../../assets/img/pan_lactal.png' },
-      { nombre: 'Galletitas surtidas Arcor', idProd: 111116666, imagen: '../../assets/img/surtidas_arcor.jpg' }
-    ];*/
 
     this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
-  }
-
-  loadPrices() {
-    this.listaProductos.forEach(element => {
-
-    });
   }
 
   getProductoPriceBySucursal(indexSuc: number, idProd: number) {
@@ -102,7 +67,6 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   getTotal(indexSuc: number) {
     const tot  = this.listaSucursales[indexSuc]
                       .listaPreciosProductos
@@ -112,11 +76,16 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     return tot;
   }
 
+  removeProduct(idprod: number) {
+    const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    this.listaProductos = prodscart.filter(p => p.id !== idprod);
+    localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
+  }
+
   constructor() {   }
 
   ngOnInit() {
     this.loadData();
-    this.loadPrices();
   }
 
   ngAfterViewInit(): void {

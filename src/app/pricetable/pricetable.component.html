@@ -13,10 +13,9 @@ y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
         <img src={{producto.imagen}}>
         <mat-card-content>
           <span> {{producto.nombre}}</span>
-          <mat-card-subtitle> {{producto.idProd}} </mat-card-subtitle>
-
+          <mat-card-subtitle> {{producto.id}} </mat-card-subtitle>
         </mat-card-content>
-        <button mat-button><img src="../../assets/img/trash.png"></button>
+        <button mat-button title="Eliminar producto" (click)="removeProduct(producto.id)"><img src="../../assets/img/trash.png"></button>
       </mat-card>
     </td>
     <td mat-footer-cell *matFooterCellDef class="total">
@@ -38,14 +37,14 @@ y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
         </mat-card>
       </th>
 
-      <td [ngClass]="{'mejorOp': sucursal.mejor}" *matCellDef="let producto"> {{getProductoPriceBySucursal(i,producto.idProd)}}   </td>
+      <td [ngClass]="{'mejorOp': sucursal.mejor}" *matCellDef="let producto"> {{getProductoPriceBySucursal(i,producto.id)}}   </td>
 
       <td mat-footer-cell *matFooterCellDef>
         <mat-card [ngClass]="sucursal.mejor ? 'mejorOp' : 'total'">
           <mat-card-title> $ {{getTotal(i)}} </mat-card-title>
           <img src="{{sucursal.imagen}}">
           <mat-card-content>
-            <mat-card-subtitle>  {{sucursal.direccion}} </mat-card-subtitle>
+            <mat-card-subtitle> {{sucursal.direccion}} </mat-card-subtitle>
           </mat-card-content>
         </mat-card>
       </td>

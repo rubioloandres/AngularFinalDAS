@@ -5,6 +5,7 @@ import { NestedMenuExampleComponent } from './navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -22,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PricetableComponent } from './pricetable/pricetable.component';
 import { RestComponent } from './rest/rest.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { CategoriesDataSource } from './categories/categories.datasource';
 import { ProductsDataSource } from './categories/products.datasource';
@@ -39,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products/products.component';
 import { DataSharingService } from './services/datasharing.service';
+import { SearchfilterComponent } from './searchfilter/searchfilter.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { DataSharingService } from './services/datasharing.service';
     PricetableComponent,
     RestComponent,
     CategoriesComponent,
-    ProductsComponent
+    ProductsComponent,
+    SearchfilterComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,9 @@ import { DataSharingService } from './services/datasharing.service';
     RouterModule,
     AppRoutingModule,
     MatProgressSpinnerModule,
-    StorageServiceModule
+    StorageServiceModule,
+    MatDividerModule,
+    MatFormFieldModule
   ],
   providers: [
     FactorialDatasource,

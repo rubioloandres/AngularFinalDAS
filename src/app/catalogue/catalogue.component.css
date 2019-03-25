@@ -1,3 +1,11 @@
+app-searchfilter {
+  position: absolute;
+  right: 0 !important;
+  top: 35% !important;
+  width: 18% !important;
+  border: 2px lightblue solid;
+}
+
 mat-card{
   border: 2px lightblue solid;
   width: calc(100% - 70px);
@@ -9,7 +17,7 @@ mat-card img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  width: 180px;
   height: 150px;
 }
 
@@ -25,7 +33,7 @@ mat-card-actions {
   margin-right: auto;
 }
 
-mat-card-actions button img {
+mat-card-actions img {
   width: 45px;
   height: 45px;
 }
@@ -43,8 +51,8 @@ mat-card-subtitle {
 }
 
 mat-grid-list{
-  margin-left: 5% !important;
-  margin-right: 5% !important;
+  margin-left: 2% !important;
+  margin-right: 25% !important;
 }
 
 h2 {

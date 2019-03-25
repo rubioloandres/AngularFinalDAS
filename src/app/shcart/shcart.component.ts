@@ -9,7 +9,6 @@ import { Producto } from './../interfaces/producto';
 export class ShcartComponent implements OnInit {
 
   listaProductosCarrito: Producto[] = new Array();
-
   displayedColumns = ['item', 'nombre', 'categoria', 'accion'];
 
   getTotalCost() {
