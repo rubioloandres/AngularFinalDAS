@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import { DataSharingService } from '../services/datasharing.service';
-import { Producto } from './../interfaces/producto';
+import { DataSharingService } from '../../services/datasharing.service';
+import { Producto } from './../../interfaces/producto';
 
 @Component({
   selector: 'app-catalogue',
@@ -52,13 +52,13 @@ export class CatalogueComponent implements OnInit {
   constructor(private data: DataSharingService) {
   }
 
-  ngOnInit() {/*
+  ngOnInit() {
     this.data.currentMessage.subscribe(message => {
       this.message = message;
       const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
       this.listaProductos = prods.filter(p => p.categoria === this.message);
-    });*/
-     this.cargarProductos();
+    });
+     //this.cargarProductos();
   }
 
 }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoriesComponent } from './categories/categories.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
-import { ShcartComponent } from './shcart/shcart.component';
-import { PricetableComponent } from './pricetable/pricetable.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
+import { ShcartComponent } from './components/shcart/shcart.component';
+import { PricetableComponent } from './components/pricetable/pricetable.component';
 
 const routes: Routes = [
   {

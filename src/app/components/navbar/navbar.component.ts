@@ -14,9 +14,10 @@ export class NestedMenuExampleComponent implements OnInit {
   listaCategorias = ['Pan', 'Galletitas dulces', 'Galletitas de agua' ,  'Azucar'];
   listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
 
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
+
   }
 
 }

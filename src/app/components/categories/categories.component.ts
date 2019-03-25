@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesDataSource } from './categories.datasource';
-import { ProductsDataSource } from './products.datasource';
-import { DataSharingService } from '../services/datasharing.service';
-import { Categoria } from './../interfaces/categoria';
-import { Producto } from './../interfaces/producto';
+import { CategoriesDataSource } from '../../data/categories.datasource';
+import { ProductsDataSource } from '../../data/products.datasource';
+import { DataSharingService } from '../../services/datasharing.service';
+import { Categoria } from './../../interfaces/categoria';
+import { Producto } from './../../interfaces/producto';
 
 @Component({
   selector: 'app-categories',

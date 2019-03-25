@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Producto, ProductoPrecio } from './../interfaces/producto';
-import { Sucursal, TotalSucursal } from './../interfaces/sucursal';
+import { Producto, ProductoPrecio } from './../../interfaces/producto';
+import { Sucursal, TotalSucursal } from './../../interfaces/sucursal';
 
 @Component({
   selector: 'app-pricetable',
@@ -17,7 +17,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   loadData() {
     this.listaSucursales = [
       {
-        nombreCadena: 'Disco', imagen: '../../assets/img/disco_logo.png',
+        nombreCadena: 'Disco', imagen: '../../../assets/img/disco_logo.png',
         direccion: 'dir disco 111', localidad: 'localidad 1', listaPreciosProductos: [
           { idProd: 1111, precio: 50 },
           { idProd: 3333, precio: 41 },
@@ -27,7 +27,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
         ], mejor: true
       },
       {
-       nombreCadena: 'Walmart', imagen: '../../assets/img/walmart_logo.png',
+       nombreCadena: 'Walmart', imagen: '../../../assets/img/walmart_logo.png',
        direccion: 'dir walmart 222', localidad: 'localidad 1', listaPreciosProductos: [
         { idProd: 2222, precio: 50 },
         { idProd: 3333, precio: 37 },
@@ -36,14 +36,14 @@ export class PricetableComponent implements OnInit, AfterViewInit {
         ], mejor: false
       },
       {
-         nombreCadena: 'Libertad', imagen: '../../assets/img/libertad_logo_nopng.jpg',
+         nombreCadena: 'Libertad', imagen: '../../../assets/img/libertad_logo_nopng.jpg',
          direccion: 'dir libertad 333', localidad: 'localidad 1', listaPreciosProductos: [
           { idProd: 4444, precio: 23 },
           { idProd: 6666, precio: 82 }
          ], mejor: false
       },
       {
-        nombreCadena: 'Carrefour', imagen: '../../assets/img/carrefour_logo.png',
+        nombreCadena: 'Carrefour', imagen: '../../../assets/img/carrefour_logo.png',
         direccion: 'dir carrefour 444', localidad: 'localidad 1', listaPreciosProductos: [
           { idProd: 2222, precio: 45 },
           { idProd: 3333, precio: 37 },

@@ -1,7 +1,6 @@
 <h2>Categorias de Productos</h2>
 <mat-grid-list cols="4" rowHeight="200px" [gutterSize]="'10px'">
   <mat-grid-tile *ngFor='let categoria of listaCategorias' >
-  <!--   <button mat-button (click)="getProductosByCategoria(categoria.nombre)" [routerLink]="['products']"> -->
   <button mat-button (click)="newMessage(categoria.nombre)" [routerLink]="['catalogue']">
     <mat-card>
       <img mat-card-image src='{{categoria.imagen}}'>

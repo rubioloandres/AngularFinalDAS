@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from './../interfaces/producto';
+import { Producto } from './../../interfaces/producto';
 
 @Component({
   selector: 'app-shcart',

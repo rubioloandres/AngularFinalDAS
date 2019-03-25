@@ -1,0 +1,26 @@
+<h2>Productos de Canasta Basica</h2>
+<mat-grid-list cols="4" rowHeight="100px" [gutterSize]="'8px'" class="product-card">
+  <mat-grid-tile
+    *ngFor="let producto of listaProductos"
+    [colspan]="1"
+    [rowspan]="4">
+    <mat-card>
+      <mat-card-title>{{producto.nombre}}</mat-card-title>
+      <mat-card-subtitle>{{producto.categoria}}</mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <img class="prod-img" src="{{producto.imagen}}">
+      <mat-card-actions>
+        <img mat-button *ngIf="cartContainsProd(producto.id)" src="./../../../assets/img/added_icon.png" title="Agregado a carrito">
+        <button mat-button *ngIf="! cartContainsProd(producto.id)" (click)="addToCart(producto)" ><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
+        <button mat-button *ngIf="! cartContainsProd(producto.id)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Comparar precio"></button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div>
+  <app-searchfilter></app-searchfilter>
+</div>
+
+
+
