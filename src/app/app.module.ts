@@ -31,7 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './services/localStorage.service';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { DataSharingService } from './services/datasharing.service';
@@ -74,7 +74,8 @@ import { SearchfilterComponent } from './components/searchfilter/searchfilter.co
     MatDividerModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    CarouselModule
   ],
   providers: [
     CategoriesDataSource,

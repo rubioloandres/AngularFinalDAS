@@ -1,43 +1,17 @@
+<div style="text-align:center">
+  <h2>Buscador de Productos</h2>
 
-<div ng-app="searchBarApp">
-  <div ng-controller="searchCtrl as ctrl">
-    <mat-toolbar>
-
-      <div id="search-bar" ng-show="ctrl.showPreSearchBar()" class="md-toolbar-tools">
-
-        <h2>Search Bar App</h2>
-        <span flex></span>
-
-
-        <button mat-button>ng-click="ctrl.initiateSearch()">
-          <mat-icon>search</mat-icon>
-          <span>Search</span>
-        </button>
-
-      </div>
-
-
-      <div ng-show="ctrl.showSearchBar()" class="md-toolbar-tools search-bar">
-
-        <button mat-button class="md-icon-button" ng-click="ctrl.submit()">
-          <mat-icon>search</mat-icon>
-        </button>
-
-        <form >
-          <input matInput id="search-input" type="text" ng-model="search" />
-        </form>
-        <!--
-        <md-input-container flex>
-
-        </md-input-container> -->
-
-        <button mat-button class="md-icon-button" ng-click="ctrl.endSearch()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-
-    </mat-toolbar>
+  <div id="inOwl">
+    <mat-form-field>
+      <input matInput placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
+    </mat-form-field>
   </div>
+    <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_slide_1.jpg"></ng-template>
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_slide_5.jpg"></ng-template>
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_slide_3.jpg"></ng-template>
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_slide_4.jpg"></ng-template>
+  </owl-carousel-o>
 </div>
 
 
