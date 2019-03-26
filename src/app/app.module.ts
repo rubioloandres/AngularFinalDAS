@@ -16,19 +16,17 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ShcartComponent } from './components/shcart/shcart.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PricetableComponent } from './components/pricetable/pricetable.component';
-import {MatDividerModule} from '@angular/material/divider';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 import { CategoriesDataSource } from './data/categories.datasource';
 import { ProductsDataSource } from './data/products.datasource';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material';
-
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'ngx-webstorage-service';
@@ -74,7 +72,9 @@ import { SearchfilterComponent } from './components/searchfilter/searchfilter.co
     MatProgressSpinnerModule,
     StorageServiceModule,
     MatDividerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [
     CategoriesDataSource,

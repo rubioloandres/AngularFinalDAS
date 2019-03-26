@@ -12,7 +12,7 @@
       <mat-card-actions>
         <img mat-button *ngIf="cartContainsProd(producto.id)" src="./../../../assets/img/added_icon.png" title="Agregado a carrito">
         <button mat-button *ngIf="! cartContainsProd(producto.id)" (click)="addToCart(producto)" ><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
-        <button mat-button *ngIf="! cartContainsProd(producto.id)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Comparar precio"></button>
+        <button mat-button *ngIf="! cartContainsProd(producto.id)" (click)="addToCart(producto)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Agregar y comparar precios"></button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

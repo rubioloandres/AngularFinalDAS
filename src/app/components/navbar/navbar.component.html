@@ -20,8 +20,6 @@
     </mat-form-field>
    <!-- <mat-search-bar></mat-search-bar>  -->
   </mat-toolbar>
-
-
 </mat-toolbar-row>
 
 <mat-toolbar-row class="navbar-custom">
@@ -69,12 +67,12 @@
 </mat-menu>
 
 <mat-menu #productos="matMenu">
-  <button mat-menu-item *ngFor='let categoria of listaCategorias' [routerLink]="['products']"> {{ categoria }} </button>
+  <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newMessage(categoria)" [routerLink]="['catalogue']"> {{ categoria }} </button>
   <!--  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button> -->
 </mat-menu>
 
 <mat-menu #supermercados="matMenu">
-  <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['products']"> {{ cadena }} </button>
+  <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['catalogue']"> {{ cadena }} </button>
 </mat-menu>
 
 <mat-menu #fish="matMenu">

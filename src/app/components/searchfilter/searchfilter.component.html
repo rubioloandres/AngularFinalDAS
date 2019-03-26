@@ -1,6 +1,44 @@
-<h3> Categorias</h3>
-<mat-divider></mat-divider>
-<h3>Marcas</h3>
-<mat-divider></mat-divider>
-<h3>Ubicacion</h3>
+<form>
+  <h4>Categorias</h4>
+  <mat-form-field>
+    <mat-select>
+      <mat-option (click)="newMessage(categoria.nombre)" *ngFor="let categoria of listaCategorias" [value]="categoria.nombre">
+        {{categoria.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <h4>Marcas</h4>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let marca of listaMarcas" [value]="marca">
+        {{marca}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <h4>Ubicacion</h4>
+  <mat-slide-toggle
+      class="example-margin"
+      [checked]="false"
+      [disabled]="false">
+    Ubicacion automatica
+  </mat-slide-toggle>
+
+  <h6>Provincia</h6>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let prov of listaProvincias" [value]="prov">
+        {{prov}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Localidad"></textarea>
+  </mat-form-field>
+</form>
 

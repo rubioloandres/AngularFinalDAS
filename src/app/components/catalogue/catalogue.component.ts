@@ -37,12 +37,10 @@ export class CatalogueComponent implements OnInit {
   }
 
   cartContainsProd( idprod: number) {
-    //console.log('entro');
     const prodCart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
     if (prodCart === null) {
       return false;
     }
-
     if (prodCart.filter(p => p.id === idprod).length === 1 ) {
       return true;
     }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Categoria } from 'src/app/interfaces/categoria';
+import { DataSharingService } from 'src/app/services/datasharing.service';
 
 /**
  * @title Nested menu
@@ -10,14 +12,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NestedMenuExampleComponent implements OnInit {
 
-  listaProvincias = ['Cordoba', 'Santa Fe', 'Buenos Aires', 'Mendoza', 'San Luis'];
-  listaCategorias = ['Pan', 'Galletitas dulces', 'Galletitas de agua' ,  'Azucar'];
+  listaProvincias: string [] = new Array();
+  listaCategorias: string [] = new Array();
+  message: string;
   listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
 
-  constructor( ) { }
+  loadCategories() {
+    const lcat: Categoria [] = JSON.parse(localStorage.getItem('categorias'));
+    if (lcat !== null) {
+      lcat.forEach(cat => {
+        this.listaCategorias.push(cat.nombre);
+      });
+    } else {
+      this.listaCategorias = [];
+    }
+  }
+
+  loadProvinces() {
+    const lprov: string [] = JSON.parse(localStorage.getItem('provincias'));
+    if (lprov !== null) {
+      this.listaProvincias = lprov;
+    } else {
+      this.listaProvincias = [];
+    }
+  }
+
+  newMessage(categoria: string) {
+    this.data.changeMessage(categoria);
+  }
+
+  constructor(
+    private data: DataSharingService
+   ) { }
 
   ngOnInit() {
-
+    this.loadProvinces();
+    this.loadCategories();
+    this.data.currentMessage.subscribe(message => this.message = message);
   }
 
 }

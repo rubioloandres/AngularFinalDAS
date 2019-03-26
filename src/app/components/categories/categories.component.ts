@@ -58,14 +58,15 @@ export class CategoriesComponent implements OnInit {
     /*
     // poner id reales
     this.listaProductos = [
-      { id: 1111, nombre: 'Pan Bimbo', categoria: 'Pan', cantidad: 1, imagen: './../../assets/img/pan_bimbo.png', precio: 'No disponible' },
-      { id: 2222, nombre: 'Galletitas surtidas Bagley', categoria: 'Galletitas Dulces',
+      { id: 1111, nombre: 'Pan Bimbo', categoria: 'Pan', marca: 'Bimbo',
+      cantidad: 1, imagen: './../../assets/img/pan_bimbo.png', precio: 'No disponible' },
+      { id: 2222, nombre: 'Galletitas surtidas Bagley', categoria: 'Galletitas Dulces', marca: 'Bagley',
         cantidad: 1, imagen: './../../assets/img/surtido-bagley.jpg', precio: 'No disponible' },
-      { id: 3333, nombre: 'Azucar Ledesma 1kg', categoria: 'Azucar',
+      { id: 3333, nombre: 'Azucar Ledesma 1kg', categoria: 'Azucar', marca: 'Ledesma',
       cantidad: 1, imagen: './../../assets/img/azucar_ledesma.png', precio: 'No disponible' },
-      { id: 4444, nombre: 'Pan Lactal', categoria: 'Pan',
+      { id: 4444, nombre: 'Pan Lactal', categoria: 'Pan', marca: 'Lactal',
       cantidad: 1, imagen: './../../assets/img/pan_lactal.png', precio: 'No disponible' },
-      { id: 5555, nombre: 'Galletitas surtidas Arcor', categoria: 'Galletitas Dulces',
+      { id: 5555, nombre: 'Galletitas surtidas Arcor', categoria: 'Galletitas Dulces', marca: 'Arcor',
       cantidad: 1, imagen: './../../assets/img/surtidas_arcor.jpg', precio: 'No disponible' },
     ];
     localStorage.setItem('productos', JSON.stringify(this.listaProductos));
