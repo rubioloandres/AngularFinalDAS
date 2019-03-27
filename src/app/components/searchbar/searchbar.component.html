@@ -2,9 +2,16 @@
   <h2>Buscador de Productos</h2>
 
   <div id="inOwl">
-    <mat-form-field>
-      <input matInput placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
-    </mat-form-field>
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
+      </mat-form-field>
+      <div>
+        <button class="searchButton" mat-raised-button color="primary">Buscar<img src="./../../../assets/img/search_icon.png"></button>
+      </div>
+    </form>
+
+
   </div>
     <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide><img src="./../../../assets/img/carousel_slide_1.jpg"></ng-template>

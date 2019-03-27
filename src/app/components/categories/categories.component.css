@@ -23,7 +23,8 @@ mat-card img {
 mat-card-title{
   text-align: center !important;
   font-size: 16pt !important;
-  color: black !important;
+  color: white !important;
+  background-color: rgb(50, 50, 156);
   width: 100%;
   height: 100%;
 }
@@ -36,5 +37,12 @@ h2 {
   font-variant: normal;
   font-weight: 700;
   line-height: 26.4px;
+  text-align: center !important;
+}
+
+h3 {
+  font-family: Oswald !important;
+  color: black;
+  font-size: 20px;
   text-align: center !important;
 }

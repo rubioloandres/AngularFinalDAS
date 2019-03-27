@@ -17,6 +17,22 @@ mat-form-field {
   border: lightblue 2px solid;
 }
 
+button img {
+  width: 45px;
+  height: 45px;
+}
+
+.searchButton {
+  font-family: Oswald !important;
+  margin-top: 1% ;
+  font-size: 24px;
+  height: 75px;
+  width: 145px;
+  text-align: center;
+  border: 2px lightblue solid;
+  background-color: rgb(50, 50, 156);
+  color: white;
+}
 #inOwl {
   font-family: Oswald !important;
   color:rgb(50, 50, 156);
@@ -28,5 +44,4 @@ mat-form-field {
   margin-right: auto;
   left: 0;
   right: 0;
-  /*background: rgb(173,216,230,0.6);*/
 }

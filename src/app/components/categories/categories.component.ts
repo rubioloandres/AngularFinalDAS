@@ -34,7 +34,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   loadCategorias() {
-    /*
+/*
     this.listaCategorias = [
       { nombre: 'Pan', imagen: './../../assets/img/cat_pan.png' },
       { nombre: 'Aceite', imagen: './../../assets/img/cat_aceite.png' },
@@ -42,7 +42,7 @@ export class CategoriesComponent implements OnInit {
       { nombre: 'Azucar', imagen: './../../assets/img/cat_azucar.png' },
       { nombre: 'Bebidas Alcoholicas', imagen: './../../assets/img/cat_beb_a.png' }
     ];
-    localStorage.setItem('categorias', JSON.stringify(this.listaCategorias)); */
+    localStorage.setItem('categorias', JSON.stringify(this.listaCategorias));*/
 
     const categorias: Array<Categoria> = JSON.parse(localStorage.getItem('categorias'));
     this.listaCategorias = categorias;
@@ -55,7 +55,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   loadProductos() {
-    /*
+/*
     // poner id reales
     this.listaProductos = [
       { id: 1111, nombre: 'Pan Bimbo', categoria: 'Pan', marca: 'Bimbo',

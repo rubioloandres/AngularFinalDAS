@@ -29,6 +29,8 @@ export class NestedMenuExampleComponent implements OnInit {
   }
 
   loadProvinces() {
+    /*this.listaProvincias = ['Cordoba', 'Buenos Aires', 'Santa Fe', 'Mendoza', 'San Luis', 'San Juan'];
+    localStorage.setItem('provincias', JSON.stringify(this.listaProvincias));*/
     const lprov: string [] = JSON.parse(localStorage.getItem('provincias'));
     if (lprov !== null) {
       this.listaProvincias = lprov;
