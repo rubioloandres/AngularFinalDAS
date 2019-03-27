@@ -54,7 +54,7 @@
 
 <mat-menu #ubicacion="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="provincias">Provincias</button>
-  <button mat-menu-item >Ubicacion actomatica</button>
+  <button mat-menu-item (click)="getAutomaticLocation()">Ubicacion actomatica</button>
 </mat-menu>
 
 <mat-menu #provincias="matMenu">

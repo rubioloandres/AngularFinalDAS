@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/categoria';
 import { DataSharingService } from 'src/app/services/datasharing.service';
+import { GeoLocationService } from 'src/app/services/geoLocation.service';
 
 /**
  * @title Nested menu
@@ -43,8 +44,13 @@ export class NestedMenuExampleComponent implements OnInit {
     this.data.changeMessage(categoria);
   }
 
+  getAutomaticLocation() {
+    this.loc.getCurrentLocation();
+  }
+
   constructor(
-    private data: DataSharingService
+    private data: DataSharingService,
+    private loc: GeoLocationService
    ) { }
 
   ngOnInit() {

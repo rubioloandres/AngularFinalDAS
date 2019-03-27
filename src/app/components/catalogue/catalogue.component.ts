@@ -14,14 +14,13 @@ export class CatalogueComponent implements OnInit {
   message: string;
 
   cargarProductos() {
-    console.log('entro');
     const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
     this.listaProductos = prods;
     return this.listaProductos;
   }
 
   addToCart(prod: Producto) {
-    var carLS: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    const carLS: Producto[] = JSON.parse(localStorage.getItem('carrito'));
     if (carLS === null) {
       this.listaProdCarrito.push(prod);
       localStorage.setItem('carrito', JSON.stringify(this.listaProdCarrito));
@@ -46,6 +45,12 @@ export class CatalogueComponent implements OnInit {
   }
 
   updateCatalogue() {
+       /*
+    this.data.currentMessage.subscribe(message => {
+      this.message = message;
+      const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+      this.listaProductos = prods.filter(p => p.categoria.toLowerCase() === this.message.toLowerCase()  );
+    });*/
     this.data.currentMessage.subscribe(message => {
       this.message = message;
       const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
@@ -62,12 +67,6 @@ export class CatalogueComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    /*
-    this.data.currentMessage.subscribe(message => {
-      this.message = message;
-      const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-      this.listaProductos = prods.filter(p => p.categoria.toLowerCase() === this.message.toLowerCase()  );
-    });*/
     this.updateCatalogue();
      //this.cargarProductos();
   }

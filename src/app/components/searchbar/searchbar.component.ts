@@ -38,7 +38,6 @@ export class SearchbarComponent implements OnInit {
   };
 
   searchProducts() {
-    console.log(this.searchInput);
     this.data.changeMessage(this.searchInput);
   }
 

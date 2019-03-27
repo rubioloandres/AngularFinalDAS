@@ -31,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './services/localStorage.service';
+import { GeoLocationService } from './services/geoLocation.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './components/categories/categories.component';
@@ -82,7 +83,8 @@ import { SearchfilterComponent } from './components/searchfilter/searchfilter.co
     ProductsDataSource,
     CatalogueComponent,
     LocalStorageService,
-    DataSharingService
+    DataSharingService,
+    GeoLocationService
   ],
   bootstrap: [AppComponent]
 })
