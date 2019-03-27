@@ -10,9 +10,7 @@ import { Producto } from './../../interfaces/producto';
 export class CatalogueComponent implements OnInit {
 
   listaProductos: Producto [] = new Array();
-
   listaProdCarrito: Producto [] = new Array();
-
   message: string;
 
   cargarProductos() {
@@ -47,15 +45,30 @@ export class CatalogueComponent implements OnInit {
     return false;
   }
 
-  constructor(private data: DataSharingService) {
-  }
-
-  ngOnInit() {
+  updateCatalogue() {
     this.data.currentMessage.subscribe(message => {
       this.message = message;
       const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-      this.listaProductos = prods.filter(p => p.categoria === this.message);
+      this.listaProductos = prods.filter(p =>
+          ( p.categoria.toLowerCase().includes(this.message.toLowerCase()) )  ||
+          ( p.marca.toLowerCase().includes(this.message.toLowerCase()) )      ||
+          ( p.nombre.toLowerCase().includes(this.message.toLowerCase()) )
+      );
     });
+  }
+
+  constructor(
+    private data: DataSharingService
+    ) { }
+
+  ngOnInit() {
+    /*
+    this.data.currentMessage.subscribe(message => {
+      this.message = message;
+      const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
+      this.listaProductos = prods.filter(p => p.categoria.toLowerCase() === this.message.toLowerCase()  );
+    });*/
+    this.updateCatalogue();
      //this.cargarProductos();
   }
 

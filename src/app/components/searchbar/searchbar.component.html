@@ -4,10 +4,10 @@
   <div id="inOwl">
     <form>
       <mat-form-field>
-        <input matInput placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
+        <input matInput [(ngModel)]="searchInput" name="searchInput" placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
       </mat-form-field>
       <div>
-        <button class="searchButton" mat-raised-button color="primary">Buscar<img src="./../../../assets/img/search_icon.png"></button>
+        <button [routerLink]="['catalogue']" (click)="searchProducts()" class="searchButton" mat-raised-button color="primary">Buscar<img src="./../../../assets/img/search_icon.png"></button>
       </div>
     </form>
 
