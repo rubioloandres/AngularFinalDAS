@@ -12,6 +12,7 @@ export class CatalogueComponent implements OnInit {
   listaProductos: Producto [] = new Array();
   listaProdCarrito: Producto [] = new Array();
   message: string;
+  inputCant = 1;
 
   cargarProductos() {
     const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
@@ -21,6 +22,7 @@ export class CatalogueComponent implements OnInit {
 
   addToCart(prod: Producto) {
     const carLS: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    prod.cantidad = this.inputCant;
     if (carLS === null) {
       this.listaProdCarrito.push(prod);
       localStorage.setItem('carrito', JSON.stringify(this.listaProdCarrito));

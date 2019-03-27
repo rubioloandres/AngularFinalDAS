@@ -13,6 +13,11 @@ mat-card{
   color: rgb(0, 102, 204);
 }
 
+mat-card input {
+  margin-top: 2px;
+  width: 35px;
+}
+
 mat-card img {
   display: block;
   margin-left: auto;

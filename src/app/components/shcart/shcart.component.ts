@@ -9,19 +9,19 @@ import { Producto } from './../../interfaces/producto';
 export class ShcartComponent implements OnInit {
 
   listaProductosCarrito: Producto[] = new Array();
-  displayedColumns = ['item', 'nombre', 'categoria', 'accion'];
+  displayedColumns = ['item', 'nombre', 'categoria', 'cantidad', 'accion'];
 
   getTotalCost() {
    // return this.listaProductos.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   }
 
   loadCart() {
-    var carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    const carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
     this.listaProductosCarrito = carLS;
   }
 
   removeProd(prod: Producto){
-    var carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    const carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
     this.listaProductosCarrito =  carLS.filter(p => p.nombre !== prod.nombre);
     localStorage.setItem('carrito', JSON.stringify(this.listaProductosCarrito));
   }
