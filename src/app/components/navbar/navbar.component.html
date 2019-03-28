@@ -1,53 +1,56 @@
-<mat-toolbar-row class="navbar-custom-top">
+<!-- <table mat-table>
+  <ng-container matColumnDef="navbar">
+    <td mat-cell *matCellDef matColumnDef> <span> asdasda</span>  </td>
+    <td mat-footer-cell *matFooterCellDef>
+      <span> 454545</span>
+    </td>
+  </ng-container>
 
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+  </table> -->
+<!-- ------------------------------------------------- -->
+<mat-toolbar-row class="navbar-custom-top">
   <mat-toolbar>
       <img src="../../../assets/img/Indec_logo.png" width="150" height="50">
   </mat-toolbar>
-
   <mat-toolbar></mat-toolbar>
   <mat-toolbar>
       <img src="./../../../assets/img/WEB_ICON2.png" width="50" height="50">
       <h3>Comparador de Precios</h3>
   </mat-toolbar>
-
   <mat-toolbar></mat-toolbar>
   <mat-toolbar>
-    <mat-form-field>
-        <mat-select placeholder="Buscar"></mat-select>
-        <mat-select-trigger>
-          <mat-icon></mat-icon>
-        </mat-select-trigger>
-    </mat-form-field>
-   <!-- <mat-search-bar></mat-search-bar>  -->
+    <button mat-button [matMenuTriggerFor]="ubicacion">
+      <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
+    </button>
   </mat-toolbar>
 </mat-toolbar-row>
 
 <mat-toolbar-row class="navbar-custom">
   <mat-toolbar>
     <button mat-button [routerLink]="['/']">
-      <img src="./../../../assets/img/home_icon.png">
-      Principal
+      <img src="./../../../assets/img/home_icon.png"> Principal
     </button>
   </mat-toolbar>
   <mat-toolbar>
     <button mat-button [matMenuTriggerFor]="menu">
-        <img src="./../../../assets/img/menu_icon.png">
-        Menu
+      <img src="./../../../assets/img/menu_icon.png"> Menu
     </button>
   </mat-toolbar>
-
-  <mat-toolbar>
-    <button mat-button [matMenuTriggerFor]="ubicacion">
-      <img src="./../../../assets/img/location_icon.png">
-      Ubicacion
-    </button>
-  </mat-toolbar>
-
   <mat-toolbar>
     <button mat-button [routerLink]="['cart']">
-      <img src="./../../../assets/img/cart_icon.png">
-      Carrito
+      <img src="./../../../assets/img/cart_icon.png"> Carrito
     </button>
+  </mat-toolbar>
+  <mat-toolbar>
+    <mat-form-field class="searchInput">
+      <input matInput type="text" [(ngModel)]="searchInput" name="searchInput">
+      <mat-select-trigger>
+        <mat-icon></mat-icon>
+      </mat-select-trigger>
+    </mat-form-field>
+    <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
   </mat-toolbar>
 
 </mat-toolbar-row>

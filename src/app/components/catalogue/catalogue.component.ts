@@ -13,7 +13,7 @@ export class CatalogueComponent implements OnInit {
   listaProdCarrito: Producto [] = new Array();
   message: string;
   inputCant = 1;
-
+  listInputCant: number[] = new Array();
   cargarProductos() {
     const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
     this.listaProductos = prods;
@@ -62,6 +62,18 @@ export class CatalogueComponent implements OnInit {
           ( p.nombre.toLowerCase().includes(this.message.toLowerCase()) )
       );
     });
+  }
+
+  updateCant(idprod: number) {
+    const lcart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    if (lcart !== null) {
+      lcart.forEach(prod => {
+        if (prod.id === idprod) {
+          prod.cantidad = this.inputCant;
+          localStorage.setItem('carrito', JSON.stringify(lcart));
+        }
+      });
+    }
   }
 
   constructor(

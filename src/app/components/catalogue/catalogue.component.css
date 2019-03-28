@@ -6,6 +6,19 @@ app-searchfilter {
   border: 2px lightblue solid;
 }
 
+.updateIcon {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+mat-button-toggle-group {
+  margin-top: 15% !important;
+}
+
+mat-button-toggle-group span{
+  margin: auto;
+}
+
 mat-card{
   border: 2px lightblue solid;
   width: calc(100% - 70px);
@@ -22,6 +35,7 @@ mat-card img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15% !important;
   width: 180px;
   height: 150px;
 }
@@ -32,7 +46,7 @@ mat-grid-tile {
 
 mat-card-actions {
   position: absolute;
-  margin-top: 25%;
+
   display: block;
   margin-left: auto;
   margin-right: auto;

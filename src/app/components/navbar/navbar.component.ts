@@ -15,8 +15,10 @@ export class NestedMenuExampleComponent implements OnInit {
 
   listaProvincias: string [] = new Array();
   listaCategorias: string [] = new Array();
-  message: string;
   listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
+  displayedColumns = ['navbar'];
+  message: string;
+  searchInput = '';
 
   loadCategories() {
     const lcat: Categoria [] = JSON.parse(localStorage.getItem('categorias'));
@@ -46,6 +48,11 @@ export class NestedMenuExampleComponent implements OnInit {
 
   getAutomaticLocation() {
     this.loc.getCurrentLocation();
+  }
+
+  searchProducts() {
+    this.data.changeMessage(this.searchInput);
+    this.searchInput = '';
   }
 
   constructor(

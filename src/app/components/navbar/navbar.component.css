@@ -21,6 +21,21 @@
   max-height: 45px !important;
 }
 
+span {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-weight: lighter;
+}
+
+.placeholder, mat-placeholder {
+  color: white !important;
+}
+
+.searchInput {
+  font-size: 18px;
+  color: white;
+}
+
 mat-toolbar button{
   font-weight: bold !important;
   font-size: 20px;
