@@ -11,6 +11,11 @@
   z-index: auto;
 }
 
+.navbar-custom span {
+  font-family: Oswald !important;
+  color: white;
+}
+
 .navbar-custom-top h3 {
   font-family: Oswald !important;
   color: rgb(50, 50, 156);

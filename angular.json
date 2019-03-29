@@ -54,6 +54,13 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/pcINDEC-en",
+              "i18nFile": "src/i18n/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en"
             }
           }
         },
@@ -65,6 +72,9 @@
           "configurations": {
             "production": {
               "browserTarget": "pcINDEC:build:production"
+            },
+            "en": {
+              "browserTarget": "pcINDEC:build:en"
             }
           }
         },
@@ -101,6 +111,21 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        },
+        "xliffmerge": {
+          "builder": "@ngx-i18nsupport/tooling:xliffmerge",
+          "options": {
+            "xliffmergeOptions": {
+              "i18nFormat": "xlf",
+              "srcDir": "src/i18n",
+              "genDir": "src/i18n",
+              "defaultLanguage": "es",
+              "languages": [
+                "es",
+                "en"
+              ]
+            }
           }
         }
       }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template" target-language="es">
+    <body>
+    <trans-unit id="14438fb678bc872ef21c518f9729a99ae5aeda05" datatype="html">
+        <source>
+      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Principal
+    </source><target state="final">
+      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Principal
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit><trans-unit id="2b5b4d28da0912dd99bca1574eda667da7badce3" datatype="html">
+        <source>
+      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Menu
+    </source><target state="final">
+      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Menu
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit><trans-unit id="799b1cc1812beffee9c6d65bd94c4c3083eb9590" datatype="html">
+        <source>
+      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Carrito
+    </source><target state="final">
+      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Carrito
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit></body>
+  </file>
+</xliff>

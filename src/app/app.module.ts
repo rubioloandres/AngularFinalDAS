@@ -38,6 +38,10 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { DataSharingService } from './services/datasharing.service';
 import { SearchfilterComponent } from './components/searchfilter/searchfilter.component';
 
+import { LOCALE_ID, Inject } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEs from "@angular/common/locales/es-419";
+import localeEn from "@angular/common/locales/en";
 
 @NgModule({
   declarations: [
@@ -88,4 +92,9 @@ import { SearchfilterComponent } from './components/searchfilter/searchfilter.co
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(@Inject(LOCALE_ID) locale: string) {
+    registerLocaleData(locale === 'es' ? localeEs : localeEn);
+    // registerLocaleData(localeEn);
+   }
+}
