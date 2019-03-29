@@ -6,12 +6,10 @@
       <mat-card-subtitle>{{producto.categoria}}</mat-card-subtitle>
       <mat-divider></mat-divider>
       <img class="prod-img" src="{{producto.imagen}}">
-      <!--  <input mdInput type="number" [(ngModel)]="inputCant" name="inputCant" min="1" max="99"/> -->
       <mat-button-toggle-group>
         <span>Cantidad: </span>
         <input mdInput type="number" [(ngModel)]="inputCant" name="inputCant" min="1" max="99"/>
         <mat-button-toggle title="Actualizar cantidad"><img class="updateIcon" src="./../../../assets/img/update_icon.png" (click)="updateCant(producto.id)"></mat-button-toggle>
-        <!-- <button mat-button-to></button>-->
       </mat-button-toggle-group>
       <mat-card-actions>
         <img mat-button *ngIf="cartContainsProd(producto.id)" src="./../../../assets/img/added_icon.png" title="Agregado a carrito">

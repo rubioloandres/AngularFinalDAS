@@ -1,32 +1,3 @@
-<!-- <table mat-table>
-  <ng-container matColumnDef="navbar">
-    <td mat-cell *matCellDef matColumnDef> <span> asdasda</span>  </td>
-    <td mat-footer-cell *matFooterCellDef>
-      <span> 454545</span>
-    </td>
-  </ng-container>
-
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-  </table> -->
-<!-- ------------------------------------------------- -->
-<mat-toolbar-row class="navbar-custom-top">
-  <mat-toolbar>
-      <img src="../../../assets/img/Indec_logo.png" width="150" height="50">
-  </mat-toolbar>
-  <mat-toolbar></mat-toolbar>
-  <mat-toolbar>
-      <img src="./../../../assets/img/WEB_ICON2.png" width="50" height="50">
-      <h3>Comparador de Precios</h3>
-  </mat-toolbar>
-  <mat-toolbar></mat-toolbar>
-  <mat-toolbar>
-    <button mat-button [matMenuTriggerFor]="ubicacion">
-      <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
-    </button>
-  </mat-toolbar>
-</mat-toolbar-row>
-
 <mat-toolbar-row class="navbar-custom">
   <mat-toolbar>
     <button mat-button [routerLink]="['/']">
@@ -45,14 +16,30 @@
   </mat-toolbar>
   <mat-toolbar>
     <mat-form-field class="searchInput">
-      <input matInput type="text" [(ngModel)]="searchInput" name="searchInput">
+      <input matInput type="text" [(ngModel)]="searchInput" name="searchInput" (keyup.enter)="searchProducts()">
       <mat-select-trigger>
         <mat-icon></mat-icon>
       </mat-select-trigger>
     </mat-form-field>
-    <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
+    <button mat-stroked-button title="Buscar productos" (keyup.enter)="searchProducts()" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
   </mat-toolbar>
+</mat-toolbar-row>
 
+<mat-toolbar-row class="navbar-custom-top">
+  <mat-toolbar>
+    <img src="../../../assets/img/Indec_logo.png" width="150" height="50">
+  </mat-toolbar>
+  <mat-toolbar></mat-toolbar>
+  <mat-toolbar>
+    <img src="./../../../assets/img/WEB_ICON2.png" width="50" height="50">
+    <h3>Comparador de Precios</h3>
+  </mat-toolbar>
+  <mat-toolbar></mat-toolbar>
+  <mat-toolbar>
+    <button mat-button [matMenuTriggerFor]="ubicacion">
+      <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
+    </button>
+  </mat-toolbar>
 </mat-toolbar-row>
 
 <mat-menu #ubicacion="matMenu">
@@ -71,18 +58,10 @@
 
 <mat-menu #productos="matMenu">
   <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newMessage(categoria)" [routerLink]="['catalogue']"> {{ categoria }} </button>
-  <!--  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button> -->
 </mat-menu>
 
 <mat-menu #supermercados="matMenu">
   <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['catalogue']"> {{ cadena }} </button>
 </mat-menu>
 
-<mat-menu #fish="matMenu">
-  <button mat-menu-item>Baikal oilfish</button>
-  <button mat-menu-item>Bala shark</button>
-  <button mat-menu-item>Ballan wrasse</button>
-  <button mat-menu-item>Bamboo shark</button>
-  <button mat-menu-item>Banded killifish</button>
-</mat-menu>
 

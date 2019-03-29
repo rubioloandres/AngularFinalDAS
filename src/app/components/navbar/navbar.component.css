@@ -4,6 +4,11 @@
   width: 100%;
   background-size: 100%;
   height: 100px !important;
+
+  overflow: auto;
+  margin-top: 3% !important;
+  width: 100%;
+  z-index: auto;
 }
 
 .navbar-custom-top h3 {
@@ -19,6 +24,12 @@
 .navbar-custom{
   background-color: rgb(50, 50, 156);
   max-height: 45px !important;
+
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 
 span {

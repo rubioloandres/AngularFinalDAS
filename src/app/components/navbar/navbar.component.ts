@@ -16,7 +16,6 @@ export class NestedMenuExampleComponent implements OnInit {
   listaProvincias: string [] = new Array();
   listaCategorias: string [] = new Array();
   listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
-  displayedColumns = ['navbar'];
   message: string;
   searchInput = '';
 
