@@ -37,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { DataSharingService } from './services/datasharing.service';
 import { SearchfilterComponent } from './components/searchfilter/searchfilter.component';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { LOCALE_ID, Inject } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from "@angular/common/locales/es-419";
@@ -82,7 +82,8 @@ import { LocalidadesDataSource } from './data/localidades.datasource';
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
-    CarouselModule
+    CarouselModule,
+    MatAutocompleteModule
   ],
   providers: [
     CategoriesDataSource,

@@ -30,12 +30,14 @@
   </mat-slide-toggle>
 
   <h6>Provincia</h6>
+
   <mat-form-field>
-    <mat-select>
-      <mat-option *ngFor="let prov of listaProvincias" [value]="prov.id" (click)="getLocalidadesByProvincia(prov.id)">
-        {{prov.nombre}}
+    <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia" (click)="getLocalidadesByProvincia(provincia.id)">
+        {{provincia.nombre}}
       </mat-option>
-    </mat-select>
+    </mat-autocomplete>
   </mat-form-field>
 
   <h6>Localidad</h6>
