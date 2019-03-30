@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/categoria';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { GeoLocationService } from 'src/app/services/geoLocation.service';
+import { Provincia } from 'src/app/interfaces/provincia';
 
 /**
  * @title Nested menu
@@ -13,7 +14,7 @@ import { GeoLocationService } from 'src/app/services/geoLocation.service';
 })
 export class NestedMenuExampleComponent implements OnInit {
 
-  listaProvincias: string [] = new Array();
+  listaProvincias: Provincia [] = new Array();
   listaCategorias: string [] = new Array();
   listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
   message: string;
@@ -33,7 +34,7 @@ export class NestedMenuExampleComponent implements OnInit {
   loadProvinces() {
     /*this.listaProvincias = ['Cordoba', 'Buenos Aires', 'Santa Fe', 'Mendoza', 'San Luis', 'San Juan'];
     localStorage.setItem('provincias', JSON.stringify(this.listaProvincias));*/
-    const lprov: string [] = JSON.parse(localStorage.getItem('provincias'));
+    const lprov: Provincia [] = JSON.parse(localStorage.getItem('provincias'));
     if (lprov !== null) {
       this.listaProvincias = lprov;
     } else {

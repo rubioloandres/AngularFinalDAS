@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/categoria';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { Producto } from 'src/app/interfaces/producto';
+import { Provincia } from 'src/app/interfaces/provincia';
+import { Localidad } from 'src/app/interfaces/localidad';
 
 @Component({
   selector: 'app-searchfilter',
@@ -12,7 +14,8 @@ export class SearchfilterComponent implements OnInit {
 
   listaCategorias: Categoria[] = new Array();
   listaMarcas: string [] = new Array ();
-  listaProvincias: string [] = new Array();
+  listaProvincias: Provincia [] = new Array();
+  listaLocalidades: Localidad [] = new Array();
   message: string;
 
   loadCategories() {
@@ -32,6 +35,13 @@ export class SearchfilterComponent implements OnInit {
   newMessage(categoria: string) {
     this.data.changeMessage(categoria);
   }
+
+  getLocalidadesByProvincia(idProvincia: number) {
+    const lloc: Localidad[] = JSON.parse(localStorage.getItem('localidades'));
+    this.listaLocalidades = lloc.filter(loc => loc.idProvincia === idProvincia);
+    console.log(this.listaLocalidades);
+  }
+
 
   constructor(
     private data: DataSharingService

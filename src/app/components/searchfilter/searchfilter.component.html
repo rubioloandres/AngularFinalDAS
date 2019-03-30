@@ -32,13 +32,24 @@
   <h6>Provincia</h6>
   <mat-form-field>
     <mat-select>
-      <mat-option *ngFor="let prov of listaProvincias" [value]="prov">
-        {{prov}}
+      <mat-option *ngFor="let prov of listaProvincias" [value]="prov.id" (click)="getLocalidadesByProvincia(prov.id)">
+        {{prov.nombre}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Localidad"></textarea>
+
+  <h6>Localidad</h6>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let loc of listaLocalidades" [value]="loc.nombre">
+        {{loc.nombre}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
+
+ <!-- <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Localidad"></textarea>
+  </mat-form-field> -->
+
 </form>
 

@@ -42,6 +42,8 @@ import { LOCALE_ID, Inject } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from "@angular/common/locales/es-419";
 import localeEn from "@angular/common/locales/en";
+import { ProvincesDataSource } from './data/provincias.datasource';
+import { LocalidadesDataSource } from './data/localidades.datasource';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import localeEn from "@angular/common/locales/en";
     CatalogueComponent,
     LocalStorageService,
     DataSharingService,
-    GeoLocationService
+    GeoLocationService,
+    ProvincesDataSource,
+    LocalidadesDataSource
   ],
   bootstrap: [AppComponent]
 })

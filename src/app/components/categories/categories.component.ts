@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesDataSource } from '../../data/categories.datasource';
 import { ProductsDataSource } from '../../data/products.datasource';
+import { ProvincesDataSource } from '../../data/provincias.datasource';
 import { DataSharingService } from '../../services/datasharing.service';
 import { Categoria } from './../../interfaces/categoria';
 import { Producto } from './../../interfaces/producto';
+import { LocalidadesDataSource } from 'src/app/data/localidades.datasource';
 
 @Component({
   selector: 'app-categories',
@@ -20,38 +22,25 @@ export class CategoriesComponent implements OnInit {
   // reubicar array y metodo
   listaProductos: Producto [] = new Array();
 
-  constructor(
-    private data: DataSharingService,
-    private _dsCat: CategoriesDataSource,
-    private _dsProd: ProductsDataSource
-    ) {   }
-
-  ngOnInit() {
-    // ver manejo de error, si no hay respuesta del servlet, buscar en localsotorage
-    this.loadProductos();
-    this.loadCategorias();
-    this.data.currentMessage.subscribe(message => this.message = message);
-  }
-
   loadCategorias() {
-/*
-    this.listaCategorias = [
-      { nombre: 'Pan', imagen: './../../assets/img/cat_pan.png' },
-      { nombre: 'Aceite', imagen: './../../assets/img/cat_aceite.png' },
-      { nombre: 'Galletitas Dulces', imagen: './../../assets/img/cat_gal_d.jpg' },
-      { nombre: 'Azucar', imagen: './../../assets/img/cat_azucar.png' },
-      { nombre: 'Bebidas Alcoholicas', imagen: './../../assets/img/cat_beb_a.png' }
-    ];
-    localStorage.setItem('categorias', JSON.stringify(this.listaCategorias));*/
-
-    const categorias: Array<Categoria> = JSON.parse(localStorage.getItem('categorias'));
-    this.listaCategorias = categorias;
     /*
-    this._dsCat.getCategoriasINDEC().subscribe( cats  =>  {
-          localStorage.setItem('categorias', JSON.stringify(cats));
-          const categorias: Array<Categoria> = cats;
-          this.listaCategorias = categorias;
-          });*/
+        this.listaCategorias = [
+          { nombre: 'Pan', imagen: './../../assets/img/cat_pan.png' },
+          { nombre: 'Aceite', imagen: './../../assets/img/cat_aceite.png' },
+          { nombre: 'Galletitas Dulces', imagen: './../../assets/img/cat_gal_d.jpg' },
+          { nombre: 'Azucar', imagen: './../../assets/img/cat_azucar.png' },
+          { nombre: 'Bebidas Alcoholicas', imagen: './../../assets/img/cat_beb_a.png' }
+        ];
+        localStorage.setItem('categorias', JSON.stringify(this.listaCategorias));*/
+
+        const categorias: Array<Categoria> = JSON.parse(localStorage.getItem('categorias'));
+        this.listaCategorias = categorias;
+        /*
+        this._dsCat.getCategoriasINDEC().subscribe( cats  =>  {
+              localStorage.setItem('categorias', JSON.stringify(cats));
+              const categorias: Array<Categoria> = cats;
+              this.listaCategorias = categorias;
+              });*/
   }
 
   loadProductos() {
@@ -76,7 +65,39 @@ export class CategoriesComponent implements OnInit {
           });*/
   }
 
+  loadProvincias() {
+    /*this.dsProv.getProvinciasINDEC().subscribe( provs  =>  {
+          localStorage.setItem('provincias', JSON.stringify(provs));
+          });*/
+  }
+
+  loadLocalidades() {
+    /*this.dsLoc.getLocalidadesINDEC().subscribe( locs  =>  {
+          localStorage.setItem('localidades', JSON.stringify(locs));
+          });*/
+  }
+
   newMessage(categoria: string) {
     this.data.changeMessage(categoria);
   }
+
+  constructor(
+    private data: DataSharingService,
+    private _dsCat: CategoriesDataSource,
+    private _dsProd: ProductsDataSource,
+    private dsProv: ProvincesDataSource,
+    private dsLoc: LocalidadesDataSource,
+
+    ) {   }
+
+  ngOnInit() {
+    // ver manejo de error, si no hay respuesta del servlet, buscar en localsotorage
+    this.loadProductos();
+    this.loadCategorias();
+    this.loadProvincias();
+    this.loadLocalidades();
+    this.data.currentMessage.subscribe(message => this.message = message);
+  }
+
+
 }
