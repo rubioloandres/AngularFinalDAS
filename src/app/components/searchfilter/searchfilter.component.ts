@@ -8,11 +8,7 @@ import { Localidad } from 'src/app/interfaces/localidad';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-/*
-export interface User {
-  name: string;
-}
-*/
+
 @Component({
   selector: 'app-searchfilter',
   templateUrl: './searchfilter.component.html',
@@ -20,31 +16,52 @@ export interface User {
 })
 export class SearchfilterComponent implements OnInit {
 
-  listaCategorias: Categoria[] = new Array();
-  listaMarcas: string [] = new Array ();
-  listaProvincias: Provincia [] = new Array();
-  listaLocalidades: Localidad [] = new Array();
   message: string;
+  listaMarcas: string [] = new Array ();
 
+  listaCategorias: Categoria[] = new Array();
+  formCategoria = new FormControl();
+  filteredCategorias: Observable<Categoria[]>;
+
+  listaProvincias: Provincia [] = new Array();
   formProvincia = new FormControl();
-/*
-  options: User[] = [
-    {name: 'Mary'},
-    {name: 'Shelley'},
-    {name: 'Igor'}
-  ];
-  filteredOptions: Observable<User[]>;*/
+
   filteredProvincias: Observable<Provincia[]>;
 
+  listaLocalidades: Localidad [] = new Array();
+  formLocalidad = new FormControl();
+  filteredLocalidades: Observable<Localidad[]>;
 
-  displayFn(prov?: Provincia): string | undefined {
+  displayFnP(prov?: Provincia): string | undefined {
     return prov ? prov.nombre : undefined;
   }
 
-  private _filter(nombre: string): Provincia[] {
+  displayFnL(loc?: Localidad): string | undefined {
+    return loc ? loc.nombre : undefined;
+  }
+
+  displayFnC(cat?: Categoria): string | undefined {
+    return cat ? cat.nombre : undefined;
+  }
+
+  private _filterP(nombre: string): Provincia[] {
     const filterValue = nombre.toLowerCase();
     return this.listaProvincias.filter(prov =>
       prov.nombre.toLowerCase().normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '').indexOf(filterValue) === 0);
+  }
+
+  private _filterL(nombre: string): Localidad[] {
+    const filterValue = nombre.toLowerCase();
+    return this.listaLocalidades.filter(loc =>
+      loc.nombre.toLowerCase().normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '').indexOf(filterValue) === 0);
+  }
+
+  private _filterC(nombre: string): Categoria[] {
+    const filterValue = nombre.toLowerCase();
+    return this.listaCategorias.filter(cat =>
+      cat.nombre.toLowerCase().normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '').indexOf(filterValue) === 0);
   }
 
@@ -53,7 +70,25 @@ export class SearchfilterComponent implements OnInit {
     .pipe(
       startWith(''),
       map(value => typeof value === 'string' ? value : value.name),
-      map(name => name ? this._filter(name) : this.listaProvincias.slice())
+      map(name => name ? this._filterP(name) : this.listaProvincias.slice())
+    );
+  }
+
+  filtrarLocalidades() {
+    this.filteredLocalidades = this.formLocalidad.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filterL(name) : this.listaLocalidades.slice())
+    );
+  }
+
+  filtrarCatetegorias() {
+    this.filteredCategorias = this.formCategoria.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filterC(name) : this.listaCategorias.slice())
     );
   }
 
@@ -71,28 +106,10 @@ export class SearchfilterComponent implements OnInit {
     this.listaProvincias = JSON.parse(localStorage.getItem('provincias'));
   }
 
-  newMessage(categoria: string) {
-    this.data.changeMessage(categoria);
-  }
-
-  getLocalidadesByProvincia(idProvincia: number) {
-    const lloc: Localidad[] = JSON.parse(localStorage.getItem('localidades'));
-    this.listaLocalidades = lloc.filter(loc => loc.idProvincia === idProvincia);
-    console.log(this.listaLocalidades);
-  }
-
-
-  constructor(
-    private data: DataSharingService
-  ) { }
-
-  ngOnInit() {
-    this.loadCategories();
-    this.loadProvinces();
-    this.filtrarProvincias();
+  loadMarcas() {
     this.data.currentMessage.subscribe(message => {
       this.message = message;
-      this.listaMarcas = [];
+      // this.listaMarcas = [];
       const lprod: Producto [] = JSON.parse(localStorage.getItem('productos'));
       if (lprod !== null) {
         lprod.forEach(prod => {
@@ -102,6 +119,28 @@ export class SearchfilterComponent implements OnInit {
         });
       }
     });
+  }
+
+  newMessage(categoria: string) {
+    this.data.changeMessage(categoria);
+  }
+
+  getLocalidadesByProvincia(idProvincia: number) {
+    const lloc: Localidad[] = JSON.parse(localStorage.getItem('localidades'));
+    this.listaLocalidades = lloc.filter(loc => loc.idProvincia === idProvincia);
+  }
+
+  constructor(
+    private data: DataSharingService
+  ) { }
+
+  ngOnInit() {
+    this.loadCategories();
+    this.loadProvinces();
+    this.filtrarProvincias();
+    this.filtrarLocalidades();
+    this.filtrarCatetegorias();
+    this.loadMarcas();
   }
 
 }

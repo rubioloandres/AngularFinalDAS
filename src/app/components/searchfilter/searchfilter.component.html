@@ -1,16 +1,19 @@
 <form>
   <h4>Categorias</h4>
+
   <mat-form-field>
-    <mat-select>
-      <mat-option (click)="newMessage(categoria.nombre)" *ngFor="let categoria of listaCategorias" [value]="categoria.nombre">
+    <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat">
+    <mat-autocomplete #autoCat="matAutocomplete" [displayWith]="displayFnC">
+      <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newMessage(categoria.nombre)">
         {{categoria.nombre}}
       </mat-option>
-    </mat-select>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-divider></mat-divider>
 
   <h4>Marcas</h4>
+
   <mat-form-field>
     <mat-select>
       <mat-option *ngFor="let marca of listaMarcas" [value]="marca">
@@ -22,36 +25,36 @@
   <mat-divider></mat-divider>
 
   <h4>Ubicacion</h4>
+<!--
   <mat-slide-toggle
-      class="example-margin"
-      [checked]="false"
-      [disabled]="false">
+    [checked]="stateCtrl.disabled"
+    (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
+    Disable Input?
+  </mat-slide-toggle>
+-->
+
+  <mat-slide-toggle
+      class="example-margin" #ubicAuto>
     Ubicacion automatica
   </mat-slide-toggle>
 
-  <h6>Provincia</h6>
-
   <mat-form-field>
-    <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="autoProv">
+    <mat-autocomplete #autoProv="matAutocomplete" [displayWith]="displayFnP">
       <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia" (click)="getLocalidadesByProvincia(provincia.id)">
         {{provincia.nombre}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
-  <h6>Localidad</h6>
   <mat-form-field>
-    <mat-select>
-      <mat-option *ngFor="let loc of listaLocalidades" [value]="loc.nombre">
-        {{loc.nombre}}
+    <input type="text" placeholder="Localidad" aria-label="Localidad" matInput [formControl]="formLocalidad" [matAutocomplete]="autoLoc" [attr.disabled]="ubicAuto.checked">
+    <mat-autocomplete #autoLoc="matAutocomplete" [displayWith]="displayFnL">
+      <mat-option *ngFor="let localidad of filteredLocalidades | async" [value]="localidad">
+        {{localidad.nombre}}
       </mat-option>
-    </mat-select>
+    </mat-autocomplete>
   </mat-form-field>
-
- <!-- <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Localidad"></textarea>
-  </mat-form-field> -->
 
 </form>
 

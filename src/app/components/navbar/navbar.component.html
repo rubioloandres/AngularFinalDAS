@@ -15,11 +15,16 @@
     </button>
   </mat-toolbar>
   <mat-toolbar>
+
     <mat-form-field class="searchInput">
-      <input matInput type="text" [(ngModel)]="searchInput" name="searchInput" (keyup.enter)="searchProducts()">
-      <mat-select-trigger>
-        <mat-icon></mat-icon>
-      </mat-select-trigger>
+      <input matInput placeholder="Buscar productos" aria-label="Buscar" (ngModel)="searchInput"  (keyup.enter)="searchProducts()" [matAutocomplete]="autoBus" [formControl]="formBusProd">
+        <mat-autocomplete #autoBus="matAutocomplete">
+          <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombre">
+            <img class="example-option-img" aria-hidden [src]="producto.imagen" width="25" height="25">
+            <span>{{producto.nombre}}</span> |
+            <small>{{producto.categoria}}</small>
+          </mat-option>
+        </mat-autocomplete>
     </mat-form-field>
     <button mat-stroked-button title="Buscar productos" (keyup.enter)="searchProducts()" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
   </mat-toolbar>
