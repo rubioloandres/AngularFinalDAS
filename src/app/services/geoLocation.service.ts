@@ -6,20 +6,21 @@ const options = {
   maximumAge: 0
 };
 
+let lat = '';
+let lng = '';
+let pre = '';
+
 @Injectable()
 export class GeoLocationService {
 
   ubicacion: Coordenadas [] = new Array();
   success(pos: any) {
     const crd = pos.coords;
-    console.log('Your current position is:');
-    console.log('Latitude : ' + crd.latitude);
-    console.log('Longitude: ' + crd.longitude);
-    console.log('More or less ' + crd.accuracy + ' meters.');
-/*
-    this.ubicacion = crd.latitude;
-
-    localStorage.setItem('posicion', JSON.stringify(this.ubicacion));*/
+    lat = crd.latitude;
+    lng = crd.longitude;
+    pre = crd.accuracy;
+    this.ubicacion = [{latitud: lat, longitud: lng, precision: pre }];
+    return this.ubicacion;
   }
 
   error(err: any) {
@@ -27,6 +28,8 @@ export class GeoLocationService {
   }
 
   getCurrentLocation() {
-    navigator.geolocation.getCurrentPosition(this.success, this.error, options);
+    navigator.geolocation.getCurrentPosition(pos => {
+      localStorage.setItem('posicion', JSON.stringify(this.success(pos)));
+    }, this.error, options);
   }
 }

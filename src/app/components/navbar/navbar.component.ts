@@ -29,8 +29,10 @@ export class NestedMenuExampleComponent implements OnInit {
   filteredProds: Observable<Producto[]>;
 
   private _filterProds(value: string): Producto[] {
-    const filterValue = value.toLowerCase();
-    return this.listaProductos.filter(prod => prod.nombre.toLowerCase().indexOf(filterValue) === 0);
+    if (value.length > 1) {
+      const filterValue = value.toLowerCase();
+      return this.listaProductos.filter(prod => prod.nombre.toLowerCase().indexOf(filterValue) === 0);
+    }
   }
 
   filtrarProductos() {

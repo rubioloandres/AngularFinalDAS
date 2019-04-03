@@ -40,10 +40,11 @@ import { SearchfilterComponent } from './components/searchfilter/searchfilter.co
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { LOCALE_ID, Inject } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-import localeEs from "@angular/common/locales/es-419";
-import localeEn from "@angular/common/locales/en";
+import localeEs from '@angular/common/locales/es-419';
+import localeEn from '@angular/common/locales/en';
 import { ProvincesDataSource } from './data/provincias.datasource';
 import { LocalidadesDataSource } from './data/localidades.datasource';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { LocalidadesDataSource } from './data/localidades.datasource';
     ShcartComponent,
     PricetableComponent,
     CategoriesComponent,
-    SearchfilterComponent
+    SearchfilterComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
