@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
-import { ShcartComponent } from './components/shcart/shcart.component';
+import { CartComponent } from './components/cart/cart.component';
 import { PricetableComponent } from './components/pricetable/pricetable.component';
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: ShcartComponent,
+    component: CartComponent,
     pathMatch: 'full'
   },
   {

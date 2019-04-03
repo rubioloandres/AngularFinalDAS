@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
-import { ShcartComponent } from './components/shcart/shcart.component';
+import { CartComponent } from './components/cart/cart.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PricetableComponent } from './components/pricetable/pricetable.component';
@@ -52,7 +52,7 @@ import { MapComponent } from './components/map/map.component';
     NestedMenuExampleComponent,
     SearchbarComponent,
     CatalogueComponent,
-    ShcartComponent,
+    CartComponent,
     PricetableComponent,
     CategoriesComponent,
     SearchfilterComponent,

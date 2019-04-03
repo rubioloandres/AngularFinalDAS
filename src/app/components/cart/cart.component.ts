@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from './../../interfaces/producto';
+import { Producto } from '../../interfaces/producto';
 
 @Component({
-  selector: 'app-shcart',
-  templateUrl: './shcart.component.html',
-  styleUrls: ['./shcart.component.css']
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
-export class ShcartComponent implements OnInit {
+export class CartComponent implements OnInit {
 
   listaProductosCarrito: Producto[] = new Array();
   displayedColumns = ['item', 'nombre', 'categoria', 'cantidad', 'accion'];
