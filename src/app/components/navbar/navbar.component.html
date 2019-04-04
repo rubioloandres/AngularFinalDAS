@@ -14,10 +14,12 @@
       <img src="./../../../assets/img/cart_icon.png"> Carrito
     </button>
   </mat-toolbar>
-  <mat-toolbar>
 
+  <span class="navbar-spacer"></span>
+
+  <mat-toolbar>
     <mat-form-field class="searchInput">
-      <input matInput placeholder="Buscar productos" aria-label="Buscar" (ngModel)="searchInput"  (keyup.enter)="searchProducts()" [matAutocomplete]="autoBus" [formControl]="formBusProd">
+      <input matInput placeholder="Buscar productos" aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput"  (keyup.enter)="searchProducts()"  [matAutocomplete]="autoBus" [formControl]="formBusProd">
         <mat-autocomplete #autoBus="matAutocomplete">
           <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombre">
             <img class="example-option-img" aria-hidden [src]="producto.imagen" width="25" height="25">
@@ -26,8 +28,18 @@
           </mat-option>
         </mat-autocomplete>
     </mat-form-field>
-    <button mat-stroked-button title="Buscar productos" (keyup.enter)="searchProducts()" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
+    <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
   </mat-toolbar>
+
+  <div class="navbar-item">
+    <div class="btn-group btn-lang">
+      <button mat-menu-item class="btn btn-dark" [matMenuTriggerFor]="idioma">
+        {{idiomaActual.nombre}}
+        <img src="{{idiomaActual.imagen}}">
+      </button>
+    </div>
+  </div>
+
 </mat-toolbar-row>
 
 <mat-toolbar-row class="navbar-custom-top">
@@ -40,12 +52,37 @@
     <h3>Comparador de Precios</h3>
   </mat-toolbar>
   <mat-toolbar></mat-toolbar>
+  <span class="navbar-spacer"></span>
+
+  <div class="navbar-item">
+    <button mat-button [matMenuTriggerFor]="ubicacion">
+      <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
+    </button>
+  </div>
+  <div class="navbar-item">
+    <ul *ngFor="let ubic of listaubicaciones">
+      <li>Latitud: {{ubic.latitud}}</li>
+      <li>Longitud: {{ubic.longitud}}</li>
+    </ul>
+  </div> <!--
   <mat-toolbar>
     <button mat-button [matMenuTriggerFor]="ubicacion">
       <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
     </button>
   </mat-toolbar>
+<mat-toolbar>
+
+  </mat-toolbar>
+-->
+
 </mat-toolbar-row>
+
+<mat-menu #idioma="matMenu">
+  <button mat-menu-item *ngFor="let idioma of listaIdiomas" (click)="setIdiomaActual(idioma.nombre)">
+    {{idioma.nombre}}
+    <img src="{{idioma.imagen}}" width="25" height="25">
+  </button>
+</mat-menu>
 
 <mat-menu #ubicacion="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="provincias">Provincias</button>

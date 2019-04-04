@@ -11,9 +11,43 @@
   z-index: auto;
 }
 
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+
+.navbar-item {
+  padding: 0 14px;
+}
+
+.navbar-item button {
+  font-family: Oswald !important;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item button span {
+  font-family: Oswald !important;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item button img {
+  width: 30px;
+  height: 30px;
+}
+
+
 .navbar-custom span {
   font-family: Oswald !important;
   color: white;
+}
+
+ul {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 15px;
 }
 
 .navbar-custom-top h3 {

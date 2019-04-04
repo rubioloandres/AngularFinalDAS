@@ -7,6 +7,8 @@ import { Producto } from 'src/app/interfaces/producto';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Coordenadas } from 'src/app/interfaces/ubicacion';
+import { Idioma } from 'src/app/interfaces/idioma';
 
 /**
  * @title Nested menu
@@ -20,12 +22,20 @@ export class NestedMenuExampleComponent implements OnInit {
 
   listaProvincias: Provincia [] = new Array();
   listaCategorias: string [] = new Array();
+  listaIdiomas: Idioma [] = [
+    {nombre: 'ES', imagen: './../../../assets/img/lang_esp_icon.png'},
+    {nombre: 'EN', imagen: './../../../assets/img/lang_eng_icon.png'}
+  ];
+  idiomaActual: Idioma;
+
   listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
   message: string;
   searchInput = '';
 
+  listaubicaciones: Coordenadas [] = new Array();
+
   listaProductos: Producto [] = new Array();
-  formBusProd = new FormControl( this.searchInput = '');
+  formBusProd = new FormControl( this.searchInput );
   filteredProds: Observable<Producto[]>;
 
   private _filterProds(value: string): Producto[] {
@@ -82,6 +92,30 @@ export class NestedMenuExampleComponent implements OnInit {
     this.searchInput = '';
   }
 
+  loadUbicacion() {
+    this.listaubicaciones = JSON.parse(localStorage.getItem('posicion'));
+    this.listaubicaciones.forEach(ubic => {
+      ubic.latitud = ubic.latitud.toString().substring(0, 7);
+      ubic.longitud = ubic.longitud.toString().substring(0, 7);
+    });
+  }
+
+  loadIdioma() {
+    this.listaIdiomas.forEach(idioma => {
+      if (idioma.nombre === 'ES') {
+        this.idiomaActual = idioma;
+      }
+    });
+  }
+
+  setIdiomaActual(nombreIdioma: string) {
+    this.listaIdiomas.forEach(idioma => {
+      if (idioma.nombre === nombreIdioma) {
+        this.idiomaActual = idioma;
+      }
+    });
+  }
+
   constructor(
     private data: DataSharingService,
     private loc: GeoLocationService
@@ -91,6 +125,8 @@ export class NestedMenuExampleComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.loadIdioma();
+    this.loadUbicacion();
     this.loadProvinces();
     this.loadCategories();
     this.data.currentMessage.subscribe(message => this.message = message);
