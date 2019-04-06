@@ -1,3 +1,30 @@
+.pricetable-container {
+  height: auto;
+  width: auto;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table {
+  /* para ver el resumen sticky, la tabla tiene que ser de mayor alto que el contenedor   */
+  height: auto;
+  width: auto;
+  border: 2px lightblue solid;
+}
+
+th,td {
+  align-items: center;
+  justify-content: center;
+}
+
+th mat-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 td mat-card img,th mat-card img {
   width: 45px;
   height: 45px;
@@ -22,4 +49,15 @@ table,mat-card-title{
 
 .mejorOp{
   background-color: greenyellow !important;
+}
+
+h2 {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 26px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  text-align: center !important;
 }

@@ -14,7 +14,7 @@ import { LocalidadesDataSource } from 'src/app/data/localidades.datasource';
 })
 export class CategoriesComponent implements OnInit {
 
-  private _categorias: Categoria[];
+  private categorias: Categoria[];
   private categoria: Categoria;
   message: string;
   listaCategorias: Categoria [] = new Array();
@@ -36,7 +36,7 @@ export class CategoriesComponent implements OnInit {
         const categorias: Array<Categoria> = JSON.parse(localStorage.getItem('categorias'));
         this.listaCategorias = categorias;
         /*
-        this._dsCat.getCategoriasINDEC().subscribe( cats  =>  {
+        this.dsCat.getCategoriasINDEC().subscribe( cats  =>  {
               localStorage.setItem('categorias', JSON.stringify(cats));
               const categorias: Array<Categoria> = cats;
               this.listaCategorias = categorias;
@@ -60,7 +60,7 @@ export class CategoriesComponent implements OnInit {
     ];
     localStorage.setItem('productos', JSON.stringify(this.listaProductos));
 
-    this._dsProd.getProductosINDEC().subscribe( prods  =>  {
+    this.dsProd.getProductosINDEC().subscribe( prods  =>  {
           localStorage.setItem('productos', JSON.stringify(prods));
           });*/
   }
@@ -83,15 +83,15 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private data: DataSharingService,
-    private _dsCat: CategoriesDataSource,
-    private _dsProd: ProductsDataSource,
+    private dsCat: CategoriesDataSource,
+    private dsProd: ProductsDataSource,
     private dsProv: ProvincesDataSource,
     private dsLoc: LocalidadesDataSource,
 
     ) {   }
 
   ngOnInit() {
-    // ver manejo de error, si no hay respuesta del servlet, buscar en localsotorage
+    // ver manejo de error, si no hay respuesta del servlet, buscar en localstorage
     this.loadProductos();
     this.loadCategorias();
     this.loadProvincias();

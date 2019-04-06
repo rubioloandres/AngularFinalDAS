@@ -7,9 +7,9 @@ import { Localidad } from '../interfaces/localidad';
 @Injectable()
 export class LocalidadesDataSource {
 
-    constructor(private _http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     public getLocalidadesINDEC(): Observable<Localidad[]> {
-      return this._http.get<Localidad[]>(environment.webAPI + 'localidades?identificador=1222');
+      return this.http.get<Localidad[]>(environment.webAPI + 'localidades?identificador=1222');
     }
 }

@@ -7,9 +7,9 @@ import { Categoria } from '../interfaces/categoria';
 @Injectable()
 export class CategoriesDataSource {
 
-    constructor(private _http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     public getCategoriasINDEC(): Observable<Categoria[]> {
-      return this._http.get<Categoria[]>(environment.webAPI + 'categorias?identificador=1222');
+      return this.http.get<Categoria[]>(environment.webAPI + 'categorias?identificador=1222');
     }
 }

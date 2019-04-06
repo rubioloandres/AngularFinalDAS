@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Producto, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal } from './../../interfaces/sucursal';
+import { SucursalesDataSource } from 'src/app/data/sucursales.datasource';
 
 @Component({
   selector: 'app-pricetable',
@@ -9,12 +10,12 @@ import { Sucursal, TotalSucursal } from './../../interfaces/sucursal';
 })
 export class PricetableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['item', 'sucursal1', 'sucursal2', 'sucursal3', 'sucursal4'];
+  displayedColumns = new Array();
   precioTotalSucursal: TotalSucursal[] = new Array();
   listaSucursales: Sucursal[] = new Array();
   listaProductos: Producto[] = new Array();
 
-  loadData() {
+  loadSucursales() {
     this.listaSucursales = [
       {
         nombreCadena: 'Disco', imagen: '../../../assets/img/disco_logo.png',
@@ -52,7 +53,20 @@ export class PricetableComponent implements OnInit, AfterViewInit {
         ], mejor: false
       }
     ];
+    /*
+    this.dsSuc.getPreciosSucursalesINDEC().subscribe(suc =>
+      this.listaSucursales = suc );*/
+  }
 
+  loadColumns() {
+    this.displayedColumns.push('item');
+    for (const suc of this.listaSucursales) {
+      this.displayedColumns.push('sucursal' + ( (this.listaSucursales.indexOf(suc)) + 1));
+    }
+    this.displayedColumns.push('star');
+  }
+
+  loadProductos() {
     this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
   }
 
@@ -82,10 +96,14 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
   }
 
-  constructor() {   }
+  constructor(
+    private dsSuc: SucursalesDataSource
+  ) {   }
 
   ngOnInit() {
-    this.loadData();
+    this.loadSucursales();
+    this.loadProductos();
+    this.loadColumns();
   }
 
   ngAfterViewInit(): void {

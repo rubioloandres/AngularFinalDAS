@@ -45,6 +45,7 @@ import localeEn from '@angular/common/locales/en';
 import { ProvincesDataSource } from './data/provincias.datasource';
 import { LocalidadesDataSource } from './data/localidades.datasource';
 import { MapComponent } from './components/map/map.component';
+import { SucursalesDataSource } from './data/sucursales.datasource';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { MapComponent } from './components/map/map.component';
     DataSharingService,
     GeoLocationService,
     ProvincesDataSource,
-    LocalidadesDataSource
+    LocalidadesDataSource,
+    SucursalesDataSource
   ],
   bootstrap: [AppComponent]
 })
