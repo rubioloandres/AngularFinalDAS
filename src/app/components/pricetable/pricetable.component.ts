@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Producto, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal } from './../../interfaces/sucursal';
 import { SucursalesDataSource } from 'src/app/data/sucursales.datasource';
+import { Cadena } from 'src/app/interfaces/cadena';
+import { CadenasDataSource } from 'src/app/data/cadenas.datasource';
 
 @Component({
   selector: 'app-pricetable',
@@ -14,42 +16,46 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   precioTotalSucursal: TotalSucursal[] = new Array();
   listaSucursales: Sucursal[] = new Array();
   listaProductos: Producto[] = new Array();
+  listaCadenas: Cadena [] = new Array();
+
+  loadCadenas() {
+    this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+  }
 
   loadSucursales() {
     this.listaSucursales = [
       {
-        nombreCadena: 'Disco', imagen: '../../../assets/img/disco_logo.png',
-        direccion: 'dir disco 111', localidad: 'localidad 1', listaPreciosProductos: [
-          { idProd: 1111, precio: 50 },
-          { idProd: 3333, precio: 41 },
-          { idProd: 4444, precio: 25 },
-          { idProd: 5555, precio: 7.50 },
-          // { idProd: 111116666, precio: 87 }
+        idCadena: 5, idSucursal: 1, direccion: 'dir disco 111', latitud: '-33.111', longitud: '54.35'
+        , listaPreciosProductos: [
+          { idProd: 1111, precio: 50, mejorPrecio: false},
+          { idProd: 3333, precio: 41, mejorPrecio: false},
+          { idProd: 4444, precio: 25, mejorPrecio: false},
+          { idProd: 5555, precio: 7.50, mejorPrecio: false },
         ], mejor: true
       },
       {
-       nombreCadena: 'Walmart', imagen: '../../../assets/img/walmart_logo.png',
-       direccion: 'dir walmart 222', localidad: 'localidad 1', listaPreciosProductos: [
-        { idProd: 2222, precio: 50 },
-        { idProd: 3333, precio: 37 },
-        { idProd: 4444, precio: 25 },
-        { idProd: 6666, precio: 80 }
+       idCadena: 1, idSucursal: 1, direccion: 'dir walmart 222', latitud: '-33.112', longitud: '54.36',
+        listaPreciosProductos: [
+        { idProd: 2222, precio: 50, mejorPrecio: false },
+        { idProd: 3333, precio: 37, mejorPrecio: false },
+        { idProd: 4444, precio: 25, mejorPrecio: false },
+        { idProd: 6666, precio: 80, mejorPrecio: false }
         ], mejor: false
       },
       {
-         nombreCadena: 'Libertad', imagen: '../../../assets/img/libertad_logo_nopng.jpg',
-         direccion: 'dir libertad 333', localidad: 'localidad 1', listaPreciosProductos: [
-          { idProd: 4444, precio: 23 },
-          { idProd: 6666, precio: 82 }
+        idCadena: 4, idSucursal: 1, direccion: 'dir libertad 333', latitud: '-33.1112', longitud: '54.33',
+         listaPreciosProductos: [
+          { idProd: 4444, precio: 23, mejorPrecio: false },
+          { idProd: 6666, precio: 82, mejorPrecio: false }
          ], mejor: false
       },
       {
-        nombreCadena: 'Carrefour', imagen: '../../../assets/img/carrefour_logo.png',
-        direccion: 'dir carrefour 444', localidad: 'localidad 1', listaPreciosProductos: [
-          { idProd: 2222, precio: 45 },
-          { idProd: 3333, precio: 37 },
-          { idProd: 4444, precio: 23 },
-          { idProd: 6666, precio: 81 }
+        idCadena: 3, idSucursal: 1, direccion: 'dir carrefour 444', latitud: '-33.121', longitud: '54.66',
+         listaPreciosProductos: [
+          { idProd: 2222, precio: 45, mejorPrecio: false },
+          { idProd: 3333, precio: 37, mejorPrecio: false },
+          { idProd: 4444, precio: 23, mejorPrecio: false },
+          { idProd: 6666, precio: 81, mejorPrecio: false }
         ], mejor: false
       }
     ];
@@ -96,11 +102,22 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
   }
 
+  getCadena(id: number) {
+    let cadena: Cadena;
+    this.listaCadenas.forEach(cad => {
+      if (cad.idCadena === id) {
+        cadena = cad;
+      }
+    });
+    return cadena;
+  }
+
   constructor(
     private dsSuc: SucursalesDataSource
   ) {   }
 
   ngOnInit() {
+    this.loadCadenas();
     this.loadSucursales();
     this.loadProductos();
     this.loadColumns();

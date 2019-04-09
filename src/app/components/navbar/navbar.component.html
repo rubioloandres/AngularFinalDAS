@@ -103,7 +103,7 @@
 </mat-menu>
 
 <mat-menu #supermercados="matMenu">
-  <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['catalogue']"> {{ cadena }} </button>
+  <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['catalogue']"> {{ cadena.nombre }} </button>
 </mat-menu>
 
 

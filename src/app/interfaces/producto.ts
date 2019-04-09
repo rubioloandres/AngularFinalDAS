@@ -11,4 +11,5 @@ export interface Producto {
 export interface ProductoPrecio {
   idProd: number;
   precio: number;
+  mejorPrecio: boolean;
 }

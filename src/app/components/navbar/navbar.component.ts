@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Coordenadas } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
+import { Cadena } from 'src/app/interfaces/cadena';
+import { CadenasDataSource } from 'src/app/data/cadenas.datasource';
 
 /**
  * @title Nested menu
@@ -20,6 +22,7 @@ import { Idioma } from 'src/app/interfaces/idioma';
 })
 export class NestedMenuExampleComponent implements OnInit {
 
+  listaCadenas: Cadena [] = new Array();
   listaProvincias: Provincia [] = new Array();
   listaCategorias: string [] = new Array();
   listaIdiomas: Idioma [] = [
@@ -27,8 +30,6 @@ export class NestedMenuExampleComponent implements OnInit {
     {nombre: 'EN', imagen: './../../../assets/img/lang_eng_icon.png'}
   ];
   idiomaActual: Idioma;
-
-  listaCadenas = [ 'Walmart' , 'Disco' , 'Jumbo' , 'Libertad', 'Carrefour' ];
   message: string;
   searchInput = '';
 
@@ -51,6 +52,20 @@ export class NestedMenuExampleComponent implements OnInit {
         startWith(''),
         map(prod => prod ? this._filterProds(prod) : this.listaProductos.slice())
       );
+  }
+
+  loadCadenas() {
+    this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+    this.listaCadenas = [
+      {idCadena: 1, nombre: 'Walmart', imagen: './../../../assets/img/walmart_logo.png'},
+      {idCadena: 2, nombre: 'Jumbo', imagen: './../../../assets/img/jumbo_logo.png'},
+      {idCadena: 3, nombre: 'Carrefour', imagen: './../../../assets/img/carrefour_logo.png'},
+      {idCadena: 4, nombre: 'Libertad', imagen: './../../../assets/img/libertad_logo.png'},
+      {idCadena: 5, nombre: 'Disco', imagen: './../../../assets/img/disco_logo.png'},
+    ];
+    localStorage.setItem('cadenas', JSON.stringify(this.listaCadenas));
+   /* this.dsCad.getCadenasINDEC().subscribe(
+      cad => this.listaCadenas = cad );*/
   }
 
   loadProducts() {
@@ -118,18 +133,19 @@ export class NestedMenuExampleComponent implements OnInit {
 
   constructor(
     private data: DataSharingService,
-    private loc: GeoLocationService
+    private loc: GeoLocationService,
+    private dsCad: CadenasDataSource
    ) {
     this.loadProducts();
     this.filtrarProductos();
    }
 
   ngOnInit() {
+    this.loadCadenas();
     this.loadIdioma();
     this.loadUbicacion();
     this.loadProvinces();
     this.loadCategories();
     this.data.currentMessage.subscribe(message => this.message = message);
   }
-
 }

@@ -46,6 +46,7 @@ import { ProvincesDataSource } from './data/provincias.datasource';
 import { LocalidadesDataSource } from './data/localidades.datasource';
 import { MapComponent } from './components/map/map.component';
 import { SucursalesDataSource } from './data/sucursales.datasource';
+import { CadenasDataSource } from './data/cadenas.datasource';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { SucursalesDataSource } from './data/sucursales.datasource';
     GeoLocationService,
     ProvincesDataSource,
     LocalidadesDataSource,
-    SucursalesDataSource
+    SucursalesDataSource,
+    CadenasDataSource
   ],
   bootstrap: [AppComponent]
 })
