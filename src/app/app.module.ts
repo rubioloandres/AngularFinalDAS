@@ -20,7 +20,7 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { CartComponent } from './components/cart/cart.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { PricetableComponent } from './components/pricetable/pricetable.component';
+import { PricetableComponent, DialogInfoSucursalComponent } from './components/pricetable/pricetable.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoriesDataSource } from './data/categories.datasource';
@@ -47,6 +47,7 @@ import { LocalidadesDataSource } from './data/localidades.datasource';
 import { MapComponent } from './components/map/map.component';
 import { SucursalesDataSource } from './data/sucursales.datasource';
 import { CadenasDataSource } from './data/cadenas.datasource';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CadenasDataSource } from './data/cadenas.datasource';
     PricetableComponent,
     CategoriesComponent,
     SearchfilterComponent,
-    MapComponent
+    MapComponent,
+    DialogInfoSucursalComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,8 @@ import { CadenasDataSource } from './data/cadenas.datasource';
     MatSelectModule,
     MatSlideToggleModule,
     CarouselModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [
     CategoriesDataSource,
@@ -100,6 +103,9 @@ import { CadenasDataSource } from './data/cadenas.datasource';
     LocalidadesDataSource,
     SucursalesDataSource,
     CadenasDataSource
+  ],
+  entryComponents: [
+    DialogInfoSucursalComponent
   ],
   bootstrap: [AppComponent]
 })

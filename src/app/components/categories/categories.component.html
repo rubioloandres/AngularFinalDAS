@@ -5,7 +5,7 @@
   <mat-grid-tile *ngFor='let categoria of listaCategorias' >
     <button mat-button (click)="newMessage(categoria.nombre)" [routerLink]="['catalogue']">
       <mat-card>
-        <img mat-card-image src='{{categoria.imagen}}'>
+        <img mat-card-image src='{{categoria.urlImagen}}'>
         <mat-card-title>{{categoria.nombre}}</mat-card-title>
       </mat-card>
     </button>

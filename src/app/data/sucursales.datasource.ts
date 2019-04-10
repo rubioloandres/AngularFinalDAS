@@ -7,9 +7,22 @@ import { Sucursal } from '../interfaces/sucursal';
 @Injectable()
 export class SucursalesDataSource {
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    public getPreciosSucursalesINDEC(): Observable<Sucursal[]> {
-      return this.http.get<Sucursal[]>(environment.webAPI + 'precios?identificador=1222');
+  public getPreciosSucursalesINDEC(codEntidadFed: string, localidad: string, codigos: string): Observable<Sucursal[]> {
+      const urlSearchParams = new URLSearchParams();
+      urlSearchParams.append('identificador', 'Angular');
+      urlSearchParams.append('codEntidadFed', codEntidadFed);
+      urlSearchParams.append('localidad', localidad);
+      urlSearchParams.append('codigos', codigos);
+      return this.http.post<Sucursal[]>(environment.webAPI + 'precios?', urlSearchParams);
+  }
+
+  public getInfoSucursalINDEC(idSucursal: number, idCadena: number): Observable<Sucursal> {
+    const urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('identificador', 'Angular');
+    urlSearchParams.append('idSucursal', idSucursal.toString());
+    urlSearchParams.append('idCadena', idCadena.toString());
+    return this.http.post<Sucursal>(environment.webAPI + 'info?', urlSearchParams);
   }
 }

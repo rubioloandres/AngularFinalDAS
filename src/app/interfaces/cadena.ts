@@ -1,7 +1,7 @@
 import { Sucursal } from './sucursal';
 
 export interface Cadena {
-  idCadena: number;
+  id: number;
   nombre: string;
   imagen: string;
 }

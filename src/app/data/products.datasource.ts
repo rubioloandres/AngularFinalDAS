@@ -9,11 +9,7 @@ export class ProductsDataSource {
 
     constructor(private http: HttpClient) { }
 
-    /*public getProductosINDEC( nombreCat: string ): Observable<string[]> {
-        return this._http.get<string[]>(environment.webAPI + 'productos/' + nombreCat);
-    }*/
-
-    public getProductosINDEC( ): Observable<Producto[]> {
+    public getProductosINDEC(): Observable<Producto[]> {
       return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222');
   }
 }

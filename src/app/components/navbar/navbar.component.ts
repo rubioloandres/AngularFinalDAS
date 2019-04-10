@@ -10,7 +10,6 @@ import { map, startWith } from 'rxjs/operators';
 import { Coordenadas } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
 import { Cadena } from 'src/app/interfaces/cadena';
-import { CadenasDataSource } from 'src/app/data/cadenas.datasource';
 
 /**
  * @title Nested menu
@@ -55,17 +54,20 @@ export class NestedMenuExampleComponent implements OnInit {
   }
 
   loadCadenas() {
-    this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
-    this.listaCadenas = [
+    /*this.listaCadenas = [
       {idCadena: 1, nombre: 'Walmart', imagen: './../../../assets/img/walmart_logo.png'},
       {idCadena: 2, nombre: 'Jumbo', imagen: './../../../assets/img/jumbo_logo.png'},
       {idCadena: 3, nombre: 'Carrefour', imagen: './../../../assets/img/carrefour_logo.png'},
       {idCadena: 4, nombre: 'Libertad', imagen: './../../../assets/img/libertad_logo.png'},
       {idCadena: 5, nombre: 'Disco', imagen: './../../../assets/img/disco_logo.png'},
     ];
-    localStorage.setItem('cadenas', JSON.stringify(this.listaCadenas));
-   /* this.dsCad.getCadenasINDEC().subscribe(
-      cad => this.listaCadenas = cad );*/
+    localStorage.setItem('cadenas', JSON.stringify(this.listaCadenas));*/
+/*
+    this.dsCad.getCadenasINDEC().subscribe( cads  =>  {
+      localStorage.setItem('cadenas', JSON.stringify(cads));
+      });
+*/
+    this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
   }
 
   loadProducts() {
@@ -134,7 +136,6 @@ export class NestedMenuExampleComponent implements OnInit {
   constructor(
     private data: DataSharingService,
     private loc: GeoLocationService,
-    private dsCad: CadenasDataSource
    ) {
     this.loadProducts();
     this.filtrarProductos();

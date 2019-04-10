@@ -1,5 +1,3 @@
-<!-- maximo de 4 columnas de sucursales, o una tabla con tantas colunmas como sucursales contenga
-  la respuesta -->
 <!-- Seria bueno ordenar la lista de columnas (sucursales), siendo la primera la mejor opcion,
 y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
 -->
@@ -29,14 +27,16 @@ y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
     <ng-container *ngFor='let sucursal of listaSucursales; let i = index;' matColumnDef="sucursal{{i+1}}">
       <div>
         <th mat-header-cell *matHeaderCellDef="let producto">
-          <mat-card [ngClass]="{'mejorOp': sucursal.mejor}">
-          <img src="{{getCadena(sucursal.idCadena).imagen}}">
-            <mat-card-content>
-              <mat-card-title>{{sucursal.direccion}}</mat-card-title>
-              <mat-card-subtitle>{{getCadena(sucursal.idCadena).nombre}}</mat-card-subtitle>
-              <mat-card-subtitle> ( {{sucursal.listaPreciosProductos.length}} productos disponibles ) </mat-card-subtitle>
-            </mat-card-content>
-          </mat-card>
+          <button mat-stroked-button (click)="openDialogInfo(sucursal)" title="Informacion sucursal">
+            <mat-card [ngClass]="{'mejorOp': sucursal.mejor}">
+              <img src="{{getCadena(sucursal.idCadena).imagen}}">
+                <mat-card-content>
+                  <mat-card-title>{{sucursal.direccion}}</mat-card-title>
+                  <mat-card-subtitle>{{getCadena(sucursal.idCadena).nombre}}</mat-card-subtitle>
+                  <mat-card-subtitle> ( {{sucursal.listaPreciosProductos.length}} productos disponibles ) </mat-card-subtitle>
+                </mat-card-content>
+            </mat-card>
+          </button>
         </th>
 
         <td [ngClass]="{'mejorOp': sucursal.mejor}" *matCellDef="let producto"> {{getProductoPriceBySucursal(i,producto.id)}}   </td>

@@ -29,18 +29,18 @@ export class CategoriesComponent implements OnInit {
           { nombre: 'Aceite', imagen: './../../assets/img/cat_aceite.png' },
           { nombre: 'Galletitas Dulces', imagen: './../../assets/img/cat_gal_d.jpg' },
           { nombre: 'Azucar', imagen: './../../assets/img/cat_azucar.png' },
-          { nombre: 'Bebidas Alcoholicas', imagen: './../../assets/img/cat_beb_a.png' }
+          { nombre: 'Bebidas Alcoholicas', imagen: './../../assets/img/cat_gal_s.png' }
         ];
         localStorage.setItem('categorias', JSON.stringify(this.listaCategorias));*/
 
         const categorias: Array<Categoria> = JSON.parse(localStorage.getItem('categorias'));
         this.listaCategorias = categorias;
-        /*
+/*
         this.dsCat.getCategoriasINDEC().subscribe( cats  =>  {
               localStorage.setItem('categorias', JSON.stringify(cats));
               const categorias: Array<Categoria> = cats;
               this.listaCategorias = categorias;
-              });*/
+              }); */
   }
 
   loadProductos() {
@@ -86,8 +86,7 @@ export class CategoriesComponent implements OnInit {
     private dsCat: CategoriesDataSource,
     private dsProd: ProductsDataSource,
     private dsProv: ProvincesDataSource,
-    private dsLoc: LocalidadesDataSource,
-
+    private dsLoc: LocalidadesDataSource
     ) {   }
 
   ngOnInit() {
