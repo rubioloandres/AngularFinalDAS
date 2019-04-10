@@ -30,21 +30,18 @@ td mat-card img,th mat-card img {
   height: 45px;
 }
 
-button img{
-  width: 25px;
-  height: 25px;
+.remove-button{
+  width: 25px !important;
+  height: 25px !important;
 }
+
 .total {
   background-color: lightblue !important;
 }
 
-button img {
-  width: 25px  !important;
-  height: 25px !important;
-}
-
-table,mat-card-title{
+table,mat-card-title, span{
   text-align: center !important;
+  font-family: Oswald !important;
 }
 
 .mejorOp{
@@ -60,4 +57,9 @@ h2 {
   font-weight: 700;
   line-height: 26.4px;
   text-align: center !important;
+}
+
+.cadena-logo {
+  width: 55px !important;
+  height: 55px !important;
 }

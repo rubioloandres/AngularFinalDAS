@@ -24,7 +24,7 @@
           <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombre">
             <img class="example-option-img" aria-hidden [src]="producto.imagen" width="25" height="25">
             <span>{{producto.nombre}}</span> |
-            <small>{{producto.categoria}}</small>
+            <small>{{producto.nombreCategoria}}</small>
           </mat-option>
         </mat-autocomplete>
     </mat-form-field>
@@ -90,7 +90,7 @@
 </mat-menu>
 
 <mat-menu #provincias="matMenu">
-  <button mat-menu-item *ngFor='let provincia of listaProvincias' > {{ provincia.nombre }} </button>
+  <button mat-menu-item *ngFor='let provincia of listaProvincias' > {{ provincia.nombreProvincia }} </button>
 </mat-menu>
 
 <mat-menu #menu="matMenu">

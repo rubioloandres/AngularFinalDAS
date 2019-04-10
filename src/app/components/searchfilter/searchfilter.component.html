@@ -41,8 +41,9 @@
   <mat-form-field>
     <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="autoProv">
     <mat-autocomplete #autoProv="matAutocomplete" [displayWith]="displayFnP">
-      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia" (click)="getLocalidadesByProvincia(provincia.id)">
-        {{provincia.nombre}}
+      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia"
+        (click)="getLocalidadesByProvincia(provincia.codigoEntidadFederal)">
+        {{provincia.nombreProvincia}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
@@ -51,10 +52,13 @@
     <input type="text" placeholder="Localidad" aria-label="Localidad" matInput [formControl]="formLocalidad" [matAutocomplete]="autoLoc" [attr.disabled]="ubicAuto.checked">
     <mat-autocomplete #autoLoc="matAutocomplete" [displayWith]="displayFnL">
       <mat-option *ngFor="let localidad of filteredLocalidades | async" [value]="localidad">
-        {{localidad.nombre}}
+        {{localidad.nombreLocalidad}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+
+
+  <button mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)">Guardar Ubicacion</button>
 
 </form>
 

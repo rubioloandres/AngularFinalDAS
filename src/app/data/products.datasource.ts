@@ -13,7 +13,7 @@ export class ProductsDataSource {
     return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222');
   }
 
-  public getProductosByCategoriaINDEC(idCat: number ): Observable<Producto[]> {
+  public getProductosByCategoriaINDEC(idCat: number): Observable<Producto[]> {
     return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222' + '&idcategoria=' + idCat);
   }
 }

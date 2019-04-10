@@ -10,6 +10,6 @@ export class LocalidadesDataSource {
     constructor(private http: HttpClient) { }
 
     public getLocalidadesINDEC(): Observable<Localidad[]> {
-      return this.http.get<Localidad[]>(environment.webAPI + 'localidades?identificador=1222');
+      return this.http.get<Localidad[]>(environment.webAPI + 'localidades?identificador=Angular');
     }
 }

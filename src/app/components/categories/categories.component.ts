@@ -65,16 +65,17 @@ export class CategoriesComponent implements OnInit {
           }); */
   }
 
-  loadProvincias() {
-    /*this.dsProv.getProvinciasINDEC().subscribe( provs  =>  {
+  loadProvincias() {/*
+    this.dsProv.getProvinciasINDEC().subscribe(
+      provs  =>  {
           localStorage.setItem('provincias', JSON.stringify(provs));
-          });*/
+      });*/
   }
 
   loadLocalidades() {
-    /*this.dsLoc.getLocalidadesINDEC().subscribe( locs  =>  {
+    this.dsLoc.getLocalidadesINDEC().subscribe( locs  =>  {
           localStorage.setItem('localidades', JSON.stringify(locs));
-          });*/
+          });
   }
 
   newMessage(categoria: string) {

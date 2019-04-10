@@ -31,6 +31,15 @@ export class CartComponent implements OnInit {
     this.listaProductosCarrito = [];
   }
 
+  getPrices() {
+    const lprod: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    const lpre = new Array();
+    lprod.forEach(prod => {
+      lpre.push(prod.idComercial);
+    });
+    console.log(lpre.toString());
+  }
+
   constructor() { }
 
   ngOnInit() {

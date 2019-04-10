@@ -1,4 +1,4 @@
 export interface Provincia {
-  id: number;
-  nombre: string;
+  codigoEntidadFederal: string;
+  nombreProvincia: string;
 }

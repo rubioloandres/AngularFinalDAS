@@ -10,6 +10,6 @@ export class CategoriesDataSource {
     constructor(private http: HttpClient) { }
 
     public getCategoriasINDEC(): Observable<Categoria[]> {
-      return this.http.get<Categoria[]>(environment.webAPI + 'categorias?identificador=1222');
+      return this.http.get<Categoria[]>(environment.webAPI + 'categorias?identificador=Angular');
     }
 }

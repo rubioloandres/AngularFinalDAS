@@ -8,6 +8,7 @@ import { Localidad } from 'src/app/interfaces/localidad';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
 
 @Component({
   selector: 'app-searchfilter',
@@ -24,8 +25,7 @@ export class SearchfilterComponent implements OnInit {
   filteredCategorias: Observable<Categoria[]>;
 
   listaProvincias: Provincia [] = new Array();
-  formProvincia = new FormControl();
-
+  formProvincia = new FormControl( );
   filteredProvincias: Observable<Provincia[]>;
 
   listaLocalidades: Localidad [] = new Array();
@@ -33,11 +33,11 @@ export class SearchfilterComponent implements OnInit {
   filteredLocalidades: Observable<Localidad[]>;
 
   displayFnP(prov?: Provincia): string | undefined {
-    return prov ? prov.nombre : undefined;
+    return prov ? prov.nombreProvincia : undefined;
   }
 
   displayFnL(loc?: Localidad): string | undefined {
-    return loc ? loc.nombre : undefined;
+    return loc ? loc.nombreLocalidad : undefined;
   }
 
   displayFnC(cat?: Categoria): string | undefined {
@@ -47,14 +47,14 @@ export class SearchfilterComponent implements OnInit {
   private _filterP(nombre: string): Provincia[] {
     const filterValue = nombre.toLowerCase();
     return this.listaProvincias.filter(prov =>
-      prov.nombre.toLowerCase().normalize('NFD')
+      prov.nombreProvincia.toLowerCase().normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '').indexOf(filterValue) === 0);
   }
 
   private _filterL(nombre: string): Localidad[] {
     const filterValue = nombre.toLowerCase();
     return this.listaLocalidades.filter(loc =>
-      loc.nombre.toLowerCase().normalize('NFD')
+      loc.nombreLocalidad.toLowerCase().normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '').indexOf(filterValue) === 0);
   }
 
@@ -113,7 +113,7 @@ export class SearchfilterComponent implements OnInit {
       const lprod: Producto [] = JSON.parse(localStorage.getItem('productos'));
       if (lprod !== null) {
         lprod.forEach(prod => {
-          if (prod.nombreCategoria === this.message) {
+          if (prod.nombreCategoria === this.message && (! (this.listaMarcas.includes(prod.nombreMarca) ) )) {
             this.listaMarcas.push(prod.nombreMarca);
           }
         });
@@ -125,11 +125,20 @@ export class SearchfilterComponent implements OnInit {
     this.data.changeMessage(categoria);
   }
 
-  getLocalidadesByProvincia(idProvincia: number) {
+  getLocalidadesByProvincia(codigoEntidadFederal: string) {
+
     const lloc: Localidad[] = JSON.parse(localStorage.getItem('localidades'));
-    this.listaLocalidades = lloc.filter(loc => loc.idProvincia === idProvincia);
+    this.listaLocalidades = lloc.filter(loc => loc.codigoEntidadFederal === codigoEntidadFederal);
   }
 
+  saveUbicacion(localidad: Localidad, provincia: Provincia) {
+    console.log('mi primer boton angular');
+    const ubicacion: Ubicacion = {codigoEntidadFederal:provincia.codigoEntidadFederal
+                                 , localidad: localidad.nombreLocalidad};
+
+    localStorage.setItem('ubicacion', JSON.stringify(ubicacion));
+
+  }
   constructor(
     private data: DataSharingService
   ) { }
