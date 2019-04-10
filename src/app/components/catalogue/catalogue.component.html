@@ -3,18 +3,18 @@
   <mat-grid-tile *ngFor="let producto of listaProductos" [colspan]="1" [rowspan]="4">
     <mat-card>
       <mat-card-title>{{producto.nombre}}</mat-card-title>
-      <mat-card-subtitle>{{producto.categoria}}</mat-card-subtitle>
+      <mat-card-subtitle>{{producto.nombreCategoria}}</mat-card-subtitle>
       <mat-divider></mat-divider>
       <img class="prod-img" src="{{producto.imagen}}">
       <mat-button-toggle-group>
         <span>Cantidad: </span>
         <input mdInput type="number" [(ngModel)]="inputCant" name="inputCant" min="1" max="99"/>
-        <mat-button-toggle title="Actualizar cantidad"><img class="updateIcon" src="./../../../assets/img/update_icon.png" (click)="updateCant(producto.id)"></mat-button-toggle>
+        <mat-button-toggle title="Actualizar cantidad"><img class="updateIcon" src="./../../../assets/img/update_icon.png" (click)="updateCant(producto.idComercial)"></mat-button-toggle>
       </mat-button-toggle-group>
       <mat-card-actions>
-        <img mat-button *ngIf="cartContainsProd(producto.id)" src="./../../../assets/img/added_icon.png" title="Agregado a carrito">
-        <button mat-button *ngIf="! cartContainsProd(producto.id)" (click)="addToCart(producto)" ><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
-        <button mat-button *ngIf="! cartContainsProd(producto.id)" (click)="addToCart(producto)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Agregar y comparar precios"></button>
+        <img mat-button *ngIf="cartContainsProd(producto.idComercial)" src="./../../../assets/img/added_icon.png" title="Agregado a carrito">
+        <button mat-button *ngIf="! cartContainsProd(producto.idComercial)" (click)="addToCart(producto)" ><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
+        <button mat-button *ngIf="! cartContainsProd(producto.idComercial)" (click)="addToCart(producto)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Agregar y comparar precios"></button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

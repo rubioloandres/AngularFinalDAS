@@ -113,8 +113,8 @@ export class SearchfilterComponent implements OnInit {
       const lprod: Producto [] = JSON.parse(localStorage.getItem('productos'));
       if (lprod !== null) {
         lprod.forEach(prod => {
-          if (prod.categoria === this.message) {
-            this.listaMarcas.push(prod.marca);
+          if (prod.nombreCategoria === this.message) {
+            this.listaMarcas.push(prod.nombreMarca);
           }
         });
       }

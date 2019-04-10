@@ -98,7 +98,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
 
   removeProduct(idprod: number) {
     const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-    this.listaProductos = prodscart.filter(p => p.id !== idprod);
+    this.listaProductos = prodscart.filter(p => p.idComercial !== idprod);
     localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
   }
 

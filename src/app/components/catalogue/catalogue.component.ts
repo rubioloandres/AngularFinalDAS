@@ -14,7 +14,9 @@ export class CatalogueComponent implements OnInit {
   message: string;
   inputCant = 1;
   listInputCant: number[] = new Array();
+
   cargarProductos() {
+    localStorage.removeItem('productos');
     const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
     this.listaProductos = prods;
     return this.listaProductos;
@@ -40,7 +42,7 @@ export class CatalogueComponent implements OnInit {
     if (prodCart === null) {
       return false;
     }
-    if (prodCart.filter(p => p.id === idprod).length === 1 ) {
+    if (prodCart.filter(p => p.idComercial === idprod).length === 1 ) {
       return true;
     }
     return false;
@@ -57,8 +59,8 @@ export class CatalogueComponent implements OnInit {
       this.message = message;
       const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
       this.listaProductos = prods.filter(p =>
-          ( p.categoria.toLowerCase().includes(this.message.toLowerCase()) )  ||
-          ( p.marca.toLowerCase().includes(this.message.toLowerCase()) )      ||
+          ( p.nombreCategoria.toLowerCase().includes(this.message.toLowerCase()) )  ||
+          ( p.nombreMarca.toLowerCase().includes(this.message.toLowerCase()) )      ||
           ( p.nombre.toLowerCase().includes(this.message.toLowerCase()) )
       );
     });
@@ -68,7 +70,7 @@ export class CatalogueComponent implements OnInit {
     const lcart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
     if (lcart !== null) {
       lcart.forEach(prod => {
-        if (prod.id === idprod) {
+        if (prod.idComercial === idprod) {
           prod.cantidad = this.inputCant;
           localStorage.setItem('carrito', JSON.stringify(lcart));
         }

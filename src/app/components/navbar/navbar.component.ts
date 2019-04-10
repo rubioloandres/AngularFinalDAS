@@ -71,7 +71,12 @@ export class NestedMenuExampleComponent implements OnInit {
   }
 
   loadProducts() {
-    this.listaProductos = JSON.parse(localStorage.getItem('productos'));
+    // ver cuando no existe
+    if (localStorage.getItem('productos').length > 0) {
+      this.listaProductos = JSON.parse(localStorage.getItem('productos'));
+    } else {
+      this.listaProductos = [];
+    }
   }
 
   loadCategories() {

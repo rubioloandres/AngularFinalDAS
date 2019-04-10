@@ -62,7 +62,7 @@ export class CategoriesComponent implements OnInit {
 
     this.dsProd.getProductosINDEC().subscribe( prods  =>  {
           localStorage.setItem('productos', JSON.stringify(prods));
-          });*/
+          }); */
   }
 
   loadProvincias() {

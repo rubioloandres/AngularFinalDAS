@@ -7,9 +7,13 @@ import { Producto } from '../interfaces/producto';
 @Injectable()
 export class ProductsDataSource {
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    public getProductosINDEC(): Observable<Producto[]> {
-      return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222');
+  public getProductosINDEC(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222');
+  }
+
+  public getProductosByCategoriaINDEC(idCat: number ): Observable<Producto[]> {
+    return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222' + '&idcategoria=' + idCat);
   }
 }
