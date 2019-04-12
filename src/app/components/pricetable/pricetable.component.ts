@@ -1,9 +1,11 @@
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { Producto, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal, SucursalInfo } from './../../interfaces/sucursal';
-import { SucursalesDataSource } from 'src/app/data/sucursales.datasource';
-import { Cadena } from 'src/app/interfaces/cadena';
+import { Cadena, CadenaSucursal } from 'src/app/interfaces/cadena';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DataSharingService } from 'src/app/services/datasharing.service';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { CadenasDataSource } from 'src/app/data/cadenas.datasource';
 
 @Component({
   selector: 'app-pricetable',
@@ -18,11 +20,16 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   listaProductos: Producto[] = new Array();
   listaCadenas: Cadena [] = new Array();
 
+  listaCadenasRespuesta: CadenaSucursal [] = new Array();
+
+  codigos: string;
+
   loadCadenas() {
     this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
   }
 
   loadSucursales() {
+    /*
     this.listaSucursales = [
       {
         idCadena: 5, idSucursal: 1, nombre: 'Sucursal Disco I', direccion: 'dir disco 111', latitud: '-33.111', longitud: '54.35'
@@ -59,9 +66,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
         ], mejor: false
       }
     ];
-    /*
-    this.dsSuc.getPreciosSucursalesINDEC().subscribe(suc =>
-      this.listaSucursales = suc );*/
+*/
   }
 
   loadColumns() {
@@ -70,16 +75,18 @@ export class PricetableComponent implements OnInit, AfterViewInit {
       this.displayedColumns.push('sucursal' + ( (this.listaSucursales.indexOf(suc)) + 1));
     }
     this.displayedColumns.push('star');
+
+    console.log(this.displayedColumns);
   }
 
   loadProductos() {
     this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
   }
 
-  getProductoPriceBySucursal(indexSuc: number, idProd: number) {
+  getProductoPriceBySucursal(indexSuc: number, idProd: string) {
     const pp: ProductoPrecio[] = this.listaSucursales[indexSuc]
-                                     .listaPreciosProductos
-                                     .filter(p => p.idProd === idProd);
+                                     .productos
+                                     .filter(p => p.idComercial === idProd);
     if (pp.length === 0) {
       return 'No Disponible';
     } else {
@@ -89,14 +96,14 @@ export class PricetableComponent implements OnInit, AfterViewInit {
 
   getTotal(indexSuc: number) {
     const tot  = this.listaSucursales[indexSuc]
-                      .listaPreciosProductos
+                      .productos
                       .map(p => p.precio)
                       .reduce((total, precProd) => total + precProd, 0);
     this.precioTotalSucursal.push({numeroSucursal: indexSuc, totalPrecio: tot});
     return tot;
   }
 
-  removeProduct(idprod: number) {
+  removeProduct(idprod: string) {
     const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
     this.listaProductos = prodscart.filter(p => p.idComercial !== idprod);
     localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
@@ -112,23 +119,50 @@ export class PricetableComponent implements OnInit, AfterViewInit {
       width: '500px',
       data: {   nombreCadena: cadenaSuc.nombre,
                 imagenCadena: cadenaSuc.imagen,
-                nombreSucursal: suc.nombre,
+                nombreSucursal: suc.nombreSucursal,
                 direccion: suc.direccion,
-                latitud: suc.latitud,
-                longitud: suc.longitud}
+                latitud: suc.lat,
+                longitud: suc.lng}
     });
   }
 
+  updateSucursales() {
+    this.data.currentCodigos.subscribe(codigos => {
+    this.codigos = codigos;
+    const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
+    this.dsCad.getPreciosINDEC(ubicacion.codigoEntidadFederal
+      , ubicacion.localidad
+      , this.codigos.toString()
+      ).subscribe( cadenas  =>  {
+        console.log(cadenas);
+        cadenas.forEach(cadena => {
+          console.log(cadena.sucursales);
+          this.listaSucursales = this.listaSucursales.concat(cadena.sucursales);
+          console.log(this.listaSucursales);
+        });
+        this.loadColumns();
+      });
+    });
+  }
+
+  sucursalesEmpty() {
+   if (this.listaSucursales.length > 0) {
+    return false;
+   } else {
+     return true;
+   }
+  }
+
   constructor(
-    private dsSuc: SucursalesDataSource,
-    public dialog: MatDialog
+    private dsCad: CadenasDataSource,
+    public dialog: MatDialog,
+    private data: DataSharingService
   ) {   }
 
   ngOnInit() {
+    this.updateSucursales();
     this.loadCadenas();
-    this.loadSucursales();
     this.loadProductos();
-    this.loadColumns();
   }
 
   ngAfterViewInit(): void {

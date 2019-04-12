@@ -7,8 +7,7 @@ export interface Cadena {
 }
 
 export interface CadenaSucursal {
+  id: number;
   nombre: string;
-  idCadena: number;
-  imagen: string;
-  listaSucursales: Sucursal [];
+  sucursales: Sucursal [];
 }

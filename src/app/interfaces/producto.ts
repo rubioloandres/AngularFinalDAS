@@ -1,5 +1,5 @@
 export interface Producto {
-  idComercial: number;
+  idComercial: string;
   idCategoria: number;
   nombreCategoria: string;
   nombre: string;
@@ -10,7 +10,7 @@ export interface Producto {
 }
 
 export interface ProductoPrecio {
-  idProd: number;
+  idComercial: string;
   precio: number;
   mejorPrecio: boolean;
 }

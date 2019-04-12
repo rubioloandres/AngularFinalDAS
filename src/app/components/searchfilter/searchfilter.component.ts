@@ -132,7 +132,6 @@ export class SearchfilterComponent implements OnInit {
   }
 
   saveUbicacion(localidad: Localidad, provincia: Provincia) {
-    console.log('mi primer boton angular');
     const ubicacion: Ubicacion = {codigoEntidadFederal:provincia.codigoEntidadFederal
                                  , localidad: localidad.nombreLocalidad};
 

@@ -62,7 +62,7 @@ export class CategoriesComponent implements OnInit {
 
     this.dsProd.getProductosINDEC().subscribe( prods  =>  {
           localStorage.setItem('productos', JSON.stringify(prods));
-          }); */
+          });*/
   }
 
   loadProvincias() {/*
@@ -73,9 +73,10 @@ export class CategoriesComponent implements OnInit {
   }
 
   loadLocalidades() {
+    /*
     this.dsLoc.getLocalidadesINDEC().subscribe( locs  =>  {
           localStorage.setItem('localidades', JSON.stringify(locs));
-          });
+          });*/
   }
 
   newMessage(categoria: string) {

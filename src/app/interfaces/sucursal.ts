@@ -3,12 +3,12 @@ import { ProductoPrecio } from './producto';
 export interface Sucursal {
   idCadena: number;
   idSucursal: number;
-  nombre: string;
+  nombreSucursal: string;
   direccion: string;
-  latitud: string;
-  longitud: string;
-  listaPreciosProductos: ProductoPrecio[];
-  mejor: boolean;
+  lat: string;
+  lng: string;
+  productos: ProductoPrecio[];
+  mejorOpcion: boolean;
 }
 
 export interface TotalSucursal {

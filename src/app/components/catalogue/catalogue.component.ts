@@ -37,7 +37,7 @@ export class CatalogueComponent implements OnInit {
     }
   }
 
-  cartContainsProd( idprod: number) {
+  cartContainsProd( idprod: string) {
     const prodCart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
     if (prodCart === null) {
       return false;
@@ -49,12 +49,6 @@ export class CatalogueComponent implements OnInit {
   }
 
   updateCatalogue() {
-       /*
-    this.data.currentMessage.subscribe(message => {
-      this.message = message;
-      const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
-      this.listaProductos = prods.filter(p => p.categoria.toLowerCase() === this.message.toLowerCase()  );
-    });*/
     this.data.currentMessage.subscribe(message => {
       this.message = message;
       const prods: Array<Producto> = JSON.parse(localStorage.getItem('productos'));
@@ -66,7 +60,7 @@ export class CatalogueComponent implements OnInit {
     });
   }
 
-  updateCant(idprod: number) {
+  updateCant(idprod: string) {
     const lcart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
     if (lcart !== null) {
       lcart.forEach(prod => {
