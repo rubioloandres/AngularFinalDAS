@@ -6,6 +6,10 @@ app-searchfilter {
   border: 2px lightblue solid;
 }
 
+.agregado {
+  border: 2px greenyellow solid !important;
+}
+
 .updateIcon {
   width: 25px !important;
   height: 25px !important;
@@ -46,10 +50,18 @@ mat-grid-tile {
 
 mat-card-actions {
   position: absolute;
-
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+mat-card-actions mat-button-toggle-group {
+  margin-top: 0 !important;
+}
+
+mat-button-toggle-group img {
+  margin: auto !important;
+  margin-left: auto;
 }
 
 mat-card-actions img {
@@ -82,5 +94,14 @@ h2 {
   font-variant: normal;
   font-weight: 700;
   line-height: 26.4px;
+  text-align: center !important;
+}
+
+.noProds {
+  margin-top: 10%;
+}
+
+h4, h5 {
+  font-family: Oswald !important;
   text-align: center !important;
 }

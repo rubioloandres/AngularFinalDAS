@@ -4,11 +4,11 @@ import { DataSharingService } from 'src/app/services/datasharing.service';
 import { Producto } from 'src/app/interfaces/producto';
 import { Provincia } from 'src/app/interfaces/provincia';
 import { Localidad } from 'src/app/interfaces/localidad';
-
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
 
 @Component({
   selector: 'app-searchfilter',
@@ -18,6 +18,7 @@ import { Ubicacion } from 'src/app/interfaces/ubicacion';
 export class SearchfilterComponent implements OnInit {
 
   message: string;
+  criterioBusqueda: CriterioBusquedaProducto;
   listaMarcas: string [] = new Array ();
 
   listaCategorias: Categoria[] = new Array();
@@ -83,7 +84,7 @@ export class SearchfilterComponent implements OnInit {
     );
   }
 
-  filtrarCatetegorias() {
+  filtrarCategorias() {
     this.filteredCategorias = this.formCategoria.valueChanges
     .pipe(
       startWith(''),
@@ -92,7 +93,7 @@ export class SearchfilterComponent implements OnInit {
     );
   }
 
-  loadCategories() {
+  loadCategories() { // TODO: cambiar nombre a  "cargarCategorias"
     const lcat = localStorage.getItem('categorias');
     if (lcat !== null) {
       this.listaCategorias = JSON.parse(lcat);
@@ -101,24 +102,38 @@ export class SearchfilterComponent implements OnInit {
     }
   }
 
-  loadProvinces() {
+  loadProvinces() { // TODO: cambiar nombre a  "cargarProvincias"
     // localStorage.setItem('provincias', JSON.stringify(this.listaProvincias));
     this.listaProvincias = JSON.parse(localStorage.getItem('provincias'));
   }
 
-  loadMarcas() {
-    this.data.currentMessage.subscribe(message => {
-      this.message = message;
-      // this.listaMarcas = [];
+  loadMarcas() { // TODO: cambiar nombre a  "cargarMarcas"
+    this.data.currentCriterio.subscribe(criterio => {
+      this.criterioBusqueda = criterio;
+      this.listaMarcas = [];
       const lprod: Producto [] = JSON.parse(localStorage.getItem('productos'));
-      if (lprod !== null) {
+      if (lprod !== null) { // HACK:
         lprod.forEach(prod => {
-          if (prod.nombreCategoria === this.message && (! (this.listaMarcas.includes(prod.nombreMarca) ) )) {
+          if (prod.nombreCategoria === this.criterioBusqueda.categoria && (! (this.listaMarcas.includes(prod.nombreMarca) ) )) {
             this.listaMarcas.push(prod.nombreMarca);
           }
         });
+        console.log(this.listaMarcas);
       }
     });
+  }
+
+  newCriterio(cat: string, mar: string) {
+    console.log(cat);
+    console.log(mar);
+    const crit: CriterioBusquedaProducto = {
+      idComercial: undefined,
+      nombre: undefined,
+      categoria: cat,
+      marca: mar
+    };
+    console.log(crit);
+    this.data.changeCriterioBusquedaProducto(crit);
   }
 
   newMessage(categoria: string) {
@@ -131,7 +146,7 @@ export class SearchfilterComponent implements OnInit {
     this.listaLocalidades = lloc.filter(loc => loc.codigoEntidadFederal === codigoEntidadFederal);
   }
 
-  saveUbicacion(localidad: Localidad, provincia: Provincia) {
+  saveUbicacion(localidad: Localidad, provincia: Provincia) { // TODO: cambiar nombre a  "guardarUbicacion"
     const ubicacion: Ubicacion = {codigoEntidadFederal:provincia.codigoEntidadFederal
                                  , localidad: localidad.nombreLocalidad};
 
@@ -147,7 +162,7 @@ export class SearchfilterComponent implements OnInit {
     this.loadProvinces();
     this.filtrarProvincias();
     this.filtrarLocalidades();
-    this.filtrarCatetegorias();
+    this.filtrarCategorias();
     this.loadMarcas();
   }
 

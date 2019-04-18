@@ -99,7 +99,7 @@
 </mat-menu>
 
 <mat-menu #productos="matMenu">
-  <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newMessage(categoria)" [routerLink]="['catalogue']"> {{ categoria }} </button>
+  <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newCriterio(categoria)" [routerLink]="['catalogue']"> {{ categoria }} </button>
 </mat-menu>
 
 <mat-menu #supermercados="matMenu">

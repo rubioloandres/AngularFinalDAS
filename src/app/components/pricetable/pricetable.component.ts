@@ -23,6 +23,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   listaCadenasRespuesta: CadenaSucursal [] = new Array();
 
   codigos: string;
+  error: string;
 
   loadCadenas() {
     this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
@@ -130,6 +131,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     this.data.currentCodigos.subscribe(codigos => {
     this.codigos = codigos;
     const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
+
     this.dsCad.getPreciosINDEC(ubicacion.codigoEntidadFederal
       , ubicacion.localidad
       , this.codigos.toString()
@@ -143,6 +145,29 @@ export class PricetableComponent implements OnInit, AfterViewInit {
         this.loadColumns();
       });
     });
+/*
+    this.data.currentCodigos.subscribe(codigos => {
+      this.codigos = codigos;
+      const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
+      this.dsCad.getComparacionINDEC(
+        ubicacion.codigoEntidadFederal
+      , ubicacion.localidad
+      , this.codigos.toString()
+        ).subscribe( respuesta  =>  {
+          console.log(respuesta);
+          if (respuesta.estado.codigo === 0) {
+            respuesta.sucursales.forEach(cadena => {
+              console.log(cadena.sucursales);
+              this.listaSucursales = this.listaSucursales.concat(cadena.sucursales);
+              console.log(this.listaSucursales);
+            });
+            this.loadColumns();
+          } else {
+            const error = respuesta.estado.mensaje;
+            this.setError(error);
+          }
+        });
+      });*/
   }
 
   sucursalesEmpty() {
@@ -151,6 +176,10 @@ export class PricetableComponent implements OnInit, AfterViewInit {
    } else {
      return true;
    }
+  }
+
+  setError(error: string) {
+    this.error = error;
   }
 
   constructor(

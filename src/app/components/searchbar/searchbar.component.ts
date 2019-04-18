@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSharingService } from 'src/app/services/datasharing.service';
+import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
 
 @Component({
   selector: 'app-searchbar',
@@ -9,7 +10,7 @@ import { DataSharingService } from 'src/app/services/datasharing.service';
 export class SearchbarComponent implements OnInit {
 
   searchInput = '';
-  message: string;
+  criterioBusqueda: CriterioBusquedaProducto;
 
   customOptions: any = {
     loop: true,
@@ -38,11 +39,13 @@ export class SearchbarComponent implements OnInit {
   };
 
   searchProducts() {
-    this.data.changeMessage(this.searchInput);
-  }
-
-  newMessage(categoria: string) {
-    this.data.changeMessage(categoria);
+    const crit: CriterioBusquedaProducto = {
+      idComercial: undefined,
+      marca: undefined,
+      categoria: undefined,
+      nombre: this.searchInput
+    };
+    this.data.changeCriterioBusquedaProducto(crit);
   }
 
   constructor(
@@ -50,6 +53,5 @@ export class SearchbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => this.message = message);
   }
 }

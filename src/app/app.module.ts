@@ -102,7 +102,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProvincesDataSource,
     LocalidadesDataSource,
     SucursalesDataSource,
-    CadenasDataSource
+    CadenasDataSource,
+    CartComponent
   ],
   entryComponents: [
     DialogInfoSucursalComponent

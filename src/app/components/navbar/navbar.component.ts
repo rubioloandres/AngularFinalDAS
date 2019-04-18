@@ -10,6 +10,7 @@ import { map, startWith } from 'rxjs/operators';
 import { Coordenadas } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
 import { Cadena } from 'src/app/interfaces/cadena';
+import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
 
 /**
  * @title Nested menu
@@ -29,8 +30,8 @@ export class NestedMenuExampleComponent implements OnInit {
     {nombre: 'EN', imagen: './../../../assets/img/lang_eng_icon.png'}
   ];
   idiomaActual: Idioma;
-  message: string;
   searchInput = '';
+  criterioBusqueda: CriterioBusquedaProducto;
 
   listaubicaciones: Coordenadas [] = new Array();
 
@@ -54,25 +55,16 @@ export class NestedMenuExampleComponent implements OnInit {
   }
 
   loadCadenas() {
-    /*this.listaCadenas = [
-      {idCadena: 1, nombre: 'Walmart', imagen: './../../../assets/img/walmart_logo.png'},
-      {idCadena: 2, nombre: 'Jumbo', imagen: './../../../assets/img/jumbo_logo.png'},
-      {idCadena: 3, nombre: 'Carrefour', imagen: './../../../assets/img/carrefour_logo.png'},
-      {idCadena: 4, nombre: 'Libertad', imagen: './../../../assets/img/libertad_logo.png'},
-      {idCadena: 5, nombre: 'Disco', imagen: './../../../assets/img/disco_logo.png'},
-    ];
-    localStorage.setItem('cadenas', JSON.stringify(this.listaCadenas));*/
-/*
-    this.dsCad.getCadenasINDEC().subscribe( cads  =>  {
-      localStorage.setItem('cadenas', JSON.stringify(cads));
-      });
-*/
-    this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+    if (localStorage.getItem('cadenas') !== null) {
+      this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+    } else {
+      this.listaCadenas = [];
+    }
   }
 
   loadProducts() {
     // ver cuando no existe
-    if (localStorage.getItem('productos').length > 0) {
+    if (localStorage.getItem('productos') !== null) {
       this.listaProductos = JSON.parse(localStorage.getItem('productos'));
     } else {
       this.listaProductos = [];
@@ -91,8 +83,6 @@ export class NestedMenuExampleComponent implements OnInit {
   }
 
   loadProvinces() {
-    /*this.listaProvincias = ['Cordoba', 'Buenos Aires', 'Santa Fe', 'Mendoza', 'San Luis', 'San Juan'];
-    localStorage.setItem('provincias', JSON.stringify(this.listaProvincias));*/
     const lprov: Provincia [] = JSON.parse(localStorage.getItem('provincias'));
     if (lprov !== null) {
       this.listaProvincias = lprov;
@@ -101,8 +91,14 @@ export class NestedMenuExampleComponent implements OnInit {
     }
   }
 
-  newMessage(categoria: string) {
-    this.data.changeMessage(categoria);
+  newCriterio(cat: string) {
+    const crit: CriterioBusquedaProducto = {
+      idComercial: undefined,
+      marca: undefined,
+      categoria: cat,
+      nombre: undefined
+    };
+    this.data.changeCriterioBusquedaProducto(crit);
   }
 
   getAutomaticLocation() {
@@ -110,16 +106,24 @@ export class NestedMenuExampleComponent implements OnInit {
   }
 
   searchProducts() {
-    this.data.changeMessage(this.searchInput);
+    const crit: CriterioBusquedaProducto = {
+      idComercial: undefined,
+      marca: undefined,
+      categoria: undefined,
+      nombre: this.searchInput
+    };
+    this.data.changeCriterioBusquedaProducto(crit);
     this.searchInput = '';
   }
 
   loadUbicacion() {
-    this.listaubicaciones = JSON.parse(localStorage.getItem('posicion'));
-    this.listaubicaciones.forEach(ubic => {
-      ubic.latitud = ubic.latitud.toString().substring(0, 7);
-      ubic.longitud = ubic.longitud.toString().substring(0, 7);
-    });
+    if (localStorage.getItem('posicion') !== null){
+      this.listaubicaciones = JSON.parse(localStorage.getItem('posicion'));
+      this.listaubicaciones.forEach(ubic => {
+        ubic.latitud = ubic.latitud.toString().substring(0, 7);
+        ubic.longitud = ubic.longitud.toString().substring(0, 7);
+      });
+    }
   }
 
   loadIdioma() {
@@ -152,6 +156,6 @@ export class NestedMenuExampleComponent implements OnInit {
     this.loadUbicacion();
     this.loadProvinces();
     this.loadCategories();
-    this.data.currentMessage.subscribe(message => this.message = message);
+    this.data.currentCriterio.subscribe(criterio => this.criterioBusqueda = criterio);
   }
 }

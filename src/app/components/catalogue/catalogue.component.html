@@ -1,20 +1,28 @@
 <h2>Productos de Canasta Basica</h2>
+
+<div class="noProds" *ngIf=" ! (listaProductos.length > 0 )">
+  <h4>No hay productos para mostrar.</h4>
+  <h5>Puedes utilizar nuestro buscador o seleccionar una categoria.</h5>
+</div>
+
 <mat-grid-list cols="4" rowHeight="100px" [gutterSize]="'8px'" class="product-card">
   <mat-grid-tile *ngFor="let producto of listaProductos" [colspan]="1" [rowspan]="4">
-    <mat-card>
+    <mat-card [ngClass]="{'agregado': prodIsInCart(producto.idComercial)}">
       <mat-card-title>{{producto.nombre}}</mat-card-title>
       <mat-card-subtitle>{{producto.nombreCategoria}}</mat-card-subtitle>
       <mat-divider></mat-divider>
       <img class="prod-img" src="{{producto.imagen}}">
       <mat-button-toggle-group>
         <span>Cantidad: </span>
-        <input mdInput type="number" [(ngModel)]="inputCant" name="inputCant" min="1" max="99"/>
-        <mat-button-toggle title="Actualizar cantidad"><img class="updateIcon" src="./../../../assets/img/update_icon.png" (click)="updateCant(producto.idComercial)"></mat-button-toggle>
+        <input mdInput type="number" value="{{producto.cantidad}}" name="inputCant" min="1" max="99" #cant/>
+        <mat-button-toggle title="Actualizar cantidad"><img class="updateIcon" src="./../../../assets/img/update_icon.png" (click)="updateCant(producto.idComercial, cant.value)"></mat-button-toggle>
       </mat-button-toggle-group>
       <mat-card-actions>
-        <img mat-button *ngIf="cartContainsProd(producto.idComercial)" src="./../../../assets/img/added_icon.png" title="Agregado a carrito">
-        <button mat-button *ngIf="! cartContainsProd(producto.idComercial)" (click)="addToCart(producto)" ><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
-        <button mat-button *ngIf="! cartContainsProd(producto.idComercial)" (click)="addToCart(producto)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Agregar y comparar precios"></button>
+        <mat-button-toggle-group>
+        <button mat-button *ngIf="prodIsInCart(producto.idComercial)" (click)="removeFromCart(producto)"><img src="./../../../assets/img/trash_icon.png" title="Eliminar del carrito"></button>
+        <button mat-button *ngIf="!prodIsInCart(producto.idComercial)" (click)="addToCart(producto, cant.value)"><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
+        <button mat-button *ngIf="!prodIsInCart(producto.idComercial)" (click)="addToCart(producto, cant.value)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Agregar y comparar precios"></button>
+       </mat-button-toggle-group>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

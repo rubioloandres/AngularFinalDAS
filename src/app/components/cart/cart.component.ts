@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../interfaces/producto';
-import { SucursalesDataSource } from 'src/app/data/sucursales.datasource';
-import { Ubicacion } from 'src/app/interfaces/ubicacion';
-import { Sucursal } from 'src/app/interfaces/sucursal';
-import { PricetableComponent } from '../pricetable/pricetable.component';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 
 @Component({
@@ -11,42 +7,114 @@ import { DataSharingService } from 'src/app/services/datasharing.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
+
 export class CartComponent implements OnInit {
-
-  listaProductosCarrito: Producto[] = new Array();
+  carrito: Producto[] = new Array();
   displayedColumns = ['item', 'nombre', 'categoria', 'cantidad', 'accion'];
-  listaSucursales: Sucursal[] = new Array();
-
   codigos: string;
 
-  getTotalCost() {
-   // return this.listaProductos.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  initCart(): void {
+    if (this.localCartIsNull()) {
+      this.createLocalCart();
+    } else {
+      this.carrito = this.loadCartFromLocal();
+    }
+  }
+  /* inicio Metodos que dan soporte a initCart()*/
+  localCartIsNull(): boolean {
+    const car = localStorage.getItem('carrito');
+    if (car === null) {
+      return true;
+    }
+    return false;
+  }
+  createLocalCart(): void {
+    const car = localStorage.setItem('carrito', '[]');
+    this.carrito = [];
+  }
+  loadCartFromLocal(): Producto[] {
+    if (this.localCartIsEmpty()) {
+      return [];
+    } else {
+      return JSON.parse(localStorage.getItem('carrito'));
+    }
+  }
+  localCartIsEmpty(): boolean {
+    const car: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    if (car.length === 0) {
+      return true;
+    }
+    return false;
+  }
+  /*fin Metodos que dan soporte a initCart()*/
+
+  cartIsEmpty(): boolean {
+    return this.carrito.length === 0;
   }
 
-  loadCart() {
+  removeProductFromCart(prod: Producto): void {
     const carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-    this.listaProductosCarrito = carLS;
+    this.carrito =  carLS.filter(p => p.nombre !== prod.nombre);
+    localStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
 
-  removeProd(prod: Producto) {
-    const carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-    this.listaProductosCarrito =  carLS.filter(p => p.nombre !== prod.nombre);
-    localStorage.setItem('carrito', JSON.stringify(this.listaProductosCarrito));
+  removeAllProds(): void {
+    this.carrito = [];
+    localStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
 
-  removeAllProds() {
-    localStorage.removeItem('carrito');
-    this.listaProductosCarrito = [];
+  addToCart(prod: Producto): void {
+    console.log(prod);
+    if ( ! this.localCartIsNull()) {
+      const carLS: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+      const prodIsNotOnCart =  carLS.filter(p => p.nombre === prod.nombre ).length === 0;
+      if (prodIsNotOnCart) {
+        this.carrito = JSON.parse(localStorage.getItem('carrito'));
+        this.carrito.push(prod);
+        localStorage.setItem('carrito', JSON.stringify(this.carrito));
+        return;
+      } else {
+       // prod.cantidad = this.inputCant;
+        this.carrito.push(prod);
+        localStorage.setItem('carrito', JSON.stringify(this.carrito));
+      }
+    } else {
+      this.carrito.push(prod);
+      localStorage.setItem('carrito', JSON.stringify(this.carrito));
+    }
   }
 
-  sendCogidos() {
-    const lprod: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-    const lpre = new Array();
-    lprod.forEach(prod => {
-      lpre.push(prod.idComercial);
-    });
+  prodIsInCart( idprod: string): boolean {
+    if (! this.localCartIsNull() ) {
+      const prodCart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+      if (prodCart.filter(p => p.idComercial === idprod).length === 1 ) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-    this.data.changeCodigos(lpre.toString());
+  updateCant(idprod: string, cant: number): void {
+    const lcart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    if (lcart !== null) {
+    lcart.forEach(prod => {
+        if (prod.idComercial === idprod) {
+          prod.cantidad = cant;
+          localStorage.setItem('carrito', JSON.stringify(lcart));
+        }
+      });
+    }
+  }
+
+
+  getAllProducts(): Producto [] {
+    if (!this.localCartIsNull()) {
+      const currentcarrito: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+      return currentcarrito;
+    } else {
+      return [];
+    }
   }
 
   constructor(
@@ -54,7 +122,7 @@ export class CartComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.loadCart();
+    this.initCart();
   }
 
 }

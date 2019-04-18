@@ -2,9 +2,9 @@
   <h4>Categorias</h4>
 
   <mat-form-field>
-    <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat">
+    <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat" #categoria>
     <mat-autocomplete #autoCat="matAutocomplete" [displayWith]="displayFnC">
-      <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newMessage(categoria.nombre)">
+      <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newCriterio(categoria.nombre, undefined)">
         {{categoria.nombre}}
       </mat-option>
     </mat-autocomplete>
@@ -15,8 +15,8 @@
   <h4>Marcas</h4>
 
   <mat-form-field>
-    <mat-select>
-      <mat-option *ngFor="let marca of listaMarcas" [value]="marca">
+    <mat-select #marca>
+      <mat-option *ngFor="let marca of listaMarcas" [value]="marca" (click)="newCriterio(categoria.value, marca)">
         {{marca}}
       </mat-option>
     </mat-select>
