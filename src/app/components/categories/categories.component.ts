@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSharingService } from '../../services/datasharing.service';
 import { Categoria } from './../../interfaces/categoria';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ResolvedCategorias } from 'src/app/models/resolved-categories.model';
+
 
 @Component({
   selector: 'app-categories',
@@ -10,6 +13,7 @@ import { Categoria } from './../../interfaces/categoria';
 export class CategoriesComponent implements OnInit {
 
   message: string;
+  error: string;
   listaCategorias: Categoria [] = new Array();
 
   loadCategorias() {
@@ -24,8 +28,21 @@ export class CategoriesComponent implements OnInit {
   newMessage(categoria: string) {
     this.data.changeMessage(categoria);
   }
+/*
+  constructor(private data: DataSharingService) {   }*/
 
-  constructor(private data: DataSharingService) {   }
+  constructor(
+    private data: DataSharingService,
+    private router: Router,
+    private route: ActivatedRoute
+    )  {
+      const resolvedCategorias: ResolvedCategorias = this.listaCategorias = this.route.snapshot.data['categorias'];
+      if (resolvedCategorias.error == null) {
+        this.listaCategorias = resolvedCategorias.categorias;
+      } else {
+        this.error = resolvedCategorias.error;
+      }
+    }
 
   ngOnInit() {
     this.loadCategorias();
@@ -33,3 +50,5 @@ export class CategoriesComponent implements OnInit {
   }
 
 }
+
+

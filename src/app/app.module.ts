@@ -23,8 +23,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PricetableComponent, DialogInfoSucursalComponent } from './components/pricetable/pricetable.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
-import { CategoriesDataSource } from './data/categories.datasource';
-import { ProductsDataSource } from './data/products.datasource';
+import { CategoriasService } from './services/indec/categorias.service';
+import { ProductosService } from './services/indec/productos.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,12 +42,14 @@ import { LOCALE_ID, Inject } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-419';
 import localeEn from '@angular/common/locales/en';
-import { ProvincesDataSource } from './data/provincias.datasource';
-import { LocalidadesDataSource } from './data/localidades.datasource';
+import { ProvinciasService } from './services/indec/provincias.service';
+import { LocalidadesService } from './services/indec/localidades.service';
 import { MapComponent } from './components/map/map.component';
-import { SucursalesDataSource } from './data/sucursales.datasource';
-import { CadenasDataSource } from './data/cadenas.datasource';
+import { SucursalesService } from './services/indec/sucursales.service';
+import { CadenasService } from './services/indec/cadenas.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
+import { ErrorManager } from './services/handleError.service';
 
 @NgModule({
   declarations: [
@@ -93,17 +95,20 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule
   ],
   providers: [
-    CategoriesDataSource,
-    ProductsDataSource,
+    CategoriasService,
+    ProductosService,
     CatalogueComponent,
     LocalStorageService,
     DataSharingService,
     GeoLocationService,
-    ProvincesDataSource,
-    LocalidadesDataSource,
-    SucursalesDataSource,
-    CadenasDataSource,
-    CartComponent
+    ProvinciasService,
+    LocalidadesService,
+    SucursalesService,
+    CadenasService,
+    CartComponent,
+    CategoriasResolverService,
+    ProductosResolverService,
+    ErrorManager
   ],
   entryComponents: [
     DialogInfoSucursalComponent

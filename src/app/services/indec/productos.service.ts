@@ -2,18 +2,30 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Producto } from '../interfaces/producto';
+import { Producto } from '../../interfaces/producto';
+import { ErrorManager } from '../handleError.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class ProductsDataSource {
+export class ProductosService {
 
-  constructor(private http: HttpClient) { }
-
+  constructor(
+    private http: HttpClient,
+    private errManager: ErrorManager
+    ) { }
+/*
   public getProductosINDEC(): Observable<Producto[]> {
     return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222');
+  }*/
+
+  public getProductosResponse(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222')
+                    .pipe(catchError(this.errManager.handleHTTPError));
   }
 
   public getProductosByCategoriaINDEC(idCat: number): Observable<Producto[]> {
     return this.http.get<Producto[]>(environment.webAPI + 'productos?identificador=1222' + '&idcategoria=' + idCat);
   }
+
+
 }

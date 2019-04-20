@@ -4,12 +4,18 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PricetableComponent } from './components/pricetable/pricetable.component';
+import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
+
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: CategoriesComponent,
+    resolve: {
+      categorias : CategoriasResolverService,
+      productos : ProductosResolverService
+     }
   },
   {
     path: 'catalogue',

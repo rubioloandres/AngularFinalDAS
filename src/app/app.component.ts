@@ -1,9 +1,9 @@
 import { Component, OnInit} from '@angular/core';
-import { LocalidadesDataSource } from './data/localidades.datasource';
-import { CategoriesDataSource } from './data/categories.datasource';
-import { ProductsDataSource } from './data/products.datasource';
-import { ProvincesDataSource } from './data/provincias.datasource';
-import { CadenasDataSource } from './data/cadenas.datasource';
+import { LocalidadesService } from './services/indec/localidades.service';
+import { CategoriasService } from './services/indec/categorias.service';
+import { ProductosService } from './services/indec/productos.service';
+import { ProvinciasService } from './services/indec/provincias.service';
+import { CadenasService } from './services/indec/cadenas.service';
 
 @Component({
   selector: 'app-root',
@@ -15,47 +15,50 @@ export class AppComponent implements OnInit {
   title = 'Comparador de precios';
 
  constructor(
-   private dsCat: CategoriesDataSource, // TODO: cambiar nombre a datasource "CategoriasDataSource"
-   private dsProd: ProductsDataSource,  // TODO: cambiar nombre a datasource "ProductosDataSource"
-   private dsProv: ProvincesDataSource, // TODO: cambiar nombre a datasource "ProvinciasDataSource"
-   private dsLoc: LocalidadesDataSource,
-   private dsCad: CadenasDataSource
+   private sCat: CategoriasService,
+   private sProd: ProductosService,
+   private sProv: ProvinciasService,
+   private sLoc: LocalidadesService,
+   private sCad: CadenasService
   ) { }
 
-  getProductosFromService() {
-    this.dsProd.getProductosINDEC().subscribe( prods  =>  {
-          localStorage.setItem('productos', JSON.stringify(prods));
-    });
-  }
-  getCategoriasFromService() {
-    this.dsCat.getCategoriasINDEC().subscribe( cats  =>  {
-          localStorage.setItem('categorias', JSON.stringify(cats));
-    });
+  getProductos() {
+    this.sProd.getProductosResponse().subscribe(
+      prods => localStorage.setItem('productos', JSON.stringify(prods))
+    );
   }
 
+  getCategorias() {
+    this.sCat.getCategoriaResponse().subscribe (
+      cats => localStorage.setItem('categorias', JSON.stringify(cats))
+    );
+  }
+
+/*
   getProvinciasFromService() {
-    this.dsProv.getProvinciasINDEC().subscribe( provs  =>  {
+    this.sProv.getProvinciasINDEC().subscribe( provs  =>  {
           localStorage.setItem('provincias', JSON.stringify(provs));
     });
   }
 
   getLocalidadesFromService() {
-    this.dsLoc.getLocalidadesINDEC().subscribe( locs  =>  {
+    this.sLoc.getLocalidadesINDEC().subscribe( locs  =>  {
           localStorage.setItem('localidades', JSON.stringify(locs));
     });
   }
 
   getCadenasFromService() {
-      this.dsCad.getCadenasINDEC().subscribe( cads  =>  {
+      this.sCad.getCadenasINDEC().subscribe( cads  =>  {
         localStorage.setItem('cadenas', JSON.stringify(cads));
     });
-  }
+  }*/
 
   ngOnInit(): void {
-    this.getCategoriasFromService();
-    this.getProductosFromService();
+    this.getProductos();
+    this.getCategorias();
+    /*this.getProductosFromService();
     this.getProvinciasFromService();
     this.getLocalidadesFromService();
-    this.getCadenasFromService();
+    this.getCadenasFromService();*/
   }
 }

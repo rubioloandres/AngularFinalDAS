@@ -5,7 +5,7 @@ import { Cadena, CadenaSucursal } from 'src/app/interfaces/cadena';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
-import { CadenasDataSource } from 'src/app/data/cadenas.datasource';
+import { CadenasService } from 'src/app/services/indec/cadenas.service';
 
 @Component({
   selector: 'app-pricetable',
@@ -132,7 +132,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     this.codigos = codigos;
     const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
 
-    this.dsCad.getPreciosINDEC(ubicacion.codigoEntidadFederal
+    this.sCad.getPreciosINDEC(ubicacion.codigoEntidadFederal
       , ubicacion.localidad
       , this.codigos.toString()
       ).subscribe( cadenas  =>  {
@@ -149,7 +149,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
     this.data.currentCodigos.subscribe(codigos => {
       this.codigos = codigos;
       const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
-      this.dsCad.getComparacionINDEC(
+      this.sCad.getComparacionINDEC(
         ubicacion.codigoEntidadFederal
       , ubicacion.localidad
       , this.codigos.toString()
@@ -183,7 +183,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private dsCad: CadenasDataSource,
+    private sCad: CadenasService,
     public dialog: MatDialog,
     private data: DataSharingService
   ) {   }

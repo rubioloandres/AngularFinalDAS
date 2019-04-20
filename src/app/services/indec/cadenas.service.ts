@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Cadena, CadenaSucursal } from '../interfaces/cadena';
-import { Respuesta } from '../interfaces/comparador';
+import { Cadena, CadenaSucursal } from '../../interfaces/cadena';
+import { Respuesta } from '../../interfaces/comparador';
 
 @Injectable()
-export class CadenasDataSource {
+export class CadenasService {
 
     constructor(private http: HttpClient) { }
 

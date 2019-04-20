@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Sucursal } from '../interfaces/sucursal';
+import { Sucursal } from '../../interfaces/sucursal';
 
 @Injectable()
-export class SucursalesDataSource {
+export class SucursalesService {
 
   constructor(private http: HttpClient) { }
 

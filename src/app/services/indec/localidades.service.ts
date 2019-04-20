@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Categoria } from '../interfaces/categoria';
+import { Localidad } from '../../interfaces/localidad';
 
 @Injectable()
-export class CategoriesDataSource {
+export class LocalidadesService {
 
     constructor(private http: HttpClient) { }
 
-    public getCategoriasINDEC(): Observable<Categoria[]> {
-      return this.http.get<Categoria[]>(environment.webAPI + 'categorias?identificador=Angular');
+    public getLocalidadesINDEC(): Observable<Localidad[]> {
+      return this.http.get<Localidad[]>(environment.webAPI + 'localidades?identificador=Angular');
     }
 }

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Provincia } from '../interfaces/provincia';
+import { Provincia } from '../../interfaces/provincia';
 
 @Injectable()
-export class ProvincesDataSource {
+export class ProvinciasService {
 
     constructor(private http: HttpClient) { }
 

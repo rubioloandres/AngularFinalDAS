@@ -31,17 +31,15 @@ export class CatalogueComponent implements OnInit {
 
   updateCatalogue() {// HACK:
     this.data.currentCriterio.subscribe(criterio => {
-     // console.log(criterio);
-     // this.criterioBusqueda = criterio;
       const prods: Producto [] = JSON.parse(localStorage.getItem('productos'));
 
-      //busca solo categoria
+      // busca solo categoria
       if (criterio.categoria !== undefined && criterio.marca === undefined && criterio.nombre === undefined) {
         this.listaProductos = prods.filter(p =>
           p.nombreCategoria.toLowerCase() === criterio.categoria.toLowerCase()
         );
       }
-      //busca marca y categoria
+      // busca marca y categoria
       if (criterio.categoria !== undefined && criterio.marca !== undefined && criterio.nombre === undefined) {
         this.listaProductos = prods.filter(p =>
           p.nombreCategoria.toLowerCase() === criterio.categoria.toLowerCase()
@@ -49,7 +47,7 @@ export class CatalogueComponent implements OnInit {
           p.nombreMarca.toLowerCase() === criterio.marca.toLowerCase()
         );
       }
-      //busca por la searchbar
+      // busca por la searchbar
       if (criterio.categoria === undefined && criterio.marca === undefined && criterio.nombre !== undefined) {
         this.listaProductos = prods.filter(p =>
           ( p.nombreCategoria.toLowerCase().includes(criterio.nombre.toLowerCase()) )  ||
