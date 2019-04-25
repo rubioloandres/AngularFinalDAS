@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { NestedMenuExampleComponent } from './components/navbar/navbar.component';
+import { NavBarComponent } from './components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -48,13 +48,14 @@ import { MapComponent } from './components/map/map.component';
 import { SucursalesService } from './services/indec/sucursales.service';
 import { CadenasService } from './services/indec/cadenas.service';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
+// import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
 import { ErrorManager } from './services/handleError.service';
+import { DialogLocationComponent } from './components/location/location.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NestedMenuExampleComponent,
+    NavBarComponent,
     SearchbarComponent,
     CatalogueComponent,
     CartComponent,
@@ -62,7 +63,8 @@ import { ErrorManager } from './services/handleError.service';
     CategoriesComponent,
     SearchfilterComponent,
     MapComponent,
-    DialogInfoSucursalComponent
+    DialogInfoSucursalComponent,
+    DialogLocationComponent
   ],
   imports: [
     BrowserModule,
@@ -106,12 +108,13 @@ import { ErrorManager } from './services/handleError.service';
     SucursalesService,
     CadenasService,
     CartComponent,
-    CategoriasResolverService,
-    ProductosResolverService,
+    /*CategoriasResolverService,
+    ProductosResolverService,*/
     ErrorManager
   ],
   entryComponents: [
-    DialogInfoSucursalComponent
+    DialogInfoSucursalComponent,
+    DialogLocationComponent
   ],
   bootstrap: [AppComponent]
 })

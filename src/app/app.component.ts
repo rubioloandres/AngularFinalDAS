@@ -13,6 +13,7 @@ import { CadenasService } from './services/indec/cadenas.service';
 export class AppComponent implements OnInit {
 
   title = 'Comparador de precios';
+  error: any;
 
  constructor(
    private sCat: CategoriasService,
@@ -24,41 +25,80 @@ export class AppComponent implements OnInit {
 
   getProductos() {
     this.sProd.getProductosResponse().subscribe(
-      prods => localStorage.setItem('productos', JSON.stringify(prods))
+      prods => {
+        localStorage.setItem('productos', JSON.stringify(prods));
+        console.log('HTTP Response Productos', prods);
+      },
+      err => {
+        console.log('HTTP Error Productos', err);
+        this.error = err;
+      },
+      () => console.log('HTTP Request Productos completed')
     );
   }
 
   getCategorias() {
     this.sCat.getCategoriaResponse().subscribe (
-      cats => localStorage.setItem('categorias', JSON.stringify(cats))
+      cats => {
+        localStorage.setItem('categorias', JSON.stringify(cats));
+        console.log('HTTP Response Categorias', cats);
+      },
+      err => {
+        console.log('HTTP Error Categorias', err);
+        this.error = err;
+      },
+      () => console.log('HTTP Request Categorias completed')
     );
   }
 
-/*
-  getProvinciasFromService() {
-    this.sProv.getProvinciasINDEC().subscribe( provs  =>  {
+  getProvincias() {
+    this.sProv.getProvinciasINDEC().subscribe(
+      provs  =>  {
           localStorage.setItem('provincias', JSON.stringify(provs));
-    });
+          console.log('HTTP Response Provincias', provs);
+          },
+      err => {
+        console.log('HTTP Error Provincias', err);
+        this.error = err;
+      },
+      () => console.log('HTTP Request Provincias completed')
+    );
   }
 
-  getLocalidadesFromService() {
-    this.sLoc.getLocalidadesINDEC().subscribe( locs  =>  {
+  getLocalidades() {
+    this.sLoc.getLocalidadesINDEC().subscribe(
+      locs  =>  {
           localStorage.setItem('localidades', JSON.stringify(locs));
-    });
+          console.log('HTTP Response Localidades', locs);
+          },
+      err => {
+        console.log('HTTP Error Localidades', err);
+        this.error = err;
+      },
+      () => console.log('HTTP Request Localidades completed')
+    );
   }
 
-  getCadenasFromService() {
-      this.sCad.getCadenasINDEC().subscribe( cads  =>  {
+  getCadenas() {
+      this.sCad.getCadenasINDEC().subscribe(
+        cads  =>  {
         localStorage.setItem('cadenas', JSON.stringify(cads));
-    });
-  }*/
+        console.log('HTTP Response Cadenas', cads);
+          },
+      err => {
+        console.log('HTTP Error Cadenas', err);
+        this.error = err;
+      },
+      () => console.log('HTTP Request Cadenas completed')
+    );
+  }
 
   ngOnInit(): void {
     this.getProductos();
     this.getCategorias();
-    /*this.getProductosFromService();
-    this.getProvinciasFromService();
-    this.getLocalidadesFromService();
-    this.getCadenasFromService();*/
+    this.getProvincias();
+    this.getProductos();
+    this.getLocalidades();
+    this.getCadenas();
   }
 }

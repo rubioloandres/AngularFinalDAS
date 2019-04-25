@@ -11,16 +11,19 @@ import { Coordenadas } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
 import { Cadena } from 'src/app/interfaces/cadena';
 import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
+import { MatDialog } from '@angular/material';
+import { DialogLocationComponent } from '../location/location.component';
 
 /**
- * @title Nested menu
+ * @title NavBarMenu
  */
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NestedMenuExampleComponent implements OnInit {
+export class NavBarComponent implements OnInit {
 
   listaCadenas: Cadena [] = new Array();
   listaProvincias: Provincia [] = new Array();
@@ -126,6 +129,13 @@ export class NestedMenuExampleComponent implements OnInit {
     }
   }
 
+  registrarUbicacion() {
+    const dialogRef = this.dialog.open(DialogLocationComponent, {
+      width: '500px',
+      data: {   data: 'ubic___'}
+    });
+  }
+
   loadIdioma() {
     this.listaIdiomas.forEach(idioma => {
       if (idioma.nombre === 'ES') {
@@ -145,6 +155,7 @@ export class NestedMenuExampleComponent implements OnInit {
   constructor(
     private data: DataSharingService,
     private loc: GeoLocationService,
+    public dialog: MatDialog
    ) {
     this.loadProducts();
     this.filtrarProductos();

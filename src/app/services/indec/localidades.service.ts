@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Localidad } from '../../interfaces/localidad';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class LocalidadesService {
@@ -10,6 +11,10 @@ export class LocalidadesService {
     constructor(private http: HttpClient) { }
 
     public getLocalidadesINDEC(): Observable<Localidad[]> {
-      return this.http.get<Localidad[]>(environment.webAPI + 'localidades?identificador=Angular');
+      return this.http.get<Localidad[]>(environment.webAPI + 'localidades?')
+                      .pipe(catchError(err => {
+                        console.log('Error al obtener localidades', err);
+                        return throwError(err);
+                      }));
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSharingService } from '../../services/datasharing.service';
 import { Categoria } from './../../interfaces/categoria';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ResolvedCategorias } from 'src/app/models/resolved-categories.model';
 
 
@@ -33,15 +33,14 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private data: DataSharingService,
-    private router: Router,
     private route: ActivatedRoute
-    )  {
-      const resolvedCategorias: ResolvedCategorias = this.listaCategorias = this.route.snapshot.data['categorias'];
+    ) {
+     /* const resolvedCategorias: ResolvedCategorias = this.listaCategorias = this.route.snapshot.data['categorias'];
       if (resolvedCategorias.error == null) {
         this.listaCategorias = resolvedCategorias.categorias;
       } else {
         this.error = resolvedCategorias.error;
-      }
+      }*/
     }
 
   ngOnInit() {

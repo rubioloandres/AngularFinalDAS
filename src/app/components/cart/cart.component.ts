@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../interfaces/producto';
 import { DataSharingService } from 'src/app/services/datasharing.service';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { MatDialog } from '@angular/material';
+import { DialogLocationComponent } from '../location/location.component';
 
 @Component({
   selector: 'app-cart',
@@ -8,11 +11,11 @@ import { DataSharingService } from 'src/app/services/datasharing.service';
   styleUrls: ['./cart.component.css']
 })
 
-
 export class CartComponent implements OnInit {
   carrito: Producto[] = new Array();
   displayedColumns = ['item', 'nombre', 'categoria', 'cantidad', 'accion'];
   codigos: string;
+  ubicacion: Ubicacion;
 
   initCart(): void {
     if (this.localCartIsNull()) {
@@ -107,6 +110,15 @@ export class CartComponent implements OnInit {
     }
   }
 
+  sendCodigos() {
+    const lprod: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    const lpre = new Array();
+    lprod.forEach(prod => {
+      lpre.push(prod.idComercial);
+    });
+
+    this.data.changeCodigos(lpre.toString());
+  }
 
   getAllProducts(): Producto [] {
     if (!this.localCartIsNull()) {
@@ -117,11 +129,31 @@ export class CartComponent implements OnInit {
     }
   }
 
+  cargarUbicacion() {
+    const ubLS = localStorage.getItem('ubicacion');
+    if (ubLS == null || ubLS.length < 2 ) {
+      this.ubicacion = undefined;
+      return;
+    } else {
+      this.ubicacion = JSON.parse(ubLS);
+    }
+  }
+
+  registrarUbicacion() {
+    console.log('SE NECESITA DETERMINAR UNA UBICACION');
+    const dialogRef = this.dialog.open(DialogLocationComponent, {
+      width: '500px',
+      data: {   data: 'ubic___'}
+    });
+  }
+
   constructor(
-    private data: DataSharingService
+    private data: DataSharingService,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit() {
+    this.cargarUbicacion();
     this.initCart();
   }
 

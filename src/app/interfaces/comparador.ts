@@ -6,6 +6,7 @@ export interface EstadoRespuesta {
 }
 
 export interface Respuesta {
-  estado: EstadoRespuesta;
-  sucursales: CadenaSucursal [];
+  codigo: number;
+  mensaje: string;
+  cadenas: CadenaSucursal [];
 }

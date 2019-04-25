@@ -118,21 +118,17 @@ export class SearchfilterComponent implements OnInit {
             this.listaMarcas.push(prod.nombreMarca);
           }
         });
-        console.log(this.listaMarcas);
       }
     });
   }
 
   newCriterio(cat: string, mar: string) {
-    console.log(cat);
-    console.log(mar);
     const crit: CriterioBusquedaProducto = {
       idComercial: undefined,
       nombre: undefined,
       categoria: cat,
       marca: mar
     };
-    console.log(crit);
     this.data.changeCriterioBusquedaProducto(crit);
   }
 

@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Ubicacion</h1>
+<div mat-dialog-content class="dialog">
+  <mat-card class="registrarUbicacion">
+    <mat-card-header>
+      <mat-card-title>Selecciona una localidad para poder comparar precios</mat-card-title>
+    </mat-card-header>
+
+    <form>
+
+      <mat-form-field>
+        <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="autoProv">
+        <mat-autocomplete #autoProv="matAutocomplete" [displayWith]="displayFnP">
+          <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia"
+            (click)="getLocalidadesByProvincia(provincia.codigoEntidadFederal)">
+            {{provincia.nombreProvincia}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" placeholder="Localidad" aria-label="Localidad" matInput [formControl]="formLocalidad" [matAutocomplete]="autoLoc" [attr.disabled]="ubicAuto.checked">
+        <mat-autocomplete #autoLoc="matAutocomplete" [displayWith]="displayFnL">
+          <mat-option *ngFor="let localidad of filteredLocalidades | async" [value]="localidad">
+            {{localidad.nombreLocalidad}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-slide-toggle
+          class="example-margin" #ubicAuto>
+        Ubicacion automatica
+      </mat-slide-toggle>
+    </form>
+
+    <img class="map" src="./../../../assets/img/map_example.png">
+    <mat-card-content>
+      <ul>
+        <li>Latitud: 0303456</li>
+        <li>Longitud: 9933</li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data" title="Volver"><img src="./../../../assets/img/return_icon.png"> </button>
+  <button mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)" title="Guardar Ubicacion"><img src="./../../../assets/img/location_icon.png"></button>
+</div>

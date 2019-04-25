@@ -6,6 +6,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
 import { CadenasService } from 'src/app/services/indec/cadenas.service';
+import { ActivatedRoute } from '@angular/router';
+import { ResolvedRespuestaComparador } from 'src/app/models/resolved-comparador.model';
+import { resolve } from 'url';
 
 @Component({
   selector: 'app-pricetable',
@@ -24,6 +27,7 @@ export class PricetableComponent implements OnInit, AfterViewInit {
 
   codigos: string;
   error: string;
+  errorINDEC: string;
 
   loadCadenas() {
     this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
@@ -129,24 +133,6 @@ export class PricetableComponent implements OnInit, AfterViewInit {
 
   updateSucursales() {
     this.data.currentCodigos.subscribe(codigos => {
-    this.codigos = codigos;
-    const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
-
-    this.sCad.getPreciosINDEC(ubicacion.codigoEntidadFederal
-      , ubicacion.localidad
-      , this.codigos.toString()
-      ).subscribe( cadenas  =>  {
-        console.log(cadenas);
-        cadenas.forEach(cadena => {
-          console.log(cadena.sucursales);
-          this.listaSucursales = this.listaSucursales.concat(cadena.sucursales);
-          console.log(this.listaSucursales);
-        });
-        this.loadColumns();
-      });
-    });
-/*
-    this.data.currentCodigos.subscribe(codigos => {
       this.codigos = codigos;
       const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
       this.sCad.getComparacionINDEC(
@@ -154,20 +140,17 @@ export class PricetableComponent implements OnInit, AfterViewInit {
       , ubicacion.localidad
       , this.codigos.toString()
         ).subscribe( respuesta  =>  {
-          console.log(respuesta);
-          if (respuesta.estado.codigo === 0) {
-            respuesta.sucursales.forEach(cadena => {
-              console.log(cadena.sucursales);
+            if (respuesta.codigo === 0) {
+            respuesta.cadenas.forEach(cadena => {
               this.listaSucursales = this.listaSucursales.concat(cadena.sucursales);
-              console.log(this.listaSucursales);
             });
             this.loadColumns();
-          } else {
-            const error = respuesta.estado.mensaje;
-            this.setError(error);
+         }  else {
+              const error = respuesta.mensaje;
+              this.setError(error);
           }
         });
-      });*/
+      });
   }
 
   sucursalesEmpty() {
@@ -185,8 +168,21 @@ export class PricetableComponent implements OnInit, AfterViewInit {
   constructor(
     private sCad: CadenasService,
     public dialog: MatDialog,
-    private data: DataSharingService
-  ) {   }
+    private data: DataSharingService,
+    private route: ActivatedRoute
+  ) {
+      this.updateSucursales();
+      const resolvedSucursales: ResolvedRespuestaComparador = this.listaSucursales = this.route.snapshot.data['prices'];
+      if ((resolvedSucursales.error == null) && (resolvedSucursales.respuesta.codigo === 0) ) {
+          resolvedSucursales.respuesta.cadenas
+          .forEach(cadena =>
+                   this.listaSucursales = this.listaSucursales.concat(cadena.sucursales));
+          this.loadColumns();
+      } else {
+        this.error = resolvedSucursales.error;
+        this.errorINDEC = resolvedSucursales.respuesta.mensaje;
+      }
+    }
 
   ngOnInit() {
     this.updateSucursales();

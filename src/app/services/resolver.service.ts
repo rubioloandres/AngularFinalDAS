@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { ResolvedCategorias } from './../models/resolved-categories.model';
 import { ProductosService } from './indec/productos.service';
 import { ResolvedProductos } from '../models/resolved-productos.model';
-
+/*
 @Injectable()
 export class CategoriasResolverService implements Resolve<ResolvedCategorias> {
 
@@ -38,3 +38,4 @@ export class ProductosResolverService implements Resolve<ResolvedProductos> {
     private sPro: ProductosService
   ) {}
 }
+*/

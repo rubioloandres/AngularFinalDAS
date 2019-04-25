@@ -47,6 +47,7 @@
   </div>
 
   <mat-button-toggle-group name="fontStyle" aria-label="Font Style" *ngIf="! localCartIsEmpty()">
-      <mat-button-toggle value="compare" (click)="sendCodigos()" [routerLink]="['../prices']"> <img src="./../../../assets/img/price_calculator.png">Comparar Precios</mat-button-toggle>
+      <mat-button-toggle *ngIf="ubicacion" value="compare" (click)="sendCodigos()" [routerLink]="['../prices']"> <img src="./../../../assets/img/price_calculator.png">Comparar Precios</mat-button-toggle>
+      <mat-button-toggle *ngIf="!ubicacion" value="compare" (click)="registrarUbicacion()"> <img src="./../../../assets/img/price_calculator.png">Comparar Precios</mat-button-toggle>
       <mat-button-toggle value="empty" (click)="removeAllProds()" > <img src="./../../../assets/img/trash_icon.png">Vaciar Carrito</mat-button-toggle>
   </mat-button-toggle-group>

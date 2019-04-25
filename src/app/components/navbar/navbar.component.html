@@ -55,7 +55,8 @@
   <span class="navbar-spacer"></span>
 
   <div class="navbar-item">
-    <button mat-button [matMenuTriggerFor]="ubicacion">
+   <!--  <button mat-button [matMenuTriggerFor]="ubicacion"> -->
+    <button mat-button (click)="registrarUbicacion()">
       <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
     </button>
   </div>
@@ -84,10 +85,11 @@
   </button>
 </mat-menu>
 
+<!--
 <mat-menu #ubicacion="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="provincias">Provincias</button>
   <button mat-menu-item (click)="getAutomaticLocation()">Ubicacion actomatica</button>
-</mat-menu>
+</mat-menu> -->
 
 <mat-menu #provincias="matMenu">
   <button mat-menu-item *ngFor='let provincia of listaProvincias' > {{ provincia.nombreProvincia }} </button>
