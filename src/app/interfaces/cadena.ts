@@ -10,4 +10,5 @@ export interface CadenaSucursal {
   id: number;
   nombre: string;
   sucursales: Sucursal [];
+  disponibilidad: string;
 }

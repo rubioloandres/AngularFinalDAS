@@ -94,11 +94,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
     this.getProductos();
     this.getCategorias();
     this.getProvincias();
     this.getProductos();
     this.getLocalidades();
-    this.getCadenas();
+    this.getCadenas();*/
   }
 }

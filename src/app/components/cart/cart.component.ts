@@ -111,13 +111,12 @@ export class CartComponent implements OnInit {
   }
 
   sendCodigos() {
-    const lprod: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-    const lpre = new Array();
-    lprod.forEach(prod => {
-      lpre.push(prod.idComercial);
+    const lproductos: Producto [] = JSON.parse(localStorage.getItem('carrito'));
+    const lcodigos = new Array();
+    lproductos.forEach(prod => {
+      lcodigos.push(prod.idComercial);
     });
-
-    this.data.changeCodigos(lpre.toString());
+    this.data.changeCodigos(lcodigos.toString());
   }
 
   getAllProducts(): Producto [] {
