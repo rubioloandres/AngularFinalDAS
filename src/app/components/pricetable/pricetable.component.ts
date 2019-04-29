@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Producto, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal, SucursalInfo } from './../../interfaces/sucursal';
 import { Cadena, CadenaSucursal } from 'src/app/interfaces/cadena';
@@ -9,7 +9,7 @@ import { CadenasService } from 'src/app/services/indec/cadenas.service';
 import { ActivatedRoute } from '@angular/router';
 import { ResolvedRespuestaComparador } from 'src/app/models/resolved-comparador.model';
 import { resolve } from 'url';
-import { DialogInfoSucursalComponent } from './info.component';
+import { DialogInfoSucursalComponent } from './../info/info.component';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,8 +24,6 @@ export class PricetableComponent implements OnInit, OnDestroy {
   listaSucursales: Sucursal[] = new Array();
   listaProductos: Producto[] = new Array();
   listaCadenas: Cadena [] = new Array();
-
-  listaCadenasRespuesta: CadenaSucursal [] = new Array();
 
   codigos: string;
   error: string;

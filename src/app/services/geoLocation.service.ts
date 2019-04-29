@@ -6,9 +6,9 @@ const options = {
   maximumAge: 0
 };
 
-let lat = '';
-let lng = '';
-let pre = '';
+let lat = 0;
+let lng = 0;
+let pre = 0;
 
 @Injectable()
 export class GeoLocationService {

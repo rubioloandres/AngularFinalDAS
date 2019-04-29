@@ -123,16 +123,15 @@ export class NavBarComponent implements OnInit {
     if (localStorage.getItem('posicion') !== null){
       this.listaubicaciones = JSON.parse(localStorage.getItem('posicion'));
       this.listaubicaciones.forEach(ubic => {
-        ubic.latitud = ubic.latitud.toString().substring(0, 7);
-        ubic.longitud = ubic.longitud.toString().substring(0, 7);
+        /*ubic.latitud = ubic.latitud.toString().substring(0, 7);
+        ubic.longitud = ubic.longitud.toString().substring(0, 7);*/
       });
     }
   }
 
   registrarUbicacion() {
     const dialogRef = this.dialog.open(DialogLocationComponent, {
-      width: '500px',
-      data: {   data: 'ubic___'}
+      width: '500px'
     });
   }
 

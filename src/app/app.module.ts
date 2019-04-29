@@ -21,7 +21,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PricetableComponent  } from './components/pricetable/pricetable.component';
-import {DialogInfoSucursalComponent } from './components/pricetable/info.component';
+import { DialogInfoSucursalComponent } from './components/info/info.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoriasService } from './services/indec/categorias.service';
@@ -52,6 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 // import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
 import { ErrorManager } from './services/handleError.service';
 import { DialogLocationComponent } from './components/location/location.component';
+import { SucursalesComponent } from './components/sucursales/sucursales.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { DialogLocationComponent } from './components/location/location.componen
     SearchfilterComponent,
     MapComponent,
     DialogInfoSucursalComponent,
-    DialogLocationComponent
+    DialogLocationComponent,
+    SucursalesComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +117,8 @@ import { DialogLocationComponent } from './components/location/location.componen
   ],
   entryComponents: [
     DialogInfoSucursalComponent,
-    DialogLocationComponent
+    DialogLocationComponent,
+    MapComponent
   ],
   bootstrap: [AppComponent]
 })

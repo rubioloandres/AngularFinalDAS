@@ -1,12 +1,21 @@
 export interface Coordenadas {
-  latitud: string;
-  longitud: string;
-  precision: string;
+  latitud: number;
+  longitud: number;
+  precision: number;
 }
 
 export interface Ubicacion {
   codigoEntidadFederal: string;
   localidad: string;
+}
+
+
+export interface MapData {
+  latitud: number;
+  longitud: number;
+  precision: number;
+  nombreUbicacion: string;
+  direccion: string;
 }
 
 

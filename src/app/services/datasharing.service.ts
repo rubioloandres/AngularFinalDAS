@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CriterioBusquedaProducto } from '../interfaces/criterios';
+import { Coordenadas } from '../interfaces/ubicacion';
 
 
 @Injectable()
 export class DataSharingService {
 
-  private messageSource = new BehaviorSubject<string>('default message'); // TODO: cambiar default
+  private messageSource = new BehaviorSubject<string>('default message');
   currentMessage = this.messageSource.asObservable();
 
-  private codigosSource = new BehaviorSubject<string>('default codigos'); // TODO: cambiar default
+  private codigosSource = new BehaviorSubject<string>('default codigos');
   currentCodigos = this.codigosSource.asObservable();
+
+  private coordenadasSource = new BehaviorSubject<Coordenadas>
+  ({latitud: 0, longitud: 0, precision: 0});
+  currentCoordenadas = this.coordenadasSource.asObservable();
 
   private criterioSource = new BehaviorSubject<CriterioBusquedaProducto>
   // TODO: cambiar default

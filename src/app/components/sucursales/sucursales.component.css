@@ -1,0 +1,107 @@
+app-searchfilter {
+  position: absolute;
+  right: 0 !important;
+  top: 35% !important;
+  width: 18% !important;
+  border: 2px lightblue solid;
+}
+
+.agregado {
+  border: 2px greenyellow solid !important;
+}
+
+.updateIcon {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+mat-button-toggle-group {
+  margin-top: 15% !important;
+}
+
+mat-button-toggle-group span{
+  margin: auto;
+}
+
+mat-card{
+  border: 2px lightblue solid;
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+  color: rgb(0, 102, 204);
+}
+
+mat-card input {
+  margin-top: 2px;
+  width: 35px;
+}
+
+mat-card img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15% !important;
+  width: 180px;
+  height: 150px;
+}
+
+mat-grid-tile {
+  max-height: 420px !important;
+}
+
+mat-card-actions {
+  position: absolute;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-card-actions mat-button-toggle-group {
+  margin-top: 0 !important;
+}
+
+mat-button-toggle-group img {
+  margin: auto !important;
+  margin-left: auto;
+}
+
+mat-card-actions img {
+  width: 45px;
+  height: 45px;
+}
+
+mat-card-title{
+  width: 100% !important;
+  height: 10%;
+  margin-left: 0% !important;
+  font-weight: bold;
+  font-size: 16px !important;
+}
+
+mat-card-subtitle {
+  margin-top: 5% !important;
+}
+
+mat-grid-list{
+  margin-left: 2% !important;
+  margin-right: 25% !important;
+}
+
+h2 {
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 26px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  text-align: center !important;
+}
+
+.noSucs {
+  margin-top: 10%;
+}
+
+h4, h5 {
+  font-family: Oswald !important;
+  text-align: center !important;
+}

@@ -97,15 +97,17 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="productos">Productos</button>
-  <button mat-menu-item [matMenuTriggerFor]="supermercados">Supermercados</button>
+  <!-- <button mat-menu-item [matMenuTriggerFor]="supermercados">Supermercados</button> -->
+  <button mat-menu-item [routerLink]="['sucursales']">Supermercados</button>
 </mat-menu>
 
 <mat-menu #productos="matMenu">
   <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newCriterio(categoria)" [routerLink]="['catalogue']"> {{ categoria }} </button>
 </mat-menu>
 
+<!--
 <mat-menu #supermercados="matMenu">
   <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['catalogue']"> {{ cadena.nombre }} </button>
-</mat-menu>
+</mat-menu>-->
 
 

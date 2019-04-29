@@ -1,44 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Coordenadas } from 'src/app/interfaces/ubicacion';
-/*
-function initMap() {
-  const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: {lat: 40.731, lng: -73.997}
-  });
-  const geocoder = new google.maps.Geocoder();
-  const infowindow = new google.maps.InfoWindow();
+import { Component, OnInit, AfterViewInit, Inject} from '@angular/core';
+import { Coordenadas, MapData } from 'src/app/interfaces/ubicacion';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { SucursalesComponent } from '../sucursales/sucursales.component';
 
-  document.getElementById('submit').addEventListener('click', function() {
-    geocodeLatLng(geocoder, map, infowindow);
-  });
-}
+declare var L: any;
 
-
-
-function geocodeLatLng(geocoder, map, infowindow) {
-  const input = document.getElementById('latlng').value;
-  const latlngStr = input.split(',', 2);
-  const latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-  geocoder.geocode({'location': latlng}, function(results, status) {
-    if (status === 'OK') {
-      if (results[0]) {
-        map.setZoom(11);
-        const marker = new google.maps.Marker({
-          position: latlng,
-          map: map
-        });
-        infowindow.setContent(results[0].formatted_address);
-        infowindow.open(map, marker);
-      } else {
-        window.alert('No results found');
-      }
-    } else {
-      window.alert('Geocoder failed due to: ' + status);
-    }
-  });
-}
-*/
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -46,16 +12,45 @@ function geocodeLatLng(geocoder, map, infowindow) {
 })
 export class MapComponent implements OnInit {
 
-  ubicacion: Coordenadas;
+  ubicacion: Coordenadas[];
+  constructor(
+    public dialogRef: MatDialogRef<SucursalesComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: SucursalInfo) { }
+    @Inject(MAT_DIALOG_DATA) public data: MapData
+   ) { }
 
   loadUbicacion() {
     this.ubicacion = JSON.parse(localStorage.getItem('posicion'));
+    console.log(this.ubicacion);
   }
 
-  constructor() { }
+  loadMap() {
+    let arrCoord;
+    console.log(this.data);
+    if (this.data !== undefined) {
+      console.log('no es undef');
+      arrCoord = [this.data.latitud, this.data.longitud];
+    } else {
+    arrCoord = [this.ubicacion[0].latitud, this.ubicacion[0].longitud];
+    }
+    const map = L.map('map').setView(arrCoord, this.data.precision);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    // L.marker([this.data.latitud, this.data.longitud])
+    const markerText = '<h2 style="color:DodgerBlue;">'
+                     +   this.data.nombreUbicacion
+                     + '</h2>'
+                     + '<h4 style="color:grey;">'
+                     +   this.data.direccion
+                     + '</h4>';
+    L.marker(arrCoord)
+     .addTo(map).bindPopup(markerText)
+     .openPopup();
+  }
 
   ngOnInit() {
-    this.loadUbicacion();
+      this.loadUbicacion();
+      this.loadMap();
   }
-
 }

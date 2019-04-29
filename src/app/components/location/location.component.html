@@ -27,13 +27,16 @@
       </mat-form-field>
 
       <mat-slide-toggle
-          class="example-margin" #ubicAuto>
+          class="example-margin" #ubicAuto
+          (toggleChange)="getAutomaticLocation()">
         Ubicacion automatica
       </mat-slide-toggle>
     </form>
 
-    <img class="map" src="./../../../assets/img/map_example.png">
+    <!--<app-map></app-map>-->
+
     <mat-card-content>
+      <h5>Ubicacion actual</h5>
       <ul>
         <li>Latitud: 0303456</li>
         <li>Longitud: 9933</li>

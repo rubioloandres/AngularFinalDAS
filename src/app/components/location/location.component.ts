@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Localidad } from 'src/app/interfaces/localidad';
 import { startWith, map } from 'rxjs/operators';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { GeoLocationService } from 'src/app/services/geoLocation.service';
 
 @Component({
   selector: 'app-dialog-location',
@@ -64,13 +65,16 @@ export class DialogLocationComponent implements OnInit {
   }
 
   loadProvinces() { // TODO: cambiar nombre a  "cargarProvincias"
-    // localStorage.setItem('provincias', JSON.stringify(this.listaProvincias));
     this.listaProvincias = JSON.parse(localStorage.getItem('provincias'));
   }
 
   getLocalidadesByProvincia(codigoEntidadFederal: string) {
     const lloc: Localidad[] = JSON.parse(localStorage.getItem('localidades'));
     this.listaLocalidades = lloc.filter(loc => loc.codigoEntidadFederal === codigoEntidadFederal);
+  }
+
+  getAutomaticLocation() {
+    this.loc.getCurrentLocation();
   }
 
   saveUbicacion(localidad: Localidad, provincia: Provincia) { // TODO: cambiar nombre a  "guardarUbicacion"
@@ -80,6 +84,7 @@ export class DialogLocationComponent implements OnInit {
   }
 
   constructor(
+    private loc: GeoLocationService,
     public dialogRef: MatDialogRef<DialogLocationComponent>,
     // @Inject(MAT_DIALOG_DATA) public data: SucursalInfo) { }
     @Inject(MAT_DIALOG_DATA) public data: string) {}
