@@ -10,6 +10,11 @@
     </button>
   </mat-toolbar>
   <mat-toolbar>
+      <button mat-button [routerLink]="['health']" i18n>
+        <img src="./../../../assets/img/health-food-icon2.png"> Saludable
+      </button>
+    </mat-toolbar>
+  <mat-toolbar>
     <button mat-button [routerLink]="['cart']" i18n>
       <img src="./../../../assets/img/cart_icon.png"> Carrito
     </button>
@@ -61,9 +66,8 @@
     </button>
   </div>
   <div class="navbar-item">
-    <ul *ngFor="let ubic of listaubicaciones">
-      <li>Latitud: {{ubic.latitud}}</li>
-      <li>Longitud: {{ubic.longitud}}</li>
+    <ul>
+      <li *ngIf="ubicacion">Ubicacion: {{ubicacion.localidad}} ({{getProvincia(ubicacion.codigoEntidadFederal).nombreProvincia}})</li>
     </ul>
   </div> <!--
   <mat-toolbar>

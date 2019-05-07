@@ -53,6 +53,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorManager } from './services/handleError.service';
 import { DialogLocationComponent } from './components/location/location.component';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
+import { HealthComponent } from './components/health/health.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { SucursalesComponent } from './components/sucursales/sucursales.componen
     MapComponent,
     DialogInfoSucursalComponent,
     DialogLocationComponent,
-    SucursalesComponent
+    SucursalesComponent,
+    HealthComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ import { SucursalesComponent } from './components/sucursales/sucursales.componen
     MatSlideToggleModule,
     CarouselModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule
   ],
   providers: [
     CategoriasService,

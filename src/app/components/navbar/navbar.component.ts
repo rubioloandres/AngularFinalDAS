@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/categoria';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { GeoLocationService } from 'src/app/services/geoLocation.service';
@@ -7,7 +7,7 @@ import { Producto } from 'src/app/interfaces/producto';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Coordenadas } from 'src/app/interfaces/ubicacion';
+import { Coordenadas, Ubicacion } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
 import { Cadena } from 'src/app/interfaces/cadena';
 import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
@@ -23,7 +23,7 @@ import { DialogLocationComponent } from '../location/location.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, AfterViewInit {
 
   listaCadenas: Cadena [] = new Array();
   listaProvincias: Provincia [] = new Array();
@@ -37,6 +37,7 @@ export class NavBarComponent implements OnInit {
   criterioBusqueda: CriterioBusquedaProducto;
 
   listaubicaciones: Coordenadas [] = new Array();
+  ubicacion: Ubicacion;
 
   listaProductos: Producto [] = new Array();
   formBusProd = new FormControl( this.searchInput );
@@ -104,6 +105,10 @@ export class NavBarComponent implements OnInit {
     this.data.changeCriterioBusquedaProducto(crit);
   }
 
+  getProvincia( codEntFed: string ) {
+    return this.listaProvincias.find(prov => prov.codigoEntidadFederal === codEntFed);
+  }
+
   getAutomaticLocation() {
     this.loc.getCurrentLocation();
   }
@@ -120,12 +125,8 @@ export class NavBarComponent implements OnInit {
   }
 
   loadUbicacion() {
-    if (localStorage.getItem('posicion') !== null){
-      this.listaubicaciones = JSON.parse(localStorage.getItem('posicion'));
-      this.listaubicaciones.forEach(ubic => {
-        /*ubic.latitud = ubic.latitud.toString().substring(0, 7);
-        ubic.longitud = ubic.longitud.toString().substring(0, 7);*/
-      });
+    if (localStorage.getItem('ubicacion') !== null) {
+      this.ubicacion =  JSON.parse(localStorage.getItem('ubicacion'));
     }
   }
 
@@ -133,6 +134,7 @@ export class NavBarComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogLocationComponent, {
       width: '500px'
     });
+    this.loadUbicacion();
   }
 
   loadIdioma() {
@@ -168,4 +170,9 @@ export class NavBarComponent implements OnInit {
     this.loadCategories();
     this.data.currentCriterio.subscribe(criterio => this.criterioBusqueda = criterio);
   }
+
+  ngAfterViewInit() {
+    this.loadUbicacion();
+  }
+
 }

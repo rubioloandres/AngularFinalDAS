@@ -9,6 +9,12 @@ export interface Producto {
   precio: string;
 }
 
+export interface ProductoIngrediente {
+  nombre: string;
+  idComercial: string;
+  cantidad: number;
+}
+
 export interface ProductoPrecio {
   idComercial: string;
   precio: number;

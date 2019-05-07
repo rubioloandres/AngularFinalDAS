@@ -24,10 +24,31 @@ export class PricetableComponent implements OnInit, OnDestroy {
   listaSucursales: Sucursal[] = new Array();
   listaProductos: Producto[] = new Array();
   listaCadenas: Cadena [] = new Array();
+  listaCadenasSinPrecios: CadenaSucursal [] = new Array();
 
   codigos: string;
   error: string;
   subscription: Subscription;
+  loading = true;
+
+  esMejorPrecio(idCad: number, idSuc: number, idProd: string) {
+    const sucursal: Sucursal = this.listaSucursales
+                          .filter(suc =>
+                                (suc.idCadena === idCad) && (suc.idSucursal === idSuc))[0];
+    const producto = sucursal.productos.find( prod => prod.idComercial === idProd);
+    if (producto !== undefined && (producto.mejorPrecio)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  cadenasNoDisp() {
+    if ( (this.listaCadenasSinPrecios !== null)) {
+      return true;
+    }
+    return false;
+  }
 
   loadCadenas() {
     this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
@@ -97,10 +118,13 @@ export class PricetableComponent implements OnInit, OnDestroy {
       console.log(codigos);
       this.sCad.getComparacionINDEC(ubicacion.codigoEntidadFederal, ubicacion.localidad, this.codigos.toString()   )
       .subscribe( cadenas  =>  {
+              this.loading = false;
               console.log(cadenas);
               cadenas.forEach(cadena => {
                 if (cadena.disponibilidad === 'Disponible') {
                   this.listaSucursales = this.listaSucursales.concat(cadena.sucursales);
+                } else {
+                  this.listaCadenasSinPrecios.push(cadena);
                 }
             });
               console.log('HTTP Response Comparador success');
@@ -109,6 +133,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
         }, err => {
             console.log('HTTP Error Comparador ', err);
             this.error = err;
+            this.loading = false;
         }, () => console.log('HTTP Request Comparador completed')
       );
     });
@@ -126,9 +151,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
     private sCad: CadenasService,
     public dialog: MatDialog,
     private data: DataSharingService
-  ) {
-
-   }
+  ) { }
 
   ngOnInit() {
     this.loadCadenas();

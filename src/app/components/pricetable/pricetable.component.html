@@ -4,9 +4,11 @@ y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
 <h2>Precios de Productos</h2>
 <div class="pricetable-container">
 
-  <div *ngIf="! error">
+  <div *ngIf="loading">
     <mat-spinner></mat-spinner>
   </div>
+
+
 
   <table mat-table [dataSource]="listaProductos" *ngIf="! sucursalesEmpty()">
     <ng-container matColumnDef="item" sticky>
@@ -44,7 +46,7 @@ y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
           </button>
         </th>
 
-        <td [ngClass]="{'mejorOp': sucursal.mejorOpcion}" *matCellDef="let producto"> {{getProductoPriceBySucursal(i,producto.idComercial)}}   </td>
+        <td *matCellDef="let producto" [ngClass]="{'mejorPre': esMejorPrecio(sucursal.idCadena, sucursal.idSucursal, producto.idComercial)}"> {{getProductoPriceBySucursal(i,producto.idComercial)}}</td>
 
         <td mat-footer-cell *matFooterCellDef>
           <mat-card [ngClass]="sucursal.mejorOpcion ? 'mejorOp' : 'total'">
@@ -73,8 +75,13 @@ y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
 
-  <div *ngIf="error">
-   <p>Error en el comparador</p>
+  <div class="noProds" *ngIf="error">
+    <h4>Error al comparar precios</h4>
+    <h5>Ocurrio un error al intentar comparar, vuelve a intentar.</h5>
   </div>
 
+</div>
+<div class="noCads" *ngIf="! error">
+    <h4 *ngIf="! loading">No fue posible obtener precios de los supermercados</h4>
+    <h5 *ngFor="let cadena of listaCadenasSinPrecios">{{cadena.nombre}}</h5>
 </div>

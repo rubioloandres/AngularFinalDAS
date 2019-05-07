@@ -24,6 +24,8 @@ export class DialogLocationComponent implements OnInit {
   formLocalidad = new FormControl();
   filteredLocalidades: Observable<Localidad[]>;
 
+  ubicacion: Ubicacion;
+
   displayFnP(prov?: Provincia): string | undefined {
     return prov ? prov.nombreProvincia : undefined;
   }
@@ -81,6 +83,14 @@ export class DialogLocationComponent implements OnInit {
     const ubicacion: Ubicacion = {codigoEntidadFederal: provincia.codigoEntidadFederal
                                 , localidad: localidad.nombreLocalidad};
     localStorage.setItem('ubicacion', JSON.stringify(ubicacion));
+  }
+
+  hayUbicacion() {
+    const ub = localStorage.getItem('ubicacion');
+    if (ub !== null ) {
+      return true;
+    }
+    return false;
   }
 
   constructor(

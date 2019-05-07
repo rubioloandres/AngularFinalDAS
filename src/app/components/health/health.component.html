@@ -1,0 +1,47 @@
+<h2>Alimentacion saludable</h2>
+<h3>Aqui encontraras los mejores platos seleccionados para cada dia de la semana</h3>
+
+<div class="carouselHealth">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_health_slide_1.jpg"></ng-template>
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_health_slide_2.jpg"></ng-template>
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_health_slide_4.jpg"></ng-template>
+    <ng-template carouselSlide><img src="./../../../assets/img/carousel_health_slide_5.png"></ng-template>
+  </owl-carousel-o>
+</div>
+
+<div class="diasSemana">
+  <mat-grid-list cols="7">
+    <mat-grid-tile *ngFor="let dia of diasDeSemana">
+      <time class="dia" [ngClass]="{'diaActual': dia.actual}">
+        <em>{{dia.nombre}}</em>
+        <span>{{dia.numero}}</span>
+        <strong>{{dia.mes}}</strong>
+      </time>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="menuDiario">
+  <h2>Hoy es {{menuDiario.dia}}, dia de {{menuDiario.nombre}}</h2>
+  <mat-grid-list cols="3">
+    <mat-grid-tile>
+      <mat-card *ngFor="let plato of menuDiario.platos">
+        <mat-card-header>
+          <mat-card-title>{{plato.nombre}}</mat-card-title>
+          <mat-card-subtitle>{{menuDiario.nombre}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src="{{plato.imagen}}" height="85">
+        <mat-card-content>
+          <p>INGREDIENTES: </p>
+          <ul>
+            <li *ngFor="let producto of plato.ingredientes">{{producto.nombre}}} ({{producto.cantidad}})</li>
+          </ul>
+          <p>PREPARACION:</p>
+          <p>{{plato.preparacion}}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
