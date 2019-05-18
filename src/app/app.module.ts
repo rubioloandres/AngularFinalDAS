@@ -55,6 +55,8 @@ import { DialogLocationComponent } from './components/location/location.componen
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { HealthComponent } from './components/health/health.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MenuService } from './services/indec/menu.service';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     CarouselModule,
     MatAutocompleteModule,
     MatDialogModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatExpansionModule
   ],
   providers: [
     CategoriasService,
@@ -114,6 +117,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     LocalidadesService,
     SucursalesService,
     CadenasService,
+    MenuService,
     CartComponent,
     /*CategoriasResolverService,
     ProductosResolverService,*/

@@ -1,14 +1,16 @@
 import { ProductoIngrediente } from './producto';
 
 export interface Menu {
-  nombre: string;
+  idMenu: number;
+  nombreMenu: string;
   dia: string;
   platos: Plato [];
 }
 
 export interface Plato {
-  nombre: string;
-  imagen: string;
-  ingredientes: ProductoIngrediente [];
+  idPlato: number;
+  nombrePlato: string;
   preparacion: string;
+  imagenPlato: string;
+  ingredientes: ProductoIngrediente [];
 }

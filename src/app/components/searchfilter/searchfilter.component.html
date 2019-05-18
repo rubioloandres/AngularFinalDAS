@@ -4,8 +4,8 @@
   <mat-form-field>
     <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat" #categoria>
     <mat-autocomplete #autoCat="matAutocomplete" [displayWith]="displayFnC">
-      <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newCriterio(categoria.nombre, undefined)">
-        {{categoria.nombre}}
+      <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newCriterio(categoria.nombreCategoria, undefined)">
+        {{categoria.nombreCategoria}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

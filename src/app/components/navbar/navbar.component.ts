@@ -46,7 +46,7 @@ export class NavBarComponent implements OnInit, AfterViewInit {
   private _filterProds(value: string): Producto[] {
     if (value.length > 1) {
       const filterValue = value.toLowerCase();
-      return this.listaProductos.filter(prod => prod.nombre.toLowerCase().indexOf(filterValue) === 0);
+      return this.listaProductos.filter(prod => prod.nombreProducto.toLowerCase().indexOf(filterValue) === 0);
     }
   }
 
@@ -60,38 +60,49 @@ export class NavBarComponent implements OnInit, AfterViewInit {
 
   loadCadenas() {
     if (localStorage.getItem('cadenas') !== null) {
-      this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+      const lcad = localStorage.getItem('cadenas');
+      if (lcad.length > 0) {
+        this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+      }
     } else {
       this.listaCadenas = [];
     }
   }
 
   loadProducts() {
-    // ver cuando no existe
-    if (localStorage.getItem('productos') !== null) {
-      this.listaProductos = JSON.parse(localStorage.getItem('productos'));
-    } else {
-      this.listaProductos = [];
+    const lprod = localStorage.getItem('productos');
+    if (lprod.length > 0) {
+      if (localStorage.getItem('productos') !== null) {
+        this.listaProductos = JSON.parse(localStorage.getItem('productos'));
+      } else {
+        this.listaProductos = [];
+      }
     }
   }
 
   loadCategories() {
-    const lcat: Categoria [] = JSON.parse(localStorage.getItem('categorias'));
-    if (lcat !== null) {
-      lcat.forEach(cat => {
-        this.listaCategorias.push(cat.nombre);
-      });
-    } else {
-      this.listaCategorias = [];
+    const lcat = localStorage.getItem('categorias');
+    if (lcat.length > 0) {
+      const lcat: Categoria [] = JSON.parse(localStorage.getItem('categorias'));
+      if (lcat !== null) {
+        lcat.forEach(cat => {
+          this.listaCategorias.push(cat.nombreCategoria);
+        });
+      } else {
+        this.listaCategorias = [];
+      }
     }
   }
 
   loadProvinces() {
-    const lprov: Provincia [] = JSON.parse(localStorage.getItem('provincias'));
-    if (lprov !== null) {
-      this.listaProvincias = lprov;
-    } else {
-      this.listaProvincias = [];
+    const lp = localStorage.getItem('provincias');
+    if (lp.length > 0) {
+      const lprov: Provincia [] = JSON.parse(lp);
+      if (lprov !== null) {
+        this.listaProvincias = lprov;
+      } else {
+        this.listaProvincias = [];
+      }
     }
   }
 

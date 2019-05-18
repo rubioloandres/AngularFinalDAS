@@ -1,14 +1,22 @@
 import { ProductoPrecio } from './producto';
 
 export interface Sucursal {
-  idCadena: number;
   idSucursal: number;
   nombreSucursal: string;
   direccion: string;
-  lat: string;
-  lng: string;
+  latitud: string;
+  longitud: string;
+  email: string;
+  telefono: string;
+  cuit: string;
+  localidad: string;
+  provincia: string;
+  codigoEntidadFederal: string;
+  idCadena: number;
   productos: ProductoPrecio[];
+  CantidadDeProductosConPrecioMasBajo: number;
   mejorOpcion: boolean;
+  total: number;
 }
 
 export interface TotalSucursal {
@@ -16,6 +24,7 @@ export interface TotalSucursal {
   totalPrecio: number;
 }
 
+//Se usa en dialog
 export interface SucursalInfo {
   nombreCadena: string;
   imagenCadena: string;
@@ -23,4 +32,25 @@ export interface SucursalInfo {
   direccion: string;
   latitud: string;
   longitud: string;
+}
+
+export interface SucursalTablaPrecio {
+  idSucursal: number;
+  nombreSucursal: string;
+  direccion: string;
+  latitud: string;
+  longitud: string;
+  email: string;
+  telefono: string;
+  cuit: string;
+  localidad: string;
+  provincia: string;
+  codigoEntidadFederal: string;
+  idCadena: number;
+  productos: ProductoPrecio[];
+  CantidadDeProductosConPrecioMasBajo: number;
+  mejorOpcion: boolean;
+  total: number;
+  imagenCadena: string;
+  nombreCadena: string;
 }

@@ -42,7 +42,7 @@ export class SearchfilterComponent implements OnInit {
   }
 
   displayFnC(cat?: Categoria): string | undefined {
-    return cat ? cat.nombre : undefined;
+    return cat ? cat.nombreCategoria : undefined;
   }
 
   private _filterP(nombre: string): Provincia[] {
@@ -62,7 +62,7 @@ export class SearchfilterComponent implements OnInit {
   private _filterC(nombre: string): Categoria[] {
     const filterValue = nombre.toLowerCase();
     return this.listaCategorias.filter(cat =>
-      cat.nombre.toLowerCase().normalize('NFD')
+      cat.nombreCategoria.toLowerCase().normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '').indexOf(filterValue) === 0);
   }
 

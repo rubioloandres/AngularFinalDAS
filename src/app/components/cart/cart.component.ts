@@ -13,7 +13,7 @@ import { DialogLocationComponent } from '../location/location.component';
 
 export class CartComponent implements OnInit {
   carrito: Producto[] = new Array();
-  displayedColumns = ['item', 'nombre', 'categoria', 'cantidad', 'accion'];
+  displayedColumns = ['item', 'nombre', 'categoria', 'accion'];
   codigos: string;
   ubicacion: Ubicacion;
 
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
 
   removeProductFromCart(prod: Producto): void {
     const carLS: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-    this.carrito =  carLS.filter(p => p.nombre !== prod.nombre);
+    this.carrito =  carLS.filter(p => p.nombreProducto !== prod.nombreProducto);
     localStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
 
@@ -67,11 +67,12 @@ export class CartComponent implements OnInit {
     localStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
 
+  // TODO: ver metodo, ya sin tener en cuenta la cantidad
   addToCart(prod: Producto): void {
     console.log(prod);
     if ( ! this.localCartIsNull()) {
       const carLS: Producto[] = JSON.parse(localStorage.getItem('carrito'));
-      const prodIsNotOnCart =  carLS.filter(p => p.nombre === prod.nombre ).length === 0;
+      const prodIsNotOnCart =  carLS.filter(p => p.nombreProducto === prod.nombreProducto ).length === 0;
       if (prodIsNotOnCart) {
         this.carrito = JSON.parse(localStorage.getItem('carrito'));
         this.carrito.push(prod);
@@ -91,30 +92,18 @@ export class CartComponent implements OnInit {
   prodIsInCart( idprod: string): boolean {
     if (! this.localCartIsNull() ) {
       const prodCart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
-      if (prodCart.filter(p => p.idComercial === idprod).length === 1 ) {
+      if (prodCart.filter(p => p.codigoDeBarras === idprod).length === 1 ) {
         return true;
       }
     }
     return false;
   }
 
-  updateCant(idprod: string, cant: number): void {
-    const lcart: Producto[] = JSON.parse(localStorage.getItem('carrito'));
-    if (lcart !== null) {
-    lcart.forEach(prod => {
-        if (prod.idComercial === idprod) {
-          prod.cantidad = cant;
-          localStorage.setItem('carrito', JSON.stringify(lcart));
-        }
-      });
-    }
-  }
-
   sendCodigos() {
     const lproductos: Producto [] = JSON.parse(localStorage.getItem('carrito'));
     const lcodigos = new Array();
     lproductos.forEach(prod => {
-      lcodigos.push(prod.idComercial);
+      lcodigos.push(prod.codigoDeBarras);
     });
     this.data.changeCodigos(lcodigos.toString());
   }

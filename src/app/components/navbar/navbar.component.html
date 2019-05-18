@@ -26,9 +26,9 @@
     <mat-form-field class="searchInput">
       <input matInput placeholder="Buscar productos" aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput"  (keyup.enter)="searchProducts()"  [matAutocomplete]="autoBus" [formControl]="formBusProd">
         <mat-autocomplete #autoBus="matAutocomplete">
-          <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombre">
-            <img class="example-option-img" aria-hidden [src]="producto.imagen" width="25" height="25">
-            <span>{{producto.nombre}}</span> |
+          <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombreProducto">
+            <img class="example-option-img" aria-hidden [src]="producto.imagenProducto" width="25" height="25">
+            <span>{{producto.nombreProducto}}</span> |
             <small>{{producto.nombreCategoria}}</small>
           </mat-option>
         </mat-autocomplete>
@@ -67,7 +67,7 @@
   </div>
   <div class="navbar-item">
     <ul>
-      <li *ngIf="ubicacion">Ubicacion: {{ubicacion.localidad}} ({{getProvincia(ubicacion.codigoEntidadFederal).nombreProvincia}})</li>
+      <li *ngIf="ubicacion && (listaProvincias.length > 0)">Ubicacion: {{ubicacion.localidad}} ({{getProvincia(ubicacion.codigoEntidadFederal).nombreProvincia}})</li>
     </ul>
   </div> <!--
   <mat-toolbar>

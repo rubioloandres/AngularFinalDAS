@@ -24,11 +24,11 @@ export class ProductosService {
   } */
 
   public getProductosResponse(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(environment.webAPI + 'productos?')
-                    .pipe(catchError(err => {
-                      console.log('Error al obtener productos', err);
-                      return throwError(err);
-                    }));
+    return this.http.get<Producto[]>(environment.webAPI + 'productos')
+    .pipe(catchError(err => {
+      console.log('Error al obtener productos', err);
+      return throwError(err);
+    }));
   }
 
   public getProductosByCategoriaINDEC(idCat: number): Observable<Producto[]> {

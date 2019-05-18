@@ -61,6 +61,55 @@ mat-card mat-card-content p {
 mat-card-title {
   margin-left: 0;
   margin-right: 0;
+  font-family: Oswald !important;
+  color: rgb(50, 50, 156);
+  font-size: 20px !important;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+mat-card-subtitle {
+  margin-left: 0;
+  margin-right: 0;
+  font-family: Oswald !important;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+mat-panel-title{
+  font-family: Oswald !important;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+mat-expansion-panel p, ul {
+  font-family: Oswald !important;
+  font-style: normal;
+  font-variant: normal;
+}
+
+mat-card {
+  border: 2px solid lightblue;
+}
+
+mat-card img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 70%;
+}
+
+mat-card-actions img {
+  width: 45px;
+  height: 45px;
 }
 
 h2 {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CriterioBusquedaProducto } from '../interfaces/criterios';
 import { Coordenadas } from '../interfaces/ubicacion';
-
+import { Producto } from '../interfaces/producto';
 
 @Injectable()
 export class DataSharingService {
@@ -12,6 +12,12 @@ export class DataSharingService {
 
   private codigosSource = new BehaviorSubject<string>('default codigos');
   currentCodigos = this.codigosSource.asObservable();
+
+  private platoSource = new BehaviorSubject<number>(0);
+  currentPlato = this.platoSource.asObservable();
+
+  private productoSource = new BehaviorSubject<Producto>(undefined);
+  currentProducto = this.productoSource.asObservable();
 
   private coordenadasSource = new BehaviorSubject<Coordenadas>
   ({latitud: 0, longitud: 0, precision: 0});
@@ -34,6 +40,14 @@ export class DataSharingService {
 
   changeCodigos(codigos: string) { // TODO: cambiar nombre
     this.codigosSource.next(codigos);
+  }
+
+  changePlato(idPlato: number) {
+    this.platoSource.next(idPlato);
+  }
+
+  changeProducto(producto: Producto) {
+    this.productoSource.next(producto);
   }
 
 }

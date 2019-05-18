@@ -1,4 +1,4 @@
 export interface Categoria {
-  nombre: string;
-  urlImagen: string;
+  nombreCategoria: string;
+  urlImagenCategoria: string;
 }

@@ -15,10 +15,6 @@ app-searchfilter {
   height: 25px !important;
 }
 
-mat-button-toggle-group {
-  margin-top: 15% !important;
-}
-
 mat-button-toggle-group span{
   margin: auto;
 }
@@ -56,7 +52,7 @@ mat-card-actions {
 }
 
 mat-card-actions mat-button-toggle-group {
-  margin-top: 0 !important;
+  margin-top: 25% !important;
 }
 
 mat-button-toggle-group img {

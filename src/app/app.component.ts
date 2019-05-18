@@ -4,6 +4,7 @@ import { CategoriasService } from './services/indec/categorias.service';
 import { ProductosService } from './services/indec/productos.service';
 import { ProvinciasService } from './services/indec/provincias.service';
 import { CadenasService } from './services/indec/cadenas.service';
+import { MenuService } from './services/indec/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
    private sProd: ProductosService,
    private sProv: ProvinciasService,
    private sLoc: LocalidadesService,
-   private sCad: CadenasService
+   private sCad: CadenasService,
+   private sMen: MenuService
   ) { }
 
   getProductos() {
@@ -38,17 +40,20 @@ export class AppComponent implements OnInit {
   }
 
   getCategorias() {
-    this.sCat.getCategoriaResponse().subscribe (
-      cats => {
-        localStorage.setItem('categorias', JSON.stringify(cats));
-        console.log('HTTP Response Categorias', cats);
-      },
-      err => {
-        console.log('HTTP Error Categorias', err);
-        this.error = err;
-      },
-      () => console.log('HTTP Request Categorias completed')
-    );
+    const lcat = localStorage.getItem('categorias');
+    if (lcat.length < 1) {
+      this.sCat.getCategoriaResponse().subscribe (
+        cats => {
+          localStorage.setItem('categorias', JSON.stringify(cats));
+          console.log('HTTP Response Categorias', cats);
+        },
+        err => {
+          console.log('HTTP Error Categorias', err);
+          this.error = err;
+        },
+        () => console.log('HTTP Request Categorias completed')
+      );
+    }
   }
 
   getProvincias() {
@@ -81,10 +86,10 @@ export class AppComponent implements OnInit {
 
   getCadenas() {
       this.sCad.getCadenasINDEC().subscribe(
-        cads  =>  {
-        localStorage.setItem('cadenas', JSON.stringify(cads));
-        console.log('HTTP Response Cadenas', cads);
-          },
+      cads  =>  {
+      localStorage.setItem('cadenas', JSON.stringify(cads));
+      console.log('HTTP Response Cadenas', cads);
+      },
       err => {
         console.log('HTTP Error Cadenas', err);
         this.error = err;
@@ -93,13 +98,27 @@ export class AppComponent implements OnInit {
     );
   }
 
+  getMenu() {
+    this.sMen.getMenuResponse().subscribe(
+      mens => {
+        localStorage.setItem('menu', JSON.stringify(mens));
+        console.log('HTTP Response Menu', mens);
+      },
+      err => {
+        console.log('HTTP Error Menu', err);
+        this.error = err;
+      },
+      () => console.log('HTTP Request Menu completed')
+    );
+  }
+
   ngOnInit(): void {
     /*
     this.getProductos();
     this.getCategorias();
     this.getProvincias();
-    this.getProductos();
     this.getLocalidades();
-    this.getCadenas();*/
+    this.getCadenas();
+    this.getMenu();*/
   }
 }

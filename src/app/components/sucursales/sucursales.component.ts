@@ -22,7 +22,7 @@ export class SucursalesComponent implements OnInit {
     this.sSuc.getSucursales(ubicacion.codigoEntidadFederal, ubicacion.localidad)
     .subscribe( cadenas  =>  {
             cadenas.forEach(cadena => {
-              if (cadena.disponibilidad === 'Disponible') {
+              if (cadena.disponible) {
                 this.listaSucursales = this.listaSucursales.concat(cadena.sucursales);
               }
           });
@@ -36,7 +36,7 @@ export class SucursalesComponent implements OnInit {
   }
 
   getCadena(id: number) {
-    return this.listaCadenas.find(cad => cad.id === id);
+    return this.listaCadenas.find(cad => cad.idCadena === id);
   }
 
   loadCadenas() {

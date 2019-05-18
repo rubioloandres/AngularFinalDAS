@@ -16,8 +16,7 @@ export class CatalogueComponent implements OnInit {
 
   criterioBusqueda: CriterioBusquedaProducto;
 
-  addToCart(prod: Producto, cant: number) {
-    prod.cantidad = cant;
+  addToCart(prod: Producto) {
     this.cart.addToCart(prod);
   }
 
@@ -52,26 +51,15 @@ export class CatalogueComponent implements OnInit {
         this.listaProductos = prods.filter(p =>
           ( p.nombreCategoria.toLowerCase().includes(criterio.nombre.toLowerCase()) )  ||
           ( p.nombreMarca.toLowerCase().includes(criterio.nombre.toLowerCase()) )      ||
-          ( p.nombre.toLowerCase().includes(criterio.nombre.toLowerCase()) )
+          ( p.nombreProducto.toLowerCase().includes(criterio.nombre.toLowerCase()) )
         );
     }
-
       const currentcarrito: Producto [] = this.cart.getAllProducts();
-      for (const pc of currentcarrito) {
-        for (const pl of this.listaProductos) {
-           if (pc.idComercial === pl.idComercial) {
-             pl.cantidad = pc.cantidad;
-           } else {
-             pl.cantidad = 1;
-           }
-        }
-      }
     });
   }
 
-  updateCant(idprod: string, cant: number) {
-    console.log(cant);
-    this.cart.updateCant(idprod, cant);
+  consultarPrecio(producto: Producto) {
+    this.data.changeProducto(producto);
   }
 
   constructor(

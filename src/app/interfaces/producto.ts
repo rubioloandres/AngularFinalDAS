@@ -1,22 +1,23 @@
 export interface Producto {
-  idComercial: string;
+  codigoDeBarras: string;
   idCategoria: number;
   nombreCategoria: string;
-  nombre: string;
+  nombreProducto: string;
   nombreMarca: string;
-  cantidad: number;
-  imagen: string;
+  imagenProducto: string;
   precio: string;
 }
 
 export interface ProductoIngrediente {
-  nombre: string;
-  idComercial: string;
-  cantidad: number;
+  nombreIngrediente: string;
+  descripcion: string;
 }
 
 export interface ProductoPrecio {
-  idComercial: string;
+  codigoDeBarras: string;
   precio: number;
+  validoDesde: string;
+  nombre: string;
+  marca: string;
   mejorPrecio: boolean;
 }
