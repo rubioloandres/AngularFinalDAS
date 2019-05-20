@@ -22,8 +22,8 @@ export class MenuService {
   }
 
   public getPrecioPlato(codEntidadFed: string, loc: string, idPlato: number): Observable<CadenaSucursal[]> {
-    const options = 'codigoentidadfederal=' + codEntidadFed + '&localidad=' + loc + '&plato=' + idPlato;
-    return this.http.post<CadenaSucursal[]>(environment.webAPI + 'comparadorplato?' + options, 'none')
+    const options = 'codigoentidadfederal=' + codEntidadFed + '&localidad=' + loc + '&idplato=' + 1 /*idPlato*/;
+    return this.http.get<CadenaSucursal[]>(environment.webAPI + 'armarplato?' + options)
                     .pipe(
                       catchError(err => {
                       console.log('Error al obtener respuesta del comparador para el plato', err);

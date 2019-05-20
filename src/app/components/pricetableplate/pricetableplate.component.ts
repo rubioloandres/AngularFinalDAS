@@ -13,6 +13,7 @@ import { resolve } from 'url';
 import { DialogInfoSucursalComponent } from './../info/info.component';
 import { Subscription } from 'rxjs';
 import { MenuService } from 'src/app/services/indec/menu.service';
+import { Menu, Plato } from 'src/app/interfaces/menu';
 
 @Component({
   selector: 'app-pricetableplate',
@@ -50,6 +51,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 
  sucursalSeleccionada: SucursalTablaPrecio = undefined;
  indiceSucSel: number;
+ platos: Plato [] = new Array();
 
  agregarDatosSucursal(suc: Sucursal): SucursalTablaPrecio {
    const sucursalTablaPrecio: SucursalTablaPrecio = {
@@ -77,17 +79,6 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 
  agregarDatosSucursales(suc: Sucursal[]): SucursalTablaPrecio[] {
    return suc.map(s => this.agregarDatosSucursal(s));
- }
-
- esMejorPrecio(idCad: number, idSuc: number, idProd: string) {
-   const sucursal: Sucursal = this.listaSucursales
-                              .find (suc => (suc.idCadena === idCad) && (suc.idSucursal === idSuc));
-   const producto = sucursal.productos.find( prod => prod.codigoDeBarras === idProd);
-   if (producto !== undefined && (producto.mejorPrecio)) {
-     return true;
-   } else {
-     return false;
-   }
  }
 
  cadenasNoDisp() {
@@ -132,25 +123,20 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
    console.log(this.columnsToDisplay);
  }
 
- loadProductos() { // controlar que ocurre cuando esto es undefined o null
-   this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
- }
-
- getProductoPriceBySucursal(indexSuc: number, idProd: string) {
-   const pp: ProductoPrecio = this.listaSucursales[indexSuc]
-                                    .productos
-                                    .find(p => p.codigoDeBarras === idProd);
-   if (pp === undefined) {
-     return 'No Disponible';
-   } else {
-     return '$ ' + pp.precio;
-   }
- }
-
- removeProduct(idprod: string) {
-   const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-   this.listaProductos = prodscart.filter(p => p.codigoDeBarras !== idprod);
-   localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
+ loadPlato(idPlato: number) {
+   let platotmp: Plato;
+   const listaMenues: Menu [] =  JSON.parse(localStorage.getItem('menu'));
+   if (listaMenues !== null && listaMenues.length > 0) {
+    listaMenues.forEach(m => {
+      platotmp = m.platos.find(p => p.idPlato === idPlato);
+      if (platotmp !== undefined) {
+        this.platos.push(platotmp);
+      }
+     }
+    );
+    console.log('agregue un plato ;)');
+    console.log(this.platos);
+  }
  }
 
  getCadena(id: number) {
@@ -171,86 +157,35 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
  }
 
  updateSucursales() {
-   /*
-   this.suscripcionCodigos = this.data.currentCodigos.subscribe(codigos => {
-     if (codigos === 'default codigos') {
-       this.compararPorPlato();
-     } else {
-       console.log(codigos);
-       this.compararPrecios(codigos);
-     }
-   });*/
- }
-
- compararPorPlato() {
-   this.suscripcionPlato = this.data.currentPlato.subscribe(
-     idPlato => {
-       if (idPlato === 0) {
-         this.compararPorProducto();
-       } else {
-         console.log(idPlato);
-         this.sMen.getPrecioPlato(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, idPlato)
-                  .subscribe(
-                    cadenas => {
+  this.suscripcionPlato = this.data.currentPlato.subscribe(
+    idPlato => {
+        this.loadPlato(idPlato);
+        console.log(idPlato);
+        this.sMen.getPrecioPlato(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, idPlato)
+                 .subscribe(
+                   cadenas => {
+                     this.loading = false;
+                     console.log(cadenas);
+                     cadenas.forEach( cadena => {
+                        if (cadena.disponible) {
+                          this.listaSucursales = this.listaSucursales.concat(this.agregarDatosSucursales(cadena.sucursales));
+                        } else {
+                          this.listaCadenasNoDisponibles.push(cadena);
+                        }
+                     });
+                     console.log('HTTP Response Comparador plato success');
+                     console.log(this.listaSucursales);
+                     this.loadColumns();
+                   }, err => {
+                      console.log('HTTP Error Comparador plato', err);
+                      this.error = err;
                       this.loading = false;
-                      console.log(cadenas);
-                      cadenas.forEach( cadena => {
-                         if (cadena.disponible) {
-                           this.listaSucursales = this.listaSucursales.concat(this.agregarDatosSucursales(cadena.sucursales));
-                         } else {
-                           this.listaCadenasNoDisponibles.push(cadena);
-                         }
-                      });
-                      console.log('HTTP Response Comparador plato success');
-                      console.log(this.listaSucursales);
-                      this.loadColumns();
-                    }, err => {
-                       console.log('HTTP Error Comparador plato', err);
-                       this.error = err;
-                       this.loading = false;
-                    }, () => console.log('HTTP Request Comparador plato completed')
-                  );
-       }
-     }
-   );
+                   }, () => console.log('HTTP Request Comparador plato completed')
+                 );
+      }
+  );
  }
 
- compararPorProducto() {
-   /*
-   this.suscripcionProducto = this.data.currentProducto.subscribe(
-     producto => {
-       if (producto !== undefined) {
-         console.log(producto);
-         this.listaProductos = new Array();
-         this.listaProductos.push(producto);
-         this.compararPrecios(producto.codigoDeBarras);
-       }
-     }
-   );*/
- }
-
- compararPrecios(codigos: any) {
-   this.sCad.getComparacionINDEC(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, codigos.toString()   )
-       .subscribe( cadenas  =>  {
-               this.loading = false;
-               console.log(cadenas);
-               cadenas.forEach(cadena => {
-                 if (cadena.disponible) {
-                   this.listaSucursales = this.listaSucursales.concat(this.agregarDatosSucursales(cadena.sucursales));
-                 } else {
-                   this.listaCadenasNoDisponibles.push(cadena);
-                 }
-             });
-               console.log('HTTP Response Comparador success');
-               console.log(this.listaSucursales);
-               this.loadColumns();
-         }, err => {
-             console.log('HTTP Error Comparador ', err);
-             this.error = err;
-             this.loading = false;
-         }, () => console.log('HTTP Request Comparador completed')
-       );
- }
 
  sucursalesEmpty() {
   if (this.listaSucursales.length > 0) {
@@ -289,6 +224,11 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
    console.log(this.listaSucursalesOrdenadas);
  }
 
+ getPlatoPriceBySucursal(indexSuc: number){
+  return  this.listaSucursales[indexSuc].total;
+ }
+
+
  constructor(
   private sCad: CadenasService,
   private sMen: MenuService,
@@ -299,15 +239,11 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 ngOnInit() {
   this.cargarUbicacion();
   this.loadCadenas();
-  this.loadProductos();
   this.updateSucursales();
-  // this.actualizarSucVisibles();
 }
 
 ngOnDestroy() {
-  // this.suscripcionCodigos.unsubscribe();
   this.suscripcionPlato.unsubscribe();
-  // this.suscripcionProducto.unsubscribe();
 }
 
 }

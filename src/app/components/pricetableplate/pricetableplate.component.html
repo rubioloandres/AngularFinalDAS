@@ -2,3 +2,76 @@
 y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
 -->
 <h2>Precios de Productos</h2>
+<div class="pricetableplate-container">
+  <div *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table mat-table [dataSource]="platos" *ngIf="! sucursalesEmpty()">
+    <ng-container matColumnDef="item" sticky>
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-card-title>Lista</mat-card-title>
+      </th>
+      <td mat-cell *matCellDef="let plato" matColumnDef>
+        <mat-card>
+          <img src={{plato.imagenPlato}}>
+          <mat-card-content>
+            <span> {{plato.nombrePlato}}</span>
+          </mat-card-content>
+        </mat-card>
+      </td>
+      <td mat-footer-cell *matFooterCellDef class="total">
+        <mat-card-title> Resumen </mat-card-title>
+        <mat-card-subtitle> Detalle de resumen </mat-card-subtitle>
+      </td>
+    </ng-container>
+
+    <ng-container *ngFor='let sucursal of listaSucursalesOrdenadas; let i = index' matColumnDef="sucursal{{i+1}}">
+      <div>
+        <th mat-header-cell *matHeaderCellDef="let plato">
+
+          <select matNativeControl class="form-control" required [(ngModel)]="listaSucursalesOrdenadas[i]"
+                  (change)="cambiarSucursalSeleccionada(listaSucursalesOrdenadas[i],i)">
+            <option *ngFor="let suc of listaSucursales" [selected]="suc === sucursal" [ngValue]="suc">
+              {{ suc.nombreSucursal }}
+            </option>
+          </select>
+          <button mat-stroked-button (click)="openDialogInfo(sucursal)" title="Informacion sucursal">
+            <mat-card [ngClass]="{'mejorOp': sucursal.mejorOpcion}">
+              <img class="cadena-logo" src="{{sucursal.imagenCadena}}">
+                <mat-card-content>
+                  <mat-card-title>{{sucursal.direccion}}</mat-card-title>
+                  <mat-card-subtitle>{{sucursal.nombreCadena}}</mat-card-subtitle>
+                  <mat-card-subtitle> ( {{sucursal.productos.length}} productos disponibles ) </mat-card-subtitle>
+                </mat-card-content>
+            </mat-card>
+          </button>
+        </th>
+        <td *matCellDef="let plato"> {{getPlatoPriceBySucursal(i)}}</td>
+        <td mat-footer-cell *matFooterCellDef>
+          <mat-card [ngClass]="sucursal.mejorOpcion ? 'mejorOp' : 'total'">
+            <mat-card-title> $ {{sucursal.total}} </mat-card-title>
+             <img src="{{sucursal.imagenCadena}}">
+            <mat-card-content>
+              <mat-card-subtitle> {{sucursal.direccion}} </mat-card-subtitle>
+            </mat-card-content>
+          </mat-card>
+        </td>
+      </div>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    <tr mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></tr>
+  </table>
+
+  <div class="noProds" *ngIf="error">
+    <h4>Error al comparar precios</h4>
+    <h5>Ocurrio un error al intentar comparar, vuelve a intentar.</h5>
+  </div>
+</div>
+
+<div class="noCads" *ngIf="! error">
+    <h4 *ngIf="! loading">No fue posible obtener precios de los supermercados</h4>
+    <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
+</div>

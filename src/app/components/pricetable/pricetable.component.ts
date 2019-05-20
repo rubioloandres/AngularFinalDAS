@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Producto, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal, SucursalInfo, SucursalTablaPrecio } from './../../interfaces/sucursal';
 import { Cadena, CadenaSucursal } from 'src/app/interfaces/cadena';
@@ -18,22 +18,19 @@ import { MenuService } from 'src/app/services/indec/menu.service';
   templateUrl: './pricetable.component.html',
   styleUrls: ['./pricetable.component.css']
 })
-export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PricetableComponent implements OnInit, OnDestroy {
 
   // Nombres de las columnas mostradas
   displayedColumns: string[] = new Array();
-
-  // Nombres de las columnas disponibles para mostrar
-  columnsToDisplay: string[] = new Array();
 
   precioTotalSucursal: TotalSucursal[] = new Array();
 
   // Todas las sucursales.
   listaSucursales: SucursalTablaPrecio[] = new Array();
-  listaSucursales2: SucursalTablaPrecio[] = new Array();
 
   // Todas las sucursales ordenadas por
   listaSucursalesOrdenadas: SucursalTablaPrecio [] = new Array();
+  listaSucursalesAnterior: SucursalTablaPrecio[] = new Array();
 
   listaProductos: Producto[] = new Array();
 
@@ -44,7 +41,6 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Suscripciones
   suscripcionCodigos: Subscription;
-  suscripcionPlato: Subscription;
   suscripcionProducto: Subscription;
   loading = true;
   ubicacion: Ubicacion;
@@ -81,7 +77,7 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   esMejorPrecio(idCad: number, idSuc: number, idProd: string) {
-    const sucursal: Sucursal = this.listaSucursales
+    const sucursal: Sucursal = this.listaSucursalesAnterior
                                .find (suc => (suc.idCadena === idCad) && (suc.idSucursal === idSuc));
     const producto = sucursal.productos.find( prod => prod.codigoDeBarras === idProd);
     if (producto !== undefined && (producto.mejorPrecio)) {
@@ -103,49 +99,32 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   loadColumns() {
-    // Calculamos la cantidad de columnas a mostrar
     const n = this.calcularCantidadColumnas();
-    // La columna que se muestra por defecto es la de los productos
     this.displayedColumns.push('item');
-    // Le damos nombres a las columnas que se corresponden con las sucursales
     let i = 1;
     while (i <= n)  {
       this.displayedColumns.push('sucursal' + i);
       i++;
     }
-    // Ordenamos las sucursales
     this.listaSucursalesOrdenadas = this.listaSucursales.sort(  (suc1, suc2) => {
       if ( suc1.cantidadDeProductosConPrecioMasBajo > suc2.cantidadDeProductosConPrecioMasBajo) {  return -1; }
       if ( suc1.cantidadDeProductosConPrecioMasBajo < suc2.cantidadDeProductosConPrecioMasBajo) {  return 1; }
       return 0;
     });
-
-    i = 1;
-    this.columnsToDisplay.push('item');
-    while (i <= this.listaSucursalesOrdenadas.length) {
-      this.columnsToDisplay.push('sucursal' + i);
-      i++;
-    }
-    this.listaSucursales2 = this.listaSucursalesOrdenadas.slice(0, 4);
-
-    console.log('SucursalesOrdenadas deberian ser 4');
-    console.log(this.listaSucursales2);
-    console.log(this.displayedColumns);
-    console.log(this.columnsToDisplay);
+    this.listaSucursalesAnterior = this.listaSucursalesOrdenadas;
+    this.listaSucursalesOrdenadas = this.listaSucursalesOrdenadas.slice(0, 4);
   }
 
   loadProductos() { // controlar que ocurre cuando esto es undefined o null
     this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
   }
 
-  getProductoPriceBySucursal(indexSuc: number, idProd: string) {
-    const pp: ProductoPrecio = this.listaSucursales[indexSuc]
-                                     .productos
-                                     .find(p => p.codigoDeBarras === idProd);
-    if (pp === undefined) {
+  getProductoPriceBySucursal(sucursal: SucursalTablaPrecio, idProd: string) {
+    const precioProd = this.listaSucursales.find( s => s === sucursal).productos.find(p => p.codigoDeBarras === idProd).precio;
+    if (precioProd === 0) {
       return 'No Disponible';
     } else {
-      return '$ ' + pp.precio;
+      return '$ ' + precioProd;
     }
   }
 
@@ -175,45 +154,12 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
   updateSucursales() {
     this.suscripcionCodigos = this.data.currentCodigos.subscribe(codigos => {
       if (codigos === 'default codigos') {
-        this.compararPorPlato();
+        this.compararPorProducto();
       } else {
         console.log(codigos);
         this.compararPrecios(codigos);
       }
     });
-  }
-
-  compararPorPlato() {
-    this.suscripcionPlato = this.data.currentPlato.subscribe(
-      idPlato => {
-        if (idPlato === 0) {
-          this.compararPorProducto();
-        } else {
-          console.log(idPlato);
-          this.sMen.getPrecioPlato(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, idPlato)
-                   .subscribe(
-                     cadenas => {
-                       this.loading = false;
-                       console.log(cadenas);
-                       cadenas.forEach( cadena => {
-                          if (cadena.disponible) {
-                            this.listaSucursales = this.listaSucursales.concat(this.agregarDatosSucursales(cadena.sucursales));
-                          } else {
-                            this.listaCadenasNoDisponibles.push(cadena);
-                          }
-                       });
-                       console.log('HTTP Response Comparador plato success');
-                       console.log(this.listaSucursales);
-                       this.loadColumns();
-                     }, err => {
-                        console.log('HTTP Error Comparador plato', err);
-                        this.error = err;
-                        this.loading = false;
-                     }, () => console.log('HTTP Request Comparador plato completed')
-                   );
-        }
-      }
-    );
   }
 
   compararPorProducto() {
@@ -252,15 +198,15 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sucursalesEmpty() {
-   if (this.listaSucursales.length > 0) {
-    return false;
-   } else {
-     return true;
-   }
+    if (this.listaSucursalesOrdenadas.length > 0) {
+      return false;
+      } else {
+        return true;
+      }
   }
 
   calcularCantidadColumnas() {
-    if (this.listaSucursales !== undefined) {// ver que ocurre cuando es  undefined
+    if (this.listaSucursales !== undefined) {
       if (this.listaSucursales.length < 4) {
         return this.listaSucursales.length;
       } else {
@@ -277,23 +223,8 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cambiarSucursalSeleccionada(suc: SucursalTablaPrecio, indexSuc: number) {
-    console.log('Sucursal seleccionada: ' + suc.nombreSucursal);
-    console.log('Indice suc anterior: ' + indexSuc);
     this.sucursalSeleccionada = suc;
     this.indiceSucSel = indexSuc;
-    this.actualizarSucVisibles();
-/*
-    const sucAnt: SucursalTablaPrecio = this.listaSucursalesOrdenadas[indexSuc];
-    console.log(sucAnt);
-    this.listaSucursalesOrdenadas[indexSuc] = suc;
-    console.log(this.listaSucursalesOrdenadas);*/
-  }
-
-  actualizarSucVisibles() {
-    if (this.sucursalSeleccionada !== undefined) {
-      this.listaSucursalesOrdenadas[this.indiceSucSel] = this.sucursalSeleccionada;
-    }
-    console.log(this.listaSucursalesOrdenadas);
   }
 
   constructor(
@@ -308,16 +239,10 @@ export class PricetableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loadCadenas();
     this.loadProductos();
     this.updateSucursales();
-    this.actualizarSucVisibles();
-  }
-
-  ngAfterViewInit(): void {
-    this.actualizarSucVisibles();
   }
 
   ngOnDestroy() {
     this.suscripcionCodigos.unsubscribe();
-    this.suscripcionPlato.unsubscribe();
     this.suscripcionProducto.unsubscribe();
   }
 }

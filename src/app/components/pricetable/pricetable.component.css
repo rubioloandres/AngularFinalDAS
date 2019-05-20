@@ -12,11 +12,16 @@ table {
   height: auto;
   width: auto;
   border: 2px lightblue solid;
+
 }
 
 th,td {
   align-items: center;
   justify-content: center;
+}
+
+mat-card {
+  background: none;
 }
 
 th mat-card {
@@ -45,7 +50,14 @@ table,mat-card-title, span{
 }
 
 .mejorOp{
-  background-color: greenyellow !important;
+  /*background-color: greenyellow !important;*/
+  background: rgba(210,255,82,1);
+  background: -moz-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  background: -o-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  background: -ms-linear-gradient(top, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  background: linear-gradient(to bottom, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=0 );
 }
 
 .mejorPre{
@@ -79,4 +91,13 @@ h4, h5 {
 
 .noCads {
   width: auto;
+}
+
+select {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  font-family: Oswald !important;
+  font-size: 18px;
 }
