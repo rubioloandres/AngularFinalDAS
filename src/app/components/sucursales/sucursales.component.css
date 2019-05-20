@@ -40,8 +40,8 @@ mat-card img {
   margin-left: auto;
   margin-right: auto;
   margin-top: 15% !important;
-  width: 180px;
-  height: 150px;
+  width: 150px;
+  height: 120px;
 }
 
 mat-grid-tile {

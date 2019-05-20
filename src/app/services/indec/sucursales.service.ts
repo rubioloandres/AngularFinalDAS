@@ -16,7 +16,6 @@ export class SucursalesService {
     ) { }
 
   public getSucursales(codEntidadFed: string, loc: string): Observable<CadenaSucursal[]> {
-    console.log('holis');
     const options = 'codigoentidadfederal=' + codEntidadFed + '&localidad=' + loc;
     return this.http.get<CadenaSucursal[]>(environment.webAPI + 'sucursales?' + options)
                     .pipe(catchError(err => {

@@ -57,6 +57,7 @@ import { HealthComponent } from './components/health/health.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MenuService } from './services/indec/menu.service';
+import { PricetableplateComponent } from './components/pricetableplate/pricetableplate.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { MenuService } from './services/indec/menu.service';
     DialogInfoSucursalComponent,
     DialogLocationComponent,
     SucursalesComponent,
-    HealthComponent
+    HealthComponent,
+    PricetableplateComponent
   ],
   imports: [
     BrowserModule,

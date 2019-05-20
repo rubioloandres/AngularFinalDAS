@@ -6,6 +6,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { PricetableComponent } from './components/pricetable/pricetable.component';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { HealthComponent } from './components/health/health.component';
+import { PricetableplateComponent } from './components/pricetableplate/pricetableplate.component';
 // import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
 
 const routes: Routes = [
@@ -41,6 +42,11 @@ const routes: Routes = [
   {
     path: 'health',
     component: HealthComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'pricesplate',
+    component: PricetableplateComponent,
     pathMatch: 'full'
   }
 ];

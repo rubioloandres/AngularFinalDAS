@@ -14,7 +14,7 @@ export interface Sucursal {
   codigoEntidadFederal: string;
   idCadena: number;
   productos: ProductoPrecio[];
-  CantidadDeProductosConPrecioMasBajo: number;
+  cantidadDeProductosConPrecioMasBajo: number;
   mejorOpcion: boolean;
   total: number;
 }
@@ -48,7 +48,7 @@ export interface SucursalTablaPrecio {
   codigoEntidadFederal: string;
   idCadena: number;
   productos: ProductoPrecio[];
-  CantidadDeProductosConPrecioMasBajo: number;
+  cantidadDeProductosConPrecioMasBajo: number;
   mejorOpcion: boolean;
   total: number;
   imagenCadena: string;

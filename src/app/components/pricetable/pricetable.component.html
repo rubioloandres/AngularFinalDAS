@@ -2,74 +2,191 @@
 y las siguientes ordenadas por criterios (precio, cantidad productos, cercania)
 -->
 <h2>Precios de Productos</h2>
-<div class="pricetable-container">
 
+<div class="pricetable-container">
   <div *ngIf="loading">
     <mat-spinner></mat-spinner>
   </div>
 
   <table mat-table [dataSource]="listaProductos" *ngIf="! sucursalesEmpty()">
-    <ng-container matColumnDef="item" sticky>
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-card-title>Lista</mat-card-title>
-      </th>
-      <td mat-cell *matCellDef="let producto" matColumnDef>
-        <mat-card>
-          <img src={{producto.imagenProducto}}>
-          <mat-card-content>
-            <span> {{producto.nombreProducto}}</span>
-            <mat-card-subtitle> {{producto.codigoDeBarras}} </mat-card-subtitle>
-          </mat-card-content>
-          <button mat-button title="Eliminar producto" (click)="removeProduct(producto.codigoDeBarras)"><img class="remove-button" src="../../../assets/img/trash.png"></button>
-        </mat-card>
-      </td>
-      <td mat-footer-cell *matFooterCellDef class="total">
-        <mat-card-title> Resumen </mat-card-title>
-        <mat-card-subtitle> Detalle de resumen </mat-card-subtitle>
-      </td>
-    </ng-container>
-
-    <ng-container *ngFor='let sucursal of listaSucursales; let i = index' matColumnDef="sucursal{{i+1}}">
-      <div>
-        <th mat-header-cell *matHeaderCellDef="let producto">
-          <button mat-stroked-button (click)="openDialogInfo(sucursal)" title="Informacion sucursal">
-            <mat-card [ngClass]="{'mejorOp': sucursal.mejorOpcion}">
-              <img class="cadena-logo" src="{{sucursal.imagenCadena}}">
-                <mat-card-content>
-                  <mat-card-title>{{sucursal.direccion}}</mat-card-title>
-                  <mat-card-subtitle>{{sucursal.nombreCadena}}</mat-card-subtitle>
-                  <mat-card-subtitle> ( {{sucursal.productos.length}} productos disponibles ) </mat-card-subtitle>
-                </mat-card-content>
-            </mat-card>
-          </button>
+      <ng-container matColumnDef="item" sticky>
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-card-title>Lista</mat-card-title>
         </th>
-
-        <td *matCellDef="let producto" [ngClass]="{'mejorPre': esMejorPrecio(sucursal.idCadena, sucursal.idSucursal, producto.codigoDeBarras)}"> {{getProductoPriceBySucursal(i,producto.codigoDeBarras)}}</td>
-
-        <td mat-footer-cell *matFooterCellDef>
-          <mat-card [ngClass]="sucursal.mejorOpcion ? 'mejorOp' : 'total'">
-            <mat-card-title> $ {{sucursal.total}} </mat-card-title>
-             <img src="{{sucursal.imagenCadena}}">
+        <td mat-cell *matCellDef="let producto" matColumnDef>
+          <mat-card>
+            <img src={{producto.imagenProducto}}>
             <mat-card-content>
-              <mat-card-subtitle> {{sucursal.direccion}} </mat-card-subtitle>
+              <span> {{producto.nombreProducto}}</span>
+              <mat-card-subtitle> {{producto.codigoDeBarras}} </mat-card-subtitle>
             </mat-card-content>
+            <button mat-button title="Eliminar producto" (click)="removeProduct(producto.codigoDeBarras)"><img class="remove-button" src="../../../assets/img/trash.png"></button>
           </mat-card>
         </td>
-      </div>
-    </ng-container>
+        <td mat-footer-cell *matFooterCellDef class="total">
+          <mat-card-title> Resumen </mat-card-title>
+          <mat-card-subtitle> Detalle de resumen </mat-card-subtitle>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+      <ng-container matColumnDef="sucursal1">
+        <div>
+          <th mat-header-cell *matHeaderCellDef>
+
+            <select matNativeControl class="form-control" required [(ngModel)]="listaSucursalesOrdenadas[0]"
+                    (change)="cambiarSucursalSeleccionada(listaSucursalesOrdenadas[0],0)">
+              <option *ngFor="let suc of listaSucursales" [selected]="suc === listaSucursalesOrdenadas[0]" [ngValue]="suc">
+                {{ suc.nombreSucursal }}
+              </option>
+            </select>
+            <button mat-stroked-button (click)="openDialogInfo(listaSucursalesOrdenadas[0])" title="Informacion sucursal">
+              <mat-card [ngClass]="{'mejorOp': listaSucursalesOrdenadas[0].mejorOpcion}">
+                <img class="cadena-logo" src="{{listaSucursalesOrdenadas[0].imagenCadena}}">
+                  <mat-card-content>
+                    <mat-card-title>{{listaSucursalesOrdenadas[0].direccion}}</mat-card-title>
+                    <mat-card-subtitle>{{listaSucursalesOrdenadas[0].nombreCadena}}</mat-card-subtitle>
+                    <mat-card-subtitle> ( {{listaSucursalesOrdenadas[0].productos.length}} productos disponibles ) </mat-card-subtitle>
+                  </mat-card-content>
+              </mat-card>
+            </button>
+          </th>
+
+          <td *matCellDef="let producto" [ngClass]="{'mejorPre': esMejorPrecio(listaSucursalesOrdenadas[0].idCadena, listaSucursalesOrdenadas[0].idSucursal, producto.codigoDeBarras)}"> {{getProductoPriceBySucursal(0,producto.codigoDeBarras)}}</td>
+
+          <td mat-footer-cell *matFooterCellDef>
+            <mat-card [ngClass]="listaSucursalesOrdenadas[0].mejorOpcion ? 'mejorOp' : 'total'">
+              <mat-card-title> $ {{listaSucursalesOrdenadas[0].total}} </mat-card-title>
+               <img src="{{listaSucursalesOrdenadas[0].imagenCadena}}">
+              <mat-card-content>
+                <mat-card-subtitle> {{listaSucursalesOrdenadas[0].direccion}} </mat-card-subtitle>
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </div>
+      </ng-container>
+
+      <ng-container matColumnDef="sucursal2">
+          <div>
+            <th mat-header-cell *matHeaderCellDef="let producto">
+
+              <select matNativeControl class="form-control" required [(ngModel)]="listaSucursalesOrdenadas[1]"
+                      (change)="cambiarSucursalSeleccionada(listaSucursalesOrdenadas[1],1)">
+                <option *ngFor="let suc of listaSucursales" [selected]="suc === listaSucursalesOrdenadas[1]" [ngValue]="suc">
+                  {{ suc.nombreSucursal }}
+                </option>
+              </select>
+              <button mat-stroked-button (click)="openDialogInfo(listaSucursalesOrdenadas[1])" title="Informacion sucursal">
+                <mat-card [ngClass]="{'mejorOp': listaSucursalesOrdenadas[1].mejorOpcion}">
+                  <img class="cadena-logo" src="{{listaSucursalesOrdenadas[1].imagenCadena}}">
+                    <mat-card-content>
+                      <mat-card-title>{{listaSucursalesOrdenadas[1].direccion}}</mat-card-title>
+                      <mat-card-subtitle>{{listaSucursalesOrdenadas[1].nombreCadena}}</mat-card-subtitle>
+                      <mat-card-subtitle> ( {{listaSucursalesOrdenadas[1].productos.length}} productos disponibles ) </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+              </button>
+            </th>
+
+            <td *matCellDef="let producto" [ngClass]="{'mejorPre': esMejorPrecio(listaSucursalesOrdenadas[1].idCadena, listaSucursalesOrdenadas[1].idSucursal, producto.codigoDeBarras)}"> {{getProductoPriceBySucursal(1,producto.codigoDeBarras)}}</td>
+
+            <td mat-footer-cell *matFooterCellDef>
+              <mat-card [ngClass]="listaSucursalesOrdenadas[1].mejorOpcion ? 'mejorOp' : 'total'">
+                <mat-card-title> $ {{listaSucursalesOrdenadas[1].total}} </mat-card-title>
+                 <img src="{{listaSucursalesOrdenadas[1].imagenCadena}}">
+                <mat-card-content>
+                  <mat-card-subtitle> {{listaSucursalesOrdenadas[1].direccion}} </mat-card-subtitle>
+                </mat-card-content>
+              </mat-card>
+            </td>
+          </div>
+      </ng-container>
+
+      <ng-container matColumnDef="sucursal3">
+          <div>
+            <th mat-header-cell *matHeaderCellDef="let producto">
+
+              <select matNativeControl class="form-control" required [(ngModel)]="listaSucursalesOrdenadas[2]"
+                      (change)="cambiarSucursalSeleccionada(listaSucursalesOrdenadas[2],2)">
+                <option *ngFor="let suc of listaSucursales" [selected]="suc === listaSucursalesOrdenadas[2]" [ngValue]="suc">
+                  {{ suc.nombreSucursal }}
+                </option>
+              </select>
+              <button mat-stroked-button (click)="openDialogInfo(listaSucursalesOrdenadas[2])" title="Informacion sucursal">
+                <mat-card [ngClass]="{'mejorOp': listaSucursalesOrdenadas[2].mejorOpcion}">
+                  <img class="cadena-logo" src="{{listaSucursalesOrdenadas[2].imagenCadena}}">
+                    <mat-card-content>
+                      <mat-card-title>{{listaSucursalesOrdenadas[2].direccion}}</mat-card-title>
+                      <mat-card-subtitle>{{listaSucursalesOrdenadas[2].nombreCadena}}</mat-card-subtitle>
+                      <mat-card-subtitle> ( {{listaSucursalesOrdenadas[2].productos.length}} productos disponibles ) </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+              </button>
+            </th>
+
+            <td *matCellDef="let producto" [ngClass]="{'mejorPre': esMejorPrecio(listaSucursalesOrdenadas[2].idCadena, listaSucursalesOrdenadas[2].idSucursal, producto.codigoDeBarras)}"> {{getProductoPriceBySucursal(2,producto.codigoDeBarras)}}</td>
+
+            <td mat-footer-cell *matFooterCellDef>
+              <mat-card [ngClass]="listaSucursalesOrdenadas[2].mejorOpcion ? 'mejorOp' : 'total'">
+                <mat-card-title> $ {{listaSucursalesOrdenadas[2].total}} </mat-card-title>
+                 <img src="{{listaSucursalesOrdenadas[2].imagenCadena}}">
+                <mat-card-content>
+                  <mat-card-subtitle> {{listaSucursalesOrdenadas[2].direccion}} </mat-card-subtitle>
+                </mat-card-content>
+              </mat-card>
+            </td>
+          </div>
+      </ng-container>
+
+      <ng-container matColumnDef="sucursal4">
+          <div>
+            <th mat-header-cell *matHeaderCellDef="let producto">
+
+              <select matNativeControl class="form-control" required [(ngModel)]="listaSucursalesOrdenadas[3]"
+                      (change)="cambiarSucursalSeleccionada(listaSucursalesOrdenadas[3],3)">
+                <option *ngFor="let suc of listaSucursales" [selected]="suc === listaSucursalesOrdenadas[3]" [ngValue]="suc">
+                  {{ suc.nombreSucursal }}
+                </option>
+              </select>
+              <button mat-stroked-button (click)="openDialogInfo(listaSucursalesOrdenadas[3])" title="Informacion sucursal">
+                <mat-card [ngClass]="{'mejorOp': listaSucursalesOrdenadas[3].mejorOpcion}">
+                  <img class="cadena-logo" src="{{listaSucursalesOrdenadas[3].imagenCadena}}">
+                    <mat-card-content>
+                      <mat-card-title>{{listaSucursalesOrdenadas[3].direccion}}</mat-card-title>
+                      <mat-card-subtitle>{{listaSucursalesOrdenadas[3].nombreCadena}}</mat-card-subtitle>
+                      <mat-card-subtitle> ( {{listaSucursalesOrdenadas[3].productos.length}} productos disponibles ) </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+              </button>
+            </th>
+
+            <td *matCellDef="let producto" [ngClass]="{'mejorPre': esMejorPrecio(listaSucursalesOrdenadas[3].idCadena, listaSucursalesOrdenadas[3].idSucursal, producto.codigoDeBarras)}"> {{getProductoPriceBySucursal(3,producto.codigoDeBarras)}}</td>
+
+            <td mat-footer-cell *matFooterCellDef>
+              <mat-card [ngClass]="listaSucursalesOrdenadas[3].mejorOpcion ? 'mejorOp' : 'total'">
+                <mat-card-title> $ {{listaSucursalesOrdenadas[3].total}} </mat-card-title>
+                 <img src="{{listaSucursalesOrdenadas[3].imagenCadena}}">
+                <mat-card-content>
+                  <mat-card-subtitle> {{listaSucursalesOrdenadas[3].direccion}} </mat-card-subtitle>
+                </mat-card-content>
+              </mat-card>
+            </td>
+          </div>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
+
 
   <div class="noProds" *ngIf="error">
     <h4>Error al comparar precios</h4>
     <h5>Ocurrio un error al intentar comparar, vuelve a intentar.</h5>
   </div>
-
 </div>
+
 <div class="noCads" *ngIf="! error">
     <h4 *ngIf="! loading">No fue posible obtener precios de los supermercados</h4>
     <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
 </div>
+

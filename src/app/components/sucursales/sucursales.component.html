@@ -4,17 +4,14 @@
   <h5>No hay sucursales para mostrar.</h5>
 </div>
 
-<mat-grid-list cols="4" rowHeight="100px" [gutterSize]="'8px'" class="product-card">
+<mat-grid-list cols="4" rowHeight="80px" [gutterSize]="'8px'" class="product-card">
   <mat-grid-tile *ngFor="let sucursal of listaSucursales" [colspan]="1" [rowspan]="4">
     <mat-card>
-      <mat-card-title>{{getCadena(sucursal.idCadena).nombre}}</mat-card-title>
+      <mat-card-title>{{getCadena(sucursal.idCadena).nombreCadena}}</mat-card-title>
       <mat-card-subtitle>{{sucursal.nombreSucursal}}</mat-card-subtitle>
-      <img class="prod-img" src="{{getCadena(sucursal.idCadena).imagen}}">
-      <mat-card-content>
-
-      </mat-card-content>
+      <img class="prod-img" src="{{getCadena(sucursal.idCadena).imagenCadena}}">
       <mat-card-actions>
-        <button mat-button (click)="showMapa(sucursal.lat,sucursal.lng,sucursal.nombreSucursal,sucursal.direccion)">Ver ubicacion</button>
+        <button mat-button (click)="showMapa(sucursal.latitud,sucursal.longitud,sucursal.nombreSucursal,sucursal.direccion)">Ver ubicacion</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

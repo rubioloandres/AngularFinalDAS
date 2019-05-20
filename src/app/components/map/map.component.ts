@@ -25,19 +25,49 @@ export class MapComponent implements OnInit {
   }
 
   loadMap() {
+/*
     let arrCoord;
     console.log(this.data);
     if (this.data !== undefined) {
-      console.log('no es undef');
       arrCoord = [this.data.latitud, this.data.longitud];
+      console.log(arrCoord);
     } else {
-    arrCoord = [this.ubicacion[0].latitud, this.ubicacion[0].longitud];
+      arrCoord = [this.ubicacion[0].latitud, this.ubicacion[0].longitud];
+      console.log(arrCoord);
     }
-    const map = L.map('map').setView(arrCoord, this.data.precision);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+
+    const map = new L.Map('map');
+    const url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const opt = {};
+    const layer = new L.TileLayer(url, opt);
+    map.addLayer(layer);
+    console.log(arrCoord[0]);
+    // const coord = new L.LatLng(60.1733244, 24.9410248);
+    const coord = new L.LatLng(-31.416599, -64.187568);
+    map.setView(coord, 9);
+
+    */
+
+    // TODO: Controlar carga de datos latitud longitud (invertidos)
+    let arrCoord;
+    console.log(this.data);
+    if (this.data !== undefined) {
+      arrCoord = [this.data.longitud, this.data.latitud];
+      console.log(arrCoord);
+    } else {
+      arrCoord = [this.ubicacion[0].longitud, this.ubicacion[0].latitud];
+      console.log(arrCoord);
+    }
+    // const map = L.map('map').setView(arrCoord, this.data.precision);
+    const map = L.map ('map', {
+      center: arrCoord,
+      zoom: 13
+     }).setView(arrCoord, this.data.precision);
+
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    // L.marker([this.data.latitud, this.data.longitud])
     const markerText = '<h2 style="color:DodgerBlue;">'
                      +   this.data.nombreUbicacion
                      + '</h2>'
