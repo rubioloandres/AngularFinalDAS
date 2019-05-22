@@ -107,5 +107,4 @@ export class HealthComponent implements OnInit {
     this.cargarSemana();
     this.actualizarDia();
   }
-
 }

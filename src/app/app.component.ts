@@ -5,6 +5,7 @@ import { ProductosService } from './services/indec/productos.service';
 import { ProvinciasService } from './services/indec/provincias.service';
 import { CadenasService } from './services/indec/cadenas.service';
 import { MenuService } from './services/indec/menu.service';
+import { Categoria } from './interfaces/categoria';
 
 @Component({
   selector: 'app-root',
@@ -40,8 +41,8 @@ export class AppComponent implements OnInit {
   }
 
   getCategorias() {
-    const lcat = localStorage.getItem('categorias');
-    if (lcat.length < 1) {
+    const lc = localStorage.getItem('categorias');
+    if ( lc === null ) {
       this.sCat.getCategoriaResponse().subscribe (
         cats => {
           localStorage.setItem('categorias', JSON.stringify(cats));
@@ -113,8 +114,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
-    this.getProductos();
+    /*this.getProductos();
     this.getCategorias();
     this.getProvincias();
     this.getLocalidades();

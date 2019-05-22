@@ -16,8 +16,9 @@
         <mat-button-toggle-group>
         <button mat-button *ngIf="prodIsInCart(producto.codigoDeBarras)" (click)="removeFromCart(producto)"><img src="./../../../assets/img/trash_icon.png" title="Eliminar del carrito"></button>
         <button mat-button *ngIf="!prodIsInCart(producto.codigoDeBarras)" (click)="addToCart(producto)"><img src="./../../../assets/img/addtocart_icon.png" title="Agregar a carrito"></button>
-        <button mat-button (click)="consultarPrecio(producto)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Comparar precios"></button>
-       </mat-button-toggle-group>
+        <button mat-button *ngIf="ubicacion" (click)="consultarPrecio(producto)" [routerLink]="['../prices']"><img src="./../../../assets/img/searchprice_icon.png" title="Comparar precios"></button>
+        <button mat-button *ngIf="!ubicacion" value="location" (click)="registrarUbicacion()"> <img src="./../../../assets/img/price_calculator.png">Comparar Precios</button>
+      </mat-button-toggle-group>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

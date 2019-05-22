@@ -12,5 +12,6 @@ export interface Plato {
   nombrePlato: string;
   preparacion: string;
   imagenPlato: string;
+  idMenu: number;
   ingredientes: ProductoIngrediente [];
 }

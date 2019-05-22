@@ -11,6 +11,7 @@ export interface Producto {
 export interface ProductoIngrediente {
   nombreIngrediente: string;
   descripcion: string;
+  idIngrediente: number;
 }
 
 export interface ProductoPrecio {
@@ -20,4 +21,7 @@ export interface ProductoPrecio {
   nombre: string;
   marca: string;
   mejorPrecio: boolean;
+  idIngrediente: number;
+  nombreIngrediente: string;
+  descripcion: string;
 }

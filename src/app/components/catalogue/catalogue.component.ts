@@ -3,6 +3,9 @@ import { DataSharingService } from '../../services/datasharing.service';
 import { Producto } from './../../interfaces/producto';
 import { CartComponent } from '../cart/cart.component';
 import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { DialogLocationComponent } from '../location/location.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-catalogue',
@@ -13,7 +16,7 @@ export class CatalogueComponent implements OnInit {
 
   listaProductos: Producto [] = new Array();
   message: string;
-
+  ubicacion: Ubicacion;
   criterioBusqueda: CriterioBusquedaProducto;
 
   addToCart(prod: Producto) {
@@ -62,13 +65,33 @@ export class CatalogueComponent implements OnInit {
     this.data.changeProducto(producto);
   }
 
+  cargarUbicacion() {
+    const ubLS = localStorage.getItem('ubicacion');
+    if (ubLS == null || ubLS.length < 2 ) {
+      this.ubicacion = undefined;
+      return;
+    } else {
+      this.ubicacion = JSON.parse(ubLS);
+    }
+  }
+
+  registrarUbicacion() {
+    console.log('SE NECESITA DETERMINAR UNA UBICACION');
+    const dialogRef = this.dialog.open(DialogLocationComponent, {
+      width: '500px',
+      data: {   data: 'ubic___'}
+    });
+  }
+
   constructor(
     private data: DataSharingService,
-    private cart: CartComponent
+    private cart: CartComponent,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit() {
     this.cart.initCart();
+    this.cargarUbicacion();
     this.updateCatalogue();
   }
 

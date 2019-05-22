@@ -16,7 +16,17 @@ export class DataSharingService {
   private platoSource = new BehaviorSubject<number>(0);
   currentPlato = this.platoSource.asObservable();
 
-  private productoSource = new BehaviorSubject<Producto>(undefined);
+  private productoSource = new BehaviorSubject<Producto>(
+    {
+      codigoDeBarras: 'string',
+      idCategoria: 0,
+      nombreCategoria: 'string',
+      nombreProducto: 'string',
+      nombreMarca: 'string',
+      imagenProducto: 'string',
+      precio: 'string',
+    }
+  );
   currentProducto = this.productoSource.asObservable();
 
   private coordenadasSource = new BehaviorSubject<Coordenadas>

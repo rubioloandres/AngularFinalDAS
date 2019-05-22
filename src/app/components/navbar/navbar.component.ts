@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit, AfterViewInit {
 
   listaCadenas: Cadena [] = new Array();
   listaProvincias: Provincia [] = new Array();
-  listaCategorias: string [] = new Array();
+  listaCategorias: Categoria [] = new Array();
   listaIdiomas: Idioma [] = [
     {nombre: 'ES', imagen: './../../../assets/img/lang_esp_icon.png'},
     {nombre: 'EN', imagen: './../../../assets/img/lang_eng_icon.png'}
@@ -70,10 +70,11 @@ export class NavBarComponent implements OnInit, AfterViewInit {
   }
 
   loadProducts() {
-    const lprod = localStorage.getItem('productos');
-    if (lprod.length > 0) {
-      if (localStorage.getItem('productos') !== null) {
-        this.listaProductos = JSON.parse(localStorage.getItem('productos'));
+    const lp = localStorage.getItem('productos');
+    if (lp !== null) {
+      const lprod: Producto [] = JSON.parse(lp);
+      if ( lprod.length > 0 ) {
+        this.listaProductos = lprod;
       } else {
         this.listaProductos = [];
       }
@@ -81,12 +82,12 @@ export class NavBarComponent implements OnInit, AfterViewInit {
   }
 
   loadCategories() {
-    const lcat = localStorage.getItem('categorias');
-    if (lcat.length > 0) {
-      const lcat: Categoria [] = JSON.parse(localStorage.getItem('categorias'));
-      if (lcat !== null) {
+    const lc = localStorage.getItem('categorias');
+    if (lc !== null) {
+      const lcat: Categoria [] = JSON.parse(lc);
+      if (lcat.length > 0) {
         lcat.forEach(cat => {
-          this.listaCategorias.push(cat.nombreCategoria);
+          this.listaCategorias.push(cat);
         });
       } else {
         this.listaCategorias = [];
@@ -96,9 +97,9 @@ export class NavBarComponent implements OnInit, AfterViewInit {
 
   loadProvinces() {
     const lp = localStorage.getItem('provincias');
-    if (lp.length > 0) {
+    if (lp !== null) {
       const lprov: Provincia [] = JSON.parse(lp);
-      if (lprov !== null) {
+      if (lprov.length > 0) {
         this.listaProvincias = lprov;
       } else {
         this.listaProvincias = [];

@@ -20,31 +20,19 @@ import { MenuService } from 'src/app/services/indec/menu.service';
 })
 export class PricetableComponent implements OnInit, OnDestroy {
 
-  // Nombres de las columnas mostradas
   displayedColumns: string[] = new Array();
-
   precioTotalSucursal: TotalSucursal[] = new Array();
-
-  // Todas las sucursales.
   listaSucursales: SucursalTablaPrecio[] = new Array();
-
-  // Todas las sucursales ordenadas por
   listaSucursalesOrdenadas: SucursalTablaPrecio [] = new Array();
   listaSucursalesAnterior: SucursalTablaPrecio[] = new Array();
-
   listaProductos: Producto[] = new Array();
-
   listaCadenasDisponibles: Cadena [] = new Array();
-
   listaCadenasNoDisponibles: CadenaSucursal [] = new Array();
   error: string;
-
-  // Suscripciones
   suscripcionCodigos: Subscription;
   suscripcionProducto: Subscription;
   loading = true;
   ubicacion: Ubicacion;
-
   sucursalSeleccionada: SucursalTablaPrecio = undefined;
   indiceSucSel: number;
 
@@ -165,7 +153,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
   compararPorProducto() {
     this.suscripcionProducto = this.data.currentProducto.subscribe(
       producto => {
-        if (producto !== undefined) {
+        if (producto.codigoDeBarras !== 'string' ) {
           console.log(producto);
           this.listaProductos = new Array();
           this.listaProductos.push(producto);
@@ -202,7 +190,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
       return false;
       } else {
         return true;
-      }
+    }
   }
 
   calcularCantidadColumnas() {
@@ -242,7 +230,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.suscripcionCodigos.unsubscribe();
-    this.suscripcionProducto.unsubscribe();
+    if (this.suscripcionCodigos !== undefined) {  this.suscripcionCodigos.unsubscribe(); }
+    if (this.suscripcionProducto !== undefined) { this.suscripcionProducto.unsubscribe(); }
   }
 }

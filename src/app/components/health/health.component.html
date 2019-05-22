@@ -13,18 +13,20 @@
 <div class="diasSemana">
   <mat-grid-list cols="7">
     <mat-grid-tile *ngFor="let dia of diasDeSemana">
-      <time class="dia" [ngClass]="{'diaActual': dia.actual}">
-        <em>{{dia.nombre}}</em>
-        <span>{{dia.numero}}</span>
-        <strong>{{dia.mes}}</strong>
-      </time>
+      <button mat-button (click)="cargarMenuDiario(dia.nombre)">
+        <time class="dia" [ngClass]="{'diaActual': dia.actual}">
+          <em>{{dia.nombre}}</em>
+          <span>{{dia.numero}}</span>
+          <strong>{{dia.mes}}</strong>
+        </time>
+      </button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
 
 <div class="menuDiario" *ngIf="menuDiario">
-  <h2>Hoy es {{menuDiario.dia}}, dia de {{menuDiario.nombreMenu}}</h2>
-  <mat-grid-list cols="3">
+  <h2>{{menuDiario.dia}}, dia de {{menuDiario.nombreMenu}}</h2>
+  <mat-grid-list cols="3" [gutterSize]="'7px'">
     <mat-grid-tile>
       <mat-card *ngFor="let plato of menuDiario.platos">
         <mat-card-header>
