@@ -7,7 +7,7 @@
 
 <mat-grid-list cols="4" rowHeight="100px" [gutterSize]="'8px'">
   <mat-grid-tile *ngFor="let producto of listaProductos" [colspan]="1" [rowspan]="4">
-    <mat-card [ngClass]="{'agregado': prodIsInCart(producto.idComercial)}">
+    <mat-card [ngClass]="{'agregado': prodIsInCart(producto.codigoDeBarras)}">
       <mat-card-title>{{producto.nombreProducto}}</mat-card-title>
       <mat-card-subtitle>{{producto.nombreCategoria}}</mat-card-subtitle>
       <mat-divider></mat-divider>

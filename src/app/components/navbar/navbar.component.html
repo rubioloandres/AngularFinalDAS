@@ -23,17 +23,19 @@
   <span class="navbar-spacer"></span>
 
   <mat-toolbar>
-    <mat-form-field class="searchInput">
-      <input matInput placeholder="Buscar productos" aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput"  (keyup.enter)="searchProducts()"  [matAutocomplete]="autoBus" [formControl]="formBusProd">
-        <mat-autocomplete #autoBus="matAutocomplete">
-          <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombreProducto">
-            <img class="example-option-img" aria-hidden [src]="producto.imagenProducto" width="25" height="25">
-            <span>{{producto.nombreProducto}}</span> |
-            <small>{{producto.nombreCategoria}}</small>
-          </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
+    <form>
+      <mat-form-field class="searchInput">
+        <input matInput placeholder="Buscar productos" aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput"    [matAutocomplete]="autoBus" [formControl]="formBusProd">
+          <mat-autocomplete #autoBus="matAutocomplete">
+            <mat-option *ngFor="let producto of filteredProds | async" [value]="producto.nombreProducto">
+              <img class="example-option-img" aria-hidden [src]="producto.imagenProducto" width="25" height="25">
+              <span>{{producto.nombreProducto}}</span> |
+              <small>{{producto.nombreCategoria}}</small>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']" (click)="searchProducts()"><img src="./../../../assets/img/search_icon.png"></button>
+    </form>
   </mat-toolbar>
 
   <div class="navbar-item">
@@ -60,7 +62,6 @@
   <span class="navbar-spacer"></span>
 
   <div class="navbar-item">
-   <!--  <button mat-button [matMenuTriggerFor]="ubicacion"> -->
     <button mat-button (click)="registrarUbicacion()">
       <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
     </button>
@@ -69,16 +70,7 @@
     <ul>
       <li *ngIf="ubicacion && (listaProvincias.length > 0)">Ubicacion: {{ubicacion.localidad}} ({{getProvincia(ubicacion.codigoEntidadFederal).nombreProvincia}})</li>
     </ul>
-  </div> <!--
-  <mat-toolbar>
-    <button mat-button [matMenuTriggerFor]="ubicacion">
-      <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
-    </button>
-  </mat-toolbar>
-<mat-toolbar>
-
-  </mat-toolbar>
--->
+  </div>
 
 </mat-toolbar-row>
 
@@ -89,29 +81,19 @@
   </button>
 </mat-menu>
 
-<!--
-<mat-menu #ubicacion="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="provincias">Provincias</button>
-  <button mat-menu-item (click)="getAutomaticLocation()">Ubicacion actomatica</button>
-</mat-menu> -->
-
 <mat-menu #provincias="matMenu">
   <button mat-menu-item *ngFor='let provincia of listaProvincias' > {{ provincia.nombreProvincia }} </button>
 </mat-menu>
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="productos">Productos</button>
-  <!-- <button mat-menu-item [matMenuTriggerFor]="supermercados">Supermercados</button> -->
-  <button mat-menu-item [routerLink]="['sucursales']">Supermercados</button>
+  <button mat-menu-item *ngIf="ubicacion" [routerLink]="['sucursales']">Supermercados</button>
+  <button mat-menu-item *ngIf="!ubicacion" (click)="registrarUbicacion()">Supermercados</button>
 </mat-menu>
 
 <mat-menu #productos="matMenu">
   <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newCriterio(categoria.nombreCategoria)" [routerLink]="['catalogue']"> {{ categoria.nombreCategoria }} </button>
 </mat-menu>
 
-<!--
-<mat-menu #supermercados="matMenu">
-  <button mat-menu-item *ngFor='let cadena of listaCadenas' [routerLink]="['catalogue']"> {{ cadena.nombre }} </button>
-</mat-menu>-->
 
 

@@ -3,6 +3,9 @@ import * as moment from 'moment';
 import { Dia } from 'src/app/interfaces/dia';
 import { Menu } from 'src/app/interfaces/menu';
 import { DataSharingService } from 'src/app/services/datasharing.service';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { MatDialog } from '@angular/material';
+import { DialogLocationComponent } from '../location/location.component';
 
 @Component({
   selector: 'app-health',
@@ -17,6 +20,7 @@ export class HealthComponent implements OnInit {
   menuDiario: Menu;
   panelIngOpenState = false;
   panelPrepOpenState = false;
+  ubicacion: Ubicacion;
   customOptions: any = {
     loop: true,
     mouseDrag: false,
@@ -98,11 +102,26 @@ export class HealthComponent implements OnInit {
     this.data.changePlato(idPlato);
   }
 
+  loadUbicacion() {
+    if (localStorage.getItem('ubicacion') !== null) {
+      this.ubicacion =  JSON.parse(localStorage.getItem('ubicacion'));
+    }
+  }
+
+  registrarUbicacion() {
+    const dialogRef = this.dialog.open(DialogLocationComponent, {
+      width: '500px'
+    });
+    this.loadUbicacion();
+  }
+
   constructor(
-    private data: DataSharingService
+    private data: DataSharingService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
+    this.loadUbicacion();
     this.cargarMenuSemanal();
     this.cargarSemana();
     this.actualizarDia();

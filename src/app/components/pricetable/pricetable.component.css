@@ -101,3 +101,14 @@ select {
   font-family: Oswald !important;
   font-size: 18px;
 }
+
+.sucursalesEmpty {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-family: Oswald !important;
+}

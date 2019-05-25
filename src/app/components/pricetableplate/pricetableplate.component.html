@@ -107,3 +107,7 @@
   <h4 *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
   <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
 </div>
+
+<div class="sucursalesEmpty" *ngIf="error">
+  <button mat-button [routerLink]="['/health']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/health-food-icon2.png">Volver a saludable</button>
+</div>

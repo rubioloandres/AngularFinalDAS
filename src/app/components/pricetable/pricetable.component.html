@@ -77,3 +77,6 @@
   <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
 </div>
 
+<div class="sucursalesEmpty" *ngIf="error">
+    <button mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
+</div>

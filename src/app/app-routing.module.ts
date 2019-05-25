@@ -7,13 +7,14 @@ import { PricetableComponent } from './components/pricetable/pricetable.componen
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { HealthComponent } from './components/health/health.component';
 import { PricetableplateComponent } from './components/pricetableplate/pricetableplate.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 // import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CategoriesComponent /*,
+    component: SearchbarComponent /*,
     resolve: {
       categorias : CategoriasResolverService,
       productos : ProductosResolverService

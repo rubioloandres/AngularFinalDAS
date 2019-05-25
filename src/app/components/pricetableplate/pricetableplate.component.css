@@ -115,3 +115,14 @@ li {
   font-size: 18px;
   text-align: start;
 }
+
+.sucursalesEmpty {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-family: Oswald !important;
+}

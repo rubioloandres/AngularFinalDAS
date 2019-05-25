@@ -65,3 +65,14 @@ h4, h5 {
   font-family: Oswald !important;
   text-align: center !important;
 }
+
+.cartEmpty {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-family: Oswald !important;
+}

@@ -23,7 +23,7 @@ import { DialogLocationComponent } from '../location/location.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavBarComponent implements OnInit, AfterViewInit {
+export class NavBarComponent implements OnInit {
 
   listaCadenas: Cadena [] = new Array();
   listaProvincias: Provincia [] = new Array();
@@ -181,10 +181,6 @@ export class NavBarComponent implements OnInit, AfterViewInit {
     this.loadProvinces();
     this.loadCategories();
     this.data.currentCriterio.subscribe(criterio => this.criterioBusqueda = criterio);
-  }
-
-  ngAfterViewInit() {
-    this.loadUbicacion();
   }
 
 }
