@@ -108,7 +108,8 @@ export class PricetableComponent implements OnInit, OnDestroy {
   }
 
   getProductoPriceBySucursal(sucursal: SucursalTablaPrecio, idProd: string) {
-    const precioProd = this.listaSucursales.find( s => s === sucursal).productos.find(p => p.codigoDeBarras === idProd).precio;
+    const precioProd = this.listaSucursales.find( s => s === sucursal)
+                           .productos.find(p => p.codigoDeBarras === idProd).precio;
     if (precioProd === 0) {
       return 'No Disponible';
     } else {
@@ -140,11 +141,14 @@ export class PricetableComponent implements OnInit, OnDestroy {
   }
 
   updateSucursales() {
+    this.compararPorProductos();
+    this.compararPorProducto();
+  }
+
+  compararPorProductos() {
     this.suscripcionCodigos = this.data.currentCodigos.subscribe(codigos => {
-      if (codigos === 'default codigos') {
-        this.compararPorProducto();
-      } else {
-        console.log(codigos);
+      console.log(codigos);
+      if ( codigos !== 'default codigos' ) {
         this.compararPrecios(codigos);
       }
     });
@@ -159,8 +163,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
           this.listaProductos.push(producto);
           this.compararPrecios(producto.codigoDeBarras);
         }
-      }
-    );
+      });
   }
 
   compararPrecios(codigos: any) {
@@ -230,7 +233,9 @@ export class PricetableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.suscripcionCodigos !== undefined) {  this.suscripcionCodigos.unsubscribe(); }
-    if (this.suscripcionProducto !== undefined) { this.suscripcionProducto.unsubscribe(); }
+    this.suscripcionCodigos.unsubscribe();
+    this.suscripcionProducto.unsubscribe();
+    /*if (this.suscripcionCodigos !== undefined) {  this.suscripcionCodigos.unsubscribe(); }
+    if (this.suscripcionProducto !== undefined) { this.suscripcionProducto.unsubscribe(); }*/
   }
 }

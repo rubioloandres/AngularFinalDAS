@@ -1,15 +1,12 @@
 
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { Producto, ProductoIngrediente } from './../../interfaces/producto';
+import { Component, OnInit, OnDestroy, AfterViewInit, Sanitizer } from '@angular/core';
+import { Producto, ProductoIngrediente, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal, SucursalInfo, SucursalTablaPrecio } from './../../interfaces/sucursal';
 import { Cadena, CadenaSucursal } from 'src/app/interfaces/cadena';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
 import { CadenasService } from 'src/app/services/indec/cadenas.service';
-import { ActivatedRoute } from '@angular/router';
-import { ResolvedRespuestaComparador } from 'src/app/models/resolved-comparador.model';
-import { resolve } from 'url';
 import { DialogInfoSucursalComponent } from './../info/info.component';
 import { Subscription } from 'rxjs';
 import { MenuService } from 'src/app/services/indec/menu.service';
@@ -23,7 +20,7 @@ import { Menu, Plato } from 'src/app/interfaces/menu';
 export class PricetableplateComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = new Array();
-  displayedColumns2: string[] = ['ingredienteColumnName', 'productoColumnName', 'precioColumnName'];
+  displayedColumns2: string[] = ['ingredienteColumnName', 'precioColumnName'];
   precioTotalSucursal: TotalSucursal[] = new Array();
   listaSucursales: SucursalTablaPrecio[] = new Array();
   listaSucursalesOrdenadas: SucursalTablaPrecio [] = new Array();
@@ -39,7 +36,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   indiceSucSel: number;
   listaPlatos: Plato [] = new Array();
   listaIngredientesPlato: ProductoIngrediente [] =  new Array();
-  panelDetallesOpenState = false;
+  panelDetallesOpenState = true;
   precioTotal = Number.MAX_VALUE;
 
   agregarDatosSucursal(suc: Sucursal): SucursalTablaPrecio {
@@ -252,6 +249,40 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
     if (suc.total === this.precioTotal) { return true; } else { return false; }
   }
 
+  cargarProductos() {
+    const prods = localStorage.getItem('productos');
+    if (prods !== null) {
+      const lprod = JSON.parse(prods);
+      if (lprod.length > 0) {
+        this.listaProductos = lprod;
+      }
+    }
+  }
+
+  agregarACarrito(suc: SucursalTablaPrecio) {
+    const productos: Producto[] = new Array();
+    this.listaSucursalesOrdenadas
+                    .find(s => s.idCadena === suc.idCadena && s.idSucursal === suc.idSucursal)
+                    .productos.map(p => p.codigoDeBarras)
+                    .forEach(cod =>
+                      productos.push(this.listaProductos.find(pls => pls.codigoDeBarras === cod)));
+    const prodCart = localStorage.getItem('carrito');
+    if (prodCart !== null) {
+      const lprod: Producto[] = JSON.parse(prodCart);
+      if (lprod.length > 0) {
+        lprod.forEach(prod => {
+          const pAux: Producto = productos.find(p => p.codigoDeBarras === prod.codigoDeBarras);
+          if (pAux === undefined) {
+            lprod.push(pAux);
+          }
+        });
+        localStorage.setItem('carrito', JSON.stringify(lprod));
+      } else {
+        localStorage.setItem('carrito', JSON.stringify(productos));
+      }
+    }
+  }
+
   constructor(
     private sCad: CadenasService,
     private sMen: MenuService,
@@ -261,6 +292,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.cargarUbicacion();
+    this.cargarProductos()
     this.loadCadenas();
     this.updateSucursales();
   }

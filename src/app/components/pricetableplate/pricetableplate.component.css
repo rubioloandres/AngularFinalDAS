@@ -30,14 +30,34 @@ th mat-card {
   justify-content: center;
 }
 
+.imagenPlato {
+  margin-left: auto;
+  margin-right: 2px;
+  width: 95px;
+  height: 90px;
+}
+
+.tablaIngredientes, .tablaIngredientes th {
+  font-size: 13px !important;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+th mat-card img {
+  width: 75px !important;
+  height: 45px !important;
+}
+
 td mat-card img,th mat-card img {
   width: 45px;
   height: 45px;
 }
 
-.remove-button{
-  width: 25px !important;
-  height: 25px !important;
+.cart-button{
+  width: 35px !important;
+  height: 35px !important;
 }
 
 .total {
@@ -47,6 +67,10 @@ td mat-card img,th mat-card img {
 table,mat-card-title, span{
   text-align: center !important;
   font-family: Oswald !important;
+}
+
+.precioNoDisp {
+  background-color: rgb(248, 109, 109);
 }
 
 .mejorOp{
@@ -73,11 +97,6 @@ h2 {
   font-weight: 700;
   line-height: 26.4px;
   text-align: center !important;
-}
-
-.cadena-logo {
-  width: 55px !important;
-  height: 55px !important;
 }
 
 .noProds {
@@ -110,10 +129,11 @@ select {
   color: red;
 }
 
-li {
+.items {
   font-family: Oswald !important;
   font-size: 18px;
   text-align: start;
+  font-weight: 200;
 }
 
 .sucursalesEmpty {

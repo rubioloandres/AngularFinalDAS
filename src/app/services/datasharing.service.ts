@@ -35,7 +35,7 @@ export class DataSharingService {
 
   private criterioSource = new BehaviorSubject<CriterioBusquedaProducto>
   // TODO: cambiar default
-  ({idComercial: 0, marca: 'fafafa', categoria: 'fafafa', nombre: 'fafafa'});
+  ({idComercial: 0, marca: '1111', categoria: '1111', nombre: '1111'});
   currentCriterio = this.criterioSource.asObservable();
 
   constructor() { }

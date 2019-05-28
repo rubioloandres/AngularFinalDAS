@@ -106,6 +106,17 @@ export class CartComponent implements OnInit {
       lcodigos.push(prod.codigoDeBarras);
     });
     this.data.changeCodigos(lcodigos.toString());
+
+    const productoSource: Producto =   {
+        codigoDeBarras: 'string',
+        idCategoria: 0,
+        nombreCategoria: 'string',
+        nombreProducto: 'string',
+        nombreMarca: 'string',
+        imagenProducto: 'string',
+        precio: 'string',
+    };
+    this.data.changeProducto(productoSource);
   }
 
   getAllProducts(): Producto [] {

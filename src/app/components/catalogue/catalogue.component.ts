@@ -62,6 +62,8 @@ export class CatalogueComponent implements OnInit {
   }
 
   consultarPrecio(producto: Producto) {
+    console.log(producto.codigoDeBarras);
+    this.data.changeCodigos('default codigos');
     this.data.changeProducto(producto);
   }
 

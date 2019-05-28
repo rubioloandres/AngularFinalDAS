@@ -1,8 +1,12 @@
 <h2>Precios de Productos</h2>
 
 <div class="pricetable-container">
-  <div *ngIf="loading">
-    <mat-spinner></mat-spinner>
+  <div *ngIf="loading" style="overflow:hidden">
+    <mat-progress-spinner
+      class="example-margin"
+      [color]="'primary'"
+      [mode]="'indeterminate'">
+    </mat-progress-spinner>
   </div>
 
   <table mat-table [dataSource]="listaProductos" *ngIf="! sucursalesEmpty()" class="mat-elevation-z8">
