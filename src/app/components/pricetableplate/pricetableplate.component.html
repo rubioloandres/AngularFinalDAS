@@ -47,12 +47,12 @@
 
           <td *matCellDef="let plato">
             <div class="items">
-              <div *ngIf="mayorCantidadProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/ok_icon.png">{{sucursal.productos.length}} ingredientes disponibles</div>
-              <div *ngIf="!mayorCantidadProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/no_icon.png">{{sucursal.productos.length}} ingredientes disponibles</div>
-              <div *ngIf="todosProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/ok_icon.png">Todos los ingredientes disponibles</div>
-              <div *ngIf="!todosProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/no_icon.png">Todos los ingredientes disponibles</div>
-              <div *ngIf="menorPrecioTotal(sucursal)"><img width="25" height="25" src="./../../../assets/img/ok_icon.png">Menor precio total</div>
-              <div *ngIf="!menorPrecioTotal(sucursal)"><img width="25" height="25" src="./../../../assets/img/no_icon.png">Menor precio total</div>
+              <div *ngIf="mayorCantidadProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/ok_icon.png"> {{sucursal.productos.length}} ingredientes disponibles</div>
+              <div *ngIf="!mayorCantidadProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/no_icon.png"> {{sucursal.productos.length}} ingredientes disponibles</div>
+              <div *ngIf="todosProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/ok_icon.png"> Todos los ingredientes disponibles</div>
+              <div *ngIf="!todosProductosDisponibles(sucursal)"><img width="25" height="25" src="./../../../assets/img/no_icon.png"> Todos los ingredientes disponibles</div>
+              <div *ngIf="menorPrecioTotal(sucursal)"><img width="25" height="25" src="./../../../assets/img/ok_icon.png"> Menor precio total</div>
+              <div *ngIf="!menorPrecioTotal(sucursal)"><img width="25" height="25" src="./../../../assets/img/no_icon.png"> Menor precio total</div>
             </div>
             <mat-expansion-panel [expanded]="true">
               <mat-expansion-panel-header

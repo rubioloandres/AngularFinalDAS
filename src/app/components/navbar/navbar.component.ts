@@ -13,7 +13,7 @@ import { Cadena } from 'src/app/interfaces/cadena';
 import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
 import { MatDialog } from '@angular/material';
 import { DialogLocationComponent } from '../location/location.component';
-
+import { ChangeDetectorRef } from '@angular/core';
 /**
  * @title NavBarMenu
  */
@@ -35,13 +35,34 @@ export class NavBarComponent implements OnInit {
   idiomaActual: Idioma;
   searchInput = '';
   criterioBusqueda: CriterioBusquedaProducto;
-
   listaubicaciones: Coordenadas [] = new Array();
   ubicacion: Ubicacion;
-
   listaProductos: Producto [] = new Array();
   formBusProd = new FormControl( this.searchInput );
   filteredProds: Observable<Producto[]>;
+
+  secciones = [{
+    nombre: 'Principal',
+    imagen: './../../../assets/img/home_icon.png',
+    ruta: '/'
+  },
+  /*{
+    nombre: 'Menu',
+    imagen: './../../../assets/img/menu_icon.png',
+    ruta: '',
+    rutaActiva: false
+  },*/
+  {
+    nombre: 'Saludable',
+    imagen: './../../../assets/img/health-food-icon2.png',
+    ruta: 'health'
+  },
+  {
+    nombre: 'Carrito',
+    imagen: './../../../assets/img/cart_icon.png',
+    ruta: 'cart'
+  }];
+  seccionActiva = this.secciones[0].nombre;
 
   private _filterProds(value: string): Producto[] {
     if (value.length > 1) {
@@ -168,7 +189,8 @@ export class NavBarComponent implements OnInit {
   constructor(
     private data: DataSharingService,
     private loc: GeoLocationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdRef:ChangeDetectorRef
    ) {
     this.loadProducts();
     this.filtrarProductos();
@@ -181,6 +203,11 @@ export class NavBarComponent implements OnInit {
     this.loadProvinces();
     this.loadCategories();
     this.data.currentCriterio.subscribe(criterio => this.criterioBusqueda = criterio);
+  }
+
+  ngAfterViewChecked() {
+    this.filtrarProductos();
+    this.cdRef.detectChanges();
   }
 
 }

@@ -1,3 +1,7 @@
+.space {
+  margin-top: 7%;
+}
+
 app-searchfilter {
   position: absolute;
   right: 0 !important;
