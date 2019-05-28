@@ -49,10 +49,10 @@
 
 </mat-toolbar-row> -->
 <nav mat-tab-nav-bar class="navbar-custom">
-  <mat-tab-group> 
+  <mat-tab-group [selectedIndex]="selected.value"
+               (selectedIndexChange)="selected.setValue($event)"> 
     <div *ngFor="let seccion of secciones">
-      <mat-tab mat-tab-link (click)="seccionActiva.nombre = seccion.nombre"
-        [active]="seccionActiva.nombre == seccion.nombre" >
+      <mat-tab mat-tab-link>
         <ng-template mat-tab-label>
           <img width="30" height="30" src="{{seccion.imagen}}">
           <a mat-tab-link class="itemLabel" [routerLink]="[seccion.ruta]">{{seccion.nombre}}</a>
@@ -61,7 +61,7 @@
     </div>
     <div>
       <mat-tab mat-tab-link>
-        <ng-template mat-tab-label >
+        <ng-template mat-tab-label>
           <img width="30" height="30" src="./../../../assets/img/menu_icon.png">
           <a mat-tab-link class="itemLabel">Menu</a>
         </ng-template>
@@ -76,13 +76,14 @@
           <mat-tab mat-tab-link>
             <ng-template mat-tab-label>
               <img width="30" height="30" src="./../../../assets/img/product_icon.png">
-              <a mat-tab-link class="itemLabel">Productos</a>
+              <a mat-tab-link (click)="newCriterio('Todas')" [routerLink]="['catalogue']" class="itemLabel">Productos</a>
             </ng-template>
-            <ul class="grid">
-              <li class="item-grid" *ngFor="let categoria of listaCategorias">
-                <button mat-button>{{categoria.nombreCategoria}}</button>
-              </li>
-            </ul>
+          </mat-tab>
+          <mat-tab mat-tab-link>
+            <ng-template mat-tab-label>
+              <img width="30" height="30" src="./../../../assets/img/location_icon.png">
+              <a mat-tab-link (click)="registrarUbicacion()" class="itemLabel">Ubicacion</a>
+            </ng-template>
           </mat-tab>
         </mat-tab-group>
       </mat-tab>
@@ -121,23 +122,14 @@
   <mat-toolbar>
     <img src="../../../assets/img/Indec_logo.png" width="150" height="50">
   </mat-toolbar>
-  <mat-toolbar></mat-toolbar>
   <mat-toolbar>
     <img src="./../../../assets/img/WEB_ICON2.png" width="50" height="50">
     <h3>Comparador de Precios</h3>
   </mat-toolbar>
-  <mat-toolbar></mat-toolbar>
   <span class="navbar-spacer"></span>
 
   <div class="navbar-item">
-    <button mat-button (click)="registrarUbicacion()">
-      <img src="./../../../assets/img/location_icon.png"><span>Ubicacion</span>
-    </button>
-  </div>
-  <div class="navbar-item">
-    <ul>
-      <li *ngIf="ubicacion && (listaProvincias.length > 0)">Ubicacion: {{ubicacion.localidad}} ({{getProvincia(ubicacion.codigoEntidadFederal).nombreProvincia}})</li>
-    </ul>
+    <li *ngIf="ubicacionActual">Ubicacion: {{ubicacionActual.localidad}}, {{ubicacionActual.provincia}} </li>
   </div>
 
 </mat-toolbar-row>

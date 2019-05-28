@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/categoria';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { GeoLocationService } from 'src/app/services/geoLocation.service';
@@ -7,7 +7,7 @@ import { Producto } from 'src/app/interfaces/producto';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Coordenadas, Ubicacion } from 'src/app/interfaces/ubicacion';
+import { Coordenadas, Ubicacion, UbicacionNombres } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
 import { Cadena } from 'src/app/interfaces/cadena';
 import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
@@ -23,7 +23,7 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, AfterViewChecked {
 
   listaCadenas: Cadena [] = new Array();
   listaProvincias: Provincia [] = new Array();
@@ -37,32 +37,31 @@ export class NavBarComponent implements OnInit {
   criterioBusqueda: CriterioBusquedaProducto;
   listaubicaciones: Coordenadas [] = new Array();
   ubicacion: Ubicacion;
+  ubicacionActual: UbicacionNombres;
   listaProductos: Producto [] = new Array();
   formBusProd = new FormControl( this.searchInput );
   filteredProds: Observable<Producto[]>;
 
-  secciones = [{
-    nombre: 'Principal',
-    imagen: './../../../assets/img/home_icon.png',
-    ruta: '/'
-  },
-  /*{
-    nombre: 'Menu',
-    imagen: './../../../assets/img/menu_icon.png',
-    ruta: '',
-    rutaActiva: false
-  },*/
-  {
-    nombre: 'Saludable',
-    imagen: './../../../assets/img/health-food-icon2.png',
-    ruta: 'health'
-  },
-  {
-    nombre: 'Carrito',
-    imagen: './../../../assets/img/cart_icon.png',
-    ruta: 'cart'
-  }];
-  seccionActiva = this.secciones[0].nombre;
+  secciones = [
+    {
+      nombre: 'Principal',
+      imagen: './../../../assets/img/home_icon.png',
+      ruta: '/'
+    },
+    {
+      nombre: 'Saludable',
+      imagen: './../../../assets/img/health-food-icon2.png',
+      ruta: 'health'
+    },
+    {
+      nombre: 'Carrito',
+      imagen: './../../../assets/img/cart_icon.png',
+      ruta: 'cart'
+    }
+  ];
+
+  selected = new FormControl(0);
+  seccionActiva = 0;
 
   private _filterProds(value: string): Producto[] {
     if (value.length > 1) {
@@ -128,16 +127,6 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  newCriterio(cat: string) {
-    const crit: CriterioBusquedaProducto = {
-      idComercial: undefined,
-      marca: undefined,
-      categoria: cat,
-      nombre: undefined
-    };
-    this.data.changeCriterioBusquedaProducto(crit);
-  }
-
   getProvincia( codEntFed: string ) {
     return this.listaProvincias.find(prov => prov.codigoEntidadFederal === codEntFed);
   }
@@ -157,17 +146,21 @@ export class NavBarComponent implements OnInit {
     this.searchInput = '';
   }
 
+
   loadUbicacion() {
     if (localStorage.getItem('ubicacion') !== null) {
       this.ubicacion =  JSON.parse(localStorage.getItem('ubicacion'));
     }
+    this.ubicacionActual = {
+      localidad: this.ubicacion.localidad,
+      provincia: this.listaProvincias.find(p => p.codigoEntidadFederal === this.ubicacion.codigoEntidadFederal).nombreProvincia
+    };
   }
 
   registrarUbicacion() {
     const dialogRef = this.dialog.open(DialogLocationComponent, {
       width: '500px'
     });
-    this.loadUbicacion();
   }
 
   loadIdioma() {
@@ -176,6 +169,16 @@ export class NavBarComponent implements OnInit {
         this.idiomaActual = idioma;
       }
     });
+  }
+
+  newCriterio(cat: string) {
+    const crit: CriterioBusquedaProducto = {
+      idComercial: undefined,
+      marca: undefined,
+      categoria: cat,
+      nombre: undefined
+    };
+    this.data.changeCriterioBusquedaProducto(crit);
   }
 
   setIdiomaActual(nombreIdioma: string) {
@@ -190,19 +193,24 @@ export class NavBarComponent implements OnInit {
     private data: DataSharingService,
     private loc: GeoLocationService,
     public dialog: MatDialog,
-    private cdRef:ChangeDetectorRef
+    private cdRef: ChangeDetectorRef
    ) {
     this.loadProducts();
     this.filtrarProductos();
+    this.loadProvinces();
+    this.loadUbicacion();
    }
 
   ngOnInit() {
     this.loadCadenas();
     this.loadIdioma();
-    this.loadUbicacion();
-    this.loadProvinces();
     this.loadCategories();
     this.data.currentCriterio.subscribe(criterio => this.criterioBusqueda = criterio);
+    this.data.currentUbicacion.subscribe(ub => {
+      if (ub.localidad !== 'default') {
+        this.ubicacionActual = ub;
+      }
+    });
   }
 
   ngAfterViewChecked() {

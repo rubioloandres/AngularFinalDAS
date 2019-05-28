@@ -81,10 +81,10 @@ li a:hover {
   color: white;
 }
 
-ul {
+li {
   font-family: Oswald !important;
   color: rgb(50, 50, 156);
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .navbar-custom-top h3 {
@@ -121,7 +121,7 @@ nav a {
 }
 
 .navbar-custom{
- /* max-height: 45px !important;*/
+  max-height: 100px !important;
   background-color: rgba(50, 50, 156, 0.85) !important;
   overflow: hidden;
   position: fixed; 

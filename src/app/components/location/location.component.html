@@ -36,6 +36,6 @@
   </mat-card>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data" title="Volver"><img src="./../../../assets/img/return_icon.png"> </button>
-  <button mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)" title="Guardar Ubicacion"><img src="./../../../assets/img/location_icon.png"></button>
+  <button mat-button title="Volver"><img src="./../../../assets/img/return_icon.png"> </button>
+  <button mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)" [mat-dialog-close]="data" title="Guardar Ubicacion"><img src="./../../../assets/img/location_icon.png"></button>
 </div>

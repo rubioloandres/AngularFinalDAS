@@ -37,9 +37,13 @@ export class CatalogueComponent implements OnInit {
 
       // busca solo categoria
       if (criterio.categoria !== undefined && criterio.marca === undefined && criterio.nombre === undefined) {
-        this.listaProductos = prods.filter(p =>
-          p.nombreCategoria.toLowerCase() === criterio.categoria.toLowerCase()
-        );
+        if (criterio.categoria === 'Todas') {
+          this.listaProductos = prods;
+        } else {
+            this.listaProductos = prods.filter(p =>
+            p.nombreCategoria.toLowerCase() === criterio.categoria.toLowerCase()
+          );
+        }
       }
       // busca marca y categoria
       if (criterio.categoria !== undefined && criterio.marca !== undefined && criterio.nombre === undefined) {

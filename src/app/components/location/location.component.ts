@@ -5,8 +5,9 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Localidad } from 'src/app/interfaces/localidad';
 import { startWith, map } from 'rxjs/operators';
-import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { Ubicacion, UbicacionNombres } from 'src/app/interfaces/ubicacion';
 import { GeoLocationService } from 'src/app/services/geoLocation.service';
+import { DataSharingService } from 'src/app/services/datasharing.service';
 
 @Component({
   selector: 'app-dialog-location',
@@ -82,7 +83,11 @@ export class DialogLocationComponent implements OnInit {
   saveUbicacion(localidad: Localidad, provincia: Provincia) { // TODO: cambiar nombre a  "guardarUbicacion"
     const ubicacion: Ubicacion = {codigoEntidadFederal: provincia.codigoEntidadFederal
                                 , localidad: localidad.nombreLocalidad};
+    const ub: UbicacionNombres = {
+      localidad: ubicacion.localidad,
+      provincia: this.listaProvincias.find(p => p.codigoEntidadFederal === provincia.codigoEntidadFederal).nombreProvincia  };
     localStorage.setItem('ubicacion', JSON.stringify(ubicacion));
+    this.dataS.changeUbicacion(ub);
   }
 
   hayUbicacion() {
@@ -95,6 +100,7 @@ export class DialogLocationComponent implements OnInit {
 
   constructor(
     private loc: GeoLocationService,
+    private dataS: DataSharingService,
     public dialogRef: MatDialogRef<DialogLocationComponent>,
     // @Inject(MAT_DIALOG_DATA) public data: SucursalInfo) { }
     @Inject(MAT_DIALOG_DATA) public data: string) {}

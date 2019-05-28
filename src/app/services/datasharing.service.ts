@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CriterioBusquedaProducto } from '../interfaces/criterios';
-import { Coordenadas } from '../interfaces/ubicacion';
+import { Coordenadas, UbicacionNombres } from '../interfaces/ubicacion';
 import { Producto } from '../interfaces/producto';
 
 @Injectable()
@@ -16,7 +16,15 @@ export class DataSharingService {
   private platoSource = new BehaviorSubject<number>(0);
   currentPlato = this.platoSource.asObservable();
 
-  private productoSource = new BehaviorSubject<Producto>(
+  private ubicacionSource = new BehaviorSubject<UbicacionNombres>(
+    {
+      localidad: 'default',
+      provincia: 'default'
+    }
+  );
+  currentUbicacion = this.ubicacionSource.asObservable();
+
+  private productoSource = new BehaviorSubject<Producto> (
     {
       codigoDeBarras: 'string',
       idCategoria: 0,
@@ -34,8 +42,14 @@ export class DataSharingService {
   currentCoordenadas = this.coordenadasSource.asObservable();
 
   private criterioSource = new BehaviorSubject<CriterioBusquedaProducto>
-  // TODO: cambiar default
-  ({idComercial: 0, marca: '1111', categoria: '1111', nombre: '1111'});
+  (
+    {
+      idComercial: 0,
+      marca: '1111',
+      categoria: '1111',
+      nombre: '1111'
+    }
+  );
   currentCriterio = this.criterioSource.asObservable();
 
   constructor() { }
@@ -58,6 +72,10 @@ export class DataSharingService {
 
   changeProducto(producto: Producto) {
     this.productoSource.next(producto);
+  }
+
+  changeUbicacion(ubicacion: UbicacionNombres) {
+    this.ubicacionSource.next(ubicacion);
   }
 
 }
