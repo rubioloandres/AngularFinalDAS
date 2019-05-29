@@ -1,64 +1,45 @@
-<form>
-  <h4>Categorias</h4>
-
-  <mat-form-field>
-    <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat" #categoria>
-    <mat-autocomplete #autoCat="matAutocomplete" [displayWith]="displayFnC">
-      <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newCriterio(categoria.nombreCategoria, undefined)">
-        {{categoria.nombreCategoria}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-  <mat-divider></mat-divider>
-
-  <h4>Marcas</h4>
-
-  <mat-form-field>
-    <mat-select #marca>
-      <mat-option *ngFor="let marca of listaMarcas" [value]="marca" (click)="newCriterio(categoria.value, marca)">
-        {{marca}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-divider></mat-divider>
-<!--
-  <h4>Ubicacion</h4>
-
-  <mat-slide-toggle
-    [checked]="stateCtrl.disabled"
-    (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
-    Disable Input?
-  </mat-slide-toggle>
-
-
-  <mat-slide-toggle
-      class="example-margin" #ubicAuto>
-    Ubicacion automatica
-  </mat-slide-toggle>
-
-  <mat-form-field>
-    <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="autoProv">
-    <mat-autocomplete #autoProv="matAutocomplete" [displayWith]="displayFnP">
-      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia"
-        (click)="getLocalidadesByProvincia(provincia.codigoEntidadFederal)">
-        {{provincia.nombreProvincia}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input type="text" placeholder="Localidad" aria-label="Localidad" matInput [formControl]="formLocalidad" [matAutocomplete]="autoLoc" [attr.disabled]="ubicAuto.checked">
-    <mat-autocomplete #autoLoc="matAutocomplete" [displayWith]="displayFnL">
-      <mat-option *ngFor="let localidad of filteredLocalidades | async" [value]="localidad">
-        {{localidad.nombreLocalidad}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-
-  <button mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)">Guardar Ubicacion</button>
--->
-</form>
-
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="sidenav" #sidenav [mode]="mode.value">
+    <div>
+      <p>
+        <button mat-button (click)="sidenav.toggle()">
+          <img src="./../../../assets/img/left_icon.png">
+          <img src="./../../../assets/img/filter_icon.png">
+        </button>
+      </p>
+      <p>Ocultar filtros</p>
+    </div>
+    <div>
+      <mat-divider></mat-divider>
+      <form>
+        <h4>Categorias</h4>
+        <mat-form-field>
+          <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat" #categoria>
+          <mat-autocomplete #autoCat="matAutocomplete" [displayWith]="displayFnC">
+            <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newCriterio(categoria.nombreCategoria, undefined)">
+              {{categoria.nombreCategoria}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <h4>Marcas</h4>
+        <mat-form-field>
+          <mat-select #marca>
+            <mat-option *ngFor="let marca of listaMarcas" [value]="marca" (click)="newCriterio(categoria.value, marca)">
+              {{marca}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-sidenav>
+  <div class="mostrarOcultarFiltro">
+    <p>
+      <button mat-button (click)="sidenav.toggle()">
+        <img src="./../../../assets/img/right_icon.png">
+        <img src="./../../../assets/img/filter_icon.png">
+      </button>
+    </p>
+    <p>Mostrar filtros</p>
+  </div>
+</mat-sidenav-container>

@@ -17,6 +17,8 @@ import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
 })
 export class SearchfilterComponent implements OnInit {
 
+  mode = new FormControl('side');
+
   message: string;
   criterioBusqueda: CriterioBusquedaProducto;
   listaMarcas: string [] = new Array ();

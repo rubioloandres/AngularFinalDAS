@@ -58,6 +58,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MenuService } from './services/indec/menu.service';
 import { PricetableplateComponent } from './components/pricetableplate/pricetableplate.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { PricetableplateComponent } from './components/pricetableplate/pricetabl
     MatAutocompleteModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSidenavModule,
+    MatRadioModule
   ],
   providers: [
     CategoriasService,

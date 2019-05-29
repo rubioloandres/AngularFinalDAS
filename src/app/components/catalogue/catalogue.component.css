@@ -2,11 +2,12 @@
   margin-top: 6%;
 }
 
+
 app-searchfilter {
-  position: absolute;
+  /*position: absolute;
   right: 0 !important;
   top: 35% !important;
-  width: 18% !important;
+  width: 18% !important;*/
   border: 2px lightblue solid;
 }
 
