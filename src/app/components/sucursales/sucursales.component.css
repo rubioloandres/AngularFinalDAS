@@ -1,3 +1,22 @@
+.space {
+  margin-top: 6%;
+}
+
+mat-card-content {
+  background-color: rgba(50, 50, 156,0.1);
+}
+
+mat-card-content ul li {
+  display: inline-block;
+}
+
+mat-card-content ul li img {
+  width: 25px;
+  height: 25px;
+  margin-left: 0 !important;
+  display: inline-block;
+}
+
 app-searchfilter {
   position: absolute;
   right: 0 !important;
@@ -24,9 +43,10 @@ mat-button-toggle-group span{
 }
 
 mat-card{
-  border: 2px lightblue solid;
-  width: calc(100% - 70px);
-  height: calc(100% - 70px);
+  width: auto;
+  height: auto;
+  /*width: calc(100% - 70px);
+  height: calc(100% - 70px);*/
   color: rgb(0, 102, 204);
 }
 
@@ -45,7 +65,9 @@ mat-card img {
 }
 
 mat-grid-tile {
+  margin-top: 2%;
   max-height: 420px !important;
+  border: 2px lightblue solid;
 }
 
 mat-card-actions {
@@ -70,6 +92,7 @@ mat-card-actions img {
 }
 
 mat-card-title{
+  margin-top: 2% !important;
   width: 100% !important;
   height: 10%;
   margin-left: 0% !important;

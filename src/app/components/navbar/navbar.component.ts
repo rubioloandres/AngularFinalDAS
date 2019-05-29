@@ -46,17 +46,20 @@ export class NavBarComponent implements OnInit, AfterViewChecked {
     {
       nombre: 'Principal',
       imagen: './../../../assets/img/home_icon.png',
-      ruta: '/'
+      ruta: '/',
+      descripcion: 'Buscador y categorias'
     },
     {
       nombre: 'Saludable',
       imagen: './../../../assets/img/health-food-icon2.png',
-      ruta: 'health'
+      ruta: 'health',
+      descripcion: 'Menu sugerido para cada dia de la semana'
     },
     {
       nombre: 'Carrito',
       imagen: './../../../assets/img/cart_icon.png',
-      ruta: 'cart'
+      ruta: 'cart',
+      descripcion: 'Productos agregados a carrito'
     }
   ];
 

@@ -87,6 +87,11 @@ li {
   font-size: 18px;
 }
 
+.descSeccion {
+  font-size: 24px;
+  margin-left: 2%;
+}
+
 .navbar-custom-top h3 {
   font-family: Oswald !important;
   color: rgb(50, 50, 156);
@@ -124,10 +129,10 @@ nav a {
   max-height: 100px !important;
   background-color: rgba(50, 50, 156, 0.85) !important;
   overflow: hidden;
-  position: fixed; 
-  top: 0; 
+  position: fixed;
+  top: 0;
   width: 100%;
-  z-index: 120; 
+  z-index: 120;
 }
 
 span {

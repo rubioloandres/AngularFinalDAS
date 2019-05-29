@@ -8,7 +8,7 @@
     <form>
 
       <mat-form-field>
-        <input type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="autoProv">
+        <input required type="text" placeholder="Provincia" aria-label="Provincia" matInput [formControl]="formProvincia" [matAutocomplete]="autoProv">
         <mat-autocomplete #autoProv="matAutocomplete" [displayWith]="displayFnP">
           <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia"
             (click)="getLocalidadesByProvincia(provincia.codigoEntidadFederal)">
@@ -18,24 +18,20 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input type="text" placeholder="Localidad" aria-label="Localidad" matInput [formControl]="formLocalidad" [matAutocomplete]="autoLoc" [attr.disabled]="ubicAuto.checked">
+        <input required type="text" placeholder="Localidad" aria-label="Localidad" matInput [formControl]="formLocalidad" [matAutocomplete]="autoLoc">
         <mat-autocomplete #autoLoc="matAutocomplete" [displayWith]="displayFnL">
           <mat-option *ngFor="let localidad of filteredLocalidades | async" [value]="localidad">
             {{localidad.nombreLocalidad}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-
-      <mat-slide-toggle
-          class="example-margin" #ubicAuto
-          (toggleChange)="getAutomaticLocation()">
-        Ubicacion automatica
-      </mat-slide-toggle>
     </form>
 
   </mat-card>
 </div>
 <div mat-dialog-actions>
-  <button mat-button title="Volver"><img src="./../../../assets/img/return_icon.png"> </button>
-  <button mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)" [mat-dialog-close]="data" title="Guardar Ubicacion"><img src="./../../../assets/img/location_icon.png"></button>
+  <button *ngIf="!listoParaRegistrar()" disabled mat-button title="Faltan campos"><img src="./../../../assets/img/save_location.png"></button>
+  <button *ngIf="listoParaRegistrar()"  mat-button (click)="saveUbicacion(formLocalidad.value,formProvincia.value)" [mat-dialog-close]="data" title="Guardar Ubicacion"><img src="./../../../assets/img/save_location.png"></button>
+  <button *ngIf="!listoParaRegistrar()" mat-button disabled title="Faltan campos"><img src="./../../../assets/img/save_error.png"></button>
+  <button *ngIf="listoParaRegistrar()" mat-button disabled title="Datos validos"><img src="./../../../assets/img/save_valid.png"></button>
 </div>

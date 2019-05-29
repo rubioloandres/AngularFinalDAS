@@ -50,13 +50,14 @@
 </mat-toolbar-row> -->
 <nav mat-tab-nav-bar class="navbar-custom">
   <mat-tab-group [selectedIndex]="selected.value"
-               (selectedIndexChange)="selected.setValue($event)"> 
+               (selectedIndexChange)="selected.setValue($event)">
     <div *ngFor="let seccion of secciones">
       <mat-tab mat-tab-link>
         <ng-template mat-tab-label>
           <img width="30" height="30" src="{{seccion.imagen}}">
           <a mat-tab-link class="itemLabel" [routerLink]="[seccion.ruta]">{{seccion.nombre}}</a>
         </ng-template>
+        <span class="descSeccion">{{seccion.descripcion}}</span>
       </mat-tab>
     </div>
     <div>
@@ -145,7 +146,7 @@
 <mat-menu #provincias="matMenu">
   <button mat-menu-item *ngFor='let provincia of listaProvincias' > {{ provincia.nombreProvincia }} </button>
 </mat-menu>
-<!-- 
+<!--
 <mat-menu #menu="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="productos">Productos</button>
   <button mat-menu-item *ngIf="ubicacion" [routerLink]="['sucursales']">Supermercados</button>

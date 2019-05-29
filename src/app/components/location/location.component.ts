@@ -98,11 +98,18 @@ export class DialogLocationComponent implements OnInit {
     return false;
   }
 
+  listoParaRegistrar() {
+    if (this.formLocalidad.value !== null  && this.formProvincia.value !== null  ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   constructor(
     private loc: GeoLocationService,
     private dataS: DataSharingService,
     public dialogRef: MatDialogRef<DialogLocationComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: SucursalInfo) { }
     @Inject(MAT_DIALOG_DATA) public data: string) {}
 
   ngOnInit(): void {
