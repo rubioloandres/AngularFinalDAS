@@ -1,45 +1,42 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="searchfiltercontainer">
   <mat-sidenav class="sidenav" #sidenav [mode]="mode.value">
     <div>
       <p>
         <button mat-button (click)="sidenav.toggle()">
-          <img src="./../../../assets/img/left_icon.png">
-          <img src="./../../../assets/img/filter_icon.png">
+          Ocultar Filtros de Busqueda
         </button>
       </p>
-      <p>Ocultar filtros</p>
     </div>
     <div>
       <mat-divider></mat-divider>
       <form>
-        <h4>Categorias</h4>
-        <mat-form-field>
-          <input type="text" placeholder="Seleccione una categoria" aria-label="Categoria" matInput [formControl]="formCategoria" [matAutocomplete]="autoCat" #categoria>
-          <mat-autocomplete #autoCat="matAutocomplete" [displayWith]="displayFnC">
-            <mat-option *ngFor="let categoria of filteredCategorias | async" [value]="categoria" (click)="newCriterio(categoria.nombreCategoria, undefined)">
-              {{categoria.nombreCategoria}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        <mat-divider></mat-divider>
-        <h4>Marcas</h4>
-        <mat-form-field>
-          <mat-select #marca>
-            <mat-option *ngFor="let marca of listaMarcas" [value]="marca" (click)="newCriterio(categoria.value, marca)">
-              {{marca}}
-            </mat-option>
+        <mat-form-field #selectcategoriacontainer>
+          <mat-label>Categorias</mat-label>
+          <mat-select [formControl]="formFilterCategorias"  #selectcategoria>
+            <mat-option selected (click) = "buscarPorCategoria()">Todas las categorias</mat-option>
+            <mat-option (click)="buscarPorCategoria()" *ngFor="let categoria of listaCategorias" [value]="categoria"> 
+              {{categoria.nombreCategoria}}</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field>
+          <mat-label>Marcas</mat-label>
+          <mat-select [formControl]="formFilterMarcas" multiple #marca>
+            <mat-option selected>Todas las marcas</mat-option>
+            <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button (click)="buscar()"> Buscar</button>
+        </div>
       </form>
     </div>
   </mat-sidenav>
   <div class="mostrarOcultarFiltro">
     <p>
       <button mat-button (click)="sidenav.toggle()">
-        <img src="./../../../assets/img/right_icon.png">
-        <img src="./../../../assets/img/filter_icon.png">
+       Filtros de Busqueda
       </button>
     </p>
-    <p>Mostrar filtros</p>
   </div>
 </mat-sidenav-container>

@@ -3911,7 +3911,6 @@ var Map = Evented.extend({
 		return new Bounds(topLeftPoint, topLeftPoint.add(this.getSize()));
 	},
 
-	// TODO: Check semantics - isn't the pixel origin the 0,0 coord relative to
 	// the map pane? "left point of the map layer" can be confusing, specially
 	// since there can be negative offsets.
 	// @method getPixelOrigin(): Point

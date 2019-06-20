@@ -14,7 +14,7 @@ export class CadenasService {
       private errManager: ErrorManager
       ) { }
 
-    public getCadenasINDEC(): Observable<Cadena[]> {
+    public getCadenas(): Observable<Cadena[]> {
       return this.http.get<Cadena[]>(environment.webAPI + 'cadenas?')
                       .pipe(catchError(err => {
                         console.log('Error al obtener cadenas', err);

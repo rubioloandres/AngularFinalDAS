@@ -29,8 +29,8 @@ export class PricetableComponent implements OnInit, OnDestroy {
   listaCadenasDisponibles: Cadena [] = new Array();
   listaCadenasNoDisponibles: CadenaSucursal [] = new Array();
   error: string;
-  suscripcionCodigos: Subscription;
-  suscripcionProducto: Subscription;
+  suscripcionProductos: Subscription;
+  suscripcionCadenasService:Subscription;
   loading = true;
   ubicacion: Ubicacion;
   sucursalSeleccionada: SucursalTablaPrecio = undefined;
@@ -103,7 +103,7 @@ export class PricetableComponent implements OnInit, OnDestroy {
     this.listaSucursalesOrdenadas = this.listaSucursalesOrdenadas.slice(0, 4);
   }
 
-  loadProductos() { // controlar que ocurre cuando esto es undefined o null
+  loadCarrito() { // controlar que ocurre cuando esto es undefined o null
     this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
   }
 
@@ -140,34 +140,18 @@ export class PricetableComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateSucursales() {
-    this.compararPorProductos();
-    this.compararPorProducto();
-  }
-
-  compararPorProductos() {
-    this.suscripcionCodigos = this.data.currentCodigos.subscribe(codigos => {
-      console.log(codigos);
-      if ( codigos !== 'default codigos' ) {
-        this.compararPrecios(codigos);
-      }
+  cargarTablaPrecios() {
+    this.suscripcionProductos = this.data.productosParacomparar.subscribe(productos => {
+      this.compararPrecios(productos);
     });
   }
 
-  compararPorProducto() {
-    this.suscripcionProducto = this.data.currentProducto.subscribe(
-      producto => {
-        if (producto.codigoDeBarras !== 'string' ) {
-          console.log(producto);
-          this.listaProductos = new Array();
-          this.listaProductos.push(producto);
-          this.compararPrecios(producto.codigoDeBarras);
-        }
-      });
-  }
-
-  compararPrecios(codigos: any) {
-    this.sCad.getComparacionINDEC(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, codigos.toString()   )
+//TODO: REVISAR NO DEBERIA SER ASI
+  compararPrecios(productos: Producto[]) {
+    const codigos = new Set<string>();
+    productos.forEach(p => codigos.add(p.codigoDeBarras));
+    const arrcodigos = Array.from(codigos.values());
+    this.suscripcionCadenasService = this.sCad.getComparacionINDEC(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, arrcodigos.toString())
         .subscribe( cadenas  =>  {
                 this.loading = false;
                 console.log(cadenas);
@@ -220,22 +204,19 @@ export class PricetableComponent implements OnInit, OnDestroy {
 
   constructor(
     private sCad: CadenasService,
-    private sMen: MenuService,
-    public dialog: MatDialog,
+    public  dialog: MatDialog,
     private data: DataSharingService
   ) { }
 
   ngOnInit() {
     this.cargarUbicacion();
     this.loadCadenas();
-    this.loadProductos();
-    this.updateSucursales();
+    this.loadCarrito();
+    this.cargarTablaPrecios();
   }
 
   ngOnDestroy() {
-    this.suscripcionCodigos.unsubscribe();
-    this.suscripcionProducto.unsubscribe();
-    /*if (this.suscripcionCodigos !== undefined) {  this.suscripcionCodigos.unsubscribe(); }
-    if (this.suscripcionProducto !== undefined) { this.suscripcionProducto.unsubscribe(); }*/
+    this.suscripcionProductos.unsubscribe();
+    this.suscripcionCadenasService.unsubscribe();
   }
 }

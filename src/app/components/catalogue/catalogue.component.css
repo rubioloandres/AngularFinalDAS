@@ -19,7 +19,7 @@ app-searchfilter {
   width: 25px !important;
   height: 25px !important;
 }
-
+/*
 mat-button-toggle-group span{
   margin: auto;
 }
@@ -65,10 +65,7 @@ mat-button-toggle-group img {
   margin-left: auto;
 }
 
-mat-card-actions img {
-  width: 45px;
-  height: 45px;
-}
+
 
 mat-card-title{
   width: 100% !important;
@@ -105,4 +102,45 @@ h2 {
 h4, h5 {
   font-family: Oswald !important;
   text-align: center !important;
+}*/
+
+
+.productos{
+  display: grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); 
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  
+}
+
+.productoimg{
+  width: 100px;
+  height: 100px;
+}
+
+
+mat-card-footer img {
+  width: 45px;
+  height: 45px;
+}
+
+
+mat-card-title{
+  width: 100% !important;
+  height: 10%;
+  margin-left: 0% !important;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+
+.productocard{
+  width: 100%;
+  max-width: width 100px !important;
+  height: 100%;
+  border: 1px solid rgb(0, 180, 204);
+  background-color: white;
+  padding: 4px;
+  display:block;
 }

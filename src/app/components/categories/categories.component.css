@@ -1,49 +1,35 @@
-mat-grid-list {
-  margin-left: 5% !important;
-  margin-right: 5% !important;
-  margin-top: 3% !important;
-  border-style: none !important;
+
+.componenttitle{
+  font-family: Oswald;
+  font-style: italic;
 }
 
-mat-grid-tile button {
-  width: 100%;
-  height: 100%;
-  border: 2px lightblue solid;
+.cards{
+  display: grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); 
 }
 
-mat-grid-tile{
-  background-color: white;
-}
-
-mat-card img {
+.categoriaimg {
   width: 180px !important;
   height: 105px !important;
 }
 
-mat-card-title{
-  text-align: center !important;
-  font-size: 16pt !important;
-  color: white !important;
-  background-color: rgb(50, 50, 156);
+.categoriacard{
+  padding: 4px;
+  display:block;
+  width:100%;
+  border: 1px solid rgb(0, 180, 204);
+  background-color: white;
+}
+
+.categoriacard:hover{
+  background-color: lightblue;
+}
+
+.categoriacardtitulo {
   width: 100%;
-  height: 100%;
-}
-
-h2 {
-  font-family: Oswald !important;
-  color: rgb(50, 50, 156);
-  font-size: 26px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 26.4px;
-  text-align: center !important;
-}
-
-h3 {
-  font-family: Oswald !important;
-  color: black;
-  font-size: 20px;
-  text-align: center !important;
-  font-weight: lighter;
+  height: 10%;
+  font-size: 16px !important;
+  font-family: Oswald;
+  font-style: italic;
 }

@@ -1,19 +1,7 @@
-<app-navbar></app-navbar>
-<div *ngIf="!error;else errTemplate">
-  <router-outlet></router-outlet>
-</div>
-<ng-template #errTemplate>
-  <p>Error al obtener datos</p>
-</ng-template>
-<!--
-<app-health></app-health>
-<app-map></app-map>
-<app-catalogue></app-catalogue>
-<app-categories></app-categories>
-<app-pricetable></app-pricetable>
-<app-shcart></app-shcart>
-<app-rest> </app-rest>
-<app-searchbar></app-searchbar>
- -->
-
-
+  <app-navbar></app-navbar>
+  <div *ngIf="!error;else errTemplate">
+    <router-outlet></router-outlet>
+  </div>
+  <ng-template #errTemplate>
+    <p>Error al obtener datos</p>
+  </ng-template>

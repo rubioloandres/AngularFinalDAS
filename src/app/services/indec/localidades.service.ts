@@ -10,7 +10,7 @@ export class LocalidadesService {
 
     constructor(private http: HttpClient) { }
 
-    public getLocalidadesINDEC(): Observable<Localidad[]> {
+    public getLocalidades(): Observable<Localidad[]> {
       return this.http.get<Localidad[]>(environment.webAPI + 'localidades?')
                       .pipe(catchError(err => {
                         console.log('Error al obtener localidades', err);

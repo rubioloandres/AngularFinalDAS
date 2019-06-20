@@ -10,7 +10,7 @@ export class ProvinciasService {
 
     constructor(private http: HttpClient) { }
 
-    public getProvinciasINDEC(): Observable<Provincia[]> {
+    public getProvincias(): Observable<Provincia[]> {
       return this.http.get<Provincia[]>(environment.webAPI + 'provincias?')
                       .pipe(catchError(err => {
                         console.log('Error al obtener provincias', err);

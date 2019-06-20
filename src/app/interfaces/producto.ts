@@ -1,11 +1,11 @@
 export interface Producto {
-  codigoDeBarras: string;
-  idCategoria: number;
-  nombreCategoria: string;
-  nombreProducto: string;
-  nombreMarca: string;
-  imagenProducto: string;
-  precio: string;
+  codigoDeBarras?: string;
+  idCategoria?: number;
+  nombreCategoria?: string;
+  nombreProducto?: string;
+  nombreMarca?: string;
+  imagenProducto?: string;
+  precio?: string;
 }
 
 export interface ProductoIngrediente {

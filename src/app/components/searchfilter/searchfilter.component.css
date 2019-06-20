@@ -1,12 +1,6 @@
-h4 {
-  font-family: Oswald !important;
-  color: rgb(50, 50, 156);
-  font-size: 18px;
-}
 
-.sidenav {
-  width: 125%;
-  border: 2px solid aquamarine;
+.mostrarOcultarFiltro {
+  border: 1px solid aquamarine;
 }
 
 p {
@@ -14,6 +8,7 @@ p {
   margin-left: 1% !important;
   font-family: Oswald !important;
   font-size: 18px;
+  align-content: center
 }
 
 button img {
@@ -21,18 +16,14 @@ button img {
   height: 35px;
 }
 
-.mostrarOcultarFiltro {
-  border: 1px solid aquamarine;
-}
+.searchfiltercontainer {
 
-.example-container {
   background: none;
   position: fixed;
   margin-top: 15%;
   top: 0;
   bottom: 0;
   right: 0;
- /* border: 2px solid aquamarine;*/
   overflow: hidden;
   z-index: 20;
   height: 55%;
@@ -43,4 +34,13 @@ button img {
   border: 1px solid #555;
   margin: 20px;
   padding: 10px;
+}
+
+
+.sidenav {
+  width: 100%;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
+
+  border: 2px solid aquamarine;
 }

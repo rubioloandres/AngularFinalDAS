@@ -1,57 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { DataSharingService } from '../../services/datasharing.service';
 import { Categoria } from './../../interfaces/categoria';
 import { ActivatedRoute } from '@angular/router';
-import { ResolvedCategorias } from 'src/app/models/resolved-categories.model';
-import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
-
+import { Subscription } from 'rxjs';
+import { CategoriasService } from 'src/app/services/indec/categorias.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy{
 
-  message: string;
-  error: string;
+
+  nombreComponente = 'CategoriesComponent';
   listaCategorias: Categoria [] = new Array();
-  criterioBusqueda: CriterioBusquedaProducto;
+  suscripcionCategoriasService: Subscription;
 
-  loadCategorias() {
-    if (localStorage.getItem('categorias') !== null) {
-    const categorias: Array<Categoria> = JSON.parse(localStorage.getItem('categorias'));
-    this.listaCategorias = categorias;
-    } else {
-      this.listaCategorias = [];
-    }
+
+  buscarProductos(idCat: number) {
+    this.data.changeCriterioBusquedaProducto({idCategoria: idCat , componente: this.nombreComponente});
   }
 
-  newMessage(categoria: string) {
-    this.data.changeMessage(categoria);
-  }
 
-  newCriterio(cat: string) {
-    const crit: CriterioBusquedaProducto = {
-      idComercial: undefined,
-      marca: undefined,
-      categoria: cat,
-      nombre: undefined
-    };
-    this.data.changeCriterioBusquedaProducto(crit);
-  }
 
-  constructor(
-    private data: DataSharingService,
-    private route: ActivatedRoute
-    ) { }
+  obtenerCategorias() {
+    this.suscripcionCategoriasService = this.sCat.getCategorias().subscribe (
+      cats => {
+        console.log('HTTP Response Categorias', cats);
+        localStorage.setItem('categorias', JSON.stringify(cats));
+        this.listaCategorias = cats;
+      },
+      err => {
+        console.log('HTTP Error Categorias', err);
+        //TODO: HANDLE ERROR
+      },
+      () => console.log('HTTP Request Categorias completed')
+    );
+ }
+
+  constructor(private data: DataSharingService,private sCat:  CategoriasService) { }
 
   ngOnInit() {
-    this.loadCategorias();
-    // this.data.currentMessage.subscribe(message => this.message = message);
-    this.data.currentCriterio.subscribe(criterio => this.criterioBusqueda = criterio);
+    this.obtenerCategorias();
   }
 
+  ngOnDestroy(): void {
+    this.suscripcionCategoriasService.unsubscribe();
+  }
 }
 
 

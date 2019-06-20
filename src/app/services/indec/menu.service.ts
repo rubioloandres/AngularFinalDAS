@@ -13,7 +13,7 @@ export class MenuService {
     private http: HttpClient
     ) { }
 
-  getMenuResponse(): Observable<Menu[]> {
+  getMenu(): Observable<Menu[]> {
     return this.http.get<Menu[]>( environment.webAPI + 'menu/')
                     .pipe(catchError(err => {
                       console.log('Error al obtener menu', err);

@@ -20,7 +20,7 @@ export class CategoriasService {
 
   }*/
 
-  getCategoriaResponse(): Observable<Categoria[]> {
+  getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>( environment.webAPI + 'categorias?')
                     .pipe(catchError(err => {
                       console.log('Error al obtener categorias', err);

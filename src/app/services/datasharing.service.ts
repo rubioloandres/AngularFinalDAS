@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CriterioBusquedaProducto } from '../interfaces/criterios';
+import { CriterioBusquedaProducto, CatalogoActualizado} from '../interfaces/criterios';
 import { Coordenadas, UbicacionNombres } from '../interfaces/ubicacion';
 import { Producto } from '../interfaces/producto';
 
 @Injectable()
 export class DataSharingService {
 
-  private messageSource = new BehaviorSubject<string>('default message');
-  currentMessage = this.messageSource.asObservable();
+//---Canal de Codigos de Barra------ // TODO: VER-------------------------------------------------
+  private productosSource = new BehaviorSubject<Producto[]>([]);
+  productosParacomparar = this.productosSource.asObservable();
+  compararPrecios(productos: Producto[]) { 
+    this.productosSource.next(productos);
+  }
 
-  private codigosSource = new BehaviorSubject<string>('default codigos');
-  currentCodigos = this.codigosSource.asObservable();
-
+//---Canal del plato ------// TODO: VER------------------------------------------------------------
   private platoSource = new BehaviorSubject<number>(0);
   currentPlato = this.platoSource.asObservable();
+  changePlato(idPlato: number) {
+    this.platoSource.next(idPlato);
+  }
 
+//---Canal de Ubicacion------// TODO: VER---------------------------------------------------------
   private ubicacionSource = new BehaviorSubject<UbicacionNombres>(
     {
       localidad: 'default',
@@ -23,59 +29,43 @@ export class DataSharingService {
     }
   );
   currentUbicacion = this.ubicacionSource.asObservable();
-
-  private productoSource = new BehaviorSubject<Producto> (
-    {
-      codigoDeBarras: 'string',
-      idCategoria: 0,
-      nombreCategoria: 'string',
-      nombreProducto: 'string',
-      nombreMarca: 'string',
-      imagenProducto: 'string',
-      precio: 'string',
-    }
-  );
-  currentProducto = this.productoSource.asObservable();
-
-  private coordenadasSource = new BehaviorSubject<Coordenadas>
-  ({latitud: 0, longitud: 0, precision: 0});
-  currentCoordenadas = this.coordenadasSource.asObservable();
-
-  private criterioSource = new BehaviorSubject<CriterioBusquedaProducto>
-  (
-    {
-      idComercial: 0,
-      marca: '1111',
-      categoria: '1111',
-      nombre: '1111'
-    }
-  );
-  currentCriterio = this.criterioSource.asObservable();
-
-  constructor() { }
-
-  changeMessage(message: string) { // TODO: eliminar
-    this.messageSource.next(message);
-  }
-
-  changeCriterioBusquedaProducto(crit: CriterioBusquedaProducto) {
-    this.criterioSource.next(crit);
-  }
-
-  changeCodigos(codigos: string) { // TODO: cambiar nombre
-    this.codigosSource.next(codigos);
-  }
-
-  changePlato(idPlato: number) {
-    this.platoSource.next(idPlato);
-  }
-
-  changeProducto(producto: Producto) {
-    this.productoSource.next(producto);
-  }
-
   changeUbicacion(ubicacion: UbicacionNombres) {
     this.ubicacionSource.next(ubicacion);
   }
-
+  
+ 
+//---Canal de Criterios de Busqueda------// TODO: VER-------------------------------------------
+  private criterioSource = new BehaviorSubject<CriterioBusquedaProducto>
+  (
+    {componente:'SearchbarComponent'}//Un criterio de busqueda vacio significa que retorna todos los productos
+  ); 
+  currentCriterio = this.criterioSource.asObservable();
+  changeCriterioBusquedaProducto(critops: CriterioBusquedaProducto) {
+    this.criterioSource.next(critops);
+  }
+  
+//---Canal del Catalogo------// TODO: VER--------------------------------------------------------
+  private productosDelCatalogoSource = new BehaviorSubject<CatalogoActualizado>
+  (
+    //El Argumento por defecto es la lista vacia y el componente es el SearchBarComponent
+    {componente:'SearchbarComponent',productos:[]}
+  ); 
+  productosDelCatalogo = this.productosDelCatalogoSource.asObservable();
+  catalogoActualizado(event: CatalogoActualizado) {
+    this.productosDelCatalogoSource.next(event);
+  }
+  //--------------------------------------------------------------------------------------------
+  constructor() { }
 }
+
+
+/*
+ private coordenadasSource = new BehaviorSubject<Coordenadas>
+  ({latitud: 0, longitud: 0, precision: 0});
+  currentCoordenadas = this.coordenadasSource.asObservable();
+
+
+
+
+
+*/

@@ -8,7 +8,7 @@ export const environment = {
 
 export const environment = {
   production: false,
-   webAPI: 'http://localhost:9000/IndecService/app/'
+   webAPI: 'http://192.168.0.1:9000/IndecService/app/'
   // webAPI: 'http://192.168.1.6:9000/IndecService/app/'
 };
 

@@ -31,7 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'ngx-webstorage-service';
-import { LocalStorageService } from './services/localStorage.service';
+import { LocalStorageService } from './services/localStorage.service'; //TODO: QUE ONDA
 import { GeoLocationService } from './services/geoLocation.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
@@ -60,6 +60,7 @@ import { MenuService } from './services/indec/menu.service';
 import { PricetableplateComponent } from './components/pricetableplate/pricetableplate.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRadioModule } from '@angular/material/radio';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDatepickerModule,
     MatExpansionModule,
     MatSidenavModule,
-    MatRadioModule
+    MatRadioModule,
+    FlexLayoutModule
   ],
   providers: [
     CategoriasService,
