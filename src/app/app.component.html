@@ -1,6 +1,8 @@
   <app-navbar></app-navbar>
   <div *ngIf="!error;else errTemplate">
+  <div class="router-container">
     <router-outlet></router-outlet>
+  </div>
   </div>
   <ng-template #errTemplate>
     <p>Error al obtener datos</p>

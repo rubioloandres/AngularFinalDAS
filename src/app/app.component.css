@@ -1,1 +1,9 @@
 #mapid { height: 180px; }
+
+.router-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
