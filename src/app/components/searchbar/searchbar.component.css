@@ -43,8 +43,8 @@ button img {
   font-family: Oswald !important;
   margin-top: 1% ;
   font-size: 20px;
-  height: 75px;
-  width: 145px;
+  height: 60px;
+  width: 130px;
   text-align: center;
   border: 2px lightblue solid;
   border-radius: 25;
@@ -64,4 +64,9 @@ button img {
   margin-right: auto;
   left: 0;
   right: 0;
+}
+
+
+.space {
+  margin-top: 70px;
 }

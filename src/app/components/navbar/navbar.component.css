@@ -1,183 +1,56 @@
-.navbar-custom-top{
-  background-image: url("./../../../assets/img/wallpaper.jpg") ;
-  background-repeat: no-repeat;
-  width: 100%;
-  background-size: 100%;
-  height: 100px !important;
-  margin-top: 6%;
-  overflow: auto;
-  /*margin-top: auto;*/
-  width: 100%;
-}
 
-.grid {
-  margin: 0 auto;
-  text-align: center;
-  columns: 4;
-}
-
-.item-grid {
+.sidenav-button {
   display: inline-block;
-  vertical-align: top;
-}
-
-.navbar-spacer {
-  flex: 1 1 auto;
-}
-
-.navbar-item {
-  padding: 0 14px;
-}
-
-.navbar-item button {
-  font-family: Oswald !important;
-  color: white;
-  display: flex;
-  align-items: center;
-}
-
-.navbar-item button span {
-  font-family: Oswald !important;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-}
-
-.navbar-item button img {
-  width: 30px;
-  height: 30px;
-}
-
-.itemLabel {
-  font-family: Oswald !important;
-  color: white;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 200;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li {
-  float: left;
-}
-
-li a:hover {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
-}
-
-.navbar-custom span {
-  font-family: Oswald !important;
-  color: white;
-}
-
-li {
-  font-family: Oswald !important;
-  color: rgb(50, 50, 156);
-  font-size: 18px;
-}
-
-.descSeccion {
-  font-size: 24px;
-  margin-left: 2%;
-}
-
-.navbar-custom-top h3 {
-  font-family: Oswald !important;
-  color: rgb(50, 50, 156);
-  font-size: 32px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 26.4px;
+  cursor: pointer;
+  padding: 10px;
 }
 
 
-.submenu {
-  background-color: rgba(255, 255, 255,0.1);
-}
-
-mat-tab label {
-  font-family: Oswald !important;
-  color: white !important;
-  font-size: 24px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 200;
-}
-
-nav a {
-  font-family: Oswald !important;
-  color: white !important;
-  font-size: 24px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 200;
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 6px 0;
 }
 
 .navbar-custom{
   max-height: 100px !important;
-  background-color: rgba(50, 50, 156, 0.85) !important;
   overflow: hidden;
-  position: fixed;
-  top: 0;
   width: 100%;
   z-index: 120;
+  background-color:rgb(50, 50, 156);
+  justify-content: right !important;
+  position: fixed;
 }
 
-span {
-  font-family: Oswald !important;
-  color: rgb(50, 50, 156);
-  font-weight: lighter;
-}
-
-.searchInput {
+.searchInput{
   font-size: 18px;
-  color: white !important;
-}
-
-nav button {
-  font-weight: bold !important;
-  font-size: 20px;
   color: white;
+  float: left;
 }
 
-mat-toolbar button{
-  font-weight: bold !important;
-  font-size: 20px;
-  color: white;
-}
-
-
-mat-toolbar button img, nav a img, nav button img {
+.searchInput button img {
   width: 25px !important;
   height: 25px !important;
 }
 
-mat-toolbar, mat-search-bar, button{
+.logo-container{
+  width: 100%;
+  justify-content: left !important;
+  position: fixed;
+  z-index: 50;
+  overflow: hidden;
+}
+
+
+
+.sidenav-container {
   background: none;
+  display: none;
+  position: fixed;
+  top: 10% ;
+  bottom: 60%;
+  right:60%;
+
 }
 
-.mat-tab-group {
-  margin-bottom: 48px;
-}
-.product-card {
-  max-width: 100%;
-}
-
-.product-header-image {
-  background-image: url('../../../assets/img/product_icon.png');
-  width: 30px;
-  height: 30px;
-  background-size: cover;
-}

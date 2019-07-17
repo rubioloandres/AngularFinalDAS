@@ -1,9 +1,131 @@
-  <app-navbar></app-navbar>
-  <div *ngIf="!error;else errTemplate">
-  <div class="router-container">
-    <router-outlet></router-outlet>
-  </div>
-  </div>
-  <ng-template #errTemplate>
-    <p>Error al obtener datos</p>
-  </ng-template>
+<div>
+  <mat-toolbar class="navbar-custom" style="text-align: right">
+
+    <span class="example-spacer"></span>
+    <div *ngFor="let seccion of secciones" fxShow="true" fxHide.lt-lg="true">
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <a [routerLink]="[seccion.ruta]" mat-button style="color: white">{{seccion.descripcion}}
+        <img width="30" height="30" src="{{seccion.imagen}}">
+      </a>
+    </div>
+
+    <div fxShow="true" fxHide.lt-lg="true">
+      <a *ngIf="hayUbicacion()" [routerLink]="['sucursales']" mat-button style="color: white">Supermercados
+        <img width="30" height="30" src="./../../../assets/img/super_icon.png">
+      </a>
+      <a *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" mat-button style="color: white">Supermercados
+        <img width="30" height="30" src="./../../../assets/img/super_icon.png">
+      </a>
+      <a mat-button (click)="searchAllProducts()" [routerLink]="['catalogue']" style="color: white">Productos
+        <img width="30" height="30" src="./../../../assets/img/product_icon.png">
+      </a>
+      <a mat-button (click)="registrarUbicacion()" style="color: white">Ubicacion
+        <img width="30" height="30" src="./../../../assets/img/location_icon.png">
+      </a>
+    </div>
+
+    <span class="example-spacer"></span>
+
+
+    <form class="searchInput" style="padding-left: 3%">
+      <mat-form-field>
+        <input matInput aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput" [formControl]="formBusProd">
+      </mat-form-field>
+      <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']"
+        (click)="onClickSearchProductsPorPalabraClave()"><img src="./../../../assets/img/search_icon.png"></button>
+    </form>
+
+    <div class="navbar-item">
+      <div class="btn-group btn-lang">
+        <button mat-menu-item class="btn" [matMenuTriggerFor]="idioma" style="color: white">
+          {{idiomaActual.nombre}}
+         <img src="{{idiomaActual.imagen}}" style="width: 25px;height: 25px;">
+        </button>
+      </div>
+    </div>
+
+    <mat-menu #idioma="matMenu">
+        <button mat-menu-item *ngFor="let idioma of listaIdiomas" (click)="setIdiomaActual(idioma.nombre)">
+          {{idioma.nombre}}
+          <img src="{{idioma.imagen}}" width="25px" height="25px">
+        </button>
+    </mat-menu>
+
+<div fxShow="true" fxHide.gt-lg="true" class="sidenav-button">
+  <a (click)="sidenav.toggle()">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </a>
+</div>
+
+</mat-toolbar>
+
+
+   <!--<mat-toolbar>
+
+        <mat-toolbar-row class="navbar-custom-top">
+          <mat-toolbar>
+            <img src="../../../assets/img/Indec_logo.png" width="150" height="50">
+          </mat-toolbar>
+          <mat-toolbar>
+            <img src="./../../../assets/img/WEB_ICON2.png" width="50" height="50">
+            <h3>Comparador de Precios</h3>
+          </mat-toolbar>
+          <span class="navbar-spacer"></span>
+      
+          <div class="navbar-item">
+            <li *ngIf="ubicacionActual">Ubicacion: {{ubicacionActual.localidad}}, {{ubicacionActual.provincia}} </li>
+          </div>
+      
+        </mat-toolbar-row>
+      </mat-toolbar>-->
+
+
+<div class="sidenav-container-container">
+  <mat-sidenav-container fxFlexFill class="sidenav-container" fxLayout="column">
+    <mat-sidenav #sidenav fxLayout="row" style="padding-top:75px">
+      <div fxLayout="column">
+        <div *ngFor="let seccion of secciones">
+          <a [routerLink]="[seccion.ruta]" mat-button style="color: rgb(0, 0, 0)">
+            {{seccion.descripcion}}
+            <img width="30" height="30" src="{{seccion.imagen}}">
+          </a>
+        </div>
+        <a *ngIf="hayUbicacion()" [routerLink]="['sucursales']" mat-button style="color: rgb(0, 0, 0)">
+          Supermercados
+          <img width="30" height="30" src="./../../../assets/img/super_icon.png">
+        </a>
+        <a *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" mat-button style="color: rgb(0, 0, 0)">
+          Supermercados
+          <img width="30" height="30" src="./../../../assets/img/super_icon.png">
+        </a>
+        <a mat-button (click)="searchAllProducts()" [routerLink]="['catalogue']" style="color: rgb(0, 0, 0)">
+          Productos
+          <img width="30" height="30" src="./../../../assets/img/product_icon.png">
+        </a>
+
+        <a mat-button (click)="registrarUbicacion()" style="color: rgb(0, 0, 0)">
+          Ubicacion
+          <img width="30" height="30" src="./../../../assets/img/location_icon.png">
+        </a>
+      </div>
+    </mat-sidenav>
+
+
+    <div *ngIf="!error;else errTemplate">
+      <div class="router-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <ng-template #errTemplate>
+      <p>Error al obtener datos</p>
+    </ng-template>
+
+  </mat-sidenav-container>
+
+</div>
+
+
+</div>

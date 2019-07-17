@@ -7,3 +7,70 @@
     padding-bottom: 2%;
 
 }
+
+
+.sidenav-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: rgb(255, 255, 255);
+    margin: 6px 0;
+  }
+  
+  .navbar-custom{
+    max-height: 100px !important;
+    overflow: hidden;
+    width: 100%;
+    z-index: 120;
+    background-color:rgb(50, 50, 156);
+    justify-content: right !important;
+    text-align: center !important;
+    position: fixed;
+  }
+  
+  .navbar-custom-top{
+    background-repeat: no-repeat;
+    background-color: white;
+    width: 100%;
+    background-size: 100%;
+    height: 100px !important;
+    overflow: auto;
+    /*margin-top: auto;*/
+    width: 100%;
+  }
+
+  .searchInput{
+    font-size: 18px;
+    color: white;
+    float: left;
+  }
+  
+  .searchInput button img {
+    width: 25px !important;
+    height: 25px !important;
+  }
+  
+  .logo-container{
+    width: 100%;
+    justify-content: left !important;
+    position: fixed;
+    z-index: 50;
+    overflow: hidden;
+  }
+  
+  
+  .sidenav-container {
+    background: none;
+    display: none;
+    position: fixed;
+    justify-content: center !important;
+    text-align: center !important;
+  
+  }
+  

@@ -1,103 +1,53 @@
-<nav mat-tab-nav-bar class="navbar-custom">
-  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-    <div *ngFor="let seccion of secciones">
-      <mat-tab mat-tab-link>
-        <ng-template mat-tab-label>
-          <img width="30" height="30" src="{{seccion.imagen}}">
-          <a mat-tab-link class="itemLabel" [routerLink]="[seccion.ruta]">{{seccion.nombre}}</a>
-        </ng-template>
-        <span class="descSeccion">{{seccion.descripcion}}</span>
-      </mat-tab>
+<div>
+  <mat-toolbar class="navbar-custom">
+    <span class="example-spacer"></span>
+    <div *ngFor="let seccion of secciones" fxShow="true" fxHide.lt-md="true">
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <a [routerLink]="[seccion.ruta]" mat-button style="color: white">
+        {{seccion.descripcion}}
+        <img width="30" height="30" src="{{seccion.imagen}}">
+      </a>
     </div>
-    <div>
-      <mat-tab mat-tab-link>
-        <ng-template mat-tab-label>
-          <img width="30" height="30" src="./../../../assets/img/menu_icon.png">
-          <a mat-tab-link class="itemLabel">Menu</a>
-        </ng-template>
-        <mat-tab-group class="submenu">
-          <mat-tab mat-tab-link>
-            <ng-template mat-tab-label>
-              <img width="30" height="30" src="./../../../assets/img/super_icon.png">
-              <a mat-tab-link *ngIf="hayUbicacion()" [routerLink]="['sucursales']" class="itemLabel">Supermercados</a>
-              <a mat-tab-link *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" class="itemLabel">Supermercados</a>
-            </ng-template>
-          </mat-tab>
-          <mat-tab mat-tab-link>
-            <ng-template mat-tab-label>
-              <img width="30" height="30" src="./../../../assets/img/product_icon.png">
-              <a mat-tab-link (click)="searchAllProducts()" [routerLink]="['catalogue']" class="itemLabel">Productos</a>
-            </ng-template>
-          </mat-tab>
-          <mat-tab mat-tab-link>
-            <ng-template mat-tab-label>
-              <img width="30" height="30" src="./../../../assets/img/location_icon.png">
-              <a mat-tab-link (click)="registrarUbicacion()" class="itemLabel">Ubicacion</a>
-            </ng-template>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-tab>
+    <span class="example-spacer"></span>
+
+
+    <form class="searchInput">
+      <mat-form-field>
+        <input matInput aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput" [formControl]="formBusProd">
+      </mat-form-field>
+      <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']"
+        (click)="onClickSearchProductsPorPalabraClave()"><img src="./../../../assets/img/search_icon.png"></button>
+    </form>
+
+    <div fxShow="true" fxHide.gt-sm="true" class="sidenav-button">
+      <a href="#" (click)="sidenav.toggle()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </a>
     </div>
-  </mat-tab-group>
-  <span class="navbar-spacer"></span>
-  <div>
-    <mat-toolbar>
-      <form>
-        <mat-form-field class="searchInput">
-          <input matInput placeholder="Buscar productos" aria-label="Buscar" [(ngModel)]="searchInput"
-            name="searchInput" [formControl]="formBusProd" >
-        </mat-form-field>
-        <button mat-stroked-button title="Buscar productos" [routerLink]="['catalogue']"
-          (click)="onClickSearchProductsPorPalabraClave()"><img src="./../../../assets/img/search_icon.png"></button>
-      </form>
-    </mat-toolbar>
-  </div>
+    
+  </mat-toolbar>
 
-  <div class="navbar-item">
-    <div class="btn-group btn-lang">
-      <button mat-menu-item class="btn btn-dark" [matMenuTriggerFor]="idioma">
-        {{idiomaActual.nombre}}
-        <img src="{{idiomaActual.imagen}}">
-      </button>
+  <mat-toolbar class="logo-container">
+      <img src="../../../assets/img/Indec_logo.png">
+  </mat-toolbar>
+
+    <div class="sidenav-container-container">
+        <mat-sidenav-container fxFlexFill class="sidenav-container" fxLayout="column" style="background-color: crimson">
+            <mat-sidenav #sidenav fxLayout="row" style="padding-top:10px" >
+              <div fxLayout="column">
+                <a (click)="sidenav.toggle()" mat-button>Close</a>
+                <a href="#" mat-button>Menu Item 1</a>
+                <a href="#" mat-button>Menu Item 2</a>
+                <a href="#" mat-button>Menu Item 3</a>
+                <a href="#" mat-button>Menu Item 4</a>
+                <a href="#" mat-button>Menu Item 5</a>
+                <a href="#" mat-button>Menu Item 6</a>
+              </div>
+            </mat-sidenav>
+          </mat-sidenav-container>
     </div>
-  </div>
-</nav>
-<mat-toolbar>
+  
 
-  <mat-toolbar-row class="navbar-custom-top">
-    <mat-toolbar>
-      <img src="../../../assets/img/Indec_logo.png" width="150" height="50">
-    </mat-toolbar>
-    <mat-toolbar>
-      <img src="./../../../assets/img/WEB_ICON2.png" width="50" height="50">
-      <h3>Comparador de Precios</h3>
-    </mat-toolbar>
-    <span class="navbar-spacer"></span>
-
-    <div class="navbar-item">
-      <li *ngIf="ubicacionActual">Ubicacion: {{ubicacionActual.localidad}}, {{ubicacionActual.provincia}} </li>
-    </div>
-
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<mat-menu #idioma="matMenu">
-  <button mat-menu-item *ngFor="let idioma of listaIdiomas" (click)="setIdiomaActual(idioma.nombre)">
-    {{idioma.nombre}}
-    <img src="{{idioma.imagen}}" width="25" height="25">
-  </button>
-</mat-menu>
-
-<mat-menu #provincias="matMenu">
-  <button mat-menu-item *ngFor='let provincia of listaProvincias'> {{ provincia.nombreProvincia }} </button>
-</mat-menu>
-<!--
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="productos">Productos</button>
-  <button mat-menu-item *ngIf="ubicacion" [routerLink]="['sucursales']">Supermercados</button>
-  <button mat-menu-item *ngIf="!ubicacion" (click)="registrarUbicacion()">Supermercados</button>
-</mat-menu>
-
-<mat-menu #productos="matMenu">
-  <button mat-menu-item *ngFor='let categoria of listaCategorias' (click)="newCriterio(categoria.nombreCategoria)" [routerLink]="['catalogue']"> {{ categoria.nombreCategoria }} </button>
-</mat-menu> -->
+</div>
