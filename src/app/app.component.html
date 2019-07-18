@@ -100,7 +100,7 @@
           Supermercados
           <img width="30" height="30" src="./../../../assets/img/super_icon.png">
         </a>
-        <a mat-button (click)="searchAllProducts()" [routerLink]="['catalogue']" style="color: rgb(0, 0, 0)">
+        <a  (click)="searchAllProducts()" [routerLink]="['catalogue']"  mat-button style="color: rgb(0, 0, 0)">
           Productos
           <img width="30" height="30" src="./../../../assets/img/product_icon.png">
         </a>
@@ -117,15 +117,10 @@
       <div class="router-container">
         <router-outlet></router-outlet>
       </div>
+      <app-footer></app-footer>
     </div>
-
-    <ng-template #errTemplate>
-      <p>Error al obtener datos</p>
-    </ng-template>
-
   </mat-sidenav-container>
-
+</div>
 </div>
 
 
-</div>

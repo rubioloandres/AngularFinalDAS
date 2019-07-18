@@ -61,6 +61,8 @@ import { PricetableplateComponent } from './components/pricetableplate/pricetabl
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DialogLocationComponent,
     SucursalesComponent,
     HealthComponent,
-    PricetableplateComponent
+    PricetableplateComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

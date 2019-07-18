@@ -146,7 +146,6 @@ export class PricetableComponent implements OnInit, OnDestroy {
     });
   }
 
-//TODO: REVISAR NO DEBERIA SER ASI
   compararPrecios(productos: Producto[]) {
     const codigos = new Set<string>();
     productos.forEach(p => codigos.add(p.codigoDeBarras));
