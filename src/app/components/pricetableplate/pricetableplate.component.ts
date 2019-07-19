@@ -283,25 +283,35 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   }
 
   agregarACarrito(suc: SucursalTablaPrecio) {
-    const productos: Producto[] = new Array();
+    const productosPlato: Producto[] = new Array();
     this.listaSucursalesOrdenadas
                     .find(s => s.idCadena === suc.idCadena && s.idSucursal === suc.idSucursal)
                     .productos.map(p => p.codigoDeBarras)
                     .forEach(cod =>
-                      productos.push(this.listaProductos.find(pls => pls.codigoDeBarras === cod)));
+                      productosPlato.push(this.listaProductos.find(pls => pls.codigoDeBarras === cod)));
+
+    console.log(productosPlato);
     const prodCart = localStorage.getItem('carrito');
     if (prodCart !== null) {
-      const lprod: Producto[] = JSON.parse(prodCart);
-      if (lprod.length > 0) {
-        lprod.forEach(prod => {
-          const pAux: Producto = productos.find(p => p.codigoDeBarras === prod.codigoDeBarras);
+      const carrito: Producto[] = JSON.parse(prodCart);
+      if (carrito.length > 0) {
+        console.log('no vacio');
+        console.log(carrito);
+        productosPlato.forEach(prod => {
+          var pAux: Producto = carrito.find(p => p.codigoDeBarras === prod.codigoDeBarras);
           if (pAux === undefined) {
-            lprod.push(pAux);
-          }
+            console.log('agregado');
+            console.log(pAux);
+            carrito.push(prod);
+          } else {
+            console.log('encontrado');
+          } 
         });
-        localStorage.setItem('carrito', JSON.stringify(lprod));
+        
+        localStorage.setItem('carrito', JSON.stringify(carrito));
       } else {
-        localStorage.setItem('carrito', JSON.stringify(productos));
+        console.log('vacio');
+        localStorage.setItem('carrito', JSON.stringify(productosPlato));
       }
     }
   }

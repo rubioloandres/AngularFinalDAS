@@ -78,12 +78,11 @@ export class CatalogueComponent implements OnInit, OnDestroy {
   }
 
   compararPrecio(producto: Producto):void {
-    console.log("Comparando Precios..");
+    //console.log("Comparando Precios..");
     this.dataSharingService.compararPrecios([producto]);
   }
 
 
-  //TODO: QUE ONDA CON LA UBICACION ACA.
   cargarUbicacion():void {
     const ubLS = localStorage.getItem('ubicacion');
     if (ubLS == null || ubLS.length < 2) {

@@ -108,10 +108,6 @@
       this.listaSucursalesOrdenadas = this.listaSucursalesOrdenadas.slice(0, 4);
     }
   
-    loadCarrito() { // controlar que ocurre cuando esto es undefined o null
-      this.listaProductos =  JSON.parse(localStorage.getItem('carrito'));
-    }
-  
     getProductoPriceBySucursal(sucursal: SucursalTablaPrecio, idProd: string) {
       const precioProd = this.listaSucursales.find( s => s === sucursal)
                              .productos.find(p => p.codigoDeBarras === idProd).precio;
@@ -126,6 +122,7 @@
       const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
       this.listaProductos = prodscart.filter(p => p.codigoDeBarras !== idprod);
       localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
+      this.compararPrecios(this.listaProductos);
     }
   
     getCadena(id: number) {
@@ -147,19 +144,19 @@
   
     cargarTablaPrecios() {
       this.suscripcionProductos = this.data.productosParacomparar.subscribe(productos => {
-       this.cacheProductos = productos;
         this.compararPrecios(productos);
       });
     }
   
     compararPrecios(productos: Producto[]) {
+      this.listaProductos = productos;
+      this.cacheProductos = productos;
       const codigos = new Set<string>();
       productos.forEach(p => codigos.add(p.codigoDeBarras));
       const arrcodigos = Array.from(codigos.values());
       this.suscripcionCadenasService = this.sCad.getComparacionINDEC(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, arrcodigos.toString())
           .subscribe( cadenas  =>  {
                   this.loading = false;
-                  console.log(cadenas);
                   cadenas.forEach(cadena => {
                     if (cadena.disponible) {
                       this.listaSucursales = this.listaSucursales.concat(this.agregarDatosSucursales(cadena.sucursales));
@@ -241,7 +238,6 @@
       this.screenWidth = window.innerWidth;
       this.cargarUbicacion();
       this.loadCadenas();
-      this.loadCarrito();
       this.cargarTablaPrecios();
     }
   
