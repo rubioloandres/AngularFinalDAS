@@ -6,23 +6,27 @@
 .pricetable-container {
   height: auto;
   width: auto;
+  min-width: 20% !important;
   overflow: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+
+
 table {
   /* para ver el resumen sticky, la tabla tiene que ser de mayor alto que el contenedor   */
   height: auto;
   width: auto;
   border: 2px lightblue solid;
-
 }
 
 th,td {
   align-items: center;
   justify-content: center;
+  height: auto;
+  width: auto;
 }
 
 mat-card {
@@ -33,6 +37,8 @@ th mat-card {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: auto;
+  width: auto;
 }
 
 td mat-card img,th mat-card img {

@@ -10,7 +10,7 @@
   <button mat-button [routerLink]="['/']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
 </div>
 
-<div class="example-container mat-elevation-z8" *ngIf="! estaVacio()">
+<div class="example-container mat-elevation-z8" *ngIf="!estaVacio()">
   <table mat-table [dataSource]="carrito">
     <ng-container matColumnDef="item">
       <th mat-header-cell *matHeaderCellDef> Producto </th>

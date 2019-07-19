@@ -3,6 +3,8 @@
 <h2>Precios de Productos</h2>
 
 <div class="pricetable-container">
+  
+  
   <div *ngIf="loading" style="overflow:hidden">
     <mat-progress-spinner
       class="example-margin"
@@ -11,14 +13,14 @@
     </mat-progress-spinner>
   </div>
 
-  <table mat-table [dataSource]="listaProductos" *ngIf="! sucursalesEmpty()" class="mat-elevation-z8">
-      <ng-container matColumnDef="item" sticky>
+  <table mat-table [dataSource]="listaProductos" *ngIf="!sucursalesEmpty()" class="mat-elevation-z8">
+      <ng-container matColumnDef="item" class="product-column" >
         <th mat-header-cell *matHeaderCellDef>
           <mat-card-title>Lista</mat-card-title>
         </th>
         <td mat-cell *matCellDef="let producto" matColumnDef>
           <mat-card>
-            <img src={{producto.imagenProducto}}>
+            <img class="img-producto"src={{producto.imagenProducto}}>
             <mat-card-content>
               <span> {{producto.nombreProducto}}</span>
               <mat-card-subtitle> {{producto.codigoDeBarras}} </mat-card-subtitle>
@@ -31,7 +33,7 @@
           <mat-card-subtitle> Detalle de resumen </mat-card-subtitle>
         </td>
       </ng-container>
-
+ 
       <ng-container *ngFor="let sucursal of listaSucursalesOrdenadas; let i = index" matColumnDef="sucursal{{i+1}}">
         <div>
           <th mat-header-cell *matHeaderCellDef>
@@ -43,8 +45,8 @@
             </select>
             <button mat-stroked-button (click)="openDialogInfo(sucursal)" title="Informacion sucursal" [ngClass]="{'mejorOp': sucursal.mejorOpcion}">
               <mat-card>
-                <img class="cadena-logo" src="{{sucursal.imagenCadena}}">
                   <mat-card-content>
+                      <img class="cadena-logo" src="{{sucursal.imagenCadena}}">
                     <mat-card-title>{{sucursal.direccion}}</mat-card-title>
                     <mat-card-subtitle>{{sucursal.nombreCadena}}</mat-card-subtitle>
                     <mat-card-subtitle> ( {{sucursal.productos.length}} productos disponibles ) </mat-card-subtitle>
@@ -58,7 +60,7 @@
           <td mat-footer-cell *matFooterCellDef>
             <mat-card [ngClass]="sucursal.mejorOpcion ? 'mejorOp' : 'total'">
               <mat-card-title> $ {{sucursal.total}} </mat-card-title>
-               <img src="{{sucursal.imagenCadena}}">
+               <img class="cadena-logo" src="{{sucursal.imagenCadena}}">
               <mat-card-content>
                 <mat-card-subtitle> {{sucursal.direccion}} </mat-card-subtitle>
               </mat-card-content>
