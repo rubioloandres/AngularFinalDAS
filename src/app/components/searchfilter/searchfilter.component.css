@@ -1,6 +1,7 @@
 
 .mostrarOcultarFiltro {
-  border: 1px solid aquamarine;
+  border: 1px solid  rgb(50, 50, 156);
+  background-color: white;
 }
 
 p {
@@ -17,15 +18,18 @@ button img {
 }
 
 .searchfiltercontainer {
-  background: none;
+  background:none;
+  padding: 1px;
+  border-radius: 5px 0px 0px 5px;
   position: fixed;
   margin-top: 15%;
-  top: 0;
+  top: 70px;
   bottom: 0;
-  right: 0;
+  right: 15px;
+  margin-top:5%;
   overflow: hidden;
   z-index: 20;
-  height: 55%;
+  height: 45%;
 }
 
 .example-radio-group {
@@ -38,7 +42,5 @@ button img {
 
 .sidenav {
   width: 100%;
-  border-top-left-radius: 5%;
-  border-bottom-left-radius: 5%;
-  border: 2px solid aquamarine;
+  border: 1px solid  rgb(50, 50, 156);
 }

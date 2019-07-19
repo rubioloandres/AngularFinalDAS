@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy, AfterViewInit, Sanitizer } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Sanitizer, HostListener } from '@angular/core';
 import { Producto, ProductoIngrediente, ProductoPrecio } from './../../interfaces/producto';
 import { Sucursal, TotalSucursal, SucursalInfo, SucursalTablaPrecio } from './../../interfaces/sucursal';
 import { Cadena, CadenaSucursal } from 'src/app/interfaces/cadena';
@@ -23,6 +23,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   displayedColumns2: string[] = ['ingredienteColumnName', 'precioColumnName'];
   precioTotalSucursal: TotalSucursal[] = new Array();
   listaSucursales: SucursalTablaPrecio[] = new Array();
+  cacheListaSucursales : SucursalTablaPrecio[];
   listaSucursalesOrdenadas: SucursalTablaPrecio [] = new Array();
   listaSucursalesAnterior: SucursalTablaPrecio[] = new Array();
   listaProductos: Producto[] = new Array();
@@ -38,6 +39,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   listaIngredientesPlato: ProductoIngrediente [] =  new Array();
   panelDetallesOpenState = true;
   precioTotal = Number.MAX_VALUE;
+  screenWidth: number;
 
   agregarDatosSucursal(suc: Sucursal): SucursalTablaPrecio {
     const sucursalTablaPrecio: SucursalTablaPrecio = {
@@ -80,6 +82,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 
   loadColumns() {
     const n = this.calcularCantidadColumnas();
+    this.displayedColumns = [];
     this.displayedColumns.push('item');
     let i = 1;
     while (i <= n)  {
@@ -142,6 +145,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
                       cadenas.forEach( cadena => {
                           if (cadena.disponible) {
                             this.listaSucursales = this.listaSucursales.concat(this.agregarDatosSucursales(cadena.sucursales));
+                            this.cacheListaSucursales = this.listaSucursales;
                           } else {
                             this.listaCadenasNoDisponibles.push(cadena);
                           }
@@ -159,6 +163,13 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
     );
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    console.log(window.innerWidth);
+    this.screenWidth = window.innerWidth;
+    this.loadColumns();
+  }
+
   sucursalesEmpty() {
     if (this.listaSucursalesOrdenadas.length > 0) {
       return false;
@@ -168,15 +179,27 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   }
 
   calcularCantidadColumnas() {
+    console.log(this.screenWidth);
+    var cant_columns:number = 1;
     if (this.listaSucursales !== undefined) {
-      if (this.listaSucursales.length < 4) {
+      if(this.screenWidth < 1126) {
+        cant_columns = 1
+      }
+      if(this.screenWidth >= 1126){
+        cant_columns = 2
+      }
+      if(this.screenWidth >= 1920){
+        cant_columns = 3
+      }
+
+      if (this.listaSucursales.length < cant_columns ){
         return this.listaSucursales.length;
-      } else {
-        return 4;
+      }
+      else{
+        return cant_columns;
       }
     }
   }
-
   cargarUbicacion() {
     const ub = localStorage.getItem('ubicacion');
     if (ub !== null) {
@@ -291,6 +314,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.screenWidth = window.innerWidth;
     this.cargarUbicacion();
     this.cargarProductos()
     this.loadCadenas();
