@@ -105,6 +105,7 @@ ul.rig.columns-4 li {
 
 .product-actions{
   display : flex;
+  flex-direction: row;
 }
 
 .product-action img {

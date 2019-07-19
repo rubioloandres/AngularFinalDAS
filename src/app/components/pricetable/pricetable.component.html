@@ -2,17 +2,27 @@
 
 <h2>Precios de Productos</h2>
 
+<div class="sucursalesEmpty" *ngIf="error">
+  <button mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
+</div>
+
+<div class="noCads" *ngIf="listaCadenasNoDisponibles.length > 0">
+  <h4 *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
+  <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
+</div>
+
 <div class="pricetable-container">
   
   
-  <div *ngIf="loading" style="overflow:hidden">
-    <mat-progress-spinner
-      class="example-margin"
-      [color]="'primary'"
-      [mode]="'indeterminate'">
-    </mat-progress-spinner>
-  </div>
+<div *ngIf="loading" style="overflow:hidden">
+  <mat-progress-spinner
+    class="example-margin"
+    [color]="'primary'"
+    [mode]="'indeterminate'">
+  </mat-progress-spinner>
+</div>
 
+<div class="table-container">
   <table mat-table [dataSource]="listaProductos" *ngIf="!sucursalesEmpty()" class="mat-elevation-z8">
       <ng-container matColumnDef="item" class="product-column" >
         <th mat-header-cell *matHeaderCellDef>
@@ -73,6 +83,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
+</div>
 
   <div class="noProds" *ngIf="error">
     <h4>Error al comparar precios</h4>
@@ -80,11 +91,4 @@
   </div>
 </div>
 
-<div class="noCads" *ngIf="! error">
-  <h4 *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
-  <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
-</div>
 
-<div class="sucursalesEmpty" *ngIf="error">
-    <button mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
-</div>

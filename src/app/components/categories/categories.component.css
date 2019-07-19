@@ -4,6 +4,8 @@
   font-style: italic;
 }
 
+
+
 .cards{
   display: grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); 
@@ -37,3 +39,7 @@
 .space {
   margin-top: 70px;
 }
+
+.cards-container{
+  padding-bottom:15% !important;
+ }

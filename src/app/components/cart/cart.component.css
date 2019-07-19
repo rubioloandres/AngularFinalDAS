@@ -11,11 +11,12 @@
 table {
   width: 100%;
   grid-auto-rows: 60%;
+  align-items: center;
+  justify-content: center;
 }
 
 table td {
   color: rgb(0, 102, 204);
-  font-weight: bold;
 }
 
 table td img{
@@ -81,3 +82,12 @@ h4, h5 {
 button {
   font-family: Oswald !important;
 }
+
+
+th{
+  background-color:rgb(50, 50, 156);
+  color: white; 
+  text-align: center !important;
+  justify-content: center;
+ }
+ 
