@@ -121,8 +121,7 @@
   
     removeProduct(idprod: string) {
       
-      const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
-      this.listaProductos = prodscart.filter(p => p.codigoDeBarras !== idprod);
+      this.listaProductos = this.listaProductos.filter(p => p.codigoDeBarras !== idprod);
       localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
       this.cargarUbicacion();
       if(this.listaProductos.length > 0){
@@ -135,7 +134,7 @@
       
     }
   
-    
+
     getCadena(id: number) {
       return this.listaCadenasDisponibles.find(cad => cad.idCadena === id);
     }
@@ -171,7 +170,6 @@
       this.listaProductos = new Array();
       this.listaCadenasNoDisponibles  = new Array();
 
-      this.listaSucursales = [];
       this.listaProductos = productos;
       this.cacheProductos = productos;
       const codigos = new Set<string>();
@@ -248,7 +246,10 @@
     @HostListener('window:resize', ['$event'])
       onResize(event) {
         this.screenWidth = window.innerWidth;
-        this.loadColumns();
+        if(this.listaProductos.length >0){
+          this.loadColumns();
+        }
+        
     }
   
     constructor(
