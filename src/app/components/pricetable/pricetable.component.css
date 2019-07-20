@@ -24,7 +24,7 @@ table {
   /* para ver el resumen sticky, la tabla tiene que ser de mayor alto que el contenedor   */
   height: auto;
   width: auto;
-  border: 2px lightblue solid;
+  border: 0px lightblue solid;
 }
 
 th,td {

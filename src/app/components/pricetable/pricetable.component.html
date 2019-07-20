@@ -2,10 +2,6 @@
 
 <h2>Precios de Productos</h2>
 
-<div class="sucursalesEmpty" *ngIf="error">
-  <button mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
-</div>
-
 <div class="noCads" *ngIf="listaCadenasNoDisponibles.length > 0">
   <h4 *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
   <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
@@ -84,6 +80,9 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
 </div>
+
+
+<button *ngIf="displayedColumns.length === 0 || listaSucursales.length ===0" mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
 
   <div class="noProds" *ngIf="error">
     <h4>Error al comparar precios</h4>

@@ -10,7 +10,7 @@ import { Subscription, Observable } from 'rxjs';
 import { DataSharingService } from './services/datasharing.service';
 import { GeoLocationService } from './services/geoLocation.service';
 import { MatDialog } from '@angular/material';
-import { UbicacionNombres, Ubicacion, Coordenadas } from './interfaces/ubicacion';
+import { Ubicacion, Coordenadas } from './interfaces/ubicacion';
 import { Producto } from './interfaces/producto';
 import { FormControl } from '@angular/forms';
 import { Provincia } from './interfaces/provincia';
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // criterioBusqueda: CriterioBusquedaProducto;
   listaubicaciones: Coordenadas[] = new Array();
   ubicacion: Ubicacion;
-  ubicacionActual: UbicacionNombres;
+  ubicacionActual: Ubicacion;
   listaProductos: Producto[] = new Array();
   formBusProd = new FormControl(this.searchInput);
   private suscripcionformBusProd: Subscription;
@@ -265,10 +265,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (localStorage.getItem('ubicacion') !== null) {
       this.ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
     }
-    this.ubicacionActual = {
-      localidad: this.ubicacion.localidad,
-      provincia: this.listaProvincias.find(p => p.codigoEntidadFederal === this.ubicacion.codigoEntidadFederal).nombreProvincia
-    };
   }
 
   registrarUbicacion() {

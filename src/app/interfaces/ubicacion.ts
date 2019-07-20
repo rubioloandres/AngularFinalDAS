@@ -7,13 +7,8 @@ export interface Coordenadas {
 export interface Ubicacion {
   codigoEntidadFederal: string;
   localidad: string;
-}
-
-export interface UbicacionNombres {
   provincia: string;
-  localidad: string;
 }
-
 
 export interface MapData {
   latitud: number;

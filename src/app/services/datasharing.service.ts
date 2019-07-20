@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CriterioBusquedaProducto, CatalogoActualizado} from '../interfaces/criterios';
-import { Coordenadas, UbicacionNombres } from '../interfaces/ubicacion';
+import { Coordenadas, Ubicacion } from '../interfaces/ubicacion';
 import { Producto } from '../interfaces/producto';
 
 @Injectable()
@@ -22,14 +22,15 @@ export class DataSharingService {
   }
 
 //---Canal de Ubicacion------// TODO: VER---------------------------------------------------------
-  private ubicacionSource = new BehaviorSubject<UbicacionNombres>(
+  private ubicacionSource = new BehaviorSubject<Ubicacion>(
     {
-      localidad: 'default',
-      provincia: 'default'
+      localidad: 'Capital',
+      provincia: 'Córdoba',
+      codigoEntidadFederal:'AR-X'
     }
   );
   currentUbicacion = this.ubicacionSource.asObservable();
-  changeUbicacion(ubicacion: UbicacionNombres) {
+  changeUbicacion(ubicacion: Ubicacion) {
     this.ubicacionSource.next(ubicacion);
   }
   

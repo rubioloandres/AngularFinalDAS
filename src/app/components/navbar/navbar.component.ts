@@ -7,7 +7,7 @@ import { Producto } from 'src/app/interfaces/producto';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Coordenadas, Ubicacion, UbicacionNombres } from 'src/app/interfaces/ubicacion';
+import { Coordenadas, Ubicacion } from 'src/app/interfaces/ubicacion';
 import { Idioma } from 'src/app/interfaces/idioma';
 import { Cadena } from 'src/app/interfaces/cadena';
 import { CriterioBusquedaProducto } from 'src/app/interfaces/criterios';
@@ -38,7 +38,7 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterViewChecked {
   // criterioBusqueda: CriterioBusquedaProducto;
   listaubicaciones: Coordenadas[] = new Array();
   ubicacion: Ubicacion;
-  ubicacionActual: UbicacionNombres;
+  ubicacionActual: Ubicacion;
   listaProductos: Producto[] = new Array();
   formBusProd = new FormControl(this.searchInput);
   private suscripcionformBusProd: Subscription;
@@ -146,10 +146,6 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (localStorage.getItem('ubicacion') !== null) {
       this.ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
     }
-    this.ubicacionActual = {
-      localidad: this.ubicacion.localidad,
-      provincia: this.listaProvincias.find(p => p.codigoEntidadFederal === this.ubicacion.codigoEntidadFederal).nombreProvincia
-    };
   }
 
   registrarUbicacion() {

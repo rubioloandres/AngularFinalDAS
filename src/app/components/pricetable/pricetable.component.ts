@@ -23,7 +23,7 @@
   export class PricetableComponent implements OnInit, OnDestroy {
   
     displayedColumns: string[] = new Array();
-    precioTotalSucursal: TotalSucursal[] = new Array();
+    precioTotalSucursal: TotalSucursal[] = new Array(); //NO SE USA?
     listaSucursales: SucursalTablaPrecio[] = new Array();
     listaSucursalesOrdenadas: SucursalTablaPrecio [] = new Array();
     listaSucursalesAnterior: SucursalTablaPrecio[] = new Array();
@@ -92,6 +92,7 @@
   
     loadColumns() {
       const n = this.calcularCantidadColumnas();
+
       this.displayedColumns = [];
       this.displayedColumns.push('item');
       let i = 1;
@@ -119,12 +120,22 @@
     }
   
     removeProduct(idprod: string) {
+      
       const prodscart: Producto [] = JSON.parse(localStorage.getItem('carrito'));
       this.listaProductos = prodscart.filter(p => p.codigoDeBarras !== idprod);
       localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
-      this.compararPrecios(this.listaProductos);
+      this.cargarUbicacion();
+      if(this.listaProductos.length > 0){
+        this.listaCadenasNoDisponibles = new Array();
+        this.compararPrecios(this.listaProductos);
+      }else{
+        this.listaCadenasNoDisponibles = new Array();
+        this.displayedColumns = new Array();
+      }
+      
     }
   
+    
     getCadena(id: number) {
       return this.listaCadenasDisponibles.find(cad => cad.idCadena === id);
     }
@@ -149,6 +160,19 @@
     }
   
     compararPrecios(productos: Producto[]) {
+      console.log('recomparando precios');
+      console.log(productos);
+      console.log( this.ubicacion.codigoEntidadFederal);
+      console.log( this.ubicacion.localidad );
+
+      this.listaSucursales = new Array();
+      this.listaSucursalesOrdenadas = new Array();
+      this.listaSucursalesAnterior = new Array();
+      this.listaProductos = new Array();
+      this.listaCadenasDisponibles  = new Array();
+      this.listaCadenasNoDisponibles  = new Array();
+
+      this.listaSucursales = [];
       this.listaProductos = productos;
       this.cacheProductos = productos;
       const codigos = new Set<string>();
@@ -183,7 +207,7 @@
     }
   
     calcularCantidadColumnas() {
-      console.log(this.screenWidth);
+
       var cant_columns:number = 1;
       if (this.listaSucursales !== undefined) {
         if(this.screenWidth < 1012) {

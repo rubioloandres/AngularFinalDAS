@@ -20,6 +20,7 @@ export class CatalogueComponent implements OnInit, OnDestroy {
 
   private suscripcionCriterioBusquedaProducto: Subscription;
   private suscripcionProductosService: Subscription;
+  private suscripcionUbicacion: Subscription;
 
   ubicacion: Ubicacion;
   criterioBusqueda: CriterioBusquedaProducto;
@@ -35,12 +36,23 @@ export class CatalogueComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.actualizarCatalogo();
+    this.escucharUbicacion();
     this.cargarUbicacion();
+  }
+
+  escucharUbicacion() {
+    this.suscripcionUbicacion = this.dataSharingService
+      .currentUbicacion
+      .subscribe(ub => {
+        this.cargarUbicacion();
+        this.actualizarCatalogo();
+      });
   }
 
   ngOnDestroy() {
     this.suscripcionCriterioBusquedaProducto.unsubscribe();
     this.suscripcionProductosService.unsubscribe();
+    this.suscripcionUbicacion.unsubscribe();
   }
 
 
