@@ -169,7 +169,6 @@
       this.listaSucursalesOrdenadas = new Array();
       this.listaSucursalesAnterior = new Array();
       this.listaProductos = new Array();
-      this.listaCadenasDisponibles  = new Array();
       this.listaCadenasNoDisponibles  = new Array();
 
       this.listaSucursales = [];
