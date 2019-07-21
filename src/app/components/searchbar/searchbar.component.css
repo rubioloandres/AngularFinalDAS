@@ -31,7 +31,7 @@ mat-form-field {
   font-size:25px;
   width: 45%;
   background: rgb(255,255,255,0.8);
-  border: lightblue 2px solid;
+  border:  rgb(50, 50, 156) 1px solid;
 }
 
 button img {
@@ -46,7 +46,7 @@ button img {
   height: 60px;
   width: 130px;
   text-align: center;
-  border: 2px lightblue solid;
+  border: 2px rgb(50, 50, 156) solid;
   border-radius: 25;
   background-color: rgb(50, 50, 156);
   color: white;

@@ -102,9 +102,13 @@ export class HealthComponent implements OnInit {
     this.data.changePlato(idPlato);
   }
 
-  loadUbicacion() {
-    if (localStorage.getItem('ubicacion') !== null) {
-      this.ubicacion =  JSON.parse(localStorage.getItem('ubicacion'));
+
+
+  ubicacionCargada() {
+    if (localStorage.getItem('ubicacion') === '') {
+      return false
+    }else{
+      return true;
     }
   }
 
@@ -112,7 +116,7 @@ export class HealthComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogLocationComponent, {
       width: '500px'
     });
-    this.loadUbicacion();
+    //this.loadUbicacion();
   }
 
   constructor(
@@ -121,7 +125,7 @@ export class HealthComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadUbicacion();
+    //this.loadUbicacion();
     this.cargarMenuSemanal();
     this.cargarSemana();
     this.actualizarDia();

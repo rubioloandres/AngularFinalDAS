@@ -2,36 +2,96 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="es" datatype="plaintext" original="ng2.template" target-language="es">
     <body>
-    <trans-unit id="14438fb678bc872ef21c518f9729a99ae5aeda05" datatype="html">
+      <trans-unit id="fbbd60c1e31dd53af69336949cade90bba283a41" datatype="html">
         <source>
-      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Principal
+      <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Supermercados
+        <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+      <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>Supermercados
+        <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+      <x id="START_LINK_2" ctype="x-a" equiv-text="&lt;a>"/>Productos
+        <x id="TAG_IMG_1" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+      <x id="START_LINK_3" ctype="x-a" equiv-text="&lt;a>"/>Ubicacion
+        <x id="TAG_IMG_2" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
     </source><target state="final">
-      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Principal
+      <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Supermercados
+        <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+      <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a>"/>Supermercados
+        <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+      <x id="START_LINK_2" ctype="x-a" equiv-text="&lt;a>"/>Productos
+        <x id="TAG_IMG_1" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+      <x id="START_LINK_3" ctype="x-a" equiv-text="&lt;a>"/>Ubicacion
+        <x id="TAG_IMG_2" ctype="image" equiv-text="&lt;img/>"/>
+      <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
     </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/components/navbar/navbar.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
-      </trans-unit><trans-unit id="2b5b4d28da0912dd99bca1574eda667da7badce3" datatype="html">
-        <source>
-      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Menu
-    </source><target state="final">
-      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Menu
-    </target>
+      </trans-unit>
+      <trans-unit id="b6bc65f3e9576dc6ac1493740124944c259a11f4" datatype="html">
+        <source>Buscar</source><target state="final">Buscar</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/components/navbar/navbar.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">32</context>
         </context-group>
-      </trans-unit><trans-unit id="799b1cc1812beffee9c6d65bd94c4c3083eb9590" datatype="html">
-        <source>
-      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Carrito
-    </source><target state="final">
-      <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/> Carrito
-    </target>
+      </trans-unit>
+      <trans-unit id="6c541373b38bdd14981a514219d1dfec34a6f6ed" datatype="html">
+        <source>Buscar productos</source><target state="final">Buscar productos</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/components/navbar/navbar.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">34</context>
         </context-group>
-      </trans-unit></body>
+      </trans-unit>
+      <trans-unit id="71a59d3c5b7f7d7b1cdeced8f987ca1e76a896a7" datatype="html">
+        <source>
+          Supermercados
+          <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+        </source><target state="final">
+          Supermercados
+          <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68c78c1f2c38a66ad7c12853e910f2bd22f6cb58" datatype="html">
+        <source>
+          Productos
+          <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+        </source><target state="final">
+          Productos
+          <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45ba1acb281f2a7acd8649185cb4a6e7f98c423a" datatype="html">
+        <source>
+          Ubicacion
+          <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+        </source><target state="final">
+          Ubicacion
+          <x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+    </body>
   </file>
 </xliff>

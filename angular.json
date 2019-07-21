@@ -34,7 +34,7 @@
             "es5BrowserSupport": true
           },
           "configurations": {
-            "production": {
+            "production-es": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -50,13 +50,35 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
+              "i18nFile": "src/i18n/messages.es.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "es"
+            },
+            "production-en": {
+              "fileReplacements": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "i18nFile": "src/i18n/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en"
+            },
+            "es": {
+              "outputPath": "dist/es/",
+              "i18nFile": "src/i18n/messages.es.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "es"
             },
             "en": {
               "aot": true,
@@ -73,8 +95,14 @@
             "browserTarget": "pcINDEC:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "pcINDEC:build:production"
+            "production-es": {
+              "browserTarget": "pcINDEC:build:production-es"
+            },
+            "production-en": {
+              "browserTarget": "pcINDEC:build:production-en"
+            },
+            "es": {
+              "browserTarget": "pcINDEC:build:es"
             },
             "en": {
               "browserTarget": "pcINDEC:build:en"
@@ -145,8 +173,17 @@
             "devServerTarget": "pcINDEC:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "pcINDEC:serve:production"
+            "production-es": {
+              "devServerTarget": "pcINDEC:serve:production-es"
+            },
+            "production-en": {
+              "devServerTarget": "pcINDEC:serve:production-en"
+            },
+            "es": {
+              "devServerTarget": "pcINDEC:serve:es"
+            },
+            "en": {
+              "devServerTarget": "pcINDEC:serve:en"
             }
           }
         },

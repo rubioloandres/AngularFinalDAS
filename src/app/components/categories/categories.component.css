@@ -20,7 +20,7 @@
   padding: 4px;
   display:block;
   width:100%;
-  border: 1px solid rgb(0, 180, 204);
+  border: 0.5px solid  rgb(50, 50, 156);
   background-color: white;
 }
 
@@ -41,5 +41,5 @@
 }
 
 .cards-container{
-  padding-bottom:15% !important;
+  padding-bottom:25% !important;
  }

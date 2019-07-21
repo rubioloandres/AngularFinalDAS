@@ -1,27 +1,35 @@
 <div class="space"></div>
-
+<div class="sucursalesContainer">
 <h2>Informacion de sucursales</h2>
 
-<div class="noProds" *ngIf=" ! (listaSucursales.length > 0 )">
+<div class="noProds" *ngIf="!(listaSucursales.length > 0 )">
   <h5>No hay sucursales para mostrar.</h5>
 </div>
 
-<mat-grid-list cols="4" rowHeight="300px" [gutterSize]="'8px'" class="product-card">
-  <mat-grid-tile *ngFor="let sucursal of listaSucursales" [colspan]="1" [rowspan]="4">
+<div fxLayout="row wrap">
+  <div *ngFor="let sucursal of listaSucursales" fxFlex="25"
+  fxFlex.md="33"
+  fxFlex.sm="50"
+  fxFlex.xs="100"
+  fxLayout="column"
+  style="padding: 5px;">
+
     <mat-card>
       <mat-card-title>{{getCadena(sucursal.idCadena).nombreCadena}}</mat-card-title>
       <mat-card-subtitle>{{sucursal.nombreSucursal}}</mat-card-subtitle>
-      <img class="prod-img" src="{{getCadena(sucursal.idCadena).imagenCadena}}">
+      <img class="cad-img" src="{{getCadena(sucursal.idCadena).imagenCadena}}">
       <mat-card-content>
         <ul>
           <li><img src="./../../../assets/img/email_icon.png">{{sucursal.email}}</li>
           <li><img src="./../../../assets/img/tel_icon.png">{{sucursal.telefono}}</li>
           <li><img src="./../../../assets/img/cuit_icon.png">CUIT: {{sucursal.cuit}}</li>
-          <li><img src="./../../../assets/img/location_icon.png">
-            <button mat-stroked-button (click)="showMapa(sucursal.latitud,sucursal.longitud,sucursal.nombreSucursal,sucursal.direccion)">Ver ubicacion</button>
-          </li>
         </ul>
       </mat-card-content>
+      <mat-card-actions>
+          <button mat-stroked-button (click)="showMapa(sucursal.latitud,sucursal.longitud,sucursal.nombreSucursal,sucursal.direccion)">
+          <img src="./../../../assets/img/location_icon.png">Ver ubicacion</button>
+      </mat-card-actions>
     </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>
+</div>

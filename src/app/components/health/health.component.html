@@ -53,8 +53,8 @@
           </mat-expansion-panel>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button *ngIf="!ubicacion" (click)="registrarUbicacion()" title="Calcular Precios"><img src="./../../../assets/img/searchprice_icon.png"></button>
-          <button mat-button *ngIf="ubicacion" (click)="enviarPlato(plato.idPlato)" [routerLink]="['../pricesplate']" title="Calcular Precios"><img src="./../../../assets/img/searchprice_icon.png"></button>
+          <button mat-button *ngIf="!ubicacionCargada()" (click)="registrarUbicacion()" title="Calcular Precios"><img src="./../../../assets/img/searchprice_icon.png"></button>
+          <button mat-button *ngIf="ubicacionCargada()" (click)="enviarPlato(plato.idPlato)" [routerLink]="['../pricesplate']" title="Calcular Precios"><img src="./../../../assets/img/searchprice_icon.png"></button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

@@ -29,8 +29,7 @@
     width: 100%;
     z-index: 120;
     background-color:rgb(50, 50, 156);
-    justify-content: right !important;
-    text-align: center !important;
+    justify-content: center !important;
     position: fixed;
   }
   
@@ -41,7 +40,6 @@
     background-size: 100%;
     height: 100px !important;
     overflow: auto;
-    /*margin-top: auto;*/
     width: 100%;
   }
 

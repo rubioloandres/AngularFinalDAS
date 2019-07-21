@@ -28,6 +28,8 @@ export class DialogLocationComponent implements OnInit {
 
   ubicacion: Ubicacion;
 
+  //validUbicacion : boolean = true;
+
   displayFnP(prov?: Provincia): string | undefined {
     return prov ? prov.nombreProvincia : undefined;
   }
@@ -88,9 +90,13 @@ export class DialogLocationComponent implements OnInit {
   const isNotUbicacionValida =(provincia.codigoEntidadFederal === undefined
                           || localidad.nombreLocalidad === undefined
                           || provincia.nombreProvincia === undefined)
+
+  console.log(localidad);
+  console.log(provincia);
+
   if (isNotUbicacionValida) 
     {
-        console.log('Ubicacion invalida...')
+        console.log('Ubicacion invalida...');
     }
     else {
       const ubicacion: Ubicacion = {
@@ -116,11 +122,17 @@ export class DialogLocationComponent implements OnInit {
   }
 
   listoParaRegistrar() {
-    if (this.formLocalidad.value !== null && this.formProvincia.value !== null) {
-      return true;
-    } else {
-      return false;
+    console.log(this.formLocalidad.value);
+    console.log(this.formProvincia.value);
+    if (this.formLocalidad.value !== null && this.formLocalidad.value !== '' 
+    && this.formProvincia.value !== null  && this.formProvincia.value !== '' ) {
+
+      const prov = this.listaProvincias.find(p => p ===  this.formProvincia.value);
+      const loc = this.listaLocalidades.find(l => l ===  this.formLocalidad.value);
+
+      if (prov !== undefined && loc !== undefined)      return true;
     }
+    return false;
   }
 
   constructor(

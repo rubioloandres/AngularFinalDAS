@@ -118,17 +118,38 @@
         return '$ ' + precioProd;
       }
     }
+
+    obtenerProductosCarrito(): Producto[] {
+      const carrito: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+      return carrito;
+    }
   
     removeProduct(idprod: string) {
       
+     /* const carr =this.obtenerProductosCarrito();
+
+      const found = carr.find(p => p.codigoDeBarras === idprod);
+      
+      if(found!== undefined){ //encontrado
+
+      }else{// no encontrado
+         
+      }*/
+      
       this.listaProductos = this.listaProductos.filter(p => p.codigoDeBarras !== idprod);
+      
       localStorage.setItem('carrito', JSON.stringify(this.listaProductos));
+
       this.cargarUbicacion();
+
       if(this.listaProductos.length > 0){
+        console.log('negro');
         this.listaCadenasNoDisponibles = new Array();
         this.compararPrecios(this.listaProductos);
       }else{
         this.listaCadenasNoDisponibles = new Array();
+
+        console.log('blanco');
         this.displayedColumns = new Array();
       }
       
