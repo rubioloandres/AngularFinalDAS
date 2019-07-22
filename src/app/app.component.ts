@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Inject, LOCALE_ID } from '@angular/core';
 import { LocalidadesService } from './services/indec/localidades.service';
 import { CategoriasService } from './services/indec/categorias.service';
 import { ProductosService } from './services/indec/productos.service';
@@ -33,12 +33,11 @@ export class AppComponent implements OnInit, OnDestroy {
   listaProvincias: Provincia[] = new Array();
   listaCategorias: Categoria[] = new Array();
   listaIdiomas: Idioma[] = [
-    { nombre: 'ES', imagen: './../../../assets/img/lang_esp_icon.png' },
-    { nombre: 'EN', imagen: './../../../assets/img/lang_eng_icon.png' }
+    { nombre: 'ES', imagen: './../../../assets/img/lang_esp_icon.png' , puerto: 4200 },
+    { nombre: 'EN', imagen: './../../../assets/img/lang_eng_icon.png' , puerto: 44316 }
   ];
   idiomaActual: Idioma;
   searchInput = '';
-  // criterioBusqueda: CriterioBusquedaProducto;
   listaubicaciones: Coordenadas[] = new Array();
   ubicacion: Ubicacion;
   ubicacionActual: Ubicacion;
@@ -61,8 +60,21 @@ export class AppComponent implements OnInit, OnDestroy {
     private data: DataSharingService,
     private loc: GeoLocationService,
     public dialog: MatDialog,
-    private cdRef: ChangeDetectorRef
-  ) { }
+    private cdRef: ChangeDetectorRef,
+    @Inject(LOCALE_ID) locale: string
+  ) {
+        if (locale === 'en') {
+          this.idiomaActual = this.listaIdiomas.find(i => i.nombre === 'EN');
+        } else {
+          this.idiomaActual = this.listaIdiomas.find(i => i.nombre === 'ES');
+        }
+
+    
+      console.log(locale);
+      console.log(this.idiomaActual);
+      
+
+   }
 
   suscripcionCadenasService: Subscription;
   suscripcionProductoService: Subscription;
@@ -273,21 +285,19 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadIdioma() {
-    this.listaIdiomas.forEach(idioma => {
-      if (idioma.nombre === 'ES') {
-        this.idiomaActual = idioma;
-      }
-    });
-  }
+  setIdioma(idioma: Idioma) {
+    let url = '';
+    if (idioma.nombre === 'ES') {
+      console.log('espa;ol');
+      url = 'http://localhost:'+idioma.puerto;
+      return url;
+    }
 
-
-  setIdiomaActual(nombreIdioma: string) {
-    this.listaIdiomas.forEach(idioma => {
-      if (idioma.nombre === nombreIdioma) {
-        this.idiomaActual = idioma;
-      }
-    });
+    if (idioma.nombre === 'EN') {
+      console.log('ingles');
+      url = 'http://localhost:'+idioma.puerto;
+      return url;
+    }
   }
 
   // TODO: MUY IMPORTANTE INICIALIZAR TODO BIEN PORFAVOR!
@@ -304,7 +314,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.loadCategories();
     this.loadProvinces();
     this.loadCadenas();
-    this.loadIdioma();
+    // this.loadIdioma();
     this.searchProductsPorPalabraClave();
 
     this.data.currentUbicacion.subscribe(ub => {

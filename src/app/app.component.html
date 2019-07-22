@@ -55,6 +55,7 @@
         (click)="onClickSearchProductsPorPalabraClave()"><img src="./../../../assets/img/search_icon.png"></button>
     </form>
 
+    
     <div class="navbar-item">
       <div class="btn-group btn-lang">
         <button mat-menu-item class="btn" [matMenuTriggerFor]="idioma" style="color: white">
@@ -62,13 +63,13 @@
           <img src="{{idiomaActual.imagen}}" style="width: 25px;height: 25px;">
         </button>
       </div>
-    </div>
+    </div>    
 
     <mat-menu #idioma="matMenu">
-      <button mat-menu-item *ngFor="let idioma of listaIdiomas" (click)="setIdiomaActual(idioma.nombre)">
+      <a mat-menu-item *ngFor="let idioma of listaIdiomas" href="{{setIdioma(idioma)}}">
         {{idioma.nombre}}
         <img src="{{idioma.imagen}}" width="25px" height="25px">
-      </button>
+      </a>
     </mat-menu>
 
     <div fxShow="true" fxHide.gt-lg="true" class="sidenav-button">
