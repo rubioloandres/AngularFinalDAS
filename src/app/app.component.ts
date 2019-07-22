@@ -27,8 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'Comparador de precios';
   error: any;
-
-  nombreComponente: string = 'NavBarComponent';
+  nombreComponente = 'NavBarComponent';
   listaCadenas: Cadena[] = new Array();
   listaProvincias: Provincia[] = new Array();
   listaCategorias: Categoria[] = new Array();
@@ -45,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
   formBusProd = new FormControl(this.searchInput);
   private suscripcionformBusProd: Subscription;
   filteredProds: Observable<Producto[]>;
-  
+
   selected = new FormControl(0);
   seccionActiva = 0;
 
@@ -68,12 +67,6 @@ export class AppComponent implements OnInit, OnDestroy {
         } else {
           this.idiomaActual = this.listaIdiomas.find(i => i.nombre === 'ES');
         }
-
-    
-      console.log(locale);
-      console.log(this.idiomaActual);
-      
-
    }
 
   suscripcionCadenasService: Subscription;
@@ -83,157 +76,138 @@ export class AppComponent implements OnInit, OnDestroy {
   suscripcionLocalidadesService: Subscription;
   suscripcionMenuService: Subscription;
 
-  secciones = [
-    {
-      nombre: 'Principal',
-      imagen: './../../../assets/img/home_icon.png',
-      ruta: '/',
-      descripcion: 'Principal'
-    },
-    {
-      nombre: 'Saludable',
-      imagen: './../../../assets/img/health-food-icon2.png',
-      ruta: 'health',
-      descripcion: 'Menu Saludable'
-    },
-    {
-      nombre: 'Carrito',
-      imagen: './../../../assets/img/cart_icon.png',
-      ruta: 'cart',
-      descripcion: 'Carrito'
-    }
-  ];
-
-
   buscarProductos() {
     this.suscripcionProductoService = this.sProd.buscarProductos({ componente: 'SearchbarComponent' }).subscribe(
       prods => {
-        console.log('HTTP Response Productos', prods);
-        localStorage.setItem('productos', JSON.stringify(prods));
+        // console.log('HTTP Response Productos', prods);
+        sessionStorage.setItem('productos', JSON.stringify(prods));
       },
       err => {
-        console.log('HTTP Error Productos', err);
-        localStorage.setItem('productos', '[]');
+        // console.log('HTTP Error Productos', err);
+        sessionStorage.setItem('productos', '[]');
         this.error = err;
       },
-      () => console.log('HTTP Request Productos completed')
+      () => { /*console.log('HTTP Request Productos completed')*/ }
     );
   }
 
   getCategorias() {
     this.suscripcionCategoriasService = this.sCat.getCategorias().subscribe(
       cats => {
-        console.log('HTTP Response Categorias', cats);
-        localStorage.setItem('categorias', JSON.stringify(cats));
+        // console.log('HTTP Response Categorias', cats);
+        sessionStorage.setItem('categorias', JSON.stringify(cats));
       },
       err => {
-        console.log('HTTP Error Categorias', err);
-        localStorage.setItem('categorias', '[]');
+        // console.log('HTTP Error Categorias', err);
+        sessionStorage.setItem('categorias', '[]');
         this.error = err;
       },
-      () => console.log('HTTP Request Categorias completed')
+      () =>  { /*console.log('HTTP Request Categorias completed')*/ }
     );
   }
 
   getProvincias() {
     this.suscripcionProvinciasService = this.sProv.getProvincias().subscribe(
       provs => {
-        console.log('HTTP Response Provincias', provs);
-        localStorage.setItem('provincias', JSON.stringify(provs));
+        // console.log('HTTP Response Provincias', provs);
+        sessionStorage.setItem('provincias', JSON.stringify(provs));
       },
       err => {
-        console.log('HTTP Error Provincias', err);
-        localStorage.setItem('provincias', '[]');
+        // console.log('HTTP Error Provincias', err);
+        sessionStorage.setItem('provincias', '[]');
         this.error = err;
       },
-      () => console.log('HTTP Request Provincias completed')
+      () =>  { /*console.log('HTTP Request Provincias completed')*/ }
     );
   }
 
   getLocalidades() {
     this.suscripcionLocalidadesService = this.sLoc.getLocalidades().subscribe(
       locs => {
-        console.log('HTTP Response Localidades', locs);
-        localStorage.setItem('localidades', JSON.stringify(locs));
+        // console.log('HTTP Response Localidades', locs);
+        sessionStorage.setItem('localidades', JSON.stringify(locs));
       },
       err => {
-        console.log('HTTP Error Localidades', err);
-        localStorage.setItem('localidades', '[]');
+        //  console.log('HTTP Error Localidades', err);
+        sessionStorage.setItem('localidades', '[]');
         this.error = err;
       },
-      () => console.log('HTTP Request Localidades completed')
+      () => { /*console.log('HTTP Request Localidades completed')*/ }
     );
   }
 
   getCadenas() {
     this.suscripcionCadenasService = this.sCad.getCadenas().subscribe(
       cads => {
-        console.log('HTTP Response Cadenas', cads);
-        localStorage.setItem('cadenas', JSON.stringify(cads));
+        // console.log('HTTP Response Cadenas', cads);
+        sessionStorage.setItem('cadenas', JSON.stringify(cads));
       },
       err => {
-        console.log('HTTP Error Cadenas', err);
-        localStorage.setItem('cadenas', '[]');
+        // console.log('HTTP Error Cadenas', err);
+        sessionStorage.setItem('cadenas', '[]');
         this.error = err;
       },
-      () => console.log('HTTP Request Cadenas completed')
+      () => { /*console.log('HTTP Request Cadenas completed')*/ }
     );
   }
 
   getMenu() {
     this.suscripcionMenuService = this.sMen.getMenu().subscribe(
       menus => {
-        console.log('HTTP Response Menu', menus);
-        localStorage.setItem('menu', JSON.stringify(menus));
+        // console.log('HTTP Response Menu', menus);
+        sessionStorage.setItem('menu', JSON.stringify(menus));
       },
       err => {
-        console.log('HTTP Error Menu', err);
-        localStorage.setItem('menu', '[]');
+        // console.log('HTTP Error Menu', err);
+        sessionStorage.setItem('menu', '[]');
         this.error = err;
       },
-      () => console.log('HTTP Request Menu completed')
+      () => { /* console.log('HTTP Request Menu completed')*/ }
     );
   }
 
   inicializarCarrito(): void {
-    localStorage.setItem('carrito', '[]');
+    sessionStorage.setItem('carrito', '[]');
   }
 
-  
+
   loadCadenas() {
-    if (localStorage.getItem('cadenas') !== null) {
-      const lcad = localStorage.getItem('cadenas');
-      if (lcad.length > 0) {
-        this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+    const cadenas = sessionStorage.getItem('cadenas');
+    if (cadenas !== null) {
+      if (cadenas.length > 0) {
+        this.listaCadenas = JSON.parse(cadenas);
+        console.log('Cadenas cargadas exitosamente');
       }
     } else {
-      this.listaCadenas = [];
+      console.log('Cadenas no cargadas exitosamente');
     }
   }
 
   loadCategories() {
-    const lc = localStorage.getItem('categorias');
-    if (lc !== null) {
-      const lcat: Categoria[] = JSON.parse(lc);
+    const categorias = sessionStorage.getItem('categorias');
+    if (categorias !== null) {
+      const lcat: Categoria[] = JSON.parse(categorias);
       if (lcat.length > 0) {
         lcat.forEach(cat => {
           this.listaCategorias.push(cat);
         });
-      } else {
-        this.listaCategorias = [];
+        console.log('Categorias cargadas exitosamente');
       }
+    } else {
+      console.log('Categorias no cargadas exitosamente');
     }
   }
 
   loadProvinces() {
-    const lp = localStorage.getItem('provincias');
-    if (lp !== null) {
-      const lprov: Provincia[] = JSON.parse(lp);
+    const provincias = sessionStorage.getItem('provincias');
+    if (provincias !== null) {
+      const lprov: Provincia[] = JSON.parse(provincias);
       if (lprov.length > 0) {
         this.listaProvincias = lprov;
-      } else {
-        this.listaProvincias = [];
+        console.log('Provincias cargadas exitosamente');
       }
+    } else {
+      console.log('Provincias no cargadas exitosamente');
     }
   }
 
@@ -266,16 +240,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   hayUbicacion(): boolean {
-    if (localStorage.getItem('ubicacion') !== null) {
+    if (sessionStorage.getItem('ubicacion') !== null) {
       return true;
-    } else{
+    } else {
       return false;
     }
   }
 
   loadUbicacion() {
-    if (localStorage.getItem('ubicacion') !== null) {
-      this.ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
+    const ubicacion = sessionStorage.getItem('ubicacion');
+    if (ubicacion !== null) {
+      this.ubicacion = JSON.parse(ubicacion);
     }
   }
 
@@ -289,22 +264,20 @@ export class AppComponent implements OnInit, OnDestroy {
     let url = '';
     if (idioma.nombre === 'ES') {
       console.log('espa;ol');
-      url = 'http://localhost:'+idioma.puerto;
+      url = 'http://localhost:' + idioma.puerto;
       return url;
     }
 
     if (idioma.nombre === 'EN') {
       console.log('ingles');
-      url = 'http://localhost:'+idioma.puerto;
+      url = 'http://localhost:' + idioma.puerto;
       return url;
     }
   }
 
-  // TODO: MUY IMPORTANTE INICIALIZAR TODO BIEN PORFAVOR!
   ngOnInit(): void {
     this.inicializarCarrito();
     this.buscarProductos();
-    //TODO: ARREGLAR CARGAR CATEGORIAS
     this.getCategorias();
     this.getProvincias();
     this.getLocalidades();
@@ -314,7 +287,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.loadCategories();
     this.loadProvinces();
     this.loadCadenas();
-    // this.loadIdioma();
     this.searchProductsPorPalabraClave();
 
     this.data.currentUbicacion.subscribe(ub => {
@@ -338,6 +310,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cdRef.detectChanges();
   }
 
-  
+
 
 }

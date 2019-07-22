@@ -26,17 +26,17 @@ export class CartComponent implements OnInit {
   }
 
   obtenerProductos(): Producto[] {
-    const carrito: Producto[] = JSON.parse(localStorage.getItem('carrito'));
+    const carrito: Producto[] = JSON.parse(sessionStorage.getItem('carrito'));
     return carrito;
   }
 
   guardarProductos(prods: Producto[]): void {
-    localStorage.setItem('carrito', JSON.stringify(prods));
+    sessionStorage.setItem('carrito', JSON.stringify(prods));
   }
 
   removerTodosLosProductos(): void {
     this.carrito = [];
-    localStorage.setItem('carrito', JSON.stringify(this.carrito));
+    sessionStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
 
   remover(prod: Producto): void {
@@ -49,11 +49,11 @@ export class CartComponent implements OnInit {
   }
 
   agregar(prod: Producto): void {
-    let carrito: Producto[] = this.obtenerProductos();
+    const carrito: Producto[] = this.obtenerProductos();
     if (!this.estaEnElCarrito(prod)) {
       carrito.push(prod);
       this.carrito = carrito;
-      localStorage.setItem('carrito', JSON.stringify(this.carrito));
+      sessionStorage.setItem('carrito', JSON.stringify(this.carrito));
       return;
     }
   }
@@ -87,7 +87,7 @@ export class CartComponent implements OnInit {
   }
 
   cargarUbicacion() {
-    const ubLS = localStorage.getItem('ubicacion');
+    const ubLS = sessionStorage.getItem('ubicacion');
     if (ubLS == null || ubLS.length < 2) {
       this.ubicacion = undefined;
       return;
@@ -97,7 +97,7 @@ export class CartComponent implements OnInit {
   }
 
   hayUbicacionRegistrada(): boolean {
-    const ubLS = localStorage.getItem('ubicacion');
+    const ubLS = sessionStorage.getItem('ubicacion');
     if (ubLS == null || ubLS.length < 2) {
       return false;
     } else {

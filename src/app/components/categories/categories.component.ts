@@ -28,13 +28,12 @@ export class CategoriesComponent implements OnInit, OnDestroy{
   obtenerCategorias() {
     this.suscripcionCategoriasService = this.sCat.getCategorias().subscribe (
       cats => {
-        console.log('HTTP Response Categorias', cats);
-        localStorage.setItem('categorias', JSON.stringify(cats));
+        console.log('HTTP Response Categorias');
+        sessionStorage.setItem('categorias', JSON.stringify(cats));
         this.listaCategorias = cats;
       },
       err => {
-        console.log('HTTP Error Categorias', err);
-        //TODO: HANDLE ERROR
+        console.log('HTTP Error Categorias');
       },
       () => console.log('HTTP Request Categorias completed')
     );

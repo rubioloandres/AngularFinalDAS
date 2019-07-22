@@ -29,8 +29,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { StorageServiceModule } from 'ngx-webstorage-service';
-import { LocalStorageService } from './services/localStorage.service'; //TODO: QUE ONDA
 import { GeoLocationService } from './services/geoLocation.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,7 +46,6 @@ import { MapComponent } from './components/map/map.component';
 import { SucursalesService } from './services/indec/sucursales.service';
 import { CadenasService } from './services/indec/cadenas.service';
 import { MatDialogModule } from '@angular/material/dialog';
-// import { CategoriasResolverService, ProductosResolverService } from './services/resolver.service';
 import { ErrorManager } from './services/handleError.service';
 import { DialogLocationComponent } from './components/location/location.component';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
@@ -101,7 +98,6 @@ import { FooterComponent } from './components/footer/footer.component';
     RouterModule,
     AppRoutingModule,
     MatProgressSpinnerModule,
-    StorageServiceModule,
     MatDividerModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -119,7 +115,6 @@ import { FooterComponent } from './components/footer/footer.component';
     CategoriasService,
     ProductosService,
     CatalogueComponent,
-    LocalStorageService,
     DataSharingService,
     GeoLocationService,
     ProvinciasService,
@@ -128,8 +123,6 @@ import { FooterComponent } from './components/footer/footer.component';
     CadenasService,
     MenuService,
     CartComponent,
-    /*CategoriasResolverService,
-    ProductosResolverService,*/
     ErrorManager
   ],
   entryComponents: [
@@ -142,6 +135,5 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppModule {
   constructor(@Inject(LOCALE_ID) locale: string) {
     registerLocaleData(locale === 'es' ? localeEs : localeEn);
-    // registerLocaleData(localeEn);
    }
 }

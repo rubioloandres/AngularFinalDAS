@@ -29,7 +29,7 @@ export class GeoLocationService {
 
   getCurrentLocation() {
     navigator.geolocation.getCurrentPosition(pos => {
-      localStorage.setItem('posicion', JSON.stringify(this.success(pos)));
+      sessionStorage.setItem('posicion', JSON.stringify(this.success(pos)));
     }, this.error, options);
   }
 }

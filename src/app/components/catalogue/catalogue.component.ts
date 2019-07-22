@@ -68,20 +68,20 @@ export class CatalogueComponent implements OnInit, OnDestroy {
     return this.carrito.estaEnElCarrito(prod);
   }
 
-  actualizarCatalogo(): void {//Reaccionamos al cambio en el criterio de busqueda del producto
+  actualizarCatalogo(): void {// Reaccionamos al cambio en el criterio de busqueda del producto
     this.suscripcionCriterioBusquedaProducto =
       this.dataSharingService
         .currentCriterio
         .subscribe(criterioBusqueda => {
-          //Buscamos los productos segun el criterio
+          // Buscamos los productos segun el criterio
           this.suscripcionProductosService =
             this.productosService
               .buscarProductos(criterioBusqueda)
-              .subscribe(productos => {
-                //Asignamos los nuevos productos a la lista para que la vista pueda mostrarlos
-                this.listaProductos = productos;
-                //Emitimos un evento que acuse que el catalogo se ha cambiado junto con el componente que emitio el cambio
-                this.dataSharingService.catalogoActualizado({ productos: productos, componente: criterioBusqueda.componente });
+              .subscribe(prds => {
+                // Asignamos los nuevos productos a la lista para que la vista pueda mostrarlos
+                this.listaProductos = prds;
+                // Emitimos un evento que acuse que el catalogo se ha cambiado junto con el componente que emitio el cambio
+                this.dataSharingService.catalogoActualizado({ productos: prds, componente: criterioBusqueda.componente });
               }, err => {
                 console.log('HTTP Error Busqueda de productos ', err);
                 // TODO:Manejo de error updateCatalog
@@ -89,14 +89,13 @@ export class CatalogueComponent implements OnInit, OnDestroy {
         });
   }
 
-  compararPrecio(producto: Producto):void {
-    //console.log("Comparando Precios..");
+  compararPrecio(producto: Producto): void {
     this.dataSharingService.compararPrecios([producto]);
   }
 
 
-  cargarUbicacion():void {
-    const ubLS = localStorage.getItem('ubicacion');
+  cargarUbicacion(): void {
+    const ubLS = sessionStorage.getItem('ubicacion');
     if (ubLS == null || ubLS.length < 2) {
       this.ubicacion = undefined;
       return;

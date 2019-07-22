@@ -23,7 +23,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   displayedColumns2: string[] = ['ingredienteColumnName', 'precioColumnName'];
   precioTotalSucursal: TotalSucursal[] = new Array();
   listaSucursales: SucursalTablaPrecio[] = new Array();
-  cacheListaSucursales : SucursalTablaPrecio[];
+  cacheListaSucursales: SucursalTablaPrecio[];
   listaSucursalesOrdenadas: SucursalTablaPrecio [] = new Array();
   listaSucursalesAnterior: SucursalTablaPrecio[] = new Array();
   listaProductos: Producto[] = new Array();
@@ -77,7 +77,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   }
 
   loadCadenas() {
-    this.listaCadenasDisponibles = JSON.parse(localStorage.getItem('cadenas'));
+    this.listaCadenasDisponibles = JSON.parse(sessionStorage.getItem('cadenas'));
   }
 
   loadColumns() {
@@ -101,7 +101,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 
   loadPlato(idPlato: number) {
     let platotmp: Plato;
-    const listaMenues: Menu [] =  JSON.parse(localStorage.getItem('menu'));
+    const listaMenues: Menu [] =  JSON.parse(sessionStorage.getItem('menu'));
     if (listaMenues !== null && listaMenues.length > 0) {
       listaMenues.forEach(m => {
         platotmp = m.platos.find(p => p.idPlato === idPlato);
@@ -180,28 +180,27 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
 
   calcularCantidadColumnas() {
     console.log(this.screenWidth);
-    var cant_columns:number = 1;
+    let cant_columns = 1;
     if (this.listaSucursales !== undefined) {
-      if(this.screenWidth < 1126) {
-        cant_columns = 1
+      if (this.screenWidth < 1126) {
+        cant_columns = 1;
       }
-      if(this.screenWidth >= 1126){
-        cant_columns = 2
+      if (this.screenWidth >= 1126) {
+        cant_columns = 2;
       }
-      if(this.screenWidth >= 1920){
-        cant_columns = 3
+      if (this.screenWidth >= 1920) {
+        cant_columns = 3;
       }
 
-      if (this.listaSucursales.length < cant_columns ){
+      if (this.listaSucursales.length < cant_columns ) {
         return this.listaSucursales.length;
-      }
-      else{
+      } else {
         return cant_columns;
       }
     }
   }
   cargarUbicacion() {
-    const ub = localStorage.getItem('ubicacion');
+    const ub = sessionStorage.getItem('ubicacion');
     if (ub !== null) {
       this.ubicacion = JSON.parse(ub);
     }
@@ -213,7 +212,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   }
 
   loadIngredientesPlato(idPlato: number) {
-    const listaMenues: Menu [] =  JSON.parse(localStorage.getItem('menu'));
+    const listaMenues: Menu [] =  JSON.parse(sessionStorage.getItem('menu'));
     if (listaMenues !== null && listaMenues.length > 0) {
       listaMenues.forEach(menu => {
       const tmpPlato = menu.platos.find(plato => plato.idPlato === idPlato);
@@ -273,7 +272,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   }
 
   cargarProductos() {
-    const prods = localStorage.getItem('productos');
+    const prods = sessionStorage.getItem('productos');
     if (prods !== null) {
       const lprod = JSON.parse(prods);
       if (lprod.length > 0) {
@@ -291,27 +290,27 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
                       productosPlato.push(this.listaProductos.find(pls => pls.codigoDeBarras === cod)));
 
     console.log(productosPlato);
-    const prodCart = localStorage.getItem('carrito');
+    const prodCart = sessionStorage.getItem('carrito');
     if (prodCart !== null) {
       const carrito: Producto[] = JSON.parse(prodCart);
       if (carrito.length > 0) {
         console.log('no vacio');
         console.log(carrito);
         productosPlato.forEach(prod => {
-          var pAux: Producto = carrito.find(p => p.codigoDeBarras === prod.codigoDeBarras);
+          let pAux: Producto = carrito.find(p => p.codigoDeBarras === prod.codigoDeBarras);
           if (pAux === undefined) {
             console.log('agregado');
             console.log(pAux);
             carrito.push(prod);
           } else {
             console.log('encontrado');
-          } 
+          }
         });
-        
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        sessionStorage.setItem('carrito', JSON.stringify(carrito));
       } else {
         console.log('vacio');
-        localStorage.setItem('carrito', JSON.stringify(productosPlato));
+        sessionStorage.setItem('carrito', JSON.stringify(productosPlato));
       }
     }
   }
@@ -326,7 +325,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.screenWidth = window.innerWidth;
     this.cargarUbicacion();
-    this.cargarProductos()
+    this.cargarProductos();
     this.loadCadenas();
     this.updateSucursales();
   }

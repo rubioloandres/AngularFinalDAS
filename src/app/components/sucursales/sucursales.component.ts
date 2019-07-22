@@ -18,7 +18,7 @@ export class SucursalesComponent implements OnInit {
   error: string;
 
   updateSucursales() {
-    const ubicacion: Ubicacion = JSON.parse(localStorage.getItem('ubicacion'));
+    const ubicacion: Ubicacion = JSON.parse(sessionStorage.getItem('ubicacion'));
     this.sSuc.getSucursales(ubicacion.codigoEntidadFederal, ubicacion.localidad)
     .subscribe( cadenas  =>  {
             cadenas.forEach(cadena => {
@@ -40,7 +40,7 @@ export class SucursalesComponent implements OnInit {
   }
 
   loadCadenas() {
-    this.listaCadenas = JSON.parse(localStorage.getItem('cadenas'));
+    this.listaCadenas = JSON.parse(sessionStorage.getItem('cadenas'));
   }
 
   showMapa(lat: number, lng: number, nombreUbic: string, ubic: string) {

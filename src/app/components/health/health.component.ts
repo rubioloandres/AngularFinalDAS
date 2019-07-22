@@ -71,7 +71,7 @@ export class HealthComponent implements OnInit {
   }
 
   cargarMenuSemanal() {
-    const lmen = localStorage.getItem('menu');
+    const lmen = sessionStorage.getItem('menu');
     if (lmen != null || ( lmen.length > 0)) {
       this.menuSemanal = JSON.parse(lmen);
     } else {
@@ -105,9 +105,9 @@ export class HealthComponent implements OnInit {
 
 
   ubicacionCargada() {
-    if (localStorage.getItem('ubicacion') === '') {
-      return false
-    }else{
+    if (sessionStorage.getItem('ubicacion') === '') {
+      return false;
+    } else {
       return true;
     }
   }
@@ -116,7 +116,6 @@ export class HealthComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogLocationComponent, {
       width: '500px'
     });
-    //this.loadUbicacion();
   }
 
   constructor(
@@ -125,7 +124,6 @@ export class HealthComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.loadUbicacion();
     this.cargarMenuSemanal();
     this.cargarSemana();
     this.actualizarDia();

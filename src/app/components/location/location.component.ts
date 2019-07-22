@@ -28,8 +28,6 @@ export class DialogLocationComponent implements OnInit {
 
   ubicacion: Ubicacion;
 
-  //validUbicacion : boolean = true;
-
   displayFnP(prov?: Provincia): string | undefined {
     return prov ? prov.nombreProvincia : undefined;
   }
@@ -71,11 +69,11 @@ export class DialogLocationComponent implements OnInit {
   }
 
   loadProvinces() { // TODO: cambiar nombre a  "cargarProvincias"
-    this.listaProvincias = JSON.parse(localStorage.getItem('provincias'));
+    this.listaProvincias = JSON.parse(sessionStorage.getItem('provincias'));
   }
 
   getLocalidadesByProvincia(codigoEntidadFederal: string) {
-    const lloc: Localidad[] = JSON.parse(localStorage.getItem('localidades'));
+    const lloc: Localidad[] = JSON.parse(sessionStorage.getItem('localidades'));
     this.listaLocalidades = lloc.filter(loc => loc.codigoEntidadFederal === codigoEntidadFederal);
   }
 
@@ -86,35 +84,26 @@ export class DialogLocationComponent implements OnInit {
 
 
   saveUbicacion(localidad: Localidad, provincia: Provincia) { // TODO: cambiar nombre a  "guardarUbicacion"
-    
-  const isNotUbicacionValida =(provincia.codigoEntidadFederal === undefined
+  const isNotUbicacionValida = (provincia.codigoEntidadFederal === undefined
                           || localidad.nombreLocalidad === undefined
-                          || provincia.nombreProvincia === undefined)
+                          || provincia.nombreProvincia === undefined);
 
-  console.log(localidad);
-  console.log(provincia);
-
-  if (isNotUbicacionValida) 
-    {
+  if (isNotUbicacionValida) {
         console.log('Ubicacion invalida...');
-    }
-    else {
+    } else {
       const ubicacion: Ubicacion = {
         codigoEntidadFederal: provincia.codigoEntidadFederal,
         localidad: localidad.nombreLocalidad,
         provincia: provincia.nombreProvincia
       };
-
-      //GuardaSession
-      localStorage.setItem('ubicacion', JSON.stringify(ubicacion));
-
+      sessionStorage.setItem('ubicacion', JSON.stringify(ubicacion));
       this.dataS.changeUbicacion(ubicacion);
     }
 
   }
 
   hayUbicacion() {
-    const ub = localStorage.getItem('ubicacion');
+    const ub = sessionStorage.getItem('ubicacion');
     if (ub !== null) {
       return true;
     }
@@ -124,13 +113,13 @@ export class DialogLocationComponent implements OnInit {
   listoParaRegistrar() {
     console.log(this.formLocalidad.value);
     console.log(this.formProvincia.value);
-    if (this.formLocalidad.value !== null && this.formLocalidad.value !== '' 
+    if (this.formLocalidad.value !== null && this.formLocalidad.value !== ''
     && this.formProvincia.value !== null  && this.formProvincia.value !== '' ) {
 
       const prov = this.listaProvincias.find(p => p ===  this.formProvincia.value);
       const loc = this.listaLocalidades.find(l => l ===  this.formLocalidad.value);
 
-      if (prov !== undefined && loc !== undefined)      return true;
+      if (prov !== undefined && loc !== undefined) { return true; }
     }
     return false;
   }

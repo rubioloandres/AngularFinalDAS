@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
    ) { }
 
   loadUbicacion() {
-    this.ubicacion = JSON.parse(localStorage.getItem('posicion'));
+    this.ubicacion = JSON.parse(sessionStorage.getItem('posicion'));
     console.log(this.ubicacion);
   }
 
