@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
 import { Localidad } from 'src/app/interfaces/localidad';
 import { startWith, map } from 'rxjs/operators';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
-import { GeoLocationService } from 'src/app/services/geoLocation.service';
 import { DataSharingService } from 'src/app/services/datasharing.service';
-import { ProvinciasService } from 'src/app/services/indec/provincias.service';
 
 @Component({
   selector: 'app-dialog-location',
@@ -77,11 +75,6 @@ export class DialogLocationComponent implements OnInit {
     this.listaLocalidades = lloc.filter(loc => loc.codigoEntidadFederal === codigoEntidadFederal);
   }
 
-  getAutomaticLocation() {
-    this.loc.getCurrentLocation();
-  }
-
-
 
   saveUbicacion(localidad: Localidad, provincia: Provincia) { // TODO: cambiar nombre a  "guardarUbicacion"
   const isNotUbicacionValida = (provincia.codigoEntidadFederal === undefined
@@ -125,7 +118,6 @@ export class DialogLocationComponent implements OnInit {
   }
 
   constructor(
-    private loc: GeoLocationService,
     private dataS: DataSharingService,
     public dialogRef: MatDialogRef<DialogLocationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string) { }

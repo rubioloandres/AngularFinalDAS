@@ -13,9 +13,9 @@ export class ProductosService {
 
   public buscarProductos(critops: CriterioBusquedaProducto): Observable<Producto[]> {
 
-    const httpParams:HttpParams = this.crearHttParams(critops);
+    const httpParams: HttpParams = this.crearHttParams(critops);
     return (
-      this.http.get<Producto[]>(environment.webAPI + 'buscarproductos',{params: httpParams})
+      this.http.get<Producto[]>(environment.webAPI + 'buscarproductos', {params: httpParams})
     )
       .pipe(catchError(err => {
         console.log('Error al obtener productos', err);
@@ -26,30 +26,30 @@ export class ProductosService {
 
   crearHttParams(critops: CriterioBusquedaProducto): HttpParams {
 
-    var aggregarCategoria = (params:HttpParams):HttpParams => {
+    const aggregarCategoria = (params: HttpParams): HttpParams => {
       if (critops.idCategoria) {
         return params.set('idcategoria', critops.idCategoria.toString());
       } else {
         return params;
       }
-    }
-    
-    var aggregarMarcas = (params:HttpParams):HttpParams => {
+    };
+
+    const aggregarMarcas = (params: HttpParams): HttpParams => {
       if (critops.marcas) {
         return params.set('marcas', critops.marcas.toString());
       } else {
         return params;
       }
-    }
-    
-    var aggregarPalabraClave = (params:HttpParams):HttpParams => {
+    };
+
+    const aggregarPalabraClave = (params: HttpParams): HttpParams => {
       if (critops.palabraclave) {
         return params.set('palabraclave', critops.palabraclave);
       } else {
         return params;
       }
-    }
-    
+    };
+
     return aggregarPalabraClave(aggregarMarcas(aggregarCategoria(new HttpParams())));
 
     }

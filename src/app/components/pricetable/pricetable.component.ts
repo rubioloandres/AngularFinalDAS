@@ -122,24 +122,25 @@
 
     removeProduct(idprod: string) {
 
-      const carr = this.obtenerProductosCarrito();
+      let carr = this.obtenerProductosCarrito();
 
       const found = carr.find(p => p.codigoDeBarras === idprod);
 
       if ( found !== undefined ) { // encontrado
         this.listaProductos = this.listaProductos.filter(p => p.codigoDeBarras !== idprod);
 
-        sessionStorage.setItem('carrito', JSON.stringify(this.listaProductos));
+        carr = carr.filter( p => p.codigoDeBarras !== idprod );
+
+        sessionStorage.setItem('carrito', JSON.stringify(carr));
 
         this.cargarUbicacion();
 
         if (this.listaProductos.length > 0) {
-          console.log('negro');
+
           this.listaCadenasNoDisponibles = new Array();
           this.compararPrecios(this.listaProductos);
         } else {
           this.listaCadenasNoDisponibles = new Array();
-          console.log('blanco');
           this.displayedColumns = new Array();
         }
       } else { // no encontrado
@@ -159,7 +160,7 @@
         width: '500px',
         data: {   nombreCadena: cadenaSuc.nombreCadena,
                   imagenCadena: cadenaSuc.imagenCadena,
-                  nombreSucursal: suc.nombreSucursal,
+                  nombreUbicacion: suc.nombreSucursal,
                   direccion: suc.direccion,
                   latitud: suc.latitud,
                   longitud: suc.longitud}
@@ -189,7 +190,8 @@
       const codigos = new Set<string>();
       productos.forEach(p => codigos.add(p.codigoDeBarras));
       const arrcodigos = Array.from(codigos.values());
-      this.suscripcionCadenasService = this.sCad.getComparacionINDEC(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, arrcodigos.toString())
+      this.suscripcionCadenasService = this.sCad
+      .getComparacionINDEC(this.ubicacion.codigoEntidadFederal, this.ubicacion.localidad, arrcodigos.toString())
           .subscribe( cadenas  =>  {
                   this.loading = false;
                   cadenas.forEach(cadena => {

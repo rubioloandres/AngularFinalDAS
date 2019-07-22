@@ -29,7 +29,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { GeoLocationService } from './services/geoLocation.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './components/categories/categories.component';
@@ -116,7 +115,6 @@ import { FooterComponent } from './components/footer/footer.component';
     ProductosService,
     CatalogueComponent,
     DataSharingService,
-    GeoLocationService,
     ProvinciasService,
     LocalidadesService,
     SucursalesService,

@@ -24,7 +24,7 @@ export interface TotalSucursal {
   totalPrecio: number;
 }
 
-//Se usa en dialog
+// Se usa en dialog
 export interface SucursalInfo {
   nombreCadena: string;
   imagenCadena: string;

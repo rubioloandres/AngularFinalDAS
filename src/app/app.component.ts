@@ -8,7 +8,6 @@ import { MenuService } from './services/indec/menu.service';
 import { Categoria } from './interfaces/categoria';
 import { Subscription, Observable } from 'rxjs';
 import { DataSharingService } from './services/datasharing.service';
-import { GeoLocationService } from './services/geoLocation.service';
 import { MatDialog } from '@angular/material';
 import { Ubicacion, Coordenadas } from './interfaces/ubicacion';
 import { Producto } from './interfaces/producto';
@@ -57,7 +56,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private sCad: CadenasService,
     private sMen: MenuService,
     private data: DataSharingService,
-    private loc: GeoLocationService,
     public dialog: MatDialog,
     private cdRef: ChangeDetectorRef,
     @Inject(LOCALE_ID) locale: string
@@ -215,9 +213,6 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.listaProvincias.find(prov => prov.codigoEntidadFederal === codEntFed);
   }
 
-  getAutomaticLocation() {
-    this.loc.getCurrentLocation();
-  }
 
   searchProductsPorPalabraClave(): void {
     this.suscripcionformBusProd = this.formBusProd.valueChanges.subscribe(palabra => {
@@ -263,13 +258,11 @@ export class AppComponent implements OnInit, OnDestroy {
   setIdioma(idioma: Idioma) {
     let url = '';
     if (idioma.nombre === 'ES') {
-      console.log('espa;ol');
       url = 'http://localhost:' + idioma.puerto;
       return url;
     }
 
     if (idioma.nombre === 'EN') {
-      console.log('ingles');
       url = 'http://localhost:' + idioma.puerto;
       return url;
     }

@@ -13,12 +13,6 @@ export class CategoriasService {
     private http: HttpClient,
     private errManager: ErrorManager
     ) { }
-/*
-  getCategoriaResponse(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>( environment.webAPI + 'categorias?identificador=Angular')
-                    .pipe( catchError (this.errManager.handleHTTPError) );
-
-  }*/
 
   getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>( environment.webAPI + 'categorias?')
