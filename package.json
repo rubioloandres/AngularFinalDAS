@@ -8,9 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "extract-i18n": "ng xi18n pcINDEC  --i18n-format xlf --output-path  i18n --i18n-locale es && ng run pcINDEC:xliffmerge",
+    "extract-i18n": "ng xi18n pcINDEC --i18n-format xlf --output-path i18n --i18n-locale de && ng run pcINDEC:xliffmerge",
     "start-es": "ng serve --host localhost --port 44316 --configuration=es --aot --open",
-    "start-en": "ng serve --host localhost --port 44319 --configuration=en --aot --open",
+    "start-en": "ng serve --configuration=en",
     "start-all": "concurrently \"npm run start-es\" \"npm run start-en\""
   },
   "private": true,

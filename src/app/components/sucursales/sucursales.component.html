@@ -1,9 +1,9 @@
 <div class="space"></div>
 <div class="sucursalesContainer">
-<h2>Informacion de sucursales</h2>
+<h2 i18n>Informacion de sucursales</h2>
 
 <div class="noProds" *ngIf="!(listaSucursales.length > 0 )">
-  <h5>No hay sucursales para mostrar.</h5>
+  <h5 i18n>No hay sucursales para mostrar.</h5>
 </div>
 
 <div fxLayout="row wrap">
@@ -27,7 +27,7 @@
       </mat-card-content>
       <mat-card-actions>
           <button mat-stroked-button (click)="showMapa(sucursal.latitud,sucursal.longitud,sucursal.nombreSucursal,sucursal.direccion)">
-          <img src="./../../../assets/img/location_icon.png">Ver ubicacion</button>
+          <img src="./../../../assets/img/location_icon.png"><span i18n>Ver ubicacion</span></button>
       </mat-card-actions>
     </mat-card>
   </div>

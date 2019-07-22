@@ -3,14 +3,14 @@
   <mat-card class="info-card">
     <img src="{{data.imagenCadena}}">
     <mat-card-header>
-      <mat-card-title>Cadena: {{data.nombreCadena}}</mat-card-title>
-      <mat-card-subtitle>Direccion: {{data.direccion}}</mat-card-subtitle>
+      <mat-card-title><span i18n>Cadena: </span>{{data.nombreCadena}}</mat-card-title>
+      <mat-card-subtitle><span i18n>Direccion: </span>{{data.direccion}}</mat-card-subtitle>
     </mat-card-header>
     <img class="map" src="./../../../assets/img/map_example.png">
     <mat-card-content>
       <ul>
-        <li>Latitud: {{data.latitud}}</li>
-        <li>Longitud: {{data.longitud}}</li>
+        <li><span i18n>Latitud: </span>{{data.latitud}}</li>
+        <li><span i18n>Longitud: </span>{{data.longitud}}</li>
       </ul>
     </mat-card-content>
   </mat-card>

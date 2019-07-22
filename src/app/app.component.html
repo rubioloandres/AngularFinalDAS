@@ -1,27 +1,46 @@
 <div>
+
   <mat-toolbar class="navbar-custom" style="text-align: right">
 
     <span class="example-spacer"></span>
-    <div *ngFor="let seccion of secciones" fxShow="true" fxHide.lt-lg="true" >
-      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-      <a [routerLink]="[seccion.ruta]" mat-button style="color: white">{{seccion.descripcion}}
-        <img width="30" height="30" src="{{seccion.imagen}}">
-      </a>
-    </div>
 
-    <div fxShow="true" fxHide.lt-lg="true" i18n>
-      <a *ngIf="hayUbicacion()" [routerLink]="['sucursales']" mat-button style="color: white">Supermercados
+    <div fxShow="true" fxHide.lt-lg="true">
+
+      <a [routerLink]="['/']" mat-button style="color: white">
+        <span i18n>Principal</span>
+        <img width="30" height="30" src="./../../../assets/img/home_icon.png">
+      </a>
+
+      <a [routerLink]="['health']" mat-button style="color: white">
+          <span i18n>Menu Saludable</span>
+          <img width="30" height="30" src="./../../../assets/img/health-food-icon2.png">
+      </a>
+
+      <a [routerLink]="['cart']" mat-button style="color: white">
+        <span i18n>Carrito</span>
+        <img width="30" height="30" src="./../../../assets/img/cart_icon.png">
+      </a>
+
+      <a *ngIf="hayUbicacion()" [routerLink]="['sucursales']" mat-button style="color: white">
+        <span i18n>Supermercados</span>
         <img width="30" height="30" src="./../../../assets/img/super_icon.png">
       </a>
-      <a *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" mat-button style="color: white">Supermercados
+
+      <a *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" mat-button style="color: white">
+          <span i18n>Supermercados</span>
         <img width="30" height="30" src="./../../../assets/img/super_icon.png">
       </a>
-      <a mat-button (click)="searchAllProducts()" [routerLink]="['catalogue']" style="color: white">Productos
+
+      <a mat-button (click)="searchAllProducts()" [routerLink]="['catalogue']" style="color: white">
+        <span i18n>Productos</span>
         <img width="30" height="30" src="./../../../assets/img/product_icon.png">
       </a>
-      <a mat-button (click)="registrarUbicacion()" style="color: white">Ubicacion
+
+      <a mat-button (click)="registrarUbicacion()" style="color: white">
+          <span i18n>Ubicacion</span>
         <img width="30" height="30" src="./../../../assets/img/location_icon.png">
       </a>
+
     </div>
 
     <span class="example-spacer"></span>
@@ -29,7 +48,8 @@
 
     <form class="searchInput" style="padding-left: 3%">
       <mat-form-field>
-        <input matInput i18n-aria-label aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput" [formControl]="formBusProd">
+        <input matInput i18n-aria-label aria-label="Buscar" [(ngModel)]="searchInput" name="searchInput"
+          [formControl]="formBusProd">
       </mat-form-field>
       <button mat-stroked-button i18n-title title="Buscar productos" [routerLink]="['catalogue']"
         (click)="onClickSearchProductsPorPalabraClave()"><img src="./../../../assets/img/search_icon.png"></button>
@@ -39,72 +59,81 @@
       <div class="btn-group btn-lang">
         <button mat-menu-item class="btn" [matMenuTriggerFor]="idioma" style="color: white">
           {{idiomaActual.nombre}}
-         <img src="{{idiomaActual.imagen}}" style="width: 25px;height: 25px;">
+          <img src="{{idiomaActual.imagen}}" style="width: 25px;height: 25px;">
         </button>
       </div>
     </div>
 
     <mat-menu #idioma="matMenu">
-        <button mat-menu-item *ngFor="let idioma of listaIdiomas" (click)="setIdiomaActual(idioma.nombre)">
-          {{idioma.nombre}}
-          <img src="{{idioma.imagen}}" width="25px" height="25px">
-        </button>
+      <button mat-menu-item *ngFor="let idioma of listaIdiomas" (click)="setIdiomaActual(idioma.nombre)">
+        {{idioma.nombre}}
+        <img src="{{idioma.imagen}}" width="25px" height="25px">
+      </button>
     </mat-menu>
 
-<div fxShow="true" fxHide.gt-lg="true" class="sidenav-button">
-  <a (click)="sidenav.toggle()">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
-  </a>
-</div>
-
-</mat-toolbar>
-
-<div class="sidenav-container-container">
-  <mat-sidenav-container fxFlexFill class="sidenav-container" fxLayout="column">
-    <mat-sidenav #sidenav fxLayout="row" style="padding-top:75px">
-      <div fxLayout="column">
-
-        <div *ngFor="let seccion of secciones">
-          <a [routerLink]="[seccion.ruta]" mat-button style="color: rgb(0, 0, 0)">
-            {{seccion.descripcion}}
-            <img width="30" height="30" src="{{seccion.imagen}}">
-          </a>
-        </div>
-
-        <a  i18n *ngIf="hayUbicacion()" [routerLink]="['sucursales']" mat-button style="color: rgb(0, 0, 0)">
-          Supermercados
-          <img width="30" height="30" src="./../../../assets/img/super_icon.png">
-        </a>
-        
-        <a i18n *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" mat-button style="color: rgb(0, 0, 0)">
-          Supermercados
-          <img width="30" height="30" src="./../../../assets/img/super_icon.png">
-        </a>
-
-        <a i18n (click)="searchAllProducts()" [routerLink]="['catalogue']"  mat-button style="color: rgb(0, 0, 0)">
-          Productos
-          <img width="30" height="30" src="./../../../assets/img/product_icon.png">
-        </a>
-
-        <a i18n mat-button (click)="registrarUbicacion()" style="color: rgb(0, 0, 0)">
-          Ubicacion
-          <img width="30" height="30" src="./../../../assets/img/location_icon.png">
-        </a>
-
-      </div>
-    </mat-sidenav>
-
-
-    <div *ngIf="!error">
-      <div class="router-container">
-        <router-outlet></router-outlet>
-      </div>
-      <app-footer></app-footer>
+    <div fxShow="true" fxHide.gt-lg="true" class="sidenav-button">
+      <a (click)="sidenav.toggle()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </a>
     </div>
-  </mat-sidenav-container>
-</div>
-</div>
+
+  </mat-toolbar>
+
+  <div class="sidenav-container-container">
+    <mat-sidenav-container fxFlexFill class="sidenav-container" fxLayout="column">
+      <mat-sidenav #sidenav fxLayout="row" style="padding-top:75px">
+        <div fxLayout="column">
+
+          <a [routerLink]="['/']" mat-button style="color: rgb(0, 0, 0)">
+            <span i18n>Principal</span>
+            <img width="30" height="30" src="./../../../assets/img/home_icon.png">
+          </a>
+
+          <a [routerLink]="['health']" mat-button style="color: rgb(0, 0, 0)">
+            <span i18n>Menu Saludable</span>
+            <img width="30" height="30" src="./../../../assets/img/health-food-icon2.png">
+          </a>
+
+          <a [routerLink]="['cart']" mat-button style="color: rgb(0, 0, 0)">
+            <span i18n>Carrito</span>
+            <img width="30" height="30" src="./../../../assets/img/cart_icon.png">
+          </a>
+
+          <a *ngIf="hayUbicacion()" [routerLink]="['sucursales']" mat-button style="color: rgb(0, 0, 0)">
+            <span i18n>Supermercados</span>
+            <img width="30" height="30" src="./../../../assets/img/super_icon.png">
+          </a>
+
+          <a *ngIf="!hayUbicacion()" (click)="registrarUbicacion()" mat-button style="color: rgb(0, 0, 0)">
+              <span i18n>Supermercados</span>
+            <img width="30" height="30" src="./../../../assets/img/super_icon.png">
+          </a>
+
+          <a (click)="searchAllProducts()" [routerLink]="['catalogue']" mat-button style="color: rgb(0, 0, 0)">
+            <span i18n>Productos</span>
+            <img width="30" height="30" src="./../../../assets/img/product_icon.png">
+          </a>
+
+          <a mat-button (click)="registrarUbicacion()" style="color: rgb(0, 0, 0)">
+            <span i18n>Ubicacion</span>
+            <img width="30" height="30" src="./../../../assets/img/location_icon.png">
+          </a>
+
+        </div>
+      </mat-sidenav>
 
 
+      <div *ngIf="!error">
+        <div class="router-container">
+          <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+      </div>
+    </mat-sidenav-container>
+  </div>
+
+
+
+</div>

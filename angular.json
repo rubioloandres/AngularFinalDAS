@@ -75,6 +75,7 @@
               "i18nLocale": "en"
             },
             "es": {
+              "aot": true,
               "outputPath": "dist/es/",
               "i18nFile": "src/i18n/messages.es.xlf",
               "i18nFormat": "xlf",

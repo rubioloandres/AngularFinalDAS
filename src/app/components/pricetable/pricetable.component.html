@@ -1,9 +1,9 @@
 <div class="space"></div>
 
-<h2>Precios de Productos</h2>
+<h2 i18n>Precios de Productos</h2>
 
 <div class="noCads" *ngIf="listaCadenasNoDisponibles.length > 0">
-  <h4 *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
+  <h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
   <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
 </div>
 
@@ -22,7 +22,7 @@
   <table mat-table [dataSource]="listaProductos" *ngIf="!sucursalesEmpty()" class="mat-elevation-z8">
       <ng-container matColumnDef="item" class="product-column" >
         <th mat-header-cell *matHeaderCellDef>
-          <mat-card-title>Lista</mat-card-title>
+          <mat-card-title i18n>Lista</mat-card-title>
         </th>
         <td mat-cell *matCellDef="let producto" matColumnDef>
           <mat-card>
@@ -31,12 +31,12 @@
               <span> {{producto.nombreProducto}}</span>
               <mat-card-subtitle> {{producto.codigoDeBarras}} </mat-card-subtitle>
             </mat-card-content>
-            <button mat-button title="Eliminar producto" (click)="removeProduct(producto.codigoDeBarras)"><img class="remove-button" src="../../../assets/img/trash.png"></button>
+            <button mat-button i18n-title title="Eliminar producto" (click)="removeProduct(producto.codigoDeBarras)"><img class="remove-button" src="../../../assets/img/trash.png"></button>
           </mat-card>
         </td>
         <td mat-footer-cell *matFooterCellDef class="total">
-          <mat-card-title> Resumen </mat-card-title>
-          <mat-card-subtitle> Detalle de resumen </mat-card-subtitle>
+          <mat-card-title i18n> Resumen </mat-card-title>
+          <mat-card-subtitle i18n> Detalle de resumen </mat-card-subtitle>
         </td>
       </ng-container>
  
@@ -49,13 +49,13 @@
                 {{ suc.nombreSucursal }}
               </option>
             </select>
-            <button mat-stroked-button (click)="openDialogInfo(sucursal)" title="Informacion sucursal" [ngClass]="{'mejorOp': sucursal.mejorOpcion}">
+            <button mat-stroked-button (click)="openDialogInfo(sucursal)" i18n-title title="Informacion sucursal" [ngClass]="{'mejorOp': sucursal.mejorOpcion}">
               <mat-card>
                   <mat-card-content>
                       <img class="cadena-logo" src="{{sucursal.imagenCadena}}">
                     <mat-card-title>{{sucursal.direccion}}</mat-card-title>
                     <mat-card-subtitle>{{sucursal.nombreCadena}}</mat-card-subtitle>
-                    <mat-card-subtitle> ( {{sucursal.productos.length}} productos disponibles ) </mat-card-subtitle>
+                    <mat-card-subtitle> ( {{sucursal.productos.length}} <span i18n>productos disponibles</span>  ) </mat-card-subtitle>
                   </mat-card-content>
               </mat-card>
             </button>
@@ -85,8 +85,8 @@
 <button *ngIf="displayedColumns.length === 0 || listaSucursales.length ===0" mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
 
   <div class="noProds" *ngIf="error">
-    <h4>Error al comparar precios</h4>
-    <h5>Ocurrio un error al intentar comparar, vuelve a intentar.</h5>
+    <h4 i18n>Error al comparar precios</h4>
+    <h5 i18n>Ocurrio un error al intentar comparar, vuelve a intentar.</h5>
   </div>
 </div>
 

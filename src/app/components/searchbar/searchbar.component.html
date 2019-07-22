@@ -7,14 +7,14 @@
       <ng-template carouselSlide><img src="./../../../assets/img/carousel_slide_4.jpg"></ng-template>
     </owl-carousel-o>-->
     
-    <h2>Buscador de Productos</h2>
+    <h2 i18n>Buscador de Productos</h2>
   <div>
     <form>
       <mat-form-field>
-        <input matInput [(ngModel)]="searchInput" name="searchInput" placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
+        <input matInput [(ngModel)]="searchInput" name="searchInput" i18n-placeholder placeholder="Encuentra el producto que desees, por nombre, marca o categoria">
       </mat-form-field>
       <div>
-        <button [routerLink]="['catalogue']" (click)="searchProducts()" class="searchButton" mat-raised-button color="primary">Buscar<img src="./../../../assets/img/search_icon.png"></button>
+        <button i18n [routerLink]="['catalogue']" (click)="searchProducts()" class="searchButton" mat-raised-button color="primary">Buscar<img src="./../../../assets/img/search_icon.png"></button>
       </div>
     </form>
   </div>

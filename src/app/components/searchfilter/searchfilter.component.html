@@ -12,23 +12,23 @@
       <mat-divider></mat-divider>
       <form>
         <mat-form-field #selectcategoriacontainer>
-          <mat-label>Categorias</mat-label>
+          <mat-label i18n>Categorias</mat-label>
           <mat-select [formControl]="formFilterCategorias"  #selectcategoria>
-            <mat-option selected (click) = "buscarPorCategoria()">Todas las categorias</mat-option>
+            <mat-option selected (click) = "buscarPorCategoria()" i18n>Todas las categorias</mat-option>
             <mat-option (click)="buscarPorCategoria()" *ngFor="let categoria of listaCategorias" [value]="categoria"> 
               {{categoria.nombreCategoria}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-divider></mat-divider>
         <mat-form-field>
-          <mat-label>Marcas</mat-label>
+          <mat-label i18n>Marcas</mat-label>
           <mat-select [formControl]="formFilterMarcas" multiple #marca>
-            <mat-option selected>Todas las marcas</mat-option>
+            <mat-option selected i18n>Todas las marcas</mat-option>
             <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
           </mat-select>
         </mat-form-field>
         <div>
-          <button mat-button (click)="buscar()"> Buscar</button>
+          <button mat-button (click)="buscar()" i18n> Buscar</button>
         </div>
       </form>
     </div>
