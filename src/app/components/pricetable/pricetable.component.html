@@ -86,8 +86,10 @@
 <mat-divider></mat-divider>
 <div class="noCads" *ngIf="! error">
   <mat-list>
-    <mat-list-item><h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4></mat-list-item>
+    <mat-list-item><h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles.length > 0)">No fue posible obtener precios de los supermercados</h4></mat-list-item>
       <mat-list-item *ngFor="let cadena of listaCadenasNoDisponibles">
-        <img src="{{getImagenCadena(cadena.idCadena)}}"><h5> {{cadena.nombreCadena}}</h5>
+        <img src="{{getImagenCadena(cadena.idCadena)}}"><h5>  {{cadena.nombreCadena}}</h5>
       </mat-list-item>
   </mat-list>
+</div>
+<div class="space"></div>

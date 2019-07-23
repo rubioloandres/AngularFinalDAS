@@ -113,7 +113,7 @@ h4, h5 {
 }
 
 .noCads h4 {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .botonSucursal {
@@ -121,18 +121,17 @@ h4, h5 {
 }
 
 .noCads h5 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 200;
 }
 
 .noCads img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
 }
 
 .noCads {
   width: auto;
-  border: 1px aquamarine solid;
 }
 
 select {

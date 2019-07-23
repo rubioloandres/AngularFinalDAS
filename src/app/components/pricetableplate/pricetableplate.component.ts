@@ -90,8 +90,8 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
       i++;
     }
     this.listaSucursalesOrdenadas = this.listaSucursales.sort(  (suc1, suc2) => {
-      if ( suc1.cantidadDeProductosConPrecioMasBajo > suc2.cantidadDeProductosConPrecioMasBajo) {  return -1; }
-      if ( suc1.cantidadDeProductosConPrecioMasBajo < suc2.cantidadDeProductosConPrecioMasBajo) {  return 1; }
+      if ( suc1.mejorOpcion > suc2.mejorOpcion ) {  return -1; }
+      if ( suc1.mejorOpcion < suc2.mejorOpcion) {  return 1; }
       return 0;
     });
     this.listaSucursalesAnterior = this.listaSucursalesOrdenadas;

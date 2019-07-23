@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Plato } from 'src/app/interfaces/menu';
 import { DialogLocationComponent } from '../location/location.component';
 import { DataSharingService } from 'src/app/services/datasharing.service';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
 
 @Component({
   selector: 'app-dialog-plato',
@@ -22,11 +23,13 @@ export class DialogPlatoComponent {
   }
 
   ubicacionCargada() {
-    if (sessionStorage.getItem('ubicacion') === '') {
-      return false;
-    } else {
-      return true;
+    const ub = sessionStorage.getItem('ubicacion');
+    if (ub !== null) {
+      if (sessionStorage.getItem('ubicacion') !== '') {
+          return true;
+      }
     }
+    return false;
   }
 
   registrarUbicacion() {
