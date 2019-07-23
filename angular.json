@@ -76,7 +76,7 @@
             },
             "es": {
               "aot": true,
-              "outputPath": "dist/es/",
+              "outputPath": "dist/pcINDEC-es",
               "i18nFile": "src/i18n/messages.es.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "es"
@@ -152,8 +152,9 @@
               "i18nFormat": "xlf",
               "srcDir": "src/i18n",
               "genDir": "src/i18n",
-              "defaultLanguage": "es",
+              "defaultLanguage": "de",
               "languages": [
+                "de",
                 "es",
                 "en"
               ]
