@@ -8,21 +8,20 @@
 
 }
 
-
 .sidenav-button {
     display: inline-block;
     cursor: pointer;
     padding: 10px;
   }
-  
-  
+
+
   .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
     background-color: rgb(255, 255, 255);
     margin: 6px 0;
   }
-  
+
   .navbar-custom{
     max-height: 100px !important;
     overflow: hidden;
@@ -32,7 +31,7 @@
     justify-content: center !important;
     position: fixed;
   }
-  
+
   .navbar-custom-top{
     background-repeat: no-repeat;
     background-color: white;
@@ -48,12 +47,12 @@
     color: white;
     float: left;
   }
-  
+
   .searchInput button img {
     width: 25px !important;
     height: 25px !important;
   }
-  
+
   .logo-container{
     width: 100%;
     justify-content: left !important;
@@ -61,14 +60,11 @@
     z-index: 50;
     overflow: hidden;
   }
-  
-  
+
+
   .sidenav-container {
     background: none;
-    display: none;
+    display: flex !important;
     position: fixed;
-    justify-content: center !important;
-    text-align: center !important;
-  
   }
-  
+

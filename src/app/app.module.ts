@@ -47,6 +47,7 @@ import { CadenasService } from './services/indec/cadenas.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorManager } from './services/handleError.service';
 import { DialogLocationComponent } from './components/location/location.component';
+import { DialogPlatoSucursalComponent } from './components/plato/plato.component';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { HealthComponent } from './components/health/health.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -75,6 +76,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HealthComponent,
     PricetableplateComponent,
     FooterComponent,
+    DialogPlatoSucursalComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +128,8 @@ import { FooterComponent } from './components/footer/footer.component';
   entryComponents: [
     DialogInfoSucursalComponent,
     DialogLocationComponent,
-    MapComponent
+    MapComponent,
+    DialogPlatoSucursalComponent
   ],
   bootstrap: [AppComponent]
 })

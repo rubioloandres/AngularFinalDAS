@@ -7,7 +7,7 @@
  ::ng-deep.mat-form-field-underline {
   /*change color of underline*/
   background-color:rgb(101, 104, 105)!important;
-} 
+}
 
 ::ng-deep.mat-form-field-ripple {
  /*change color of underline when focused*/
@@ -59,7 +59,7 @@ button img {
   font-size: 20px;
   position: absolute;
   z-index: 10;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   left: 0;

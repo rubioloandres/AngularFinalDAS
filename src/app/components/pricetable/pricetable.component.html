@@ -2,14 +2,9 @@
 
 <h2 i18n>Precios de Productos</h2>
 
-<div class="noCads" *ngIf="listaCadenasNoDisponibles.length > 0">
-  <h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
-  <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
-</div>
 
 <div class="pricetable-container">
-  
-  
+
 <div *ngIf="loading" style="overflow:hidden">
   <mat-progress-spinner
     class="example-margin"
@@ -39,7 +34,7 @@
           <mat-card-subtitle i18n> Detalle de resumen </mat-card-subtitle>
         </td>
       </ng-container>
- 
+
       <ng-container *ngFor="let sucursal of listaSucursalesOrdenadas; let i = index" matColumnDef="sucursal{{i+1}}">
         <div>
           <th mat-header-cell *matHeaderCellDef>
@@ -90,4 +85,7 @@
   </div>
 </div>
 
-
+<div class="noCads" *ngIf="listaCadenasNoDisponibles.length > 0">
+  <h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
+  <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
+</div>
