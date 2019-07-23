@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="es" datatype="plaintext" original="ng2.template">
+  <file source-language="de" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="132089b3375f24f1bc80b81c488c3547f7fe2f86" datatype="html">
         <source>Ubicacion</source>
@@ -10,11 +10,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dea44d64608acfb3421d2928882d7e00e6659385" datatype="html">
@@ -71,41 +67,29 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="732705569e07059ff6e4ffccc4157a2faaa031f4" datatype="html">
-        <source>Principal</source>
+      <trans-unit id="6754a652f3ca0fb06b39889681f2144cf6e49e98" datatype="html">
+        <source> Principal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">90</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="570ae5d7f2beb220e622dcc31a29a9cdb88c9f15" datatype="html">
-        <source>Menu Saludable</source>
+      <trans-unit id="fc43b1a6a5f5f34b5b7c38c3e4afa33269400725" datatype="html">
+        <source> Menu Saludable</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">95</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="650fc7ff88b6444033bd121da1743aa6b44713ee" datatype="html">
-        <source>Carrito</source>
+      <trans-unit id="3ed8f27b132beafbcb6866766d7d33435bdc6877" datatype="html">
+        <source> Carrito</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">100</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="6494342256dffcaec27cf3c6401a7c6d9732822f" datatype="html">
-        <source>Supermercados</source>
+      <trans-unit id="8ee826806ebc1ee94cc4f20f331a3cd7276b23a3" datatype="html">
+        <source> Supermercados</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">25</context>
@@ -114,59 +98,97 @@
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">30</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">105</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">110</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="94efa71a224b2b3f987d35313a28b89384d71b81" datatype="html">
-        <source>Productos</source>
+      <trans-unit id="6d4f2530460b1e0e6d7de26805e315b797acfa5a" datatype="html">
+        <source> Productos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">35</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="8ef5b6eb2b72dd1955ed2336439326b9cf83448b" datatype="html">
+        <source> Ubicacion</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b6bc65f3e9576dc6ac1493740124944c259a11f4" datatype="html">
         <source>Buscar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/searchfilter/searchfilter.component.html</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6c541373b38bdd14981a514219d1dfec34a6f6ed" datatype="html">
         <source>Buscar productos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="732705569e07059ff6e4ffccc4157a2faaa031f4" datatype="html">
+        <source>Principal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="570ae5d7f2beb220e622dcc31a29a9cdb88c9f15" datatype="html">
+        <source>Menu Saludable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="650fc7ff88b6444033bd121da1743aa6b44713ee" datatype="html">
+        <source>Carrito</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6494342256dffcaec27cf3c6401a7c6d9732822f" datatype="html">
+        <source>Supermercados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="94efa71a224b2b3f987d35313a28b89384d71b81" datatype="html">
+        <source>Productos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a81510652f9ab20706930fb7a7a997ac13939676" datatype="html">
         <source>Buscador de Productos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/searchbar/searchbar.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d845027ca3cbdb11f536fb433c8dd66de7701084" datatype="html">
         <source>Encuentra el producto que desees, por nombre, marca o categoria</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/searchbar/searchbar.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="45f0557cf236515cc12a1f12c9f9170b471cc4df" datatype="html">
-        <source>Buscar<x id="TAG_IMG" ctype="image" equiv-text="&lt;img/>"/></source>
+        <source>Buscar<x id="TAG_IMG" ctype="image" equiv-text="&lt;img/&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/searchbar/searchbar.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="579e185ee0ae6dbcd15f7dfbfab8c152fe7ef676" datatype="html">
@@ -247,46 +269,46 @@
         <source>Productos de Canasta Basica</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="41ca919a169cde580a9a7b6d3de3ab4eaab1e338" datatype="html">
         <source>No hay productos para mostrar.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a7be9f6e9c0620b50dac98facdaab4f1f06675b5" datatype="html">
         <source>Puedes utilizar nuestro buscador o seleccionar una categoria.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="588d7e0ed183ef78711d2a7812e20871df1faf4d" datatype="html">
         <source>Eliminar del carrito</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fd2a755754fdb523642b9d998724ce649b326c9f" datatype="html">
         <source>Agregar a carrito</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c2bece45d95335b492f19d3987c223f2f27ec830" datatype="html">
         <source>Comparar precios</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/catalogue/catalogue.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bfdb76de46cb9f8d985b7a37aee1b24392e39359" datatype="html">
@@ -324,36 +346,25 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="abe13861c69528a50fea6dedf72722cb6d9cf28f" datatype="html">
-        <source>No fue posible obtener precios de los supermercados</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
-          <context context-type="linenumber">108</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="e8fa4d4fe3d5a97ff3fc21fc53021a1a8ee354a8" datatype="html">
         <source>Lista</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6aaaf6ff8d9628a234017d4e3ac3f4a83d6813e6" datatype="html">
         <source>Eliminar producto</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3bcc770a34fd712fc2bf39b9cc331f5904bd8b01" datatype="html">
         <source> Resumen </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
@@ -364,7 +375,7 @@
         <source> Detalle de resumen </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
@@ -375,14 +386,14 @@
         <source>productos disponibles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="487087c6ef1f674f64bfc6b08f2901d5ebb3477d" datatype="html">
         <source>Informacion sucursal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
@@ -393,7 +404,7 @@
         <source>Error al comparar precios</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
@@ -404,22 +415,47 @@
         <source>Ocurrio un error al intentar comparar, vuelve a intentar.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
           <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a9ba40d5d559fdf9af0bfb886bef853b16ee3a78" datatype="html">
-        <source>Categorias</source>
+      <trans-unit id="abe13861c69528a50fea6dedf72722cb6d9cf28f" datatype="html">
+        <source>No fue posible obtener precios de los supermercados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/pricetable/pricetable.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aa33b1866b6113aa37dc2fd84752a58fafeef0ef" datatype="html">
+        <source>Tambien puedes buscar tus productos seleccionando una categoria</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/categories/categories.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="a9ba40d5d559fdf9af0bfb886bef853b16ee3a78" datatype="html">
+        <source>Categorias</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/categories/categories.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/searchfilter/searchfilter.component.html</context>
           <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b143786009378278e56111b8bf153fb7a3666849" datatype="html">
+        <source>Ocultar filtos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/searchfilter/searchfilter.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="54673a239e22fbbbd70e3a3106ecc92d47d4868f" datatype="html">
@@ -443,11 +479,11 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b6fa6604163d595b17afcffc65298fbb6cd804d9" datatype="html">
-        <source> Buscar</source>
+      <trans-unit id="ad01e9ac0fb7dcc7676557b8a27961df3b258297" datatype="html">
+        <source>Mostrar filtos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/searchfilter/searchfilter.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dbf7b5446338042cd453c2a3a4e50e2b0e838b3f" datatype="html">
@@ -468,7 +504,43 @@
         <source>Ver ubicacion</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/sucursales/sucursales.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="50557bdb799ab7d743ddbb14de76e1783f4466cb" datatype="html">
+        <source>INGREDIENTES</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/plato/plato.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8411c0297293363d7634e3b9ea60adc21a950d22" datatype="html">
+        <source>PREPARACION</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/plato/plato.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b482ec11be8e46ffb32d1c94f6aeffc31339e7fb" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img/&gt;"/>Calcular Precio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/plato/plato.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/plato/plato.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9e4d2bcce01eda71e69100cf80f8467ee21fd077" datatype="html">
+        <source>Calcular Precios</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/plato/plato.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/plato/plato.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="be8f9946895a06e5c07ec25592231216fbb9fb56" datatype="html">
@@ -485,36 +557,18 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="50557bdb799ab7d743ddbb14de76e1783f4466cb" datatype="html">
-        <source>INGREDIENTES</source>
+      <trans-unit id="67ca167f779d3824b00dfab677d20bb8164db1e1" datatype="html">
+        <source>Ver Detalles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/health/health.component.html</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8411c0297293363d7634e3b9ea60adc21a950d22" datatype="html">
-        <source>PREPARACION</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/health/health.component.html</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9e4d2bcce01eda71e69100cf80f8467ee21fd077" datatype="html">
-        <source>Calcular Precios</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/health/health.component.html</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/health/health.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="72555f43b1872cd6347aa4806615bd2ba64a3651" datatype="html">
         <source>No hay un menu para este dia.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/health/health.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8a0cee8e75247d525b1108f589ac28d98514cf7a" datatype="html">
@@ -535,8 +589,8 @@
           <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9c0f98599ffe16fc03406b6e83e837223ba1fa79" datatype="html">
-        <source>Todos los ingredientes disponibles</source>
+      <trans-unit id="e66477c85dfb19374530e5d00209a9b67af2323d" datatype="html">
+        <source> Todos los ingredientes disponibles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
           <context context-type="linenumber">54</context>
@@ -546,8 +600,8 @@
           <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="0c3a785b7c395ea68fb495c26071dc192bb4b3a4" datatype="html">
-        <source>Menor precio total</source>
+      <trans-unit id="702946d90f472e78d716d5eb9280a0636cffe6d5" datatype="html">
+        <source> Menor precio total</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
           <context context-type="linenumber">56</context>
@@ -585,13 +639,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
           <context context-type="linenumber">79</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d633c02d173e60a1d1db1035f371f9dc7fbcff48" datatype="html">
-        <source>Volver a saludable</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/components/pricetableplate/pricetableplate.component.html</context>
-          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
     </body>

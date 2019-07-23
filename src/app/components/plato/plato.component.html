@@ -5,7 +5,7 @@
         <img src="{{data.imagenPlato}}" height="350">
     </div>
     <mat-card-content [style.overflow]="'auto'" [style.height.px]="'300'">
-      <mat-expansion-panel (opened)="panelIngOpenState = true" (closed)="panelIngOpenState = false">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title i18n class="resaltar">INGREDIENTES</mat-panel-title>
         </mat-expansion-panel-header>
@@ -13,7 +13,7 @@
           <li *ngFor="let ingrediente of data.ingredientes">{{ingrediente.nombreIngrediente}} ({{ingrediente.descripcion}})</li>
         </ul>
       </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelPrepOpenState = true" (closed)="panelPrepOpenState = false">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title i18n class="resaltar">PREPARACION</mat-panel-title>
         </mat-expansion-panel-header>
