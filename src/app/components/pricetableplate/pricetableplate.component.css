@@ -112,8 +112,27 @@ h4, h5 {
   text-align: center !important;
 }
 
+.noCads h4 {
+  font-size: 20px;
+}
+
+.botonSucursal {
+  width: 100%;
+}
+
+.noCads h5 {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.noCads img {
+  width: 35px;
+  height: 35px;
+}
+
 .noCads {
   width: auto;
+  border: 1px aquamarine solid;
 }
 
 select {

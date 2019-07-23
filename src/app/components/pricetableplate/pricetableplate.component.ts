@@ -262,6 +262,14 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  getImagenCadena(idCad: number) {
+    const cads = sessionStorage.getItem('cadenas');
+    if (cads !== null) {
+      const lcad: Cadena[] = JSON.parse(cads);
+      return lcad.find(c => c.idCadena === idCad).imagenCadena;
+    }
+  }
+
   menorPrecioTotal(suc: SucursalTablaPrecio) {
     for (const sucursal of this.listaSucursales) {
       if (sucursal.total < this.precioTotal) {
@@ -297,7 +305,7 @@ export class PricetableplateComponent implements OnInit, OnDestroy {
         console.log('no vacio');
         console.log(carrito);
         productosPlato.forEach(prod => {
-          let pAux: Producto = carrito.find(p => p.codigoDeBarras === prod.codigoDeBarras);
+          const pAux: Producto = carrito.find(p => p.codigoDeBarras === prod.codigoDeBarras);
           if (pAux === undefined) {
             console.log('agregado');
             console.log(pAux);

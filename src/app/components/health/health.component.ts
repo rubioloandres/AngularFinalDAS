@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Dia } from 'src/app/interfaces/dia';
-import { Menu } from 'src/app/interfaces/menu';
+import { Menu, Plato } from 'src/app/interfaces/menu';
 import { DataSharingService } from 'src/app/services/datasharing.service';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
 import { MatDialog } from '@angular/material';
 import { DialogLocationComponent } from '../location/location.component';
+import { DialogPlatoComponent } from '../plato/plato.component';
 
 @Component({
   selector: 'app-health',
@@ -102,8 +103,6 @@ export class HealthComponent implements OnInit {
     this.data.changePlato(idPlato);
   }
 
-
-
   ubicacionCargada() {
     if (sessionStorage.getItem('ubicacion') === '') {
       return false;
@@ -115,6 +114,15 @@ export class HealthComponent implements OnInit {
   registrarUbicacion() {
     const dialogRef = this.dialog.open(DialogLocationComponent, {
       width: '500px'
+    });
+  }
+
+
+  openDialogPlato(plato: Plato): void {
+    const dialogRef = this.dialog.open(DialogPlatoComponent, {
+      width: '800px',
+      height: '650px',
+      data: plato
     });
   }
 

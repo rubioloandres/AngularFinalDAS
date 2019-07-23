@@ -76,16 +76,18 @@
   </table>
 </div>
 
-
-<button *ngIf="displayedColumns.length === 0 || listaSucursales.length ===0" mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
-
   <div class="noProds" *ngIf="error">
     <h4 i18n>Error al comparar precios</h4>
     <h5 i18n>Ocurrio un error al intentar comparar, vuelve a intentar.</h5>
+    <button mat-button [routerLink]="['']" routerLinkActive="router-link-active" ><img width="55" height="55" src="./../../../assets/img/home_icon.png">Volver a inicio</button>
   </div>
 </div>
 
-<div class="noCads" *ngIf="listaCadenasNoDisponibles.length > 0">
-  <h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4>
-  <h5 *ngFor="let cadena of listaCadenasNoDisponibles">{{cadena.nombreCadena}}</h5>
-</div>
+<mat-divider></mat-divider>
+<div class="noCads" *ngIf="! error">
+  <mat-list>
+    <mat-list-item><h4 i18n *ngIf="(! loading) && (listaCadenasNoDisponibles)">No fue posible obtener precios de los supermercados</h4></mat-list-item>
+      <mat-list-item *ngFor="let cadena of listaCadenasNoDisponibles">
+        <img src="{{getImagenCadena(cadena.idCadena)}}"><h5> {{cadena.nombreCadena}}</h5>
+      </mat-list-item>
+  </mat-list>

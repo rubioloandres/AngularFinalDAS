@@ -47,7 +47,7 @@ import { CadenasService } from './services/indec/cadenas.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorManager } from './services/handleError.service';
 import { DialogLocationComponent } from './components/location/location.component';
-import { DialogPlatoSucursalComponent } from './components/plato/plato.component';
+import { DialogPlatoComponent } from './components/plato/plato.component';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { HealthComponent } from './components/health/health.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -58,6 +58,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -76,7 +77,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HealthComponent,
     PricetableplateComponent,
     FooterComponent,
-    DialogPlatoSucursalComponent
+    DialogPlatoComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +111,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatExpansionModule,
     MatSidenavModule,
     MatRadioModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatListModule
   ],
   providers: [
     CategoriasService,
@@ -129,7 +131,7 @@ import { FooterComponent } from './components/footer/footer.component';
     DialogInfoSucursalComponent,
     DialogLocationComponent,
     MapComponent,
-    DialogPlatoSucursalComponent
+    DialogPlatoComponent
   ],
   bootstrap: [AppComponent]
 })

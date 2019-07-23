@@ -1,7 +1,6 @@
 .space {
-  margin-top: 70px;
+  margin-top: 7%;
 }
-
 
 .example-container {
   height: 380px;
@@ -67,9 +66,19 @@ h2 {
   margin-top: 10%;
 }
 
-h4, h5 {
+h4 {
   font-family: Oswald !important;
   text-align: center !important;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+h5 {
+  font-family: Oswald !important;
+  text-align: center !important;
+  font-size: 24px;
+  font-weight: 200;
+  color: gray;
 }
 
 .cartEmpty {
@@ -86,8 +95,20 @@ button {
 
 th{
   background-color:rgb(50, 50, 156);
-  color: white; 
+  color: white;
   text-align: center !important;
   justify-content: center;
  }
- 
+
+ th span {
+  font-family: Oswald !important;
+  text-align: center !important;
+  font-size: 18px;
+  font-weight: 400;
+ }
+
+ td {
+  font-family: Oswald !important;
+  font-size: 16px;
+  font-weight: 250;
+ }

@@ -154,6 +154,14 @@
       return this.listaCadenasDisponibles.find(cad => cad.idCadena === id);
     }
 
+    getImagenCadena(idCad: number) {
+      const cads = sessionStorage.getItem('cadenas');
+      if (cads !== null) {
+        const lcad: Cadena[] = JSON.parse(cads);
+        return lcad.find(c => c.idCadena === idCad).imagenCadena;
+      }
+    }
+
     openDialogInfo(suc: Sucursal): void {
       const cadenaSuc = this.getCadena(suc.idCadena);
       const dialogRef = this.dialog.open(DialogInfoSucursalComponent, {

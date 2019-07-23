@@ -1,5 +1,10 @@
 #mapid { height: 180px; }
 
+span {
+  font-family: Oswald !important;
+  font-size: 20px;
+}
+
 .router-container {
     padding-left: 10%;
     padding-right: 10%;
@@ -12,6 +17,22 @@
     display: inline-block;
     cursor: pointer;
     padding: 10px;
+  }
+
+  mat-sidenav span {
+    color: white;
+  }
+
+  mat-sidenav {
+
+    background: rgba(2,2,92,1);
+background: -moz-linear-gradient(top, rgba(2,2,92,1) 0%, rgba(148,180,214,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(2,2,92,1)), color-stop(100%, rgba(148,180,214,1)));
+background: -webkit-linear-gradient(top, rgba(2,2,92,1) 0%, rgba(148,180,214,1) 100%);
+background: -o-linear-gradient(top, rgba(2,2,92,1) 0%, rgba(148,180,214,1) 100%);
+background: -ms-linear-gradient(top, rgba(2,2,92,1) 0%, rgba(148,180,214,1) 100%);
+background: linear-gradient(to bottom, rgba(2,2,92,1) 0%, rgba(148,180,214,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02025c', endColorstr='#94b4d6', GradientType=0 );
   }
 
 
@@ -30,6 +51,16 @@
     background-color:rgb(50, 50, 156);
     justify-content: center !important;
     position: fixed;
+
+
+    background: rgba(47,47,99,1);
+background: -moz-linear-gradient(left, rgba(47,47,99,1) 0%, rgba(92,165,242,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(47,47,99,1)), color-stop(100%, rgba(92,165,242,1)));
+background: -webkit-linear-gradient(left, rgba(47,47,99,1) 0%, rgba(92,165,242,1) 100%);
+background: -o-linear-gradient(left, rgba(47,47,99,1) 0%, rgba(92,165,242,1) 100%);
+background: -ms-linear-gradient(left, rgba(47,47,99,1) 0%, rgba(92,165,242,1) 100%);
+background: linear-gradient(to right, rgba(47,47,99,1) 0%, rgba(92,165,242,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f2f63', endColorstr='#5ca5f2', GradientType=1 );
   }
 
   .navbar-custom-top{
@@ -47,6 +78,7 @@
     color: white;
     float: left;
   }
+
 
   .searchInput button img {
     width: 25px !important;
@@ -66,5 +98,7 @@
     background: none;
     display: flex !important;
     position: fixed;
+
+
   }
 

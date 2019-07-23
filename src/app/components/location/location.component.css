@@ -16,6 +16,15 @@ h1 {
   font-weight: 700;
 }
 
+mat-card-title {
+  font-family: Oswald !important;
+  font-size: 20px !important;
+}
+
+form {
+  font-family: Oswald !important;
+}
+
 .dialog {
   border: 2px lightblue solid;
   font-family: Oswald !important;

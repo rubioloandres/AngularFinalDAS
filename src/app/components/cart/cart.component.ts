@@ -12,9 +12,9 @@ import { DialogLocationComponent } from '../location/location.component';
 })
 
 export class CartComponent implements OnInit {
-  private carrito: Producto[] = new Array<Producto>();
-  private displayedColumns = ['item', 'nombre', 'categoria', 'accion'];
-  private ubicacion: Ubicacion;
+  carrito: Producto[] = new Array<Producto>();
+  displayedColumns = ['item', 'nombre', 'categoria', 'accion'];
+  ubicacion: Ubicacion;
 
   constructor(
     private data: DataSharingService,

@@ -1,5 +1,5 @@
 .space {
-  margin-top: 70px;
+  margin-top: 5%;
 }
 
 .diasSemana {
@@ -78,7 +78,7 @@ mat-card-title {
   margin-right: 0;
   font-family: Oswald !important;
   color: rgb(50, 50, 156);
-  font-size: 20px !important;
+  font-size: 24px !important;
   font-style: normal;
   font-variant: normal;
   font-weight: 700;
@@ -89,7 +89,7 @@ mat-card-subtitle {
   margin-left: 0;
   margin-right: 0;
   font-family: Oswald !important;
-  font-size: 14px;
+  font-size: 20px;
   font-style: normal;
   font-variant: normal;
   font-weight: 700;
@@ -110,9 +110,17 @@ mat-expansion-panel p, ul {
   font-variant: normal;
 }
 
-mat-card {
-  border: 2px solid lightblue;
+
+.botonMenu {
+  border-radius: 14px 14px 14px 14px;
+  -moz-border-radius: 14px 14px 14px 14px;
+  -webkit-border-radius: 14px 14px 14px 14px;
+  border: 2px solid #3f278f;
   height: auto;
+
+  -webkit-box-shadow: 10px 10px 30px -13px rgba(0,0,0,1);
+  -moz-box-shadow: 10px 10px 30px -13px rgba(0,0,0,1);
+  box-shadow: 10px 10px 30px -13px rgba(0,0,0,1)
 }
 
 mat-card img {

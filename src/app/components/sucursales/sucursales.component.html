@@ -7,7 +7,7 @@
 </div>
 
 <div fxLayout="row wrap">
-  <div *ngFor="let sucursal of listaSucursales" fxFlex="25"
+  <div class="contSucursal" *ngFor="let sucursal of listaSucursales" fxFlex="25"
   fxFlex.md="33"
   fxFlex.sm="50"
   fxFlex.xs="100"
@@ -18,6 +18,7 @@
       <mat-card-title>{{getCadena(sucursal.idCadena).nombreCadena}}</mat-card-title>
       <mat-card-subtitle>{{sucursal.nombreSucursal}}</mat-card-subtitle>
       <img class="cad-img" src="{{getCadena(sucursal.idCadena).imagenCadena}}">
+      <mat-divider></mat-divider>
       <mat-card-content>
         <ul>
           <li><img src="./../../../assets/img/email_icon.png">{{sucursal.email}}</li>
@@ -25,9 +26,10 @@
           <li><img src="./../../../assets/img/cuit_icon.png">CUIT: {{sucursal.cuit}}</li>
         </ul>
       </mat-card-content>
+      <mat-divider></mat-divider>
       <mat-card-actions>
           <button mat-stroked-button (click)="showMapa(sucursal.latitud,sucursal.longitud,sucursal.nombreSucursal,sucursal.direccion)">
-          <img src="./../../../assets/img/location_icon.png"><span i18n>Ver ubicacion</span></button>
+          <img src="./../../../assets/img/123-1237313_pin-icon-white-location-pin-png.png"><span i18n>Ver ubicacion</span></button>
       </mat-card-actions>
     </mat-card>
   </div>

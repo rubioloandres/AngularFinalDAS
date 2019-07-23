@@ -1,7 +1,29 @@
 
 .mostrarOcultarFiltro {
-  border: 1px solid  rgb(50, 50, 156);
+  border-radius: 200px 0px 0px 200px;
+-moz-border-radius: 200px 0px 0px 200px;
+-webkit-border-radius: 200px 0px 0px 200px;
+border: 2px solid #61d8e0;
   background-color: white;
+}
+
+mat-label, mat-option {
+  font-family: Oswald !important;
+}
+
+.contBusqueda {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botonBuscar {
+  border: 2px aquamarine solid;
+}
+
+.botonBuscar img {
+  width: 25px !important;
+  height: 25px !important;
 }
 
 p {
@@ -11,6 +33,7 @@ p {
   font-size: 18px;
   align-content: center
 }
+
 
 button img {
   width: 35px;
