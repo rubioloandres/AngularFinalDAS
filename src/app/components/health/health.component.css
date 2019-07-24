@@ -162,3 +162,8 @@ h3 {
   text-align: center !important;
   font-weight: lighter;
 }
+
+.imagePlato {
+  width: 70% !important;
+  height: 70% !important;
+}
