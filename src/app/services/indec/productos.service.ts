@@ -15,7 +15,7 @@ export class ProductosService {
 
     const httpParams: HttpParams = this.crearHttParams(critops);
     return (
-      this.http.get<Producto[]>(environment.webAPI + 'buscarproductos', {params: httpParams})
+      this.http.get<Producto[]>(environment.webAPI + 'productos', {params: httpParams})
     )
       .pipe(catchError(err => {
         console.log('Error al obtener productos', err);
